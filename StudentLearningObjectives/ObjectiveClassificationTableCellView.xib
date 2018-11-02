@@ -12,38 +12,35 @@
             <rect key="frame" x="0.0" y="0.0" width="196" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NwE-Nk-UZK">
-                    <rect key="frame" x="54" y="8" width="89" height="17"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="85" id="La1-Zm-3hx"/>
-                    </constraints>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="#expert" allowsEditingTextAttributes="YES" id="PFu-ew-ehD">
-                        <font key="font" usesAppearanceFont="YES"/>
+                <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="JTl-OP-j94">
+                    <rect key="frame" x="-2" y="8" width="5" height="34"/>
+                </box>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NwE-Nk-UZK" userLabel="Expertise Level Label">
+                    <rect key="frame" x="13" y="14" width="89" height="14"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="#expert" allowsEditingTextAttributes="YES" id="PFu-ew-ehD">
+                        <font key="font" metaFont="system" size="11"/>
                         <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="JTl-OP-j94">
-                    <rect key="frame" x="-2" y="8" width="5" height="34"/>
-                </box>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I75-SD-eQ0">
-                    <rect key="frame" x="3" y="25" width="94" height="17"/>
+                    <rect key="frame" x="14" y="28" width="94" height="14"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="90" id="Evh-gc-Nmj"/>
                     </constraints>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="#success skills" allowsEditingTextAttributes="YES" id="suM-Up-HLx">
-                        <font key="font" usesAppearanceFont="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="#success skills" allowsEditingTextAttributes="YES" id="suM-Up-HLx">
+                        <font key="font" metaFont="system" size="11"/>
                         <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="741-Fj-96e">
-                    <rect key="frame" x="112" y="25" width="81" height="17"/>
+                    <rect key="frame" x="105" y="28" width="81" height="14"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="77" id="A4J-FJ-Gsf"/>
                     </constraints>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="#must-have" allowsEditingTextAttributes="YES" id="SDh-Wb-QjM">
-                        <font key="font" usesAppearanceFont="YES"/>
+                        <font key="font" metaFont="system" size="11"/>
                         <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -51,16 +48,16 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="JTl-OP-j94" secondAttribute="bottom" constant="8" id="81q-fU-opt"/>
-                <constraint firstItem="NwE-Nk-UZK" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="AtR-oo-8kJ"/>
+                <constraint firstItem="NwE-Nk-UZK" firstAttribute="top" secondItem="I75-SD-eQ0" secondAttribute="bottom" id="8A5-xb-XDV"/>
                 <constraint firstItem="741-Fj-96e" firstAttribute="top" secondItem="JTl-OP-j94" secondAttribute="top" id="Cff-pt-MHa"/>
                 <constraint firstItem="I75-SD-eQ0" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="8" id="H56-oa-Vv3"/>
                 <constraint firstItem="741-Fj-96e" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="8" id="Lh4-eB-c9l"/>
-                <constraint firstAttribute="bottom" secondItem="NwE-Nk-UZK" secondAttribute="bottom" constant="8" id="N5H-Z6-iH3"/>
                 <constraint firstItem="JTl-OP-j94" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Zue-nI-hzq"/>
+                <constraint firstItem="I75-SD-eQ0" firstAttribute="leading" secondItem="JTl-OP-j94" secondAttribute="trailing" constant="15" id="bZ1-W6-zuQ"/>
                 <constraint firstItem="741-Fj-96e" firstAttribute="baseline" secondItem="I75-SD-eQ0" secondAttribute="baseline" id="dq3-0d-pYD"/>
-                <constraint firstAttribute="trailing" secondItem="741-Fj-96e" secondAttribute="trailing" constant="5" id="gdU-On-Xia"/>
+                <constraint firstAttribute="trailing" secondItem="741-Fj-96e" secondAttribute="trailing" constant="12" id="gdU-On-Xia"/>
+                <constraint firstItem="NwE-Nk-UZK" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="15" id="nXy-TD-rsh"/>
                 <constraint firstItem="JTl-OP-j94" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="8" id="wfI-ML-Coy"/>
-                <constraint firstItem="I75-SD-eQ0" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="5" id="yFy-WL-hbp"/>
             </constraints>
             <connections>
                 <outlet property="areaLabel" destination="I75-SD-eQ0" id="5Sr-qU-mIf"/>
