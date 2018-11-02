@@ -8,22 +8,18 @@
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView identifier="ObjectiveCellID" id="c22-O7-iKe" customClass="LearningObjectiveCellView" customModule="LearningObjectives" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="515" height="60"/>
+        <customView identifier="ObjectiveCellID" id="c22-O7-iKe" customClass="LearningObjectiveCellView" customModule="StudentLearningObjectives" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="515" height="27"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <box boxType="custom" borderType="none" borderWidth="5" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ctW-em-OQU">
-                    <rect key="frame" x="0.0" y="0.0" width="515" height="100"/>
+                    <rect key="frame" x="0.0" y="0.0" width="515" height="27"/>
                     <view key="contentView" id="TZc-a2-T3b">
-                        <rect key="frame" x="0.0" y="0.0" width="515" height="100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="515" height="27"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gza-wf-YTu">
-                                <rect key="frame" x="13" y="0.0" width="482" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="ZeU-LO-c8j"/>
-                                    <constraint firstAttribute="width" constant="482" id="bZa-he-gge"/>
-                                </constraints>
+                                <rect key="frame" x="27" y="5" width="386" height="17"/>
                                 <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" drawsBackground="YES" allowsEditingTextAttributes="YES" id="GeO-Sk-Ql2">
                                     <font key="font" metaFont="system"/>
                                     <string key="title">As vezes nossos colegas passam por dificuldades e nem sempre é visível principalmente em um período de muito trabalho ficamos desatentos ao que pode estar acontecendo com as outras pessoas.</string>
@@ -31,27 +27,41 @@
                                     <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </textFieldCell>
                             </textField>
+                            <box boxType="custom" borderType="none" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="uho-BQ-aVs">
+                                <rect key="frame" x="17" y="3" width="2" height="21"/>
+                                <view key="contentView" id="Kqg-Yl-15v">
+                                    <rect key="frame" x="0.0" y="0.0" width="2" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="fillColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </box>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="gza-wf-YTu" firstAttribute="top" secondItem="TZc-a2-T3b" secondAttribute="top" constant="60" id="8QV-o8-2J1"/>
-                            <constraint firstItem="gza-wf-YTu" firstAttribute="centerY" secondItem="TZc-a2-T3b" secondAttribute="centerY" constant="30" id="Tw4-Ha-dCc"/>
-                            <constraint firstItem="gza-wf-YTu" firstAttribute="leading" secondItem="TZc-a2-T3b" secondAttribute="leading" constant="13" id="qOh-eg-Jgc"/>
+                            <constraint firstItem="gza-wf-YTu" firstAttribute="leading" secondItem="TZc-a2-T3b" secondAttribute="leading" constant="27" id="0zw-1O-bzI"/>
+                            <constraint firstAttribute="bottom" secondItem="gza-wf-YTu" secondAttribute="bottom" constant="5" id="Lyp-Bd-4Tg"/>
+                            <constraint firstItem="uho-BQ-aVs" firstAttribute="leading" secondItem="TZc-a2-T3b" secondAttribute="leading" constant="17" id="OhQ-ga-P13"/>
+                            <constraint firstAttribute="trailing" secondItem="gza-wf-YTu" secondAttribute="trailing" constant="102" id="OzE-P4-tJh"/>
+                            <constraint firstItem="uho-BQ-aVs" firstAttribute="top" secondItem="TZc-a2-T3b" secondAttribute="top" constant="3" id="cwI-YO-NOw"/>
+                            <constraint firstAttribute="bottom" secondItem="uho-BQ-aVs" secondAttribute="bottom" constant="3" id="hdm-29-v0M"/>
+                            <constraint firstItem="gza-wf-YTu" firstAttribute="centerY" secondItem="TZc-a2-T3b" secondAttribute="centerY" id="hsL-Cc-bmN"/>
+                            <constraint firstItem="gza-wf-YTu" firstAttribute="leading" secondItem="uho-BQ-aVs" secondAttribute="trailing" constant="8" id="tM9-eG-Bbs"/>
+                            <constraint firstAttribute="bottom" secondItem="gza-wf-YTu" secondAttribute="bottom" constant="5" id="vm8-sN-6eD"/>
                         </constraints>
                     </view>
                     <color key="borderColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                     <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    <font key="titleFont" metaFont="smallSystem"/>
                 </box>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="ctW-em-OQU" secondAttribute="trailing" id="Qcs-6x-hto"/>
                 <constraint firstItem="ctW-em-OQU" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="dz1-Gs-hTv"/>
+                <constraint firstItem="gza-wf-YTu" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="5" id="ihn-zT-hDd"/>
                 <constraint firstAttribute="bottom" secondItem="ctW-em-OQU" secondAttribute="bottom" id="s7o-Yq-0YJ"/>
             </constraints>
             <connections>
                 <outlet property="descriptionTextField" destination="gza-wf-YTu" id="c77-d0-MAa"/>
             </connections>
-            <point key="canvasLocation" x="57" y="24"/>
+            <point key="canvasLocation" x="56.5" y="23.5"/>
         </customView>
     </objects>
 </document>

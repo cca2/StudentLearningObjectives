@@ -43,6 +43,8 @@ class LearningObjectiveCellView: NSTableCellView {
     }
 
     func highlightTopics(text: String, tags:[(tag:String, value:String)]) -> NSAttributedString {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.5
         let topicAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.red]
         let attributedText = NSMutableAttributedString(string: "")
         

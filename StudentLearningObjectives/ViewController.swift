@@ -259,7 +259,20 @@ extension ViewController: NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         if (tableView == self.mustHaveTableView) {
-            return CGFloat(50)
+            let fakeField = NSTextField()
+            let item = self.objectivesToDisplay[row].description
+
+            fakeField.stringValue = item
+            // exactly how you get the text out of your data array depends on how you set it up
+            
+            var yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), 350, CGFloat(Float.greatestFiniteMagnitude))).height + 10.0
+            // yourWidth = the width of your cell as CGFloat.
+
+            if yourHeight < 40.0 {
+                yourHeight = 40.0
+            }
+            return yourHeight
+            //            return CGFloat(50)
         }else if (tableView == self.teamMembersView) {
             return CGFloat(110)
         }else {
