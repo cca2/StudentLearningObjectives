@@ -1,0 +1,84 @@
+[
+    {
+        "area": "INNOVATION",
+        "official topics": [
+            {
+                "topic": "ENTREPRENEURIAL_MINDSET"
+                "objectives": [
+                    {"subtopic": "ENTREPRENEURIAL_PERSONAL_DEVELOPMENT"}
+                ],
+            },{
+                "topic": "TEAM_FORMATION"
+                "outcome": "Montar times de alta performance capazes de criar soluções inovadoras para oportunidades",
+            },
+            {
+                "topic": "PROBLEM_VALIDATION"
+                "outcome": "Definir Customer Segment para ir a campo com entrevista de problema";,
+            },
+            {
+                "topic": "EARLY_ADOPTER_COMMUNITY"
+                "outcome": "Criação ou participar de comunidade em torno da big idea.";,
+            },
+            {
+                "topic": "BLUE_OCEAN_STRATEGY"
+                "outcome": "Montar uma estratégia de inovação baseada na estratégia do oceano azul / PUV";,
+            },
+            {
+                "topic": "STORY_TELLING"
+                "outcome": "apresentar o app como um storytelling de uma experiência (marketing)";,
+            },
+            {
+                "topic": "CANVAS_BUSINESS_MODELING"
+                "outcome": "Definir o modelo de negócio: Freemium, In-App Purchase, Purchase, Subscription";,
+            },
+            {
+                "topic": "SOLUTION_VALIDATION"
+                "outcome": "Definir o modelo de negócio: Freemium, In-App Purchase, Purchase, Subscription";,
+            },
+            {
+                "topic": "APPLE_TV_MARKET"
+                "outcome": "Definir o modelo de negócio: Freemium, In-App Purchase, Purchase, Subscription";,
+            },
+            {
+                "topic": "AQUISITION"
+                "outcome": "Definir o modelo de negócio: Freemium, In-App Purchase, Purchase, Subscription";,
+            },
+            {
+                "topic": "RETENTION"
+                "outcome": "Definir o modelo de negócio: Freemium, In-App Purchase, Purchase, Subscription";,
+            },
+            {
+                "topic": "MONETIZATION"
+                "outcome": "Definir o modelo de negócio: Freemium, In-App Purchase, Purchase, Subscription";,
+            },
+            {
+                "topic": "FORESIGHT"
+                "outcome": "Definir o modelo de negócio: Freemium, In-App Purchase, Purchase, Subscription";,
+            },
+            {
+                "topic": "MARKETING_STRATEGY"
+                "outcome": "Definir o modelo de negócio: Freemium, In-App Purchase, Purchase, Subscription";,
+            },
+            {
+                "topic": "APPLE_TV_MARKET"
+                "outcome": "Definir o modelo de negócio: Freemium, In-App Purchase, Purchase, Subscription";,
+            },
+            {
+                "topic": "TECH_BASED_INNOVATION"
+                "outcome": "Definir o modelo de negócio: Freemium, In-App Purchase, Purchase, Subscription";,
+            },
+            {
+                "topic": "APPLE_TV_MARKET"
+                "outcome": "Definir o modelo de negócio: Freemium, In-App Purchase, Purchase, Subscription";,
+            },
+            {
+                "topic": "MARKETING_CAMPAING"
+                "outcome": "Definir o modelo de negócio: Freemium, In-App Purchase, Purchase, Subscription";,
+            },
+            {
+                "topic": "ANALYTICS"
+                "outcome": "Definir o modelo de negócio: Freemium, In-App Purchase, Purchase, Subscription";,
+            }
+        ]
+    }
+]

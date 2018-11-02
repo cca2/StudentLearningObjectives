@@ -1,0 +1,32 @@
+    {
+        "technology": {
+            "tag": "TECHNOLOGY",
+            "description": "Uma tecnologia que pode ser materia prima para a construção de solução",
+            "example": ["UIkit", "CloudKit"]
+        },
+        "tool": {
+            "tag": "TOOL",
+            "description": "Uma ferramenta utilizada para se implementar a solução, construir artefatos de comunicação ou ser utilizada para se criar outros artefatos.",
+            "example": ["Sketch", "XCode"]
+        },
+        "method": {
+            "tag": "METHOD",
+            "description": "Um método ou técnica que pode ser utilizada em qualquer momento do challenge.",
+            "example": ["Persona", "programação em pares", "Pitch"]
+        },
+        "result": {
+            "tag": "RESULT",
+            "description": "Realizar algum resultado.",
+            "example": ["Conquistar usuários", "design bonito"]
+        },
+        "target_platform": {
+            "tag": "TARGET",
+            "description": "Uma plataforma de hardware ou software para o qual a solução será construída",
+            "example": ["iOS", "iPhone", "watchOS"]
+        },
+        "behavior": {
+            "tag": "BEHAVIOR",
+            "description": "Desenvolver a capacidade de me comportar de uma determinada maneira.",
+            "example": ["tolerância", "menor nervoso", "escutar mais"]
+        }
+    }

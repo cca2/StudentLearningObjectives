@@ -1,0 +1,377 @@
+Objetivo de Aprendizado,Descrição,Estudante,Priorização,Nível,Area,Status,Equipe
+Coding Skills/ BackEnd,"Melhorar a integração do código, pods, xib, lógica de programação.",Ailton Lessa,must-have,senior,programming,no backlog,7-Pecados
+Prototipação,"Paleta de cores, animação e features.",Ailton Lessa,must-have,expert,design,no backlog,7-Pecados
+Análise de mercado,Análise de mercado SWOT.,Ailton Lessa,must-have,senior,innovation,no backlog,7-Pecados
+"HealthKit, CareKit ou ResearchKit",,Ana Cláudia Lima,must-have,senior,programming,no backlog,Bom Demais Sem Macho
+SiriKit,,Ana Cláudia Lima,must-have,,programming,no backlog,Bom Demais Sem Macho
+GitFlow,,Ana Cláudia Lima,must-have,,appdev,no backlog,Bom Demais Sem Macho
+Design minimalista,,Ana Cláudia Lima,must-have,,design,no backlog,Bom Demais Sem Macho
+Teoria das cores,,Ana Cláudia Lima,must-have,,design,no backlog,Bom Demais Sem Macho
+Colocar na loja,,Ana Cláudia Lima,must-have,nenhum,innovation,no backlog,Bom Demais Sem Macho
+Escrever pitch,,Ana Cláudia Lima,must-have,senior,success skills,no backlog,Bom Demais Sem Macho
+Foco,,Ana Cláudia Lima,must-have,,success skills,no backlog,Bom Demais Sem Macho
+Machine learning,,Ana Cláudia Lima,nice-to-have,senior,programming,no backlog,Bom Demais Sem Macho
+UI p/ dispositivos pequenos,,Ana Cláudia Lima,nice-to-have,senior,design,no backlog,Bom Demais Sem Macho
+Estratégias de retenção,,Ana Cláudia Lima,nice-to-have,senior,innovation,no backlog,Bom Demais Sem Macho
+branding,"aprender a cuidar da marca e do seu significado como um todo, e como isso impacta nos (possíveis) usuários",Ana Flávia,must-have,senior,design,no backlog,Iti Malia
+apple guidelines,aprender e aplicar as guidelines no app,Ana Flávia,must-have,expert,design,no backlog,Iti Malia
+hypecycle,"ficar ligada e saber classificar tendências ascendentes, mainstream, decaimento, etc",Ana Flávia,must-have,expert,innovation,no backlog,Iti Malia
+SCRUM,ser scrum master e gerenciar o time horizontalmente,Ana Flávia,must-have,senior,innovation,no backlog,Iti Malia
+testes em dispositivos e com usuário,"utilizar a plataforma, de fato, para qual o app está sendo desenvolvido pra testes",Ana Flávia,must-have,senior,programming,no backlog,Iti Malia
+persistencia de dados,aprender DIREITO a armazenar dados,Ana Flávia,must-have,senior,programming,no backlog,Iti Malia
+marketing,atrelado ao branding,Ana Flávia,nice-to-have,senior,innovation,no backlog,Iti Malia
+Aprender ilustrações,"Aprender os básicos da ilustração, anatomia básica e teoria das cores",Arthur Barros,must-have,expert,design,no backlog,7-Pecados
+Continuous integration,Aprender mais e aplicar neste challenge.,Arthur Barros,must-have,expert,programming,no backlog,7-Pecados
+ARM,Aprender e aplicar ARM com enfoque na aquisição.,Arthur Barros,must-have,expert,innovation,no backlog,7-Pecados
+Apple Watch market,Aprender sobre o mercado de aplicativos voltados para Apple Watch.,Arthur Barros,must-have,expert,innovation,no backlog,7-Pecados
+Expor minha opinião,Conseguir expor minha opinião em momentos de dúvidas.,Arthur Barros,must-have,expert,success skills,no backlog,7-Pecados
+Trabalhar com multithreads,Aprendender trabalhar com multithreads,Arthur Barros,nice-to-have,básico,programming,no backlog,7-Pecados
+Machine learning,Aprender sobre machine learning,Arthur Barros,nice-to-have,expert,programming,no backlog,7-Pecados
+CloudKit,Usar CloudKit para gerenciamento de dados na nuvem,Augusto Sales,must-have,senior,programming,no backlog,ModaFoca - GamiFocADA
+Usar notificações push efetivamente,"Aprender tanto a parte de código de como usar as notificações push, quanto a parte de UX, de como usa-las efetivamente",Augusto Sales,must-have,senior,programming,no backlog,ModaFoca - GamiFocADA
+Integração Contínua,Estruturar o código de forma que qualquer nova adição seja bem testada e esteja contida de forma que o projeto fique protegido de falhas de integração,Augusto Sales,must-have,expert,programming,no backlog,ModaFoca - GamiFocADA
+Fazer o On-Boarding do app,Aprender sobre as melhores práticas de on-boarding e aplica-las no app para fazer um app que seja fácil de começar a usar,Augusto Sales,must-have,senior,design,no backlog,ModaFoca - GamiFocADA
+"Validar o protótipo de ""papel""","Usar recursos de esforço mínimo para validar qualquer feature que seja adicionada, idealmente sem escrever nenhuma linha de código antes de iterar sobre a feature",Augusto Sales,must-have,expert,design,no backlog,ModaFoca - GamiFocADA
+Fazer um app realmente enxuto,Aprender a cortar features desnecessárias e encontrar o verdadeiro mínimo que passa o valor. Fazer um app que tenha uma única funcionalidade muito bem executada.,Augusto Sales,must-have,expert,innovation,no backlog,ModaFoca - GamiFocADA
+Ler e compreender a HIG da Apple,"Aprender mais cobre Human Interface Guidelines, entendendo como e por que usa-las",Augusto Sales,must-have,básico,design,no backlog,ModaFoca - GamiFocADA
+Ajudar com e aprender sobre o desenvolvimento de uma identidade visual,"Me juntar à pessoas com mais experiência nessa área e aprender o máximo sobre o processo de desenvolvimento da identidade visual do app, aprendendo a dar feedbacks realmente construtivos",Augusto Sales,must-have,senior,design,no backlog,ModaFoca - GamiFocADA
+Usar efetivamente as técnicas de Design Thinking,Saber em que momento e como usar as técnicas de design thinking para tirar o maior proveito possível delas na concepção de ideias,Augusto Sales,must-have,expert,design,no backlog,ModaFoca - GamiFocADA
+CoreML,Usar aprendizagem de máquina através da framework da Apple,Augusto Sales,must-have,senior,programming,no backlog,ModaFoca - GamiFocADA
+Dedicar mais tempo e entusiasmo às guiding questions,"As guiding questions são importantes para entender melhor as questões que estão sendo abordadas e, com isso, ter melhores ideias",Augusto Sales,must-have,senior,appdev,no backlog,ModaFoca - GamiFocADA
+watchOS + iOS + macOS[ + tvOS]?,"Fazer um app integrado entre os diversos dispositivos da Apple, mesmo que nem todos tenham uma funcionalidade própria particular (exemplo: fazer um dashboard para o macOS)",Augusto Sales,nice-to-have,expert,appdev,no backlog,ModaFoca - GamiFocADA
+Teste Unitário,"Realizar testes de software para ajudar a encontrar bugs, e garantir que o código não esteja quebrado",Augusto Sales,nice-to-have,básico,programming,no backlog,ModaFoca - GamiFocADA
+Colocar o app na loja,Colocar o app na loja,Augusto Sales,nice-to-have,expert,innovation,no backlog,ModaFoca - GamiFocADA
+Fazer uma campanha de marketing,"Aprender sobre como vender o app, e como fazer uma campanha de marketing que atraia novos usuários da maneira mais rápida, para construir uma comunidade inicial",Augusto Sales,nice-to-have,básico,innovation,no backlog,ModaFoca - GamiFocADA
+Sketch,Utilizar o sketch para prototipos e acabar com a dependência no illustrator,Bruna Bezerra,must-have,senior,design,no backlog,ModaFoca - GamiFocADA
+Front End,fazer interface em código para o front-end do app,Bruna Bezerra,must-have,básico,programming,no backlog,ModaFoca - GamiFocADA
+Comunicação em equipe,"Continuar o trabalho iniciado no challenge anterior de dar e receber feedbacks bem, para que os membros da equipe sintam-se confortáveis no ambiente e ownership pelo projeto",Bruna Bezerra,must-have,expert,success skills,no backlog,ModaFoca - GamiFocADA
+Motion Design,"Criar feedbacks animados na interface, fazendo uso de código",Bruna Bezerra,nice-to-have,básico,design,no backlog,ModaFoca - GamiFocADA
+functional programming,Programação utilizando o paradigma funcional.,Caio Moreira,must-have,básico,programming,no backlog,pulsai
+unit tests,Testes unitários para mantinência de código.,Caio Moreira,must-have,básico,appdev,experimentando,pulsai
+color pallet,Escolha e harmonização de cores.,Caio Moreira,must-have,básico,design,no backlog,pulsai
+machine learning,"Aprendizagem de máquina para ser implementado em aplicações do CoreML, treinamento pode ser em tensorflow, pytorch, CreateML, entre outros.",Caio Moreira,must-have,básico,programming,no backlog,pulsai
+continuous integration,"Integração contínua de aplicações, utilizando metodologias como por exemplo deploy continuo entre outros.",Caio Moreira,nice-to-have,básico,appdev,experimentando,pulsai
+interface design,Desenvolver a interface da aplicação.,Caio Moreira,nice-to-have,básico,design,no backlog,pulsai
+icons design,Desenvolvimento de icones,Caio Moreira,nice-to-have,básico,design,no backlog,pulsai
+CloudKit,,Camila Cirne,must-have,básico,programming,no backlog,ModaFoca - GamiFocADA
+Project pattern,,Camila Cirne,nice-to-have,nenhum,programming,no backlog,ModaFoca - GamiFocADA
+Entender cocoapods,,Camila Cirne,nice-to-have,básico,programming,no backlog,ModaFoca - GamiFocADA
+Git no terminal,,Camila Cirne,nice-to-have,básico,appdev,no backlog,ModaFoca - GamiFocADA
+Push Notifications,,Camila Cirne,nice-to-have,básico,programming,no backlog,ModaFoca - GamiFocADA
+Integration Between Devices,,Camila Cirne,nice-to-have,básico,programming,no backlog,ModaFoca - GamiFocADA
+Animações,,Camila Cirne,nice-to-have,básico,design,no backlog,ModaFoca - GamiFocADA
+Teste com Usuário,"Testar e validar, em vários estágios do desenvolvimento, se a solução (ou features) desenvolvidas estão realmente atendendo o problema, e se as interfaces estão cumprindo seu propósito.",Camila Simões,must-have,senior,design,no backlog,Iti Malia
+Guidelines Watch,"Entender e aplicar as recomendações da Apple para o Watch (HIG), retornando a elas durante o desenvolvimento.",Camila Simões,must-have,senior,design,"ensinado em workshop,estudando",Iti Malia
+Implementação de Áudio,"Entender que tipos de arquivos de som são aceitos pelo Xcode, saber adicionar ao projeto e inserir/tratar no código.",Camila Simões,must-have,senior,programming,no backlog,Iti Malia
+Haptic Feedback,feedback de vibração como resposta ou chamada para ações,Camila Simões,must-have,básico,programming,no backlog,Iti Malia
+Organização de Código,"Ordem de escrita, comentários, e separação em arquivos. Formas de estruturar o código de forma que facilite sua manutenção e permita o entendimento por qualquer pessoa.",Camila Simões,must-have,senior,appdev,no backlog,Iti Malia
+"Yes, and","Trabalhar meu aspecto ""yes, but"", me policiando a não me prender tanto a ideias e detalhes, procurando sempre dar sugestões construtivas ao discordar de uma ideia.
+Saber o momento certo de parar de questionar e seguir o fluxo do grupo.",Camila Simões,must-have,senior,success skills,experimentando,Iti Malia
+Foresight,Entender e aplicar essa nova metodologia.,Camila Simões,must-have,básico,innovation,ensinado em workshop,Iti Malia
+After Effects,"Uso básico da ferramenta, primeiros passos, domínio inicial para permitir um aprendizado futuro de animação e motion design.",Camila Simões,nice-to-have,básico,design,no backlog,Iti Malia
+Persistência de Dados,"Permitir que as informações colhidas no uso do app se mantenham de uma tela pra outra, e também entre diferentes sessões.",Camila Simões,nice-to-have,senior,programming,no backlog,Iti Malia
+Otimização,Conceitos básicos sobre o uso de memória (ram) e fatores que influenciam no tamanho de aplicações. Entender sobre o App Thinning.,Camila Simões,nice-to-have,básico,appdev,no backlog,Iti Malia
+Servidor,"Entender como funciona a troca de dados com um servidor, na teoria e na prática.",Camila Simões,nice-to-have,básico,programming,no backlog,Iti Malia
+Game Center,"Implementação de elementos de gamificação do Game Center (conquistas, ranking)",Camila Simões,nice-to-have,básico,programming,no backlog,Iti Malia
+Analytics,"Usar ferramentas de análise de uso que colham feedbacks quantitativos dos testes, e apontem melhorias.",Camila Simões,nice-to-have,básico,innovation,no backlog,Iti Malia
+XCTest,Escrever testes de código e de UI com XCTest,Carolina Agra,must-have,básico,programming,no backlog,ModaFoca - GamiFocADA
+Dar feedbacks melhores,Prestar mais atenção durante todo o processo e chegar no post-mortem com críticas construtivas,Carolina Agra,must-have,senior,success skills,no backlog,ModaFoca - GamiFocADA
+Push Notification,"Agendar notificações locais, e receber e enviar notificações push",Carolina Agra,must-have,básico,programming,no backlog,ModaFoca - GamiFocADA
+Ilustração,"Aprender a mexer com ferramentas como Illustrator e Sketch para ilustrar algo, mesmo que pequeno. E exercitar a criatividade em relação à ilustrações",Carolina Agra,must-have,básico,design,estudando,ModaFoca - GamiFocADA
+Seguir Best Practices,"Procurar fazer as coisas da forma certa, não de qualquer jeito que funcione",Carolina Agra,must-have,senior,appdev,no backlog,ModaFoca - GamiFocADA
+Validação,Fazer mais validações durante o processo,Carolina Agra,must-have,básico,innovation,no backlog,ModaFoca - GamiFocADA
+UI para dispositivos pequenos,Aprender sobre as particularidades de fazer uma UI para Apple Watch,Carolina Agra,must-have,básico,design,no backlog,ModaFoca - GamiFocADA
+SiriKit,Aprender o que pode ser feito com o SiriKit e usar pelo menos uma das opções,Carolina Agra,nice-to-have,básico,programming,no backlog,ModaFoca - GamiFocADA
+App Store,"Aprender se existe algum modelo de apresentação do app na loja, como forma da descrição, qual tipo de imagens colocar, ...",Carolina Agra,nice-to-have,básico,innovation,no backlog,ModaFoca - GamiFocADA
+Aprender a registrar e proteger o app,Aprender como fazer para publicar o trabalho de um grupo de pessoas usando o nome de uma só,Carolina Agra,nice-to-have,básico,innovation,no backlog,ModaFoca - GamiFocADA
+On boarding,Fazer um on boarding simples mas que seja o suficiente para o usuário entender como o app funciona,Carolina Agra,nice-to-have,básico,design,no backlog,ModaFoca - GamiFocADA
+WatchKit,Aprender as particularidades do WatchKit,Carolina Agra,nice-to-have,básico,programming,no backlog,ModaFoca - GamiFocADA
+Comunicar dados entre iOS e watchOS,Aprender como se dá e praticar a comunicação de dados entre iOS e watchOS,Carolina Agra,nice-to-have,básico,programming,no backlog,ModaFoca - GamiFocADA
+Animation,Animações mais complexas em UIKit,Emerson Ferreira,must-have,expert,programming,no backlog,Bom Demais Sem Macho
+App com foco,"Um app que faz um atividade focada, sem muita coisa",Emerson Ferreira,must-have,senior,design,no backlog,Bom Demais Sem Macho
+Motion design,Aplicar conceitos de motion design no app,Emerson Ferreira,must-have,senior,design,no backlog,Bom Demais Sem Macho
+Branding,Fazer um branding para o app,Emerson Ferreira,must-have,senior,design,no backlog,Bom Demais Sem Macho
+Foco,Mais foco no desenvolvimento de atividades,Emerson Ferreira,must-have,expert,success skills,no backlog,Bom Demais Sem Macho
+Bom planejamento de sprint,Planejar a sprint de maneira correta,Emerson Ferreira,must-have,senior,success skills,no backlog,Bom Demais Sem Macho
+Machine learning,Aprender a utilizar os frameworks da Apple que envolvem machine learning,Emerson Ferreira,must-have,básico,programming,no backlog,Bom Demais Sem Macho
+Push notification,Aprender a implementar push notification,Emerson Ferreira,nice-to-have,senior,programming,no backlog,Bom Demais Sem Macho
+Cocoapods,Aprender como funciona o cocoapods e utilizar frameworks diversos,Emerson Ferreira,nice-to-have,senior,programming,no backlog,Bom Demais Sem Macho
+Core Motion,Aprender a usar core motion,Emerson Ferreira,nice-to-have,senior,programming,no backlog,Bom Demais Sem Macho
+Siri Kit,Utilizar a siri para realizar ações no app,Emerson Ferreira,nice-to-have,básico,programming,no backlog,Bom Demais Sem Macho
+Illustrator e photoshop,Utilizar mais e praticar novas ferramentas do illustrator e photoshop,Emerson Ferreira,nice-to-have,básico,design,no backlog,Bom Demais Sem Macho
+Ajudar no pitch,Ajudar na estrutura e na montagem do pitch,Emerson Ferreira,nice-to-have,expert,success skills,no backlog,Bom Demais Sem Macho
+Push notification,Eu só quero mesmo. Acho interessante,Everlayne Melo,must-have,básico,programming,no backlog,Cuscuz
+App na loja,É um forte objetivo meu nesse challenge. Finalmente colocar algo na loja e entender como esse processo funciona,Everlayne Melo,must-have,expert,innovation,no backlog,Cuscuz
+Menos atraso,Tô tentando,Everlayne Melo,must-have,senior,success skills,no backlog,Cuscuz
+Front end,Aprender o máximo de front pois sinto que não peguei o suficiente,Everlayne Melo,must-have,básico,programming,no backlog,Cuscuz
+Animation,Aprender a utilizar de animações para passar uma informação com sucesso utilizando código,Everlayne Melo,must-have,básico,design,no backlog,Cuscuz
+Firebase,Tenho curiosidade com esse objetivo desde o segundo challenge. Gostaria de entender mais sobre,Everlayne Melo,nice-to-have,básico,programming,no backlog,Cuscuz
+Icon design,Acho interessante passar informações com icons. Acho importante pra Apple Watch,Everlayne Melo,nice-to-have,expert,design,no backlog,Cuscuz
+Ser menos perfeccionista,Percebi que sou muito no challenge passado então quero trabalhar nisso,Everlayne Melo,nice-to-have,senior,success skills,no backlog,Cuscuz
+feng shui code,Aprender a estruturar o código do app de forma organizada.,Flávio Renato,must-have,senior,programming,no backlog,FocADA
+método de geração de ideias eficaz,encontrar dentro das metodologias de design e ideação uma forma otimizada (tempo) de encontrar ideias com foco no tema da bigidea.,Flávio Renato,must-have,expert,design,no backlog,FocADA
+método validação de ideias,encontrar métodos para validar as ideias geradas de forma eficaz.,Flávio Renato,must-have,expert,innovation,no backlog,FocADA
+interface voltada para usuário UI UX,"trabalhar em uma interface minimalista e otimizada, visando as limitações do aparelho e a agilidade e harmonia da comunicação com o usuário utilizando métodos de design. ",Flávio Renato,must-have,expert,design,no backlog,FocADA
+Enxergar melhor meus colegas,As vezes nossos colegas passam por dificuldades e nem sempre é visível principalmente em um período de muito trabalho ficamos desatentos ao que pode estar acontecendo com as outras pessoas.,Flávio Renato,must-have,expert,success skills,no backlog,FocADA
+Comunicação,"Transmitir melhor suas ideias de maneira clara, objetiva, sem ofender os demais colegas. Lidar com diferentes personalidades.",Flávio Renato,must-have,expert,success skills,no backlog,FocADA
+Importar animações pro xcode,importar animações feitas em outros softwares,Flávio Renato,nice-to-have,senior,programming,no backlog,FocADA
+Usar estratégia oceano azul,Visar mercado inovador usando a estratégia oceano azul.,Flávio Renato,nice-to-have,senior,design,no backlog,FocADA
+ARM,Fazer estudo de mercado para o produto produzido durante o challenge e arquitetando estratégias possíveis para monetização do app.,Flávio Renato,nice-to-have,senior,innovation,no backlog,FocADA
+Validação modelo de negócios,Validar modelo de negócios para o aplicativo produzido.,Flávio Renato,nice-to-have,senior,innovation,no backlog,FocADA
+Criar e integrar modelos de Machine Learning,"Utilizar o CreateML e  CoreML
+",Gabriel D’Luca,must-have,senior,programming,no backlog,FocADA
+Notificações Push,Trabalhar com o envio de notificações push no iPhone e no Apple Watch,Gabriel D’Luca,must-have,senior,programming,no backlog,FocADA
+Comunicação entre dispositivos,Envio de dados do iPhone para o Apple Watch,Gabriel D’Luca,must-have,básico,programming,no backlog,FocADA
+Gerenciamento de Atividades,"Possuir um desempenho tão bom quanto no challenge passado, de organizar as minhas atividades e a da equipe",Gabriel D’Luca,must-have,expert,success skills,no backlog,FocADA
+Design para dispositivos pequenos,Aprender sobre as convenções de design para dispositivos pequenos,Gabriel D’Luca,must-have,básico,design,no backlog,FocADA
+Planejamento de Sprint,Organizar as atividades em uma escala semanal,Gabriel D’Luca,must-have,senior,success skills,no backlog,FocADA
+Publicar o app na loja,Ter a experiência de publicar o app na loja,Gabriel D’Luca,must-have,básico,innovation,no backlog,FocADA
+Processamento de Linguagem Natural (NLP),"Utilizar o framework de Natural Language, se for o caso",Gabriel D’Luca,nice-to-have,básico,programming,no backlog,FocADA
+Identidade visual da equipe,"Não queria ser o ""idealizador"" da identidade visual, mas queria aderir e participar do processo de construção.",Gabriel D’Luca,nice-to-have,senior,design,no backlog,FocADA
+Escolher o modelo de negócios correto,Dar uma olhada nos modelos de negócio da App Store e encontrar um que seja o fit perfeito para o app,Gabriel D’Luca,nice-to-have,básico,innovation,no backlog,FocADA
+Trabalhar com pessoas novas,Trabalhar com pessoas novas.,Hugo Lispector,must-have,expert,success skills,no backlog,7-Pecados
+Aprender WatchKit & UIKit app,Aprender WatchKit & UIKit app,Hugo Lispector,must-have,senior,programming,no backlog,7-Pecados
+App na loja,App na loja.,Hugo Lispector,must-have,expert,innovation,no backlog,7-Pecados
+Engajamento e retenção do usuário,Trabalhar engajamento e retenção do usuário,Hugo Lispector,nice-to-have,básico,innovation,no backlog,7-Pecados
+Design de página na App Store,Design de página do app na App Store.,Hugo Lispector,nice-to-have,senior,design,no backlog,7-Pecados
+Modelo de negócios desde a ideação,Pensar no modelo de negócios desde a ideação,Hugo Lispector,nice-to-have,básico,innovation,no backlog,7-Pecados
+Identidade visual do app,Design de identidade visual do app,Hugo Lispector,nice-to-have,senior,design,no backlog,7-Pecados
+Utilizar metodologia ágil,Utilizar metodologia ágil,Hugo Lispector,nice-to-have,senior,appdev,no backlog,7-Pecados
+Continuidade do app,Desenvolver app com continuidade entre aparelhos.,Hugo Lispector,nice-to-have,básico,programming,no backlog,7-Pecados
+Multiplataforma,Desenvolver app multiplataforma,Hugo Lispector,nice-to-have,senior,programming,no backlog,7-Pecados
+Gitflow,Usar gitflow,Hugo Lispector,nice-to-have,básico,programming,no backlog,7-Pecados
+Interface para telas pequenas,Design de interface minimalista.,Hugo Lispector,nice-to-have,básico,design,no backlog,7-Pecados
+Ganhar $1,entender monetização o suficiente pra conseguir ganhar algo com um app,Izabella Maria,must-have,senior,innovation,no backlog,Produtivhaddad
+GitHub Hardcore 2.0 e GitFlow,"Melhorar conhecimento em github com uso de branchs, por exemplo",Izabella Maria,must-have,senior,programming,no backlog,Produtivhaddad
+Me entrosar mais facilmente,é isto aí,Izabella Maria,must-have,senior,success skills,no backlog,Produtivhaddad
+Identidade visual do app,aprender a fazer uma identidade visual decente,Izabella Maria,nice-to-have,básico,design,no backlog,Produtivhaddad
+Escrever testes de código e de UI com XCTest,Usar XCTest,Izabella Maria,nice-to-have,básico,programming,no backlog,Produtivhaddad
+Marketing,fazer o marketing do app,Izabella Maria,nice-to-have,básico,innovation,no backlog,Produtivhaddad
+Cocoapods,Como usar cocoapods entendendo o que ta rolando,Izabella Maria,nice-to-have,básico,programming,no backlog,Produtivhaddad
+Identidade visual,Fazer uma identidade visual bonita que represente o que o app quer passar,Jacqueline Alves,must-have,básico,design,no backlog,ModaFoca - GamiFocADA
+Estratégias para manter usuários,Como manter um usuário fiel,Jacqueline Alves,must-have,básico,innovation,no backlog,ModaFoca - GamiFocADA
+Fazer melhores pesquisas de campo,Não ter vergonha de falar com pessoas e fazer pesquisas que ajudem na ideação do app,Jacqueline Alves,must-have,básico,success skills,no backlog,ModaFoca - GamiFocADA
+Autoconfiança,Mais confiança nas minhas capacidades e reconhecer minhas qualidades,Jacqueline Alves,must-have,senior,success skills,no backlog,ModaFoca - GamiFocADA
+Ser menos workaholic,Ficar mais tranquila e saber dividir mais minhas atividades e delegar para nao me sobrecarregar,Jacqueline Alves,must-have,senior,success skills,no backlog,ModaFoca - GamiFocADA
+CloudKit,Mexer com CloudKit,Jacqueline Alves,must-have,senior,programming,no backlog,ModaFoca - GamiFocADA
+Ser mais aplicada nos meus learning goals,Revisitar meus learning goals constantemente para tentar completar o máximo possível deles,Jacqueline Alves,must-have,senior,success skills,no backlog,ModaFoca - GamiFocADA
+Animações,Fazer animações por código,Jacqueline Alves,must-have,senior,design,no backlog,ModaFoca - GamiFocADA
+Motion design,Animações fluidas e simples,Jacqueline Alves,nice-to-have,básico,design,no backlog,ModaFoca - GamiFocADA
+Não usar texto,Fazer um visual autoexplicativo que não necessite de texto,Jacqueline Alves,nice-to-have,básico,success skills,no backlog,ModaFoca - GamiFocADA
+Como fazer parcerias,Fazer parcerias para motivar outras pessoas sobre o objetivo do app como forma de divulgação,Jacqueline Alves,nice-to-have,básico,innovation,no backlog,ModaFoca - GamiFocADA
+Core Motion,Mexer com os sensores do Apple Watch,Jacqueline Alves,nice-to-have,básico,programming,no backlog,ModaFoca - GamiFocADA
+Interação entre dispositivos,Integrar o Apple Watch com outros dispositivos,Jacqueline Alves,nice-to-have,básico,programming,no backlog,ModaFoca - GamiFocADA
+,,João Guilherme Melo,,,,,Bom Demais Sem Macho
+,,João Guilherme Melo,,,,,Bom Demais Sem Macho
+Sketch,"Pelo menos uma ilustraçãozinha bonita, pelo amor de deus... ",João Paulo Vicente,must-have,básico,design,no backlog,FocADA
+Cloudkit e Persistência de Dados,Toda essa questão da infraestrutura dos dados que o App usam internamente.,João Paulo Vicente,must-have,senior,programming,no backlog,FocADA
+Push Notifications,Quero aprender a usar as notificações de maneira efetiva.,João Paulo Vicente,must-have,senior,programming,no backlog,FocADA
+Métricas,Aprender o que medir pra determinar o sucesso da solução (ou não) e efetivamente implementar isso,João Paulo Vicente,nice-to-have,senior,innovation,no backlog,FocADA
+XCTest,"Teste unitário e ""teste de tela"" (sei nem o nome)",João Paulo Vicente,nice-to-have,básico,programming,no backlog,FocADA
+Time Management,"Melhorar e organizar as etapas do projeto.
+Usar as ferramentas apresentadas no ADA para esse fim.",Jorge Salvador,must-have,senior,success skills,no backlog,FocADA
+Thrill an Audience,Melhorar meu jeito de apresentar.,Jorge Salvador,must-have,senior,success skills,no backlog,FocADA
+WatchKit,"Aprender até pelo menos um nível básico, o funcionamento do Watchkit",Jorge Salvador,must-have,básico,programming,no backlog,FocADA
+Research and Writing skills,Continuar aperfeiçoando minhas técnicas de Storytelling e escrita.,Jorge Salvador,must-have,expert,success skills,no backlog,FocADA
+Sound Design,aprender os básicos de Sound Design,Jorge Salvador,must-have,básico,design,no backlog,FocADA
+UX em pequenas telas,Aprender sobre o design dos elementos de interface em pequenas telas,Jorge Salvador,nice-to-have,básico,design,no backlog,FocADA
+Conexão entre dispositivos,Aprender a usar o Multipeer connectivity para integrar a experiencia entre dispositivos do ecossistema apple.,Jorge Salvador,nice-to-have,básico,programming,no backlog,FocADA
+Machine Learning,Sempre tive muito interesse de aprender como funciona ML. Nesse challenge pretendo vincular e aprender sobre isso de alguma forma.,Jorge Salvador,nice-to-have,básico,programming,no backlog,FocADA
+ARKit,"Sigo com interesse em aprender ARkit. Se possivel, tentarei aplica-lo no projeto.",Jorge Salvador,nice-to-have,básico,programming,no backlog,FocADA
+Animation & Motion Design,Aprender a animar elementos gráficos.,Jorge Salvador,nice-to-have,básico,design,no backlog,FocADA
+Monetização planejada,Planejar com antecedencia estratégias de monetização coerentes com o app.,Jorge Salvador,nice-to-have,senior,innovation,no backlog,FocADA
+Analytics,Colocar um app na loja e aprender a usar o analytics para acompanhar o uso dele.,Jorge Salvador,nice-to-have,básico,innovation,no backlog,FocADA
+Métricas de avaliação da App Store,Entender essas métricas e aperfeiçoar o app com isso.,Jorge Salvador,nice-to-have,senior,innovation,no backlog,FocADA
+cloud kit,mandar dados para cloud kit e pegar.,Kacio Henrique,must-have,senior,programming,no backlog,pulsai
+" HealthKit, Notifications ,multithreading.",trabalhar bem com ais frameworks .,Kacio Henrique,must-have,senior,programming,no backlog,pulsai
+Success Skills,"Conseguir gerenciar os próprios conflitos .
+Ser mais abertos  a mudanças .
+Ouvir melhor ais pessoas .
+Conseguir me expressar melhor em um grupo .",Kacio Henrique,must-have,senior,success skills,no backlog,pulsai
+Entender o mercado de Apple Watch,Entender o mercado de Apple Watch. Ajudar na prototipação,Kacio Henrique,must-have,senior,innovation,no backlog,pulsai
+"Teoria das cores ,Onboarding e Uso de tipografias ",melhor uso da experiência do usuário do app,Kacio Henrique,must-have,senior,design,no backlog,pulsai
+"Criar uma campanha de marketing avançada [monitoramento e estética] para a solução (instagram, facebook e landing page) ",manter um público engajado.,Kacio Henrique,nice-to-have,senior,innovation,no backlog,pulsai
+Marketing digital,Marketing digital,Luana Nunes,must-have,básico,innovation,no backlog,FocADA
+Identidade visual,Identidade visual,Luana Nunes,must-have,senior,design,no backlog,FocADA
+Pesquisa de campo,Pesquisa de campo,Luana Nunes,nice-to-have,senior,innovation,no backlog,FocADA
+Organização de código,Organização de código,Luana Nunes,nice-to-have,básico,programming,no backlog,FocADA
+Git,Git,Luana Nunes,nice-to-have,senior,programming,no backlog,FocADA
+Estratégia de retenção,Estratégia de retenção,Luana Nunes,nice-to-have,senior,innovation,no backlog,FocADA
+Gestão Horizontal de Projetos,"Ser mais organizado como um membro de uma equipe de desenvolvimento rápido, organizando se possível",Lucas Cardoso,must-have,básico,appdev,no backlog,Iti Malia
+Dar Feedbacks melhores,Acho que muitas vezes posso dar melhores feedbacks do que acabo dando por tentar evitar conflitos,Lucas Cardoso,must-have,básico,success skills,no backlog,Iti Malia
+Motivação,"muitas vezes me desestimulo durante o challenge e por isso minha produtividade, qualidade de vida e dedicação caem um bocado",Lucas Cardoso,must-have,básico,success skills,no backlog,Iti Malia
+Me abrir,"Tenho dificuldade de me mostrar e mostrar meus sentimentos e opiniões, que vem melhorando ao longo do projeto, mas gostaria de melhorar mais",Lucas Cardoso,must-have,senior,success skills,no backlog,Iti Malia
+Identidade VIsual,"Entender como criar um artefato digital de forma que tenha visual coerente, agradável e que converse com sua funcionalidade",Lucas Cardoso,must-have,básico,design,no backlog,Iti Malia
+Apple Human Interfaces Guidelines,Aplicar mais e melhor guidelines,Lucas Cardoso,nice-to-have,básico,design,no backlog,Iti Malia
+UX,Melhorar a experiência do usuário no uso de um app,Lucas Cardoso,nice-to-have,básico,design,no backlog,Iti Malia
+CloudKit,"Aprender servidores, coisa que eu nunca fiz",Lucas Cardoso,nice-to-have,nenhum,programming,no backlog,Iti Malia
+Persistência de Dados,"Queria criar uma melhor experiência personalizada para cada usuário, e para isso é necessário armazenar dados personalidades",Lucas Cardoso,nice-to-have,senior,programming,no backlog,Iti Malia
+Threads,Multiprogramação,Lucas Cardoso,nice-to-have,senior,programming,no backlog,Iti Malia
+Core Motion,"Acho interessante criar aplicações reativas ao movimento, podendo ser focadas nessa forma de interação, porém isso é muito dependente da solução,",Lucas Cardoso,nice-to-have,básico,programming,no backlog,Iti Malia
+Testes,Aplicar melhores práticas de projeto como testes,Lucas Cardoso,nice-to-have,senior,programming,no backlog,Iti Malia
+Aquisição de Usuários,Aquisição de usuários. Acho extremamente preciso e mais factível de aprender na parte de business dado nossos curtos sprints.,Lucas Cardoso,nice-to-have,básico,innovation,no backlog,Iti Malia
+Branding,Criar uma identidade de marca e aplica-las em todo o produto,Lucas Cardoso,nice-to-have,básico,design,no backlog,Iti Malia
+Interação entre dispositivos,"Criação de iterações entre diferentes users, com seus respectivos dispositivos. Like duas pessoas iteragindo com seus watchs",Lucca França,nice-to-have,senior,programming,no backlog,Cuscuz
+Validação,Validar tanto problema como solução de forma mais qualitativa e precisa.,Lucca França,must-have,senior,innovation,no backlog,Cuscuz
+SoundDesign,Criar uma interface que comunique-se com o usuário usando sons.,Lucca França,must-have,senior,design,no backlog,Cuscuz
+CoreMotion,Aprender a utilizar o CoreMotion para detectar movmentos com o Apple Watch,Lucca França,must-have,senior,programming,no backlog,Cuscuz
+Aprender a registrar e proteger apps,"Fazer o registro de apps, tendo um maior controle sobre propriedade.",Lucca França,must-have,básico,innovation,no backlog,Cuscuz
+Foco,"Ter mais foco como membro de equipe, mantendo as atividades dentro do cronograma e conseguindo seguir cronogramas.",Lucca França,must-have,expert,success skills,no backlog,Cuscuz
+CreateML + CoreML,"Criar um modelo de aprendizado com base em inputs como a movimentação do watch, ou até mesmo a percepção de hábitos.",Lucca França,must-have,senior,programming,no backlog,Cuscuz
+Feedback Contínuo,"Manter uma cultura de feedbacks constantes ao longo do challenge, e não somente ao final",Lucca França,must-have,senior,success skills,no backlog,Cuscuz
+Scrum,"Seguir o processo de Scrum para o decorrer do projeto, funcionando como um facilitador para o grupo.",Lucca França,must-have,expert,appdev,no backlog,Cuscuz
+SiriKit,"Aprender a utilizar a Siri com comandos específicos para o meu app, tornando a iteração com o mesmo mais simples e integrada com o sistema",Lucca França,nice-to-have,senior,programming,no backlog,Cuscuz
+"HealthKit, CareKit ou ResearchKit(Apps de saúde)",Aprender a utilizar o framework de saúde da Apple para acompanhar a saúde das pessoas,Lucca França,nice-to-have,básico,programming,no backlog,Cuscuz
+Motion design,Para estabelecer uma melhor experiência de usuário no Watch,Manuella Valença,must-have,básico,design,no backlog,Cuscuz
+Validação com usuários,"Testar o app com quem realmente pretende usar, pegar mais feedbacks",Manuella Valença,must-have,básico,innovation,no backlog,Cuscuz
+Planejamento das semanas do projeto,Utilizar na equipe algum método de organização (não eu como responsável da atividade mas ajudando),Manuella Valença,must-have,básico,success skills,no backlog,Cuscuz
+Expressar sentimentos,Expressar como me sinto sobre algo com a equipe de forma clara,Manuella Valença,must-have,senior,success skills,no backlog,Cuscuz
+Core Motion,Lidar com acelerômetro e giroscópio no Watch,Manuella Valença,must-have,senior,programming,no backlog,Cuscuz
+GitFlow,"Lidar com diferentes branches, entender direito comandos como autostash.",Manuella Valença,must-have,senior,programming,no backlog,Cuscuz
+Identidade visual do app,Identidade visual do app,Manuella Valença,nice-to-have,básico,design,no backlog,Cuscuz
+Analytics,Conceitos básicos de analytics e aplicar,Manuella Valença,nice-to-have,básico,innovation,no backlog,Cuscuz
+Machine Learning,Saber princípios básicos e aplicar de alguma forma,Manuella Valença,nice-to-have,básico,programming,no backlog,Cuscuz
+Comunicação entre IOS e Watch,Estabelecer comunicação e passar dados entre o iPhone e o Watch,Manuella Valença,nice-to-have,básico,programming,no backlog,Cuscuz
+Identidade Visual,Aprender Identidade Visual,Marcela Valença,must-have,senior,design,no backlog,7-Pecados
+Git,Aprender como mexer no github e seus anexados.,Marcela Valença,must-have,básico,appdev,no backlog,7-Pecados
+Colocar na loja,Colocar o App na loja.,Marcela Valença,must-have,básico,innovation,no backlog,7-Pecados
+Código,Voltar a codar e mexer no código.,Marcela Valença,must-have,básico,programming,no backlog,7-Pecados
+Marketing,Aprender estratégias de Marketing para o App.,Marcela Valença,nice-to-have,básico,innovation,no backlog,7-Pecados
+Estratégias para manter usuários,Como manter usuários.,Marcela Valença,nice-to-have,básico,innovation,no backlog,7-Pecados
+Apresentar/Escrever Pitch,Apresentar e escrever o Pitch,Marcela Valença,nice-to-have,senior,success skills,no backlog,7-Pecados
+UI para dispositivos pequenos,UI para dispositivos pequenos,Marcela Valença,nice-to-have,básico,design,no backlog,7-Pecados
+Branding,Aprender Branding.,Marcela Valença,nice-to-have,senior,design,no backlog,7-Pecados
+Motion Design,Aprender Motion Design,Marcela Valença,nice-to-have,básico,design,no backlog,7-Pecados
+After Effects / Premiere,Aprender After Effects / Premiere,Marcela Valença,nice-to-have,básico,design,no backlog,7-Pecados
+Push Notifications,Aprender Push Notifications,Marcela Valença,nice-to-have,básico,programming,no backlog,7-Pecados
+Foco,Manter o foco melhor,Maria Olívia,must-have,básico,success skills,no backlog,7-Pecados
+User Interface elements,"Elementos da interface que facilitem o uso, mas ao mesmo tempo seja visualmente agradável e consistente",Maria Olívia,must-have,senior,design,no backlog,7-Pecados
+Interação com equipe,Saber interagir melhor com o grupo,Maria Olívia,must-have,básico,success skills,no backlog,7-Pecados
+Guidelines da Apple,"Aprender a aplicar as guidelines da Human Interface, não a risca, mas seguir as diretrizes mais principais",Maria Olívia,must-have,senior,design,no backlog,7-Pecados
+Identidade Visual,Aprender a aplicar uma identidade visual em um app,Maria Olívia,must-have,senior,design,no backlog,7-Pecados
+Colocar o app na loja,Colocar o app na loja,Maria Olívia,must-have,senior,innovation,no backlog,7-Pecados
+Código,Aprender código de maneira efetiva tendo em vista que eu não faço isso faz dois challenges,Maria Olívia,must-have,básico,programming,no backlog,7-Pecados
+UI para pequenos dispositivos,"Aprender a projetar para pequenos dispositivos tendo em vista que cada vez mais usamos telas menores, como o whatch e celulares.",Maria Olívia,must-have,senior,design,no backlog,7-Pecados
+Estratégias para manter o usuário,Como buscar e manter o usuários usando o app,Maria Olívia,must-have,senior,innovation,no backlog,7-Pecados
+Motion design,animações para aplicativos,Maria Olívia,nice-to-have,básico,design,no backlog,7-Pecados
+Motivação,Como manter a motivação pra continuar na Academy,Maria Olívia,nice-to-have,básico,success skills,no backlog,7-Pecados
+Branding,Aprender sobre Branding. Não basta saber fazer um app se não consegue vender ele de uma maneira coerente com o mesmo.,Maria Olívia,nice-to-have,básico,innovation,no backlog,7-Pecados
+Marketing,Saber vender o app,Maria Olívia,nice-to-have,senior,innovation,no backlog,7-Pecados
+Design minimalista,"Aprender a fazer design de apps de forma mais minimalista possível, sem perder a essência.",Marina Barros,must-have,básico,design,no backlog,Produtivhaddad
+UI para dispositivos pequenos,Aprender a criar interfaces gráficas baseadas em melhor design para dispositivos pequenos,Marina Barros,must-have,básico,design,no backlog,Produtivhaddad
+Monetização do app,"Pensar na melhor forma de aplicar monetização no nosso app desde o início da ideação, tendo um app com monetização ao final do challenge.",Marina Barros,must-have,senior,innovation,no backlog,Produtivhaddad
+Git,Aprender como usar o git flow (dividindo o trabalho em branches segundo git flow) e rebase (reescrevendo história/commits no git),Marina Barros,must-have,expert,programming,no backlog,Produtivhaddad
+"Data persistence(CoreData, UserDefaults)",Aprender ainda mais sobre persistência de dados locais.,Marina Barros,must-have,expert,programming,no backlog,Produtivhaddad
+Notificações,Aprender a usar notificações num app.,Marina Barros,must-have,básico,programming,no backlog,Produtivhaddad
+MVC,Aplicar o padrão de arquitetura de software Model View Controller (MVC) no desenvolvimento de apps.,Marina Barros,must-have,senior,programming,no backlog,Produtivhaddad
+Prototipação rápida,Utilizar diferentes técnicas de prototipação para conseguir destravar durante o processo.,Marina Barros,must-have,senior,design,no backlog,Produtivhaddad
+Retenção,Aprimorar estratégias para manter usuários nesse challenge.,Marina Barros,must-have,senior,innovation,no backlog,Produtivhaddad
+Foco,"Me manter focada em objetivos do challenge, mesmo que pequenos inicialmente, para que minha saúde mental não acabe afetando o desempenho do meu grupo como um todo.",Marina Barros,must-have,básico,success skills,no backlog,Produtivhaddad
+Motivação,"Usar esse challenge como motivação, onde me manter empenhada faça com que me sinta produtiva/útil.",Marina Barros,must-have,senior,success skills,no backlog,Produtivhaddad
+SiriKit,Aprender a usar SiriKit para a utilização da Siri no uso do app.,Marina Barros,nice-to-have,básico,programming,no backlog,Produtivhaddad
+Onboarding,"Aplicar onboarding no app, que é um fluxo de usuário que acostuma novos usuários ao seu app através de um guia de primeiro uso ou apenas dando uma primeira introdução após abrir o app pela primeira vez.",Marina Barros,nice-to-have,básico,design,no backlog,Produtivhaddad
+Design minimalista,"Aprender design sem ""noise""",Markus Lopes,must-have,expert,design,no backlog,7-Pecados
+Comunicar dados entre iOS e watchOS,Aprender a mandar dados com mais agilidade entre as duas plataformas,Markus Lopes,must-have,básico,programming,no backlog,7-Pecados
+Mercado Apple Watch e Apple,descobrir como o mercado do Apple Watch funciona,Markus Lopes,must-have,básico,innovation,no backlog,7-Pecados
+"Agendar notificações locais, e receber e enviar notificações push",trabalhar com notificações,Markus Lopes,nice-to-have,básico,programming,no backlog,7-Pecados
+Continuos Integration,Trabalhar com Continuos Integration,Markus Lopes,nice-to-have,básico,appdev,no backlog,7-Pecados
+Lean Development,"Realmente validar antes de escrever uma linha de código
+Ter uma funcionalidade realmente bem definida",Michael Barney,must-have,senior,innovation,no backlog,Produtivhaddad
+Development Pratics,"Gitflow - (Basic -> Senior) - Must Have
+Correctly apply gitflow.
+Continuous Integration - (None -> Basic) - Nice to Have
+Unitary Tests - (None -> Basic) - Nice to Have
+P45 | Escrever testes de código e de UI com XCTest",Michael Barney,must-have,básico,programming,no backlog,Produtivhaddad
+SCRUM,"SCRUM QUALIFICATION (2 options)
+SCRUM Master - (Basic -> Senior) - Must Have 
+SCRUM PO - (Basic -> Senior) - MUST Have",Michael Barney,must-have,senior,innovation,no backlog,Produtivhaddad
+Marketing,aquisição de usuários,Millena Ferraz,must-have,senior,innovation,no backlog,7-Pecados
+Autolayout,"aprender Autolayout
+",Millena Ferraz,must-have,senior,programming,no backlog,7-Pecados
+Guidelines da Apple,ler de verdade os guidelines da Apple,Millena Ferraz,must-have,senior,design,no backlog,7-Pecados
+Ferramentas de Prototipagem,"Aprender a utilizar várias ferramentas digitais de prototipagem (pelo menos, cinco)",Paixão Augusto,must-have,básico,design,experimentando,pulsai
+App Flow,Ter uma visualização do fluxo total do aplicativo e possibilidades para o mesmo,Paixão Augusto,must-have,senior,design,experimentando,pulsai
+"Programar apps com watchKit, usando o básico de UI, Complicações e Notificações ","Programar apps com watchKit, usando o básico de UI, Complicações e Notificações ",Paixão Augusto,must-have,básico,programming,no backlog,pulsai
+Acessar sensores dos dispositivos,Acessar sensores do Apple Watch,Paixão Augusto,must-have,básico,programming,no backlog,pulsai
+Comunicar dados entre iOS e watchOS,Comunicar dados entre iOS e watchOS,Paixão Augusto,must-have,básico,programming,no backlog,pulsai
+"Agendar notificações locais, e receber e enviar notificações push","Agendar notificações locais, e receber e enviar notificações push",Paixão Augusto,must-have,básico,programming,no backlog,pulsai
+Foco,Aprender técnicas de manutenção de foco e atenção ao projeto,Paixão Augusto,must-have,básico,success skills,estudando,pulsai
+Inspire somebody through design,Desenvolver a capacidade de criar inspiração e dedicação em Design Digital nos colegas e pessoas ao redor,Paixão Augusto,must-have,expert,success skills,no backlog,pulsai
+Juggling activities,Conseguir desempenhar mais de uma atividade em áreas variadas do projeto simultaneamente,Paixão Augusto,must-have,básico,success skills,estudando,pulsai
+Compreender as particularidades de projetar para o Apple Watch,Compreender as particularidades de projetar para o Apple Watch,Paixão Augusto,nice-to-have,senior,design,estudando,pulsai
+Registrar a marca do app no INPI/proteger o App,Registrar a marca do app no INPI/proteger o App,Paixão Augusto,nice-to-have,básico,innovation,no backlog,pulsai
+Pitch,"Aprender a fazer um Pitch lindo, divertido e inspirador",Paixão Augusto,nice-to-have,expert,innovation,estudando,pulsai
+Meticulous attention to details,Desenvolver o mindset de se preocupar com os detalhes em todas as fases do projeto,Paixão Augusto,nice-to-have,básico,success skills,no backlog,pulsai
+Aprender a ler e aplicar as regras das HIG para o Apple Watch,Aprender a ler e aplicar as regras das HIG para o Apple Watch,Paixão Augusto,nice-to-have,senior,design,no backlog,pulsai
+Respond open-mindedly to different ideas and values,Respond open-mindedly to different ideas and values,Paixão Augusto,nice-to-have,básico,success skills,no backlog,pulsai
+Fazer interfaces no Sketch,Quero aprender fazer protótipos hi-fi no sketch.,Paula Crislaine,must-have,básico,design,no backlog,Iti Malia
+Threads,"Como programadora, me sinto muito insegura em programação concorrente, entendo o conceito mas na prática não sei implementar.",Paula Crislaine,must-have,básico,programming,no backlog,Iti Malia
+SiriKit,Como usar a Siri no app.,Paula Crislaine,must-have,básico,programming,no backlog,Iti Malia
+WatchKit,Aprender como funciona o framework voltado pra o Apple Watch,Paula Crislaine,must-have,básico,programming,no backlog,Iti Malia
+Apresentar pitch em inglês,"Eu tenho muito medo de falar inglês em público, por vergonha e insegurança de tentar mesmo, aí gostaria de me desafiar a apresentar esse challenge.",Paula Crislaine,must-have,básico,success skills,no backlog,Iti Malia
+Comunicação não-violenta,"Comunicação é um importante aspecto do trabalho em equipe, um dos primordiais, e eu gostaria de melhorar sempre nisso, e comunicação não-violenta é a melhor forma pra isso.",Paula Crislaine,must-have,senior,success skills,no backlog,Iti Malia
+Guidelines de design da Apple,"Quero usar de fato os guidelines, pois sinto que eles existem mas eu pouco me atento a segui-los.",Paula Crislaine,nice-to-have,senior,design,no backlog,Iti Malia
+Animações,Como colocar animações via código no app.,Paula Crislaine,nice-to-have,básico,programming,no backlog,Iti Malia
+Marketing,"Aprender como aumentar número de downloads na loja, estratégia em redes sociais, etc.",Paula Crislaine,nice-to-have,senior,innovation,no backlog,Iti Malia
+Comunicação entre devices,Comunicar dados entre iOS e watchOS,Penélope Maria,must-have,senior,programming,no backlog,Produtivhaddad
+Notificações,Usar notificações no app,Penélope Maria,must-have,senior,programming,no backlog,Produtivhaddad
+Pesquisa de campo,Melhorar pesquisa de campo,Penélope Maria,must-have,básico,success skills,no backlog,Produtivhaddad
+Gerenciamento de projeto,Técnicas para gerenciar o projeto,Penélope Maria,must-have,básico,success skills,no backlog,Produtivhaddad
+Gitflow,Usar gitflow,Penélope Maria,must-have,senior,programming,no backlog,Produtivhaddad
+SiriKit,Processamento de linguagem,Penélope Maria,nice-to-have,básico,programming,no backlog,Produtivhaddad
+Validação de produto,Validar o produto com o público,Penélope Maria,nice-to-have,básico,design,no backlog,Produtivhaddad
+Marketing,Montar e aplicar estratégias de marketing,Penélope Maria,nice-to-have,básico,innovation,no backlog,Produtivhaddad
+Analytics,Acompanhar métricas com analytics,Penélope Maria,nice-to-have,básico,innovation,no backlog,Produtivhaddad
+Bibliotecas externas,Usar e gerenciar bibliotecas externas / Cocoapods,Penélope Maria,nice-to-have,básico,programming,no backlog,Produtivhaddad
+Padrões de projetos,"MVC, Singleton, padrões arquiteturais",Penélope Maria,nice-to-have,básico,programming,no backlog,Produtivhaddad
+Persistir dados,Usar UserDefaults e CoreData,Penélope Maria,nice-to-have,básico,programming,no backlog,Produtivhaddad
+Branding,Criar branding,Penélope Maria,nice-to-have,básico,design,no backlog,Produtivhaddad
+Assistir Queer Eye,Assistir a série que o grupo assiste e assim melhorar minha integração (é sério),Penélope Maria,must-have,básico,success skills,no backlog,Produtivhaddad
+Ser liderado,Desejo ficar mais em off em decisões finais.,Ramon Wanderley,must-have,expert,success skills,no backlog,pulsai
+Push Notifications,Acredito muito que push notifications combina com apple watch.,Ramon Wanderley,must-have,expert,programming,no backlog,pulsai
+Navegação de app,Navegação das telas no app.,Ramon Wanderley,must-have,senior,design,no backlog,pulsai
+Criação de assets,"Desenvolvimento de imagens, icones etc.",Ramon Wanderley,must-have,expert,design,no backlog,pulsai
+Teste de validação de protótipo,Trabalhar mais com a validação  de protótipo,Ramon Wanderley,must-have,expert,design,no backlog,pulsai
+Entrevistas,Entrevista de problema e solução,Ramon Wanderley,must-have,senior,design,no backlog,pulsai
+Onboarding,Trabalhar melhor no onboarding do usuário no primeiro uso do app.,Ramon Wanderley,must-have,expert,design,no backlog,pulsai
+Machine Learning,"Quero aprender mais de machine learning, acredito ser uma área com muito potencial e sei muito pouco sobre.",Ramon Wanderley,must-have,senior,programming,no backlog,pulsai
+Continuos Integration,Utilizar mais CI para crescer profissionalmente.,Ramon Wanderley,must-have,senior,programming,no backlog,pulsai
+Comunicação Assertiva,Estou recebendo alguns feedbacks ultimamente que estou sendo um pouco intolerante e desejo melhorar.,Ramon Wanderley,must-have,expert,success skills,no backlog,pulsai
+Comunidade Startup,Montar uma comunidade ao redor da startup.,Ramon Wanderley,nice-to-have,expert,innovation,no backlog,pulsai
+Agile,"Tenho um nível médio em metodologias ágeis, mas desejo aprender muito mais.",Ramon Wanderley,nice-to-have,expert,appdev,no backlog,pulsai
+Delegar,"Acredito que aprender a delegar funções é bem importante, quero nesse challenge focar em ser liderado, porém se precisar e for preciso desejo melhorar essa habilidade.",Ramon Wanderley,nice-to-have,senior,success skills,no backlog,pulsai
+User defaults,"Descrevo já há 3 challenges mas não trabalhei ainda, persistência de dados.",Ramon Wanderley,nice-to-have,senior,programming,no backlog,pulsai
+Notificações,Tanto código quanto escrever a notificação para ficar com a cara do app e passar a mensagem.,Renan Freitas,must-have,senior,programming,no backlog,Cuscuz
+Criar pelo menos uma tela,Fazer o design de uma tela. Tanto no desenho quanto pensando em como estruturar as informações que contém nela.,Renan Freitas,must-have,senior,design,no backlog,Cuscuz
+Aplicar as HIGs da Apple ao projeto,Pensar no design do app pensando nas melhores práticas que são recomendadas pela Apple,Renan Freitas,must-have,senior,design,no backlog,Cuscuz
+Entender a comunicação entre dispositivos,"Aprender como se faz a comunicação entre dispositivos. Tanto código, quanto a interações.",Renan Freitas,must-have,expert,programming,no backlog,Cuscuz
+Criar mapa de navegação do App,Criar um mapa de navegação de como será estruturada as telas do app.,Renan Freitas,must-have,senior,design,no backlog,Cuscuz
+Aplicar animações prontas no app,"Usar animações prontas (tipo AfterEffects) no app.
+Usando o Lottie, provavelmente.",Renan Freitas,nice-to-have,senior,design,no backlog,Cuscuz
+SiriKit,Criar uma interface de conversação com o app,Renan Freitas,nice-to-have,senior,programming,no backlog,Cuscuz
+Motion Design,Criar animações para deixar interações mais fluidas,Renan Freitas,nice-to-have,básico,design,no backlog,Cuscuz
+Aplicar animações em código,Aplicar animações com UIViewPropertyAnimator ou UIKit,Renan Freitas,nice-to-have,expert,programming,no backlog,Cuscuz
+Retenção de usuários,"Pensar em estratégias de retenção desde o início do projeto, antes mesmo da prototipação, para que seja mais natural e melhor desenvolvida.",Renata Porto,must-have,senior,innovation,no backlog,Produtivhaddad
+App Store,"Colocar o app na App Store e entender como fazer melhores ícones, screenshots e descrição, para melhorar a aquisição do produto.",Renata Porto,must-have,senior,innovation,no backlog,Produtivhaddad
+Interface para telas pequenas,"Como fazer uma boa interface em uma tela pequena, que não atrapalhe a experiência do usuário",Renata Porto,must-have,expert,design,"experimentando,aplicando no app,ensinado em workshop",Produtivhaddad
+Consistência entre plataformas,Manter a consistência de identidade e usabilidade entre as diferentes plataformas do app,Renata Porto,must-have,expert,design,"experimentando,aplicando no app",Produtivhaddad
+WatchKit,Aprender a usar o WatchKit,Renata Porto,must-have,básico,programming,no backlog,Produtivhaddad
+UIKit,Melhorar as habilidades de UIKit,Renata Porto,must-have,senior,programming,no backlog,Produtivhaddad
+Comunicação,Melhorar a comunicação com o time,Renata Porto,must-have,senior,success skills,estudando,Produtivhaddad
+Marketing,Estratégias de marketing para aumentar a aquisição,Renata Porto,nice-to-have,básico,innovation,no backlog,Produtivhaddad
+Guidelines,Usar as guidelines (de verdade),Renata Porto,nice-to-have,senior,design,no backlog,Produtivhaddad
+Sensores,Usar sensores do watch,Renata Porto,nice-to-have,básico,programming,abandonado,Produtivhaddad
+Notificações,Usar notificações,Renata Porto,nice-to-have,básico,programming,no backlog,Produtivhaddad
+Notificações,Aprender notificacoes,René,must-have,senior,programming,no backlog,Produtivhaddad
+Comunicação assertiva,"conseguir passar as informações com clareza, dinâmica e respeito, obtendo o retorno esperado. ",René,must-have,senior,success skills,no backlog,Produtivhaddad
+Planejar a execução de testes,n sei direito mas achei importante,René,must-have,senior,appdev,no backlog,Produtivhaddad
+design para telas pequenas,Compreender as particularidades de projetar para o Apple Watch,René,must-have,senior,design,no backlog,Produtivhaddad
+Marketing do app,"Aplicar estratégia de marketing alinhada com guidelines da Apple
+Criar uma campanha de marketing avançada [monitoramento e estética] para a solução (instagram, facebook e landing page)",René,must-have,expert,innovation,no backlog,Produtivhaddad
+WatchKit,aprender a usar watchkit,René,must-have,básico,programming,no backlog,Produtivhaddad
+Armazenar dados,"Aprender a armazenar dados não sei como, CloudKit, UserDefaults, CoreData?",René,nice-to-have,básico,programming,no backlog,Produtivhaddad
+Hype cycle,Posicionar a solução com relação ao hypecycle,René,nice-to-have,básico,innovation,no backlog,Produtivhaddad
+motion design p/ interfaces,Compreender e aplicar princípios de animação e motion design para interfaces,René,nice-to-have,senior,design,no backlog,Produtivhaddad
+Pitch,apresentar o pitch novamente caso possível,René,nice-to-have,expert,success skills,no backlog,Produtivhaddad
+Gestão de projetos,aprender mais de gestão de projetos,René,nice-to-have,senior,appdev,no backlog,Produtivhaddad
+validação de produto,Aprender a fazer pesquisa de validação de produto,René,nice-to-have,básico,design,no backlog,Produtivhaddad

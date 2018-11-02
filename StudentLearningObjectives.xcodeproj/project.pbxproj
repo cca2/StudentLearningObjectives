@@ -14,6 +14,22 @@
 		DA3DADC0218BEB890072126F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA3DADBE218BEB890072126F /* Main.storyboard */; };
 		DA3DADCC218BEB890072126F /* StudentLearningObjectivesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADCB218BEB890072126F /* StudentLearningObjectivesTests.swift */; };
 		DA3DADD7218BEB890072126F /* StudentLearningObjectivesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADD6218BEB890072126F /* StudentLearningObjectivesUITests.swift */; };
+		DA3DADE9218BEBAF0072126F /* LearningObjectivesTrainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADE4218BEBAE0072126F /* LearningObjectivesTrainer.swift */; };
+		DA3DADEA218BEBAF0072126F /* StudentObjectiveLearningClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADE5218BEBAF0072126F /* StudentObjectiveLearningClassifier.swift */; };
+		DA3DADEB218BEBAF0072126F /* StudentLearningObjective.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADE6218BEBAF0072126F /* StudentLearningObjective.swift */; };
+		DA3DADEC218BEBAF0072126F /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADE7218BEBAF0072126F /* Student.swift */; };
+		DA3DADED218BEBAF0072126F /* StudentLearningObjectiveTagger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADE8218BEBAF0072126F /* StudentLearningObjectiveTagger.swift */; };
+		DA3DADF5218BEBCF0072126F /* LearningObjectiveCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADEE218BEBCE0072126F /* LearningObjectiveCellView.swift */; };
+		DA3DADF6218BEBCF0072126F /* ObjectiveClassificationTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA3DADEF218BEBCE0072126F /* ObjectiveClassificationTableCellView.xib */; };
+		DA3DADF7218BEBCF0072126F /* StudentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADF0218BEBCE0072126F /* StudentCellView.swift */; };
+		DA3DADF8218BEBCF0072126F /* StudentCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA3DADF1218BEBCE0072126F /* StudentCellView.xib */; };
+		DA3DADF9218BEBCF0072126F /* LearningObjectiveCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA3DADF2218BEBCE0072126F /* LearningObjectiveCellView.xib */; };
+		DA3DADFA218BEBCF0072126F /* ObjectiveClassificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADF3218BEBCF0072126F /* ObjectiveClassificationTableViewCell.swift */; };
+		DA3DADFB218BEBCF0072126F /* icons8-auditoria-50.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3DADF4218BEBCF0072126F /* icons8-auditoria-50.png */; };
+		DA3DADFD218BEC4C0072126F /* TrainingData in Resources */ = {isa = PBXBuildFile; fileRef = DA3DADFC218BEC4C0072126F /* TrainingData */; };
+		DA3DAE00218BEC740072126F /* LearningObjectivesClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADFE218BEC740072126F /* LearningObjectivesClassifier.mlmodel */; };
+		DA3DAE01218BEC740072126F /* LearningObjectivesTagger.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADFF218BEC740072126F /* LearningObjectivesTagger.mlmodel */; };
+		DA3DAE15218BF4880072126F /* ObjetivosCompletos.csv in Resources */ = {isa = PBXBuildFile; fileRef = DA3DAE14218BF47B0072126F /* ObjetivosCompletos.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +64,22 @@
 		DA3DADD2218BEB890072126F /* StudentLearningObjectivesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentLearningObjectivesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA3DADD6218BEB890072126F /* StudentLearningObjectivesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLearningObjectivesUITests.swift; sourceTree = "<group>"; };
 		DA3DADD8218BEB890072126F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA3DADE4218BEBAE0072126F /* LearningObjectivesTrainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearningObjectivesTrainer.swift; sourceTree = "<group>"; };
+		DA3DADE5218BEBAF0072126F /* StudentObjectiveLearningClassifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentObjectiveLearningClassifier.swift; sourceTree = "<group>"; };
+		DA3DADE6218BEBAF0072126F /* StudentLearningObjective.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLearningObjective.swift; sourceTree = "<group>"; };
+		DA3DADE7218BEBAF0072126F /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		DA3DADE8218BEBAF0072126F /* StudentLearningObjectiveTagger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLearningObjectiveTagger.swift; sourceTree = "<group>"; };
+		DA3DADEE218BEBCE0072126F /* LearningObjectiveCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearningObjectiveCellView.swift; sourceTree = "<group>"; };
+		DA3DADEF218BEBCE0072126F /* ObjectiveClassificationTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ObjectiveClassificationTableCellView.xib; sourceTree = "<group>"; };
+		DA3DADF0218BEBCE0072126F /* StudentCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentCellView.swift; sourceTree = "<group>"; };
+		DA3DADF1218BEBCE0072126F /* StudentCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudentCellView.xib; sourceTree = "<group>"; };
+		DA3DADF2218BEBCE0072126F /* LearningObjectiveCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearningObjectiveCellView.xib; sourceTree = "<group>"; };
+		DA3DADF3218BEBCF0072126F /* ObjectiveClassificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectiveClassificationTableViewCell.swift; sourceTree = "<group>"; };
+		DA3DADF4218BEBCF0072126F /* icons8-auditoria-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-auditoria-50.png"; sourceTree = "<group>"; };
+		DA3DADFC218BEC4C0072126F /* TrainingData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TrainingData; sourceTree = "<group>"; };
+		DA3DADFE218BEC740072126F /* LearningObjectivesClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LearningObjectivesClassifier.mlmodel; sourceTree = "<group>"; };
+		DA3DADFF218BEC740072126F /* LearningObjectivesTagger.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LearningObjectivesTagger.mlmodel; sourceTree = "<group>"; };
+		DA3DAE14218BF47B0072126F /* ObjetivosCompletos.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = ObjetivosCompletos.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +132,23 @@
 			children = (
 				DA3DADB5218BEB870072126F /* AppDelegate.swift */,
 				DA3DADB7218BEB870072126F /* ViewController.swift */,
+				DA3DADE4218BEBAE0072126F /* LearningObjectivesTrainer.swift */,
+				DA3DADE7218BEBAF0072126F /* Student.swift */,
+				DA3DADE6218BEBAF0072126F /* StudentLearningObjective.swift */,
+				DA3DADE8218BEBAF0072126F /* StudentLearningObjectiveTagger.swift */,
+				DA3DADE5218BEBAF0072126F /* StudentObjectiveLearningClassifier.swift */,
+				DA3DADF4218BEBCF0072126F /* icons8-auditoria-50.png */,
+				DA3DADEE218BEBCE0072126F /* LearningObjectiveCellView.swift */,
+				DA3DADF2218BEBCE0072126F /* LearningObjectiveCellView.xib */,
+				DA3DADEF218BEBCE0072126F /* ObjectiveClassificationTableCellView.xib */,
+				DA3DADF3218BEBCF0072126F /* ObjectiveClassificationTableViewCell.swift */,
+				DA3DADF0218BEBCE0072126F /* StudentCellView.swift */,
+				DA3DADF1218BEBCE0072126F /* StudentCellView.xib */,
+				DA3DAE14218BF47B0072126F /* ObjetivosCompletos.csv */,
+				DA3DADFC218BEC4C0072126F /* TrainingData */,
 				DA3DADBC218BEB890072126F /* Assets.xcassets */,
+				DA3DADFE218BEC740072126F /* LearningObjectivesClassifier.mlmodel */,
+				DA3DADFF218BEC740072126F /* LearningObjectivesTagger.mlmodel */,
 				DA3DADBE218BEB890072126F /* Main.storyboard */,
 				DA3DADC1218BEB890072126F /* Info.plist */,
 				DA3DADC2218BEB890072126F /* StudentLearningObjectives.entitlements */,
@@ -232,7 +280,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA3DADBD218BEB890072126F /* Assets.xcassets in Resources */,
+				DA3DADF9218BEBCF0072126F /* LearningObjectiveCellView.xib in Resources */,
+				DA3DADFD218BEC4C0072126F /* TrainingData in Resources */,
+				DA3DAE15218BF4880072126F /* ObjetivosCompletos.csv in Resources */,
 				DA3DADC0218BEB890072126F /* Main.storyboard in Resources */,
+				DA3DADF8218BEBCF0072126F /* StudentCellView.xib in Resources */,
+				DA3DADF6218BEBCF0072126F /* ObjectiveClassificationTableCellView.xib in Resources */,
+				DA3DADFB218BEBCF0072126F /* icons8-auditoria-50.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,9 +311,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA3DADF5218BEBCF0072126F /* LearningObjectiveCellView.swift in Sources */,
+				DA3DADFA218BEBCF0072126F /* ObjectiveClassificationTableViewCell.swift in Sources */,
 				DA3DADB8218BEB870072126F /* ViewController.swift in Sources */,
+				DA3DADF7218BEBCF0072126F /* StudentCellView.swift in Sources */,
+				DA3DADE9218BEBAF0072126F /* LearningObjectivesTrainer.swift in Sources */,
 				DA3DADB6218BEB870072126F /* AppDelegate.swift in Sources */,
+				DA3DADED218BEBAF0072126F /* StudentLearningObjectiveTagger.swift in Sources */,
 				DA3DADBB218BEB870072126F /* StudentLearningObjectives.xcdatamodeld in Sources */,
+				DA3DAE01218BEC740072126F /* LearningObjectivesTagger.mlmodel in Sources */,
+				DA3DADEA218BEBAF0072126F /* StudentObjectiveLearningClassifier.swift in Sources */,
+				DA3DADEC218BEBAF0072126F /* Student.swift in Sources */,
+				DA3DADEB218BEBAF0072126F /* StudentLearningObjective.swift in Sources */,
+				DA3DAE00218BEC740072126F /* LearningObjectivesClassifier.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
