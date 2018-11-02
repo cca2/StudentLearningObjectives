@@ -8,12 +8,12 @@
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView identifier="ExpertiseCellID" id="c22-O7-iKe" customClass="ObjectiveClassificationTableViewCell" customModule="LearningObjectives" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="276" height="50"/>
+        <customView identifier="ExpertiseCellID" id="c22-O7-iKe" customClass="ObjectiveClassificationTableViewCell" customModule="StudentLearningObjectives" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="196" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NwE-Nk-UZK">
-                    <rect key="frame" x="94" y="8" width="89" height="17"/>
+                    <rect key="frame" x="54" y="8" width="89" height="17"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="85" id="La1-Zm-3hx"/>
                     </constraints>
@@ -23,8 +23,22 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="JTl-OP-j94">
+                    <rect key="frame" x="-2" y="8" width="5" height="34"/>
+                </box>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I75-SD-eQ0">
+                    <rect key="frame" x="3" y="25" width="94" height="17"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="Evh-gc-Nmj"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="#success skills" allowsEditingTextAttributes="YES" id="suM-Up-HLx">
+                        <font key="font" usesAppearanceFont="YES"/>
+                        <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="741-Fj-96e">
-                    <rect key="frame" x="177" y="25" width="81" height="17"/>
+                    <rect key="frame" x="112" y="25" width="81" height="17"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="77" id="A4J-FJ-Gsf"/>
                     </constraints>
@@ -34,23 +48,8 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="JTl-OP-j94">
-                    <rect key="frame" x="-2" y="8" width="5" height="34"/>
-                </box>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I75-SD-eQ0">
-                    <rect key="frame" x="18" y="25" width="94" height="17"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="90" id="Evh-gc-Nmj"/>
-                    </constraints>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="#design" allowsEditingTextAttributes="YES" id="suM-Up-HLx">
-                        <font key="font" usesAppearanceFont="YES"/>
-                        <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="741-Fj-96e" secondAttribute="trailing" constant="20" id="0yG-JU-VKf"/>
                 <constraint firstAttribute="bottom" secondItem="JTl-OP-j94" secondAttribute="bottom" constant="8" id="81q-fU-opt"/>
                 <constraint firstItem="NwE-Nk-UZK" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="AtR-oo-8kJ"/>
                 <constraint firstItem="741-Fj-96e" firstAttribute="top" secondItem="JTl-OP-j94" secondAttribute="top" id="Cff-pt-MHa"/>
@@ -59,8 +58,9 @@
                 <constraint firstAttribute="bottom" secondItem="NwE-Nk-UZK" secondAttribute="bottom" constant="8" id="N5H-Z6-iH3"/>
                 <constraint firstItem="JTl-OP-j94" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Zue-nI-hzq"/>
                 <constraint firstItem="741-Fj-96e" firstAttribute="baseline" secondItem="I75-SD-eQ0" secondAttribute="baseline" id="dq3-0d-pYD"/>
-                <constraint firstItem="I75-SD-eQ0" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="hie-ib-Q7C"/>
+                <constraint firstAttribute="trailing" secondItem="741-Fj-96e" secondAttribute="trailing" constant="5" id="gdU-On-Xia"/>
                 <constraint firstItem="JTl-OP-j94" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="8" id="wfI-ML-Coy"/>
+                <constraint firstItem="I75-SD-eQ0" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="5" id="yFy-WL-hbp"/>
             </constraints>
             <connections>
                 <outlet property="areaLabel" destination="I75-SD-eQ0" id="5Sr-qU-mIf"/>
@@ -74,7 +74,7 @@
             <autoresizingMask key="autoresizingMask"/>
             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="q4k-6T-lt2">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="47"/>
-                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textView verticallyResizable="YES" usesFontPanel="YES" usesInspectorBar="YES" findStyle="bar" allowsDocumentBackgroundColorChange="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Mml-GC-4ip">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="47"/>

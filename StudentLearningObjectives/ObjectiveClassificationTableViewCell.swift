@@ -15,7 +15,9 @@ class ObjectiveClassificationTableViewCell: NSTableCellView {
     @IBOutlet weak var priorityLabel: NSTextField!
     
     func displayLearningObjectiveInfo(objective: StudentLearningObjective) {
-        
+        areaLabel.stringValue = "#" + objective.area
+        priorityLabel.stringValue = "#" + objective.priority
+        classificationLabel.stringValue = "#" + objective.level
     }
     
     override func draw(_ dirtyRect: NSRect) {

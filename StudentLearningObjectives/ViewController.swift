@@ -299,6 +299,7 @@ extension ViewController: NSTableViewDelegate {
                 
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  ObjectiveClassificationTableViewCell {
                     cell.classificationLabel.stringValue = text
+                    cell.displayLearningObjectiveInfo(objective: objective)
                     return cell
                 }
             }
