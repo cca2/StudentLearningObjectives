@@ -13,26 +13,7 @@ class LearningObjectiveCellView: NSTableCellView {
     @IBOutlet weak var descriptionTextField: NSTextField!
 
     func fitForObjective(objective: StudentLearningObjective) {
-        descriptionTextField.attributedStringValue = highlightTopics(text: objective.description, tags: objective.tags)
-        var areaText = "N"
-        var areaColor = NSColor(red: CGFloat(255), green: CGFloat(126), blue: CGFloat(121), alpha: CGFloat(100.0))
-        if objective.area == "design" {
-            areaText = "D"
-            areaColor = NSColor.red
-        }else if objective.area == "innovation" {
-            areaText = "I"
-            areaColor = NSColor.blue
-        }else if objective.area == "programming" {
-            areaText = "P"
-            areaColor = NSColor.green
-        }else if objective.area == "appdev" {
-            areaText = "A"
-            areaColor = NSColor.orange
-        }else if objective.area == "success skills" {
-            areaText = "S"
-            areaColor = NSColor.magenta
-        }
-        
+        descriptionTextField.attributedStringValue = highlightTopics(text: objective.description, tags: objective.tags)        
         self.descriptionTextField.focusRingType = .none
     }
     

@@ -286,7 +286,9 @@ extension ViewController: NSTableViewDelegate {
         }
     }
     
+    
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        tableColumn?.headerCell.backgroundColor = NSColor.white
         if (tableView == self.mustHaveTableView) {
             let objective = self.objectivesToDisplay[row]
             let tags = objective.tags
