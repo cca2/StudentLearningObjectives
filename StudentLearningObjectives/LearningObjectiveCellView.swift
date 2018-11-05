@@ -13,7 +13,7 @@ class LearningObjectiveCellView: NSTableCellView {
     @IBOutlet weak var descriptionTextField: NSTextField!
 
     func fitForObjective(objective: StudentLearningObjective) {
-        descriptionTextField.attributedStringValue = highlightTopics(text: objective.description, tags: objective.tags)        
+        descriptionTextField.attributedStringValue = highlightTopics(text: objective.description, tags: objective.tags)
         self.descriptionTextField.focusRingType = .none
     }
     

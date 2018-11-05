@@ -10,7 +10,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView identifier="ObjectiveCellID" id="c22-O7-iKe" customClass="LearningObjectiveCellView" customModule="StudentLearningObjectives" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="515" height="27"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <box boxType="custom" borderType="none" borderWidth="5" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ctW-em-OQU">
                     <rect key="frame" x="0.0" y="0.0" width="515" height="27"/>
@@ -19,7 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gza-wf-YTu">
-                                <rect key="frame" x="27" y="5" width="386" height="17"/>
+                                <rect key="frame" x="10" y="5" width="491" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="491" id="bVn-xJ-UaB"/>
+                                </constraints>
                                 <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" drawsBackground="YES" allowsEditingTextAttributes="YES" id="GeO-Sk-Ql2">
                                     <font key="font" metaFont="system"/>
                                     <string key="title">As vezes nossos colegas passam por dificuldades e nem sempre é visível principalmente em um período de muito trabalho ficamos desatentos ao que pode estar acontecendo com as outras pessoas.</string>
@@ -28,7 +31,7 @@
                                 </textFieldCell>
                             </textField>
                             <box boxType="custom" borderType="none" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="uho-BQ-aVs">
-                                <rect key="frame" x="17" y="3" width="2" height="21"/>
+                                <rect key="frame" x="0.0" y="3" width="2" height="21"/>
                                 <view key="contentView" id="Kqg-Yl-15v">
                                     <rect key="frame" x="0.0" y="0.0" width="2" height="21"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,19 +40,22 @@
                             </box>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="gza-wf-YTu" firstAttribute="leading" secondItem="TZc-a2-T3b" secondAttribute="leading" constant="27" id="0zw-1O-bzI"/>
+                            <constraint firstItem="gza-wf-YTu" firstAttribute="leading" secondItem="TZc-a2-T3b" secondAttribute="leading" constant="10" id="0zw-1O-bzI"/>
+                            <constraint firstItem="uho-BQ-aVs" firstAttribute="leading" secondItem="TZc-a2-T3b" secondAttribute="leading" id="2ki-T4-IwO"/>
                             <constraint firstAttribute="bottom" secondItem="gza-wf-YTu" secondAttribute="bottom" constant="5" id="Lyp-Bd-4Tg"/>
-                            <constraint firstItem="uho-BQ-aVs" firstAttribute="leading" secondItem="TZc-a2-T3b" secondAttribute="leading" constant="17" id="OhQ-ga-P13"/>
-                            <constraint firstAttribute="trailing" secondItem="gza-wf-YTu" secondAttribute="trailing" constant="102" id="OzE-P4-tJh"/>
+                            <constraint firstAttribute="trailing" secondItem="gza-wf-YTu" secondAttribute="trailing" constant="14" id="OzE-P4-tJh"/>
                             <constraint firstItem="uho-BQ-aVs" firstAttribute="top" secondItem="TZc-a2-T3b" secondAttribute="top" constant="3" id="cwI-YO-NOw"/>
                             <constraint firstAttribute="bottom" secondItem="uho-BQ-aVs" secondAttribute="bottom" constant="3" id="hdm-29-v0M"/>
                             <constraint firstItem="gza-wf-YTu" firstAttribute="centerY" secondItem="TZc-a2-T3b" secondAttribute="centerY" id="hsL-Cc-bmN"/>
-                            <constraint firstItem="gza-wf-YTu" firstAttribute="leading" secondItem="uho-BQ-aVs" secondAttribute="trailing" constant="8" id="tM9-eG-Bbs"/>
+                            <constraint firstItem="gza-wf-YTu" firstAttribute="leading" secondItem="uho-BQ-aVs" secondAttribute="trailing" constant="8" symbolic="YES" id="olC-Pn-FnE"/>
                             <constraint firstAttribute="bottom" secondItem="gza-wf-YTu" secondAttribute="bottom" constant="5" id="vm8-sN-6eD"/>
                         </constraints>
                     </view>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="515" id="sgi-Qq-vhB"/>
+                    </constraints>
                     <color key="borderColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
-                    <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    <color key="fillColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                 </box>
             </subviews>
             <constraints>

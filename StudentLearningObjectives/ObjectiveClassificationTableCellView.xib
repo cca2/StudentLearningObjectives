@@ -12,52 +12,68 @@
             <rect key="frame" x="0.0" y="0.0" width="196" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="JTl-OP-j94">
-                    <rect key="frame" x="-2" y="8" width="5" height="34"/>
+                <box boxType="custom" borderType="none" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="Wpl-IQ-0VY" userLabel="Objective Classification Box">
+                    <rect key="frame" x="-1" y="0.0" width="197" height="50"/>
+                    <view key="contentView" id="XNf-ma-iCy">
+                        <rect key="frame" x="0.0" y="0.0" width="197" height="50"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="JTl-OP-j94">
+                                <rect key="frame" x="-2" y="7" width="7" height="36"/>
+                            </box>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I75-SD-eQ0">
+                                <rect key="frame" x="7" y="29" width="94" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="Evh-gc-Nmj"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="#success skills" allowsEditingTextAttributes="YES" id="suM-Up-HLx">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NwE-Nk-UZK" userLabel="Expertise Level Label">
+                                <rect key="frame" x="8" y="16" width="89" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="#expert" allowsEditingTextAttributes="YES" id="PFu-ew-ehD">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="741-Fj-96e">
+                                <rect key="frame" x="105" y="29" width="81" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="77" id="A4J-FJ-Gsf"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="#nice-to-have" allowsEditingTextAttributes="YES" id="SDh-Wb-QjM">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="I75-SD-eQ0" firstAttribute="top" secondItem="XNf-ma-iCy" secondAttribute="top" constant="7" id="1s9-xE-6su"/>
+                            <constraint firstItem="JTl-OP-j94" firstAttribute="leading" secondItem="XNf-ma-iCy" secondAttribute="leading" id="7I9-2C-fMY"/>
+                            <constraint firstItem="I75-SD-eQ0" firstAttribute="top" secondItem="JTl-OP-j94" secondAttribute="top" id="E92-BL-L5Q"/>
+                            <constraint firstItem="741-Fj-96e" firstAttribute="leading" secondItem="I75-SD-eQ0" secondAttribute="trailing" constant="8" symbolic="YES" id="Zpu-HD-BSR"/>
+                            <constraint firstItem="JTl-OP-j94" firstAttribute="centerY" secondItem="XNf-ma-iCy" secondAttribute="centerY" id="lSG-NC-hXu"/>
+                            <constraint firstItem="741-Fj-96e" firstAttribute="top" secondItem="XNf-ma-iCy" secondAttribute="top" constant="7" id="mEc-I1-XIf"/>
+                            <constraint firstAttribute="trailing" secondItem="741-Fj-96e" secondAttribute="trailing" constant="13" id="quJ-dD-juE"/>
+                            <constraint firstItem="I75-SD-eQ0" firstAttribute="leading" secondItem="JTl-OP-j94" secondAttribute="trailing" constant="6" id="rvR-PM-Zji"/>
+                        </constraints>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="197" id="DXT-kk-GjW"/>
+                    </constraints>
+                    <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                 </box>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NwE-Nk-UZK" userLabel="Expertise Level Label">
-                    <rect key="frame" x="13" y="14" width="89" height="14"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="#expert" allowsEditingTextAttributes="YES" id="PFu-ew-ehD">
-                        <font key="font" metaFont="system" size="11"/>
-                        <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I75-SD-eQ0">
-                    <rect key="frame" x="14" y="28" width="94" height="14"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="90" id="Evh-gc-Nmj"/>
-                    </constraints>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="#success skills" allowsEditingTextAttributes="YES" id="suM-Up-HLx">
-                        <font key="font" metaFont="system" size="11"/>
-                        <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="741-Fj-96e">
-                    <rect key="frame" x="105" y="28" width="81" height="14"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="77" id="A4J-FJ-Gsf"/>
-                    </constraints>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="#must-have" allowsEditingTextAttributes="YES" id="SDh-Wb-QjM">
-                        <font key="font" metaFont="system" size="11"/>
-                        <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
             </subviews>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="JTl-OP-j94" secondAttribute="bottom" constant="8" id="81q-fU-opt"/>
-                <constraint firstItem="NwE-Nk-UZK" firstAttribute="top" secondItem="I75-SD-eQ0" secondAttribute="bottom" id="8A5-xb-XDV"/>
-                <constraint firstItem="741-Fj-96e" firstAttribute="top" secondItem="JTl-OP-j94" secondAttribute="top" id="Cff-pt-MHa"/>
-                <constraint firstItem="I75-SD-eQ0" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="8" id="H56-oa-Vv3"/>
-                <constraint firstItem="741-Fj-96e" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="8" id="Lh4-eB-c9l"/>
-                <constraint firstItem="JTl-OP-j94" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Zue-nI-hzq"/>
-                <constraint firstItem="I75-SD-eQ0" firstAttribute="leading" secondItem="JTl-OP-j94" secondAttribute="trailing" constant="15" id="bZ1-W6-zuQ"/>
-                <constraint firstItem="741-Fj-96e" firstAttribute="baseline" secondItem="I75-SD-eQ0" secondAttribute="baseline" id="dq3-0d-pYD"/>
-                <constraint firstAttribute="trailing" secondItem="741-Fj-96e" secondAttribute="trailing" constant="12" id="gdU-On-Xia"/>
-                <constraint firstItem="NwE-Nk-UZK" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="15" id="nXy-TD-rsh"/>
-                <constraint firstItem="JTl-OP-j94" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="8" id="wfI-ML-Coy"/>
+                <constraint firstAttribute="bottom" secondItem="Wpl-IQ-0VY" secondAttribute="bottom" id="WxC-fU-Cm4"/>
+                <constraint firstItem="Wpl-IQ-0VY" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="frg-hQ-SeK"/>
+                <constraint firstAttribute="trailing" secondItem="Wpl-IQ-0VY" secondAttribute="trailing" id="pIY-Lj-Af5"/>
             </constraints>
             <connections>
                 <outlet property="areaLabel" destination="I75-SD-eQ0" id="5Sr-qU-mIf"/>
@@ -66,29 +82,5 @@
             </connections>
             <point key="canvasLocation" x="-3" y="45"/>
         </customView>
-        <scrollView appearanceType="aqua" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" id="sDf-1u-gbP">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="47"/>
-            <autoresizingMask key="autoresizingMask"/>
-            <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="q4k-6T-lt2">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="47"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <textView verticallyResizable="YES" usesFontPanel="YES" usesInspectorBar="YES" findStyle="bar" allowsDocumentBackgroundColorChange="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Mml-GC-4ip">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="47"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <size key="minSize" width="480" height="47"/>
-                        <size key="maxSize" width="480" height="10000000"/>
-                        <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                    </textView>
-                </subviews>
-            </clipView>
-            <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="lVc-LL-4Aq">
-                <rect key="frame" x="464" y="0.0" width="16" height="47"/>
-                <autoresizingMask key="autoresizingMask"/>
-            </scroller>
-            <point key="canvasLocation" x="139" y="157.5"/>
-        </scrollView>
     </objects>
 </document>

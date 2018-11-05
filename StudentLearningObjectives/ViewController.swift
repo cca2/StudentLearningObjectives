@@ -13,13 +13,14 @@ import CreateML
 
 class ViewController: NSViewController {
     
-    @IBOutlet weak var mustHaveTableView: NSTableView!
     @IBOutlet weak var trainButton: NSButton!
     @IBOutlet weak var taggerTrainingTableView: NSTableView!
     @IBOutlet weak var studentName: NSTextFieldCell!
     @IBOutlet weak var teamMembersView: NSTableView!
     @IBOutlet weak var teamsPopUp: NSPopUpButton!
     @IBOutlet weak var saveTrainingButton: NSButton!
+    
+    @IBOutlet weak var mustHaveTableView: NSTableView!
     
     var teamObjectivesDict:[String:[String:Student]] = [:]
     
@@ -32,7 +33,6 @@ class ViewController: NSViewController {
     
     var selectedTeamName = ""
     
-    //    var newDataForTraining:[Dictionary<String, [String]>] = []
     var newDataForTraining:[StudentLearningObjective] = []
     
     let studentObjectiveClassifier = StudentObjectiveClassifier()
@@ -61,15 +61,6 @@ class ViewController: NSViewController {
     
     @IBAction func trainButtonPressed(_ sender: Any) {
         let selectedObjective = self.objectivesToDisplay[self.selectedObjectiveIndex]
-        //        var dataForTraining:[Objective] = []
-        //        var dict = ["tokens": [String](), "labels":[String]()]
-        //        selectedObjective.tags.forEach{
-        //            tag in
-        //            dict["tokens"]?.append(tag.value)
-        //            dict["labels"]?.append(tag.tag)
-        //
-        //        }
-        //        self.newDataForTraining.append(dict)
         self.newDataForTraining.append(selectedObjective)
     }
     
@@ -188,9 +179,7 @@ class ViewController: NSViewController {
             if let studentObjectives = studentObjectives[key] {
                 studentObjectives.forEach{
                     studentObjective in
-                    if studentObjective.priority == "must-have" {
-                        self.objectivesToDisplay.append(studentObjective)
-                    }
+                    self.objectivesToDisplay.append(studentObjective)
                 }
             }
         }
@@ -261,11 +250,12 @@ extension ViewController: NSTableViewDelegate {
         if (tableView == self.mustHaveTableView) {
             let fakeField = NSTextField()
             let item = self.objectivesToDisplay[row].description
-
+            let objectiveDescriptionWidth = CGFloat(400.0)
+            
             fakeField.stringValue = item
             // exactly how you get the text out of your data array depends on how you set it up
             
-            var yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), 350, CGFloat(Float.greatestFiniteMagnitude))).height + 10.0
+            var yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 10.0
             // yourWidth = the width of your cell as CGFloat.
 
             if yourHeight < 40.0 {
@@ -291,27 +281,16 @@ extension ViewController: NSTableViewDelegate {
         tableColumn?.headerCell.backgroundColor = NSColor.white
         if (tableView == self.mustHaveTableView) {
             let objective = self.objectivesToDisplay[row]
-            let tags = objective.tags
-            var text = objective.description
             var cellIdentifier = ""
             
             if tableColumn == tableView.tableColumns[0] {
                 cellIdentifier = "ObjectiveCellID"
-                var objectiveIsClear = false
-                tags.forEach{
-                    tag in
-                    if (tag.tag != "NONE") {
-                        objectiveIsClear = true
-                    }
-                }
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  LearningObjectiveCellView {
                     cell.fitForObjective(objective: objective)
                     return cell
                 }
             }else if tableColumn == tableView.tableColumns[1] {
-                cellIdentifier = "ExpertiseCellID"
-                text = objective.level
-                
+                cellIdentifier = "ExpertiseCellID"                
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  ObjectiveClassificationTableViewCell {
                     cell.displayLearningObjectiveInfo(objective: objective)
                     return cell
@@ -386,6 +365,10 @@ extension ViewController: NSTableViewDelegate {
         }else {
             return false
         }
+    }
+    
+    func displayObjectives(selectedStudent:StudentLearningObjective) {
+        
     }
 }
 

@@ -18,5 +18,16 @@ class StudentLearningObjective {
     init(description:String) {
         self.description = description
     }
+    
+    func isClear() -> Bool {
+        var objectiveIsClear = false
+        tags.forEach{
+            tag in
+            if (tag.tag != "NONE") {
+                objectiveIsClear = true
+            }
+        }
+        return objectiveIsClear
+    }
 }
 
