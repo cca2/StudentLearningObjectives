@@ -37,24 +37,7 @@ class Student {
         self.classifiedObjectives["success skills"] = []
         self.classifiedObjectives["none"] = []
     }
-    
-    func mustHaveObjectives() -> [String:[StudentLearningObjective]] {
-        var res:Dictionary = [String:[StudentLearningObjective]]()
-        res["innovation"] = []
-        res["programming"] = []
-        res["appdev"] = []
-        res["success skills"] = []
-        res["none"] = []
         
-        self.classifiedObjectives["programming"]?.forEach{
-            objective in
-            if objective.priority == "must-have" {
-                res["programming"]?.append(objective)
-            }
-        }
-        return res
-    }
-    
     func toString() -> String {
         var res = ""
         res = "Objetivos de \(name)"

@@ -22,6 +22,7 @@
                                 <rect key="frame" x="10" y="5" width="382" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="382" id="bVn-xJ-UaB"/>
+                                    <constraint firstAttribute="height" constant="16" id="iRn-2I-Eo9"/>
                                 </constraints>
                                 <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" drawsBackground="YES" allowsEditingTextAttributes="YES" id="GeO-Sk-Ql2">
                                     <font key="font" metaFont="system" size="12"/>
@@ -58,15 +59,18 @@
                 </box>
             </subviews>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="ctW-em-OQU" secondAttribute="trailing" id="9Cl-0i-aqc"/>
+                <constraint firstAttribute="bottom" secondItem="ctW-em-OQU" secondAttribute="bottom" id="Ffo-LO-e00"/>
                 <constraint firstAttribute="trailing" secondItem="ctW-em-OQU" secondAttribute="trailing" id="Qcs-6x-hto"/>
+                <constraint firstItem="ctW-em-OQU" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="UXQ-A0-aWY"/>
                 <constraint firstItem="ctW-em-OQU" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="dz1-Gs-hTv"/>
-                <constraint firstItem="gza-wf-YTu" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="5" id="ihn-zT-hDd"/>
+                <constraint firstItem="ctW-em-OQU" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="h2n-1Z-udy"/>
                 <constraint firstAttribute="bottom" secondItem="ctW-em-OQU" secondAttribute="bottom" id="s7o-Yq-0YJ"/>
             </constraints>
             <connections>
                 <outlet property="descriptionTextField" destination="gza-wf-YTu" id="c77-d0-MAa"/>
             </connections>
-            <point key="canvasLocation" x="-1" y="23.5"/>
+            <point key="canvasLocation" x="-1" y="47"/>
         </customView>
     </objects>
 </document>

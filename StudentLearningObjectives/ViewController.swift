@@ -213,12 +213,6 @@ class ViewController: NSViewController {
             // Update the view, if already loaded.
         }
     }
-    
-    override func viewDidAppear() {
-        var frame = self.mustHaveTableView.frame
-        frame.size.height = CGFloat((self.objectivesToDisplay.count) * 40)
-        self.mustHaveTableView.frame = frame
-    }
 }
 
 extension ViewController: NSTableViewDataSource {
@@ -255,14 +249,9 @@ extension ViewController: NSTableViewDelegate {
             fakeField.stringValue = item
             // exactly how you get the text out of your data array depends on how you set it up
             
-            let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 10.0
-            // yourWidth = the width of your cell as CGFloat.
+            let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 5.0
 
-//            if yourHeight < 40.0 {
-//                yourHeight = 40.0
-//            }
             return yourHeight
-            //            return CGFloat(50)
         }else if (tableView == self.teamMembersView) {
             return CGFloat(110)
         }else {

@@ -1041,9 +1041,9 @@
                                                                         <rect key="frame" x="224" y="17" width="15" height="102"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                     </scroller>
-                                                                    <tableHeaderView key="headerView" hidden="YES" id="rzf-Vq-ccb">
+                                                                    <tableHeaderView key="headerView" focusRingType="none" ambiguous="YES" id="rzf-Vq-ccb">
                                                                         <rect key="frame" x="0.0" y="0.0" width="613" height="25"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                     </tableHeaderView>
                                                                 </scrollView>
                                                             </subviews>
