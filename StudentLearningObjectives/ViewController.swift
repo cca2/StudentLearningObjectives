@@ -244,7 +244,7 @@ extension ViewController: NSTableViewDelegate {
         if (tableView == self.mustHaveTableView) {
             let fakeField = NSTextField()
             let item = self.objectivesToDisplay[row].description + " #" + self.objectivesToDisplay[row].priority + " #" + self.objectivesToDisplay[row].level
-            let objectiveDescriptionWidth = CGFloat(382.0)
+            let objectiveDescriptionWidth = CGFloat(388.0)
             
             fakeField.stringValue = item
             // exactly how you get the text out of your data array depends on how you set it up
