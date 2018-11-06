@@ -1001,7 +1001,7 @@
                                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                                 <tableColumns>
-                                                                                    <tableColumn width="400" minWidth="40" maxWidth="1000" id="Zsd-IM-je6">
+                                                                                    <tableColumn width="600" minWidth="40" maxWidth="1000" id="Zsd-IM-je6">
                                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                                                             <font key="font" metaFont="smallSystem"/>
                                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1015,11 +1015,11 @@
                                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                                         <prototypeCellViews>
                                                                                             <tableCellView identifier="ObjectiveCellID" id="jTY-oQ-zEK" customClass="LearningObjectiveCellView" customModule="StudentLearningObjectives" customModuleProvider="target">
-                                                                                                <rect key="frame" x="1" y="1" width="400" height="17"/>
+                                                                                                <rect key="frame" x="1" y="1" width="600" height="17"/>
                                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                                 <subviews>
                                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="2Ix-7Q-qMS">
-                                                                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="17"/>
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="600" height="17"/>
                                                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="aYJ-fY-dYH">
                                                                                                             <font key="font" metaFont="system"/>
                                                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>

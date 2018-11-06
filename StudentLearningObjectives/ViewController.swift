@@ -321,7 +321,7 @@ extension ViewController: NSTableViewDelegate {
                 let fakeField = NSTextField()
 //                let objective = self.selectedStudent!.classifiedObjectives["programming"]![row]
                 let item = objective.description + " #" + objective.priority + " #" + objective.level
-                let objectiveDescriptionWidth = CGFloat(394.0)
+                let objectiveDescriptionWidth = CGFloat(594.0)
                 
                 fakeField.stringValue = item
                 // exactly how you get the text out of your data array depends on how you set it up
@@ -333,32 +333,6 @@ extension ViewController: NSTableViewDelegate {
             }else {
                 return CGFloat(40.0)
             }
-        }else if (tableView == self.designObjectivesTableView) {
-            let fakeField = NSTextField()
-            let objective = self.selectedStudent!.classifiedObjectives["design"]![row]
-            let item = objective.description + " #" + objective.priority + " #" + objective.level
-            let objectiveDescriptionWidth = CGFloat(394.0)
-            
-            fakeField.stringValue = item
-            // exactly how you get the text out of your data array depends on how you set it up
-            
-            let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 5.0
-            
-            self.designScrollViewHeight = self.designScrollViewHeight + yourHeight
-            return yourHeight
-        }else if (tableView == self.innovationObjectivesTableView) {
-            let fakeField = NSTextField()
-            let objective = self.selectedStudent!.classifiedObjectives["innovation"]![row]
-            let item = objective.description + " #" + objective.priority + " #" + objective.level
-            let objectiveDescriptionWidth = CGFloat(394.0)
-            
-            fakeField.stringValue = item
-            // exactly how you get the text out of your data array depends on how you set it up
-            
-            let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 5.0
-            
-            self.designScrollViewHeight = self.designScrollViewHeight + yourHeight
-            return yourHeight
         }else if (tableView == self.teamMembersView) {
             return CGFloat(110)
         }else {

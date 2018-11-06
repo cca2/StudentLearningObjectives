@@ -8,20 +8,20 @@
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView identifier="ObjectiveCellID" id="c22-O7-iKe" customClass="LearningObjectiveCellView" customModule="StudentLearningObjectives" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="26"/>
+        <customView identifier="ObjectiveCellID" misplaced="YES" id="c22-O7-iKe" customClass="LearningObjectiveCellView" customModule="StudentLearningObjectives" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="26"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <box boxType="custom" borderType="none" borderWidth="5" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ctW-em-OQU">
-                    <rect key="frame" x="0.0" y="0.0" width="400" height="26"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="26"/>
                     <view key="contentView" id="TZc-a2-T3b">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="26"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="26"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gza-wf-YTu">
-                                <rect key="frame" x="10" y="5" width="382" height="16"/>
+                                <rect key="frame" x="10" y="5" width="582" height="16"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="382" id="bVn-xJ-UaB"/>
+                                    <constraint firstAttribute="width" constant="582" id="bVn-xJ-UaB"/>
                                     <constraint firstAttribute="height" constant="16" id="iRn-2I-Eo9"/>
                                 </constraints>
                                 <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" drawsBackground="YES" allowsEditingTextAttributes="YES" id="GeO-Sk-Ql2">
@@ -52,16 +52,16 @@
                         </constraints>
                     </view>
                     <constraints>
-                        <constraint firstAttribute="width" constant="400" id="sgi-Qq-vhB"/>
+                        <constraint firstAttribute="width" constant="600" id="sgi-Qq-vhB"/>
                     </constraints>
                     <color key="borderColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                     <color key="fillColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                 </box>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="ctW-em-OQU" secondAttribute="trailing" id="9Cl-0i-aqc"/>
+                <constraint firstAttribute="trailing" secondItem="ctW-em-OQU" secondAttribute="trailing" constant="-65" id="9Cl-0i-aqc"/>
                 <constraint firstAttribute="bottom" secondItem="ctW-em-OQU" secondAttribute="bottom" id="Ffo-LO-e00"/>
-                <constraint firstAttribute="trailing" secondItem="ctW-em-OQU" secondAttribute="trailing" id="Qcs-6x-hto"/>
+                <constraint firstAttribute="trailing" secondItem="ctW-em-OQU" secondAttribute="trailing" constant="-65" id="Qcs-6x-hto"/>
                 <constraint firstItem="ctW-em-OQU" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="UXQ-A0-aWY"/>
                 <constraint firstItem="ctW-em-OQU" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="dz1-Gs-hTv"/>
                 <constraint firstItem="ctW-em-OQU" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="h2n-1Z-udy"/>
@@ -70,7 +70,7 @@
             <connections>
                 <outlet property="descriptionTextField" destination="gza-wf-YTu" id="c77-d0-MAa"/>
             </connections>
-            <point key="canvasLocation" x="-1" y="47"/>
+            <point key="canvasLocation" x="66.5" y="47"/>
         </customView>
     </objects>
 </document>
