@@ -191,7 +191,11 @@ class ViewController: NSViewController {
         }
         self.studentName.stringValue = student.name
         self.mustHaveTableView.deselectAll(nil)
+        self.programmingScrollViewHeight = 65.0
         self.mustHaveTableView.reloadData()
+        var newFrame = self.programmingScrollView.frame
+        newFrame.size.height = self.programmingScrollViewHeight
+        self.programmingScrollView.frame = newFrame
     }
     
     func classifyTeamMemberObjectives(name:String) {
@@ -267,9 +271,6 @@ extension ViewController: NSTableViewDelegate {
             let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 5.0
             
             self.programmingScrollViewHeight = self.programmingScrollViewHeight + yourHeight
-//            var newFrame = self.programmingScrollView.frame
-//            newFrame.size.height = self.programmingScrollViewHeight
-//            self.programmingScrollView.setFrameSize(newFrame.size)
             return yourHeight
         }else if (tableView == self.teamMembersView) {
             return CGFloat(110)
@@ -373,10 +374,6 @@ extension ViewController: NSTableViewDelegate {
         }else {
             return false
         }
-    }
-    
-    func displayObjectives(selectedStudent:StudentLearningObjective) {
-        
     }
 }
 
