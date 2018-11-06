@@ -22,7 +22,7 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var mustHaveTableView: NSTableView!
     @IBOutlet weak var programmingScrollView: NSScrollView!
-    var programmingScrollViewHeight:CGFloat = CGFloat(0.0)
+    var programmingScrollViewHeight:CGFloat = 0.0
     
     var teamObjectivesDict:[String:[String:Student]] = [:]
     
@@ -40,6 +40,7 @@ class ViewController: NSViewController {
     let studentObjectiveClassifier = StudentObjectiveClassifier()
     @IBOutlet weak var designScrollView: NSScrollView!
     @IBOutlet weak var designObjectivesTableView: NSTableView!
+    var designScrollViewHeight:CGFloat = 0.0
     
     @IBAction func tagHasBeenEdited(_ sender: NSTextField) {
         let newTag = sender.stringValue
@@ -107,6 +108,7 @@ class ViewController: NSViewController {
         self.designObjectivesTableView.delegate = self
         self.designObjectivesTableView.selectionHighlightStyle = NSTableView.SelectionHighlightStyle.none
         self.designObjectivesTableView.tableColumns[0].title = "Design"
+        self.designObjectivesTableView.register(NSNib(nibNamed: "LearningObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("ObjectiveCellID"))
 
         self.taggerTrainingTableView.dataSource = self
         self.taggerTrainingTableView.delegate = self
@@ -190,12 +192,21 @@ class ViewController: NSViewController {
             }
         }
         self.studentName.stringValue = student.name
+        
         self.mustHaveTableView.deselectAll(nil)
         self.programmingScrollViewHeight = 65.0
         self.mustHaveTableView.reloadData()
         var newFrame = self.programmingScrollView.frame
         newFrame.size.height = self.programmingScrollViewHeight
         self.programmingScrollView.frame = newFrame
+        
+        self.designObjectivesTableView.deselectAll(nil)
+        self.designScrollViewHeight = 65.0
+        self.designObjectivesTableView.reloadData()
+        newFrame = self.designScrollView.frame
+        newFrame.size.height = self.designScrollViewHeight
+        self.designScrollView.frame = newFrame
+
     }
     
     func classifyTeamMemberObjectives(name:String) {
@@ -272,6 +283,19 @@ extension ViewController: NSTableViewDelegate {
             
             self.programmingScrollViewHeight = self.programmingScrollViewHeight + yourHeight
             return yourHeight
+        }else if (tableView == self.designObjectivesTableView) {
+            let fakeField = NSTextField()
+            let objective = self.selectedStudent!.classifiedObjectives["design"]![row]
+            let item = self.objectivesToDisplay[row].description + " #" + objective.priority + " #" + objective.level
+            let objectiveDescriptionWidth = CGFloat(388.0)
+            
+            fakeField.stringValue = item
+            // exactly how you get the text out of your data array depends on how you set it up
+            
+            let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 5.0
+            
+            self.designScrollViewHeight = self.designScrollViewHeight + yourHeight
+            return yourHeight
         }else if (tableView == self.teamMembersView) {
             return CGFloat(110)
         }else {
@@ -302,6 +326,23 @@ extension ViewController: NSTableViewDelegate {
                 cellIdentifier = "ExpertiseCellID"                
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  ObjectiveClassificationTableViewCell {
                     cell.displayLearningObjectiveInfo(objective: objective)
+                    return cell
+                }
+            }
+        }else if (tableView == self.designObjectivesTableView) {
+            let objective = self.selectedStudent?.classifiedObjectives["design"]![row]
+            var cellIdentifier = ""
+            
+            if tableColumn == tableView.tableColumns[0] {
+                cellIdentifier = "ObjectiveCellID"
+                if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  LearningObjectiveCellView {
+                    cell.fitForObjective(objective: objective!)
+                    return cell
+                }
+            }else if tableColumn == tableView.tableColumns[1] {
+                cellIdentifier = "ExpertiseCellID"
+                if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  ObjectiveClassificationTableViewCell {
+                    cell.displayLearningObjectiveInfo(objective: objective!)
                     return cell
                 }
             }
