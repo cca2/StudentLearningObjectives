@@ -11,6 +11,18 @@ import CoreML
 import NaturalLanguage
 import CreateML
 
+class ElementToDisplay {
+    let title:String?
+    let subtitle:String?
+    let objective:StudentLearningObjective?
+    
+    init(title:String?, subtitle:String?, objective: StudentLearningObjective?) {
+        self.title = title
+        self.subtitle = subtitle
+        self.objective = objective
+    }
+}
+
 class ViewController: NSViewController {
     
     @IBOutlet weak var trainButton: NSButton!
@@ -41,6 +53,12 @@ class ViewController: NSViewController {
     @IBOutlet weak var designScrollView: NSScrollView!
     @IBOutlet weak var designObjectivesTableView: NSTableView!
     var designScrollViewHeight:CGFloat = 0.0
+    
+    @IBOutlet weak var innovationScrollView: NSScrollView!
+    @IBOutlet weak var innovationObjectivesTableView: NSTableView!
+    var innovationScrollViewHeight:CGFloat = 0.0
+    
+    var elementsToDisplay:[ElementToDisplay] = []
     
     @IBAction func tagHasBeenEdited(_ sender: NSTextField) {
         let newTag = sender.stringValue
@@ -101,15 +119,10 @@ class ViewController: NSViewController {
         self.mustHaveTableView.selectionHighlightStyle = NSTableView.SelectionHighlightStyle.none
         self.mustHaveTableView.tableColumns[0].title = "Programação"
         self.mustHaveTableView.register(NSNib(nibNamed: "LearningObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("ObjectiveCellID"))
-        
+        self.mustHaveTableView.register(NSNib(nibNamed: "SubtitleTableCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("SubtitleCellID"))
+
         self.mustHaveTableView.register(NSNib(nibNamed: "ObjectiveClassificationTableCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("ExpertiseCellID"))
-
-        self.designObjectivesTableView.dataSource = self
-        self.designObjectivesTableView.delegate = self
-        self.designObjectivesTableView.selectionHighlightStyle = NSTableView.SelectionHighlightStyle.none
-        self.designObjectivesTableView.tableColumns[0].title = "Design"
-        self.designObjectivesTableView.register(NSNib(nibNamed: "LearningObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("ObjectiveCellID"))
-
+        
         self.taggerTrainingTableView.dataSource = self
         self.taggerTrainingTableView.delegate = self
         
@@ -179,34 +192,71 @@ class ViewController: NSViewController {
     }
     
     func displayStudentObjectives(student:Student) {
-        self.objectivesToDisplay = []
-        let studentObjectives = student.classifiedObjectives
-        let keys = studentObjectives.keys
-        keys.forEach{
-            key in
-            if let studentObjectives = studentObjectives[key] {
-                studentObjectives.forEach{
-                    studentObjective in
-                    self.objectivesToDisplay.append(studentObjective)
-                }
+        self.elementsToDisplay = []
+        
+        let innovationSubtitle = ElementToDisplay(title: nil, subtitle: "Inovação", objective: nil)
+        self.elementsToDisplay.append(innovationSubtitle)
+        
+        if let innovationObjectives = student.classifiedObjectives["innovation"] {
+            innovationObjectives.forEach{
+                objective in
+                let objectiveElement = ElementToDisplay(title: nil, subtitle: nil, objective: objective)
+                self.elementsToDisplay.append(objectiveElement)
             }
         }
+        
+        let programmingSubtitle = ElementToDisplay(title: nil, subtitle: "Programação", objective: nil)
+        self.elementsToDisplay.append(programmingSubtitle)
+        
+        if let programmingObjectives = student.classifiedObjectives["programming"] {
+            programmingObjectives.forEach{
+                objective in
+                let objectiveElement = ElementToDisplay(title: nil, subtitle: nil, objective: objective)
+                self.elementsToDisplay.append(objectiveElement)
+            }
+        }
+        
+        let designSubtitle = ElementToDisplay(title: nil, subtitle: "Design", objective: nil)
+        self.elementsToDisplay.append(designSubtitle)
+        
+        if let designObjectives = student.classifiedObjectives["design"] {
+            designObjectives.forEach{
+                objective in
+                let objectiveElement = ElementToDisplay(title: nil, subtitle: nil, objective: objective)
+                self.elementsToDisplay.append(objectiveElement)
+            }
+        }
+        
+        let successSkillsSubtitle = ElementToDisplay(title: nil, subtitle: "Competências de Sucesso", objective: nil)
+        self.elementsToDisplay.append(successSkillsSubtitle)
+        
+        if let successSkillsObjectives = student.classifiedObjectives["success skills"] {
+            successSkillsObjectives.forEach{
+                objective in
+                let objectiveElement = ElementToDisplay(title: nil, subtitle: nil, objective: objective)
+                self.elementsToDisplay.append(objectiveElement)
+            }
+        }
+        
+        let appdevSubtitle = ElementToDisplay(title: nil, subtitle: "App Dev", objective: nil)
+        self.elementsToDisplay.append(appdevSubtitle)
+        
+        if let appdevObjectives = student.classifiedObjectives["appdev"] {
+            appdevObjectives.forEach{
+                objective in
+                let objectiveElement = ElementToDisplay(title: nil, subtitle: nil, objective: objective)
+                self.elementsToDisplay.append(objectiveElement)
+            }
+        }
+        
         self.studentName.stringValue = student.name
         
         self.mustHaveTableView.deselectAll(nil)
         self.programmingScrollViewHeight = 65.0
         self.mustHaveTableView.reloadData()
-        var newFrame = self.programmingScrollView.frame
-        newFrame.size.height = self.programmingScrollViewHeight
-        self.programmingScrollView.frame = newFrame
-        
-        self.designObjectivesTableView.deselectAll(nil)
-        self.designScrollViewHeight = 65.0
-        self.designObjectivesTableView.reloadData()
-        newFrame = self.designScrollView.frame
-        newFrame.size.height = self.designScrollViewHeight
-        self.designScrollView.frame = newFrame
-
+        var newProgrammingFrame = self.programmingScrollView.frame
+        newProgrammingFrame.size.height = self.programmingScrollViewHeight
+        self.programmingScrollView.frame = newProgrammingFrame
     }
     
     func classifyTeamMemberObjectives(name:String) {
@@ -243,15 +293,10 @@ extension ViewController: NSTableViewDataSource {
             let numWords = self.objectivesToDisplay[self.selectedObjectiveIndex].tags.count
             return numWords
         }else if (tableView == self.mustHaveTableView) {
-            guard let selectedStudent = self.selectedStudent else {
+            guard self.selectedStudent != nil else {
                 return 0
             }
-            return selectedStudent.classifiedObjectives["programming"]!.count
-        }else if (tableView == self.designObjectivesTableView) {
-            guard let selectedStudent = self.selectedStudent else {
-                return 0
-            }
-            return selectedStudent.classifiedObjectives["design"]!.count
+            return self.elementsToDisplay.count
         }else if (tableView == self.teamMembersView) {
             return self.teamMembersNames.count
         }else {
@@ -272,22 +317,40 @@ extension ViewController: NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         if (tableView == self.mustHaveTableView) {
+            if let objective = elementsToDisplay[row].objective {
+                let fakeField = NSTextField()
+//                let objective = self.selectedStudent!.classifiedObjectives["programming"]![row]
+                let item = objective.description + " #" + objective.priority + " #" + objective.level
+                let objectiveDescriptionWidth = CGFloat(394.0)
+                
+                fakeField.stringValue = item
+                // exactly how you get the text out of your data array depends on how you set it up
+                
+                let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 5.0
+                
+                self.programmingScrollViewHeight = self.programmingScrollViewHeight + yourHeight
+                return yourHeight
+            }else {
+                return CGFloat(40.0)
+            }
+        }else if (tableView == self.designObjectivesTableView) {
             let fakeField = NSTextField()
-            let item = self.objectivesToDisplay[row].description + " #" + self.objectivesToDisplay[row].priority + " #" + self.objectivesToDisplay[row].level
-            let objectiveDescriptionWidth = CGFloat(388.0)
+            let objective = self.selectedStudent!.classifiedObjectives["design"]![row]
+            let item = objective.description + " #" + objective.priority + " #" + objective.level
+            let objectiveDescriptionWidth = CGFloat(394.0)
             
             fakeField.stringValue = item
             // exactly how you get the text out of your data array depends on how you set it up
             
             let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 5.0
             
-            self.programmingScrollViewHeight = self.programmingScrollViewHeight + yourHeight
+            self.designScrollViewHeight = self.designScrollViewHeight + yourHeight
             return yourHeight
-        }else if (tableView == self.designObjectivesTableView) {
+        }else if (tableView == self.innovationObjectivesTableView) {
             let fakeField = NSTextField()
-            let objective = self.selectedStudent!.classifiedObjectives["design"]![row]
-            let item = self.objectivesToDisplay[row].description + " #" + objective.priority + " #" + objective.level
-            let objectiveDescriptionWidth = CGFloat(388.0)
+            let objective = self.selectedStudent!.classifiedObjectives["innovation"]![row]
+            let item = objective.description + " #" + objective.priority + " #" + objective.level
+            let objectiveDescriptionWidth = CGFloat(394.0)
             
             fakeField.stringValue = item
             // exactly how you get the text out of your data array depends on how you set it up
@@ -313,24 +376,43 @@ extension ViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         tableColumn?.headerCell.backgroundColor = NSColor.white
         if (tableView == self.mustHaveTableView) {
-            let objective = self.objectivesToDisplay[row]
+//            let objective = self.objectivesToDisplay[row]
+            var cellIdentifier = ""
+            
+            if tableColumn == tableView.tableColumns[0] {
+                if let objective = self.elementsToDisplay[row].objective {
+                    cellIdentifier = "ObjectiveCellID"
+                    if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  LearningObjectiveCellView {
+                        cell.fitForObjective(objective: objective)
+                        return cell
+                    }
+                }else if let subtitle = elementsToDisplay[row].subtitle {
+                    cellIdentifier = "SubtitleCellID"
+                    if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  SubtitleTableCellView {
+                        cell.subtitle.stringValue = subtitle
+                        return cell
+                    }
+                }
+            }
+        }else if (tableView == self.designObjectivesTableView) {
+            let objective = self.selectedStudent?.classifiedObjectives["design"]![row]
             var cellIdentifier = ""
             
             if tableColumn == tableView.tableColumns[0] {
                 cellIdentifier = "ObjectiveCellID"
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  LearningObjectiveCellView {
-                    cell.fitForObjective(objective: objective)
+                    cell.fitForObjective(objective: objective!)
                     return cell
                 }
             }else if tableColumn == tableView.tableColumns[1] {
-                cellIdentifier = "ExpertiseCellID"                
+                cellIdentifier = "ExpertiseCellID"
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  ObjectiveClassificationTableViewCell {
-                    cell.displayLearningObjectiveInfo(objective: objective)
+                    cell.displayLearningObjectiveInfo(objective: objective!)
                     return cell
                 }
             }
-        }else if (tableView == self.designObjectivesTableView) {
-            let objective = self.selectedStudent?.classifiedObjectives["design"]![row]
+        }else if (tableView == self.innovationObjectivesTableView) {
+            let objective = self.selectedStudent?.classifiedObjectives["innovation"]![row]
             var cellIdentifier = ""
             
             if tableColumn == tableView.tableColumns[0] {
@@ -394,7 +476,6 @@ extension ViewController: NSTableViewDelegate {
             if let _ = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("ObjectiveCellID"), owner: nil) as?  NSTableCellView {
                 self.selectedObjectiveIndex = row
                 self.mustHaveTableView.reloadData()
-                self.designObjectivesTableView.reloadData()
                 self.taggerTrainingTableView.reloadData()
                 return true
             }else {
@@ -406,7 +487,6 @@ extension ViewController: NSTableViewDelegate {
             self.studentObjectiveClassifier.classifyStudentObjectives(student: self.selectedStudent!)
             self.selectedObjectiveIndex = 0
             self.displayStudentObjectives(student: selectedStudent!)
-            self.designObjectivesTableView.reloadData()
             self.teamMembersView.reloadData()
             self.taggerTrainingTableView.reloadData()
             return true

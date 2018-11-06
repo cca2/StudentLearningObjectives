@@ -23,8 +23,7 @@ Animation,Animações mais complexas em UIKit,Emerson Ferreira,must-have,expert,
 Animation,Aprender a utilizar de animações para passar uma informação com sucesso utilizando código,Everlayne Melo,must-have,básico,design,no backlog,Cuscuz
 Animation & Motion Design,Aprender a animar elementos gráficos.,Jorge Salvador,nice-to-have,básico,design,no backlog,FocADA
 Aplicar animações em código,Aplicar animações com UIViewPropertyAnimator ou UIKit,Renan Freitas,nice-to-have,expert,programming,no backlog,Cuscuz
-Aplicar animações prontas no app,"Usar animações prontas (tipo AfterEffects) no app.
-Usando o Lottie, provavelmente.",Renan Freitas,nice-to-have,senior,design,no backlog,Cuscuz
+Aplicar animações prontas no app,"Usar animações prontas (tipo AfterEffects) no app. Usando o Lottie, provavelmente.",Renan Freitas,nice-to-have,senior,design,no backlog,Cuscuz
 Aplicar as HIGs da Apple ao projeto,Pensar no design do app pensando nas melhores práticas que são recomendadas pela Apple,Renan Freitas,must-have,senior,design,no backlog,Cuscuz
 App com foco,"Um app que faz um atividade focada, sem muita coisa",Emerson Ferreira,must-have,senior,design,aplicando no app,Bom Demais Sem Macho
 App Flow,Ter uma visualização do fluxo total do aplicativo e possibilidades para o mesmo,Paixão Augusto,must-have,senior,design,experimentando,pulsai
@@ -100,8 +99,7 @@ CoreML,Usar aprendizagem de máquina através da framework da Apple,Augusto Sale
 CoreMotion,Aprender a utilizar o CoreMotion para detectar movmentos com o Apple Watch,Lucca França,must-have,senior,programming,no backlog,Cuscuz
 CreateML + CoreML,"Criar um modelo de aprendizado com base em inputs como a movimentação do watch, ou até mesmo a percepção de hábitos.",Lucca França,must-have,senior,programming,no backlog,Cuscuz
 Criação de assets,"Desenvolvimento de imagens, icones etc.",Ramon Wanderley,must-have,expert,design,"no backlog,aplicando no app",pulsai
-Criar e integrar modelos de Machine Learning,"Utilizar o CreateML e  CoreML
-",Gabriel D’Luca,must-have,senior,programming,"estudando,experimentando,ensinando outras pessoas",FocADA
+Criar e integrar modelos de Machine Learning,"Utilizar o CreateML e  CoreML",Gabriel D’Luca,must-have,senior,programming,"estudando,experimentando,ensinando outras pessoas",FocADA
 Criar mapa de navegação do App,Criar um mapa de navegação de como será estruturada as telas do app.,Renan Freitas,must-have,senior,design,no backlog,Cuscuz
 Criar pelo menos uma tela,Fazer o design de uma tela. Tanto no desenho quanto pensando em como estruturar as informações que contém nela.,Renan Freitas,must-have,senior,design,no backlog,Cuscuz
 "Criar uma campanha de marketing avançada [monitoramento e estética] para a solução (instagram, facebook e landing page) ",manter um público engajado.,Kacio Henrique,nice-to-have,senior,innovation,no backlog,pulsai
@@ -193,8 +191,7 @@ Interface para telas pequenas,Design de interface minimalista.,Hugo Lispector,ni
 Interface para telas pequenas,"Como fazer uma boa interface em uma tela pequena, que não atrapalhe a experiência do usuário",Renata Porto,must-have,expert,design,"experimentando,aplicando no app,ensinado em workshop",Produtivhaddad
 interface voltada para usuário UI UX,"trabalhar em uma interface minimalista e otimizada, visando as limitações do aparelho e a agilidade e harmonia da comunicação com o usuário utilizando métodos de design. ",Flávio Renato,must-have,expert,design,no backlog,FocADA
 Juggling activities,Conseguir desempenhar mais de uma atividade em áreas variadas do projeto simultaneamente,Paixão Augusto,must-have,básico,success skills,estudando,pulsai
-Lean Development,"Realmente validar antes de escrever uma linha de código
-Ter uma funcionalidade realmente bem definida",Michael Barney,must-have,senior,innovation,no backlog,Produtivhaddad
+Lean Development,"Realmente validar antes de escrever uma linha de código. Ter uma funcionalidade realmente bem definida",Michael Barney,must-have,senior,innovation,no backlog,Produtivhaddad
 Ler e compreender a HIG da Apple,"Aprender mais cobre Human Interface Guidelines, entendendo como e por que usa-las",Augusto Sales,must-have,básico,design,no backlog,ModaFoca - GamiFocADA
 Machine Learning,Sempre tive muito interesse de aprender como funciona ML. Nesse challenge pretendo vincular e aprender sobre isso de alguma forma.,Jorge Salvador,nice-to-have,básico,programming,no backlog,FocADA
 Machine Learning,Saber princípios básicos e aplicar de alguma forma,Manuella Valença,nice-to-have,básico,programming,no backlog,Cuscuz
@@ -308,8 +305,7 @@ testes em dispositivos e com usuário,"utilizar a plataforma, de fato, para qual
 Threads,Multiprogramação,Lucas Cardoso,nice-to-have,senior,programming,no backlog,Iti Malia
 Threads,"Como programadora, me sinto muito insegura em programação concorrente, entendo o conceito mas na prática não sei implementar.",Paula Crislaine,must-have,básico,programming,no backlog,Iti Malia
 Thrill an Audience,Melhorar meu jeito de apresentar.,Jorge Salvador,must-have,senior,success skills,no backlog,FocADA
-Time Management,"Melhorar e organizar as etapas do projeto.
-Usar as ferramentas apresentadas no ADA para esse fim.",Jorge Salvador,must-have,senior,success skills,no backlog,FocADA
+Time Management,"Melhorar e organizar as etapas do projeto. Usar as ferramentas apresentadas no ADA para esse fim.",Jorge Salvador,must-have,senior,success skills,no backlog,FocADA
 Trabalhar com multithreads,Aprendender trabalhar com multithreads,Arthur Barros,nice-to-have,básico,programming,no backlog,7-Pecados
 Trabalhar com pessoas novas,Trabalhar com pessoas novas.,Hugo Lispector,must-have,expert,success skills,no backlog,7-Pecados
 UI para dispositivos pequenos,Aprender sobre as particularidades de fazer uma UI para Apple Watch,Carolina Agra,must-have,básico,design,no backlog,ModaFoca - GamiFocADA
@@ -339,8 +335,7 @@ WatchKit,aprender a usar watchkit,René,must-have,básico,programming,no backlog
 watchOS + iOS + macOS[ + tvOS]?,"Fazer um app integrado entre os diversos dispositivos da Apple, mesmo que nem todos tenham uma funcionalidade própria particular (exemplo: fazer um dashboard para o macOS)",Augusto Sales,nice-to-have,expert,appdev,no backlog,ModaFoca - GamiFocADA
 XCTest,Escrever testes de código e de UI com XCTest,Carolina Agra,must-have,básico,programming,no backlog,ModaFoca - GamiFocADA
 XCTest,"Teste unitário e ""teste de tela"" (sei nem o nome)",João Paulo Vicente,nice-to-have,básico,programming,no backlog,FocADA
-"Yes, and","Trabalhar meu aspecto ""yes, but"", me policiando a não me prender tanto a ideias e detalhes, procurando sempre dar sugestões construtivas ao discordar de uma ideia.
-Saber o momento certo de parar de questionar e seguir o fluxo do grupo.",Camila Simões,must-have,senior,success skills,experimentando,Iti Malia
+"Yes, and","Trabalhar meu aspecto ""yes, but"", me policiando a não me prender tanto a ideias e detalhes, procurando sempre dar sugestões construtivas ao discordar de uma ideia. Saber o momento certo de parar de questionar e seguir o fluxo do grupo.",Camila Simões,must-have,senior,success skills,experimentando,Iti Malia
 Machine learning,Machine learning,Ana Cláudia Lima,nice-to-have,senior,programming,abandonado,Bom Demais Sem Macho
 "HealthKit, CareKit ou ResearchKit","HealthKit, CareKit ou ResearchKit",Ana Cláudia Lima,must-have,senior,programming,no backlog,Bom Demais Sem Macho
 SiriKit,SiriKit,Ana Cláudia Lima,must-have,básico,programming,abandonado,Bom Demais Sem Macho
@@ -353,8 +348,7 @@ Estratégias de retenção,Estratégias de retenção,Ana Cláudia Lima,nice-to-
 Escrever pitch,Escrever pitch,Ana Cláudia Lima,must-have,senior,success skills,no backlog,Bom Demais Sem Macho
 Foco,Foco,Ana Cláudia Lima,must-have,expert,success skills,estudando,Bom Demais Sem Macho
 Marketing,aquisição de usuários,Millena Ferraz,must-have,senior,innovation,no backlog,7-Pecados
-Autolayout,"aprender Autolayout
-",Millena Ferraz,must-have,senior,programming,no backlog,7-Pecados
+Autolayout,"aprender Autolayout",Millena Ferraz,must-have,senior,programming,no backlog,7-Pecados
 Guidelines da Apple,ler de verdade os guidelines da Apple,Millena Ferraz,must-have,senior,design,no backlog,7-Pecados
 Interação entre dispositivos,Aprender a integrar dispositivos,João Guilherme Melo,nice-to-have,básico,programming,no backlog,Bom Demais Sem Macho
 Push notifications,Aprender a utilizar push notifications,João Guilherme Melo,must-have,básico,programming,no backlog,Bom Demais Sem Macho

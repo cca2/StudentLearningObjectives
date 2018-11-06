@@ -25,7 +25,7 @@
                                     <constraint firstAttribute="height" constant="16" id="iRn-2I-Eo9"/>
                                 </constraints>
                                 <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" drawsBackground="YES" allowsEditingTextAttributes="YES" id="GeO-Sk-Ql2">
-                                    <font key="font" metaFont="system" size="12"/>
+                                    <font key="font" metaFont="cellTitle"/>
                                     <string key="title">As vezes nossos colegas passam por dificuldades e nem sempre é visível principalmente em um período de muito trabalho ficamos desatentos ao que pode estar acontecendo com as outras pessoas.</string>
                                     <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

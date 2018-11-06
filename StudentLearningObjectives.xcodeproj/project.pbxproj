@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA346BD52191590400EBF4CD /* SubtitleTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA346BD42191590400EBF4CD /* SubtitleTableCellView.xib */; };
+		DA346BD921915E4E00EBF4CD /* SubtitleTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA346BD821915E4E00EBF4CD /* SubtitleTableCellView.swift */; };
 		DA3DADB6218BEB870072126F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADB5218BEB870072126F /* AppDelegate.swift */; };
 		DA3DADB8218BEB870072126F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADB7218BEB870072126F /* ViewController.swift */; };
 		DA3DADBB218BEB870072126F /* StudentLearningObjectives.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADB9218BEB870072126F /* StudentLearningObjectives.xcdatamodeld */; };
@@ -50,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DA346BD42191590400EBF4CD /* SubtitleTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubtitleTableCellView.xib; sourceTree = "<group>"; };
+		DA346BD821915E4E00EBF4CD /* SubtitleTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleTableCellView.swift; sourceTree = "<group>"; };
 		DA3DADB2218BEB870072126F /* StudentLearningObjectives.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentLearningObjectives.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA3DADB5218BEB870072126F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA3DADB7218BEB870072126F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 				DA3DADF4218BEBCF0072126F /* icons8-auditoria-50.png */,
 				DA3DADEE218BEBCE0072126F /* LearningObjectiveCellView.swift */,
 				DA3DADF2218BEBCE0072126F /* LearningObjectiveCellView.xib */,
+				DA346BD42191590400EBF4CD /* SubtitleTableCellView.xib */,
+				DA346BD821915E4E00EBF4CD /* SubtitleTableCellView.swift */,
 				DA3DADEF218BEBCE0072126F /* ObjectiveClassificationTableCellView.xib */,
 				DA3DADF3218BEBCF0072126F /* ObjectiveClassificationTableViewCell.swift */,
 				DA3DADF0218BEBCE0072126F /* StudentCellView.swift */,
@@ -282,6 +288,7 @@
 				DA3DADBD218BEB890072126F /* Assets.xcassets in Resources */,
 				DA3DADF9218BEBCF0072126F /* LearningObjectiveCellView.xib in Resources */,
 				DA3DADFD218BEC4C0072126F /* TrainingData in Resources */,
+				DA346BD52191590400EBF4CD /* SubtitleTableCellView.xib in Resources */,
 				DA3DAE17218BF7BC0072126F /* ObjetivosCompletos.csv in Resources */,
 				DA3DADC0218BEB890072126F /* Main.storyboard in Resources */,
 				DA3DADF8218BEBCF0072126F /* StudentCellView.xib in Resources */,
@@ -316,6 +323,7 @@
 				DA3DADB8218BEB870072126F /* ViewController.swift in Sources */,
 				DA3DADF7218BEBCF0072126F /* StudentCellView.swift in Sources */,
 				DA3DADE9218BEBAF0072126F /* LearningObjectivesTrainer.swift in Sources */,
+				DA346BD921915E4E00EBF4CD /* SubtitleTableCellView.swift in Sources */,
 				DA3DADB6218BEB870072126F /* AppDelegate.swift in Sources */,
 				DA3DADED218BEBAF0072126F /* StudentLearningObjectiveTagger.swift in Sources */,
 				DA3DADBB218BEB870072126F /* StudentLearningObjectives.xcdatamodeld in Sources */,
