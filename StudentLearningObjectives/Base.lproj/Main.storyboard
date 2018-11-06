@@ -709,46 +709,14 @@
                                     <rect key="frame" x="1" y="1" width="200" height="594"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <box boxType="custom" borderType="none" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="SaE-rO-3WP" userLabel="Teams Box">
-                                            <rect key="frame" x="-1" y="508" width="202" height="86"/>
-                                            <view key="contentView" id="6QH-Jv-xgx">
-                                                <rect key="frame" x="0.0" y="0.0" width="202" height="86"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v8q-mn-b57" userLabel="Team Pop Up">
-                                                        <rect key="frame" x="70" y="30" width="64" height="25"/>
-                                                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" arrowPosition="noArrow" selectedItem="F0I-U1-B5s" id="llI-iP-Fje">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="menu"/>
-                                                            <menu key="menu" id="WFa-h0-0Tj">
-                                                                <items>
-                                                                    <menuItem state="on" id="F0I-U1-B5s"/>
-                                                                    <menuItem title="Item 2" id="wr8-L1-K8x"/>
-                                                                    <menuItem title="Item 3" id="6An-0h-e2d"/>
-                                                                </items>
-                                                            </menu>
-                                                        </popUpButtonCell>
-                                                        <connections>
-                                                            <action selector="popUpItemSelected:" target="XfG-lQ-9wD" id="I1f-q0-bca"/>
-                                                        </connections>
-                                                    </popUpButton>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="v8q-mn-b57" firstAttribute="centerX" secondItem="6QH-Jv-xgx" secondAttribute="centerX" id="9Ia-Oy-e6x"/>
-                                                    <constraint firstItem="v8q-mn-b57" firstAttribute="centerY" secondItem="6QH-Jv-xgx" secondAttribute="centerY" id="UKH-77-dtv"/>
-                                                </constraints>
-                                            </view>
-                                            <color key="borderColor" name="gridColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="fillColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </box>
                                         <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="12" horizontalPageScroll="10" verticalLineScroll="12" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2f-lZ-27b" userLabel="Team Members View">
-                                            <rect key="frame" x="-1" y="0.0" width="202" height="531"/>
+                                            <rect key="frame" x="-1" y="0.0" width="202" height="552"/>
                                             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="mvs-94-xio">
-                                                <rect key="frame" x="0.0" y="0.0" width="202" height="531"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="202" height="552"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="10" rowSizeStyle="automatic" headerView="Obd-Yc-UUT" viewBased="YES" id="Ber-4w-Yro" userLabel="Team Members">
-                                                        <rect key="frame" x="0.0" y="0.0" width="202" height="506"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="202" height="527"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -809,15 +777,47 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>
+                                        <box boxType="custom" borderType="none" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="SaE-rO-3WP" userLabel="Teams Box">
+                                            <rect key="frame" x="-1" y="528" width="202" height="66"/>
+                                            <view key="contentView" id="6QH-Jv-xgx">
+                                                <rect key="frame" x="0.0" y="0.0" width="202" height="66"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v8q-mn-b57" userLabel="Team Pop Up">
+                                                        <rect key="frame" x="70" y="20" width="64" height="25"/>
+                                                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" arrowPosition="noArrow" selectedItem="F0I-U1-B5s" id="llI-iP-Fje">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="menu"/>
+                                                            <menu key="menu" id="WFa-h0-0Tj">
+                                                                <items>
+                                                                    <menuItem state="on" id="F0I-U1-B5s"/>
+                                                                    <menuItem title="Item 2" id="wr8-L1-K8x"/>
+                                                                    <menuItem title="Item 3" id="6An-0h-e2d"/>
+                                                                </items>
+                                                            </menu>
+                                                        </popUpButtonCell>
+                                                        <connections>
+                                                            <action selector="popUpItemSelected:" target="XfG-lQ-9wD" id="I1f-q0-bca"/>
+                                                        </connections>
+                                                    </popUpButton>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="v8q-mn-b57" firstAttribute="centerX" secondItem="6QH-Jv-xgx" secondAttribute="centerX" id="9Ia-Oy-e6x"/>
+                                                    <constraint firstItem="v8q-mn-b57" firstAttribute="centerY" secondItem="6QH-Jv-xgx" secondAttribute="centerY" id="UKH-77-dtv"/>
+                                                </constraints>
+                                            </view>
+                                            <color key="borderColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="fillColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </box>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="SaE-rO-3WP" firstAttribute="trailing" secondItem="q2f-lZ-27b" secondAttribute="trailing" id="GSY-Af-9Tv"/>
                                         <constraint firstItem="SaE-rO-3WP" firstAttribute="leading" secondItem="xvP-r6-ZOU" secondAttribute="leading" constant="-1" id="HfR-P5-RCZ"/>
-                                        <constraint firstItem="q2f-lZ-27b" firstAttribute="top" secondItem="xvP-r6-ZOU" secondAttribute="top" constant="63" id="a1V-vn-Co9"/>
+                                        <constraint firstItem="q2f-lZ-27b" firstAttribute="top" secondItem="xvP-r6-ZOU" secondAttribute="top" constant="42" id="a1V-vn-Co9"/>
                                         <constraint firstItem="SaE-rO-3WP" firstAttribute="leading" secondItem="q2f-lZ-27b" secondAttribute="leading" id="brZ-bk-LqF"/>
                                         <constraint firstAttribute="bottom" secondItem="q2f-lZ-27b" secondAttribute="bottom" id="iXW-1g-1FL"/>
                                         <constraint firstItem="SaE-rO-3WP" firstAttribute="top" secondItem="xvP-r6-ZOU" secondAttribute="top" id="pX4-Ig-mbY"/>
-                                        <constraint firstAttribute="bottom" secondItem="SaE-rO-3WP" secondAttribute="bottom" constant="508" id="qDa-iX-GGb"/>
+                                        <constraint firstAttribute="bottom" secondItem="SaE-rO-3WP" secondAttribute="bottom" constant="528" id="qDa-iX-GGb"/>
                                         <constraint firstItem="SaE-rO-3WP" firstAttribute="centerX" secondItem="xvP-r6-ZOU" secondAttribute="centerX" id="zNx-wZ-HLC"/>
                                     </constraints>
                                 </view>
