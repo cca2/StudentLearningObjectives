@@ -844,7 +844,7 @@
                                                             <constraint firstAttribute="height" constant="24" id="2Pt-1D-epX"/>
                                                             <constraint firstAttribute="width" constant="353" id="AQI-Ue-v19"/>
                                                         </constraints>
-                                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Cristiano Araújo" id="EwJ-8w-rj5">
+                                                        <textFieldCell key="cell" lineBreakMode="clipping" id="EwJ-8w-rj5">
                                                             <font key="font" metaFont="system" size="19"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
