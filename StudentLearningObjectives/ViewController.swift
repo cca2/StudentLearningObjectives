@@ -21,6 +21,8 @@ class ViewController: NSViewController {
     @IBOutlet weak var saveTrainingButton: NSButton!
     
     @IBOutlet weak var mustHaveTableView: NSTableView!
+    @IBOutlet weak var programmingScrollView: NSScrollView!
+    var programmingScrollViewHeight:CGFloat = CGFloat(0.0)
     
     var teamObjectivesDict:[String:[String:Student]] = [:]
     
@@ -36,6 +38,8 @@ class ViewController: NSViewController {
     var newDataForTraining:[StudentLearningObjective] = []
     
     let studentObjectiveClassifier = StudentObjectiveClassifier()
+    @IBOutlet weak var designScrollView: NSScrollView!
+    @IBOutlet weak var designObjectivesTableView: NSTableView!
     
     @IBAction func tagHasBeenEdited(_ sender: NSTextField) {
         let newTag = sender.stringValue
@@ -89,25 +93,27 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // Do any additional setup after loading the view.
+
         self.mustHaveTableView.dataSource = self
         self.mustHaveTableView.delegate = self
+        self.mustHaveTableView.selectionHighlightStyle = NSTableView.SelectionHighlightStyle.none
+        self.mustHaveTableView.tableColumns[0].title = "Programação"
+        self.mustHaveTableView.register(NSNib(nibNamed: "LearningObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("ObjectiveCellID"))
         
+        self.mustHaveTableView.register(NSNib(nibNamed: "ObjectiveClassificationTableCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("ExpertiseCellID"))
+
+        self.designObjectivesTableView.dataSource = self
+        self.designObjectivesTableView.delegate = self
+        self.designObjectivesTableView.selectionHighlightStyle = NSTableView.SelectionHighlightStyle.none
+        self.designObjectivesTableView.tableColumns[0].title = "Design"
+
         self.taggerTrainingTableView.dataSource = self
         self.taggerTrainingTableView.delegate = self
         
         self.teamMembersView.dataSource = self
         self.teamMembersView.delegate = self
-        
-        
         self.teamMembersView.selectionHighlightStyle = NSTableView.SelectionHighlightStyle.none
-        self.mustHaveTableView.selectionHighlightStyle = NSTableView.SelectionHighlightStyle.none
-        
-        // Do any additional setup after loading the view.
-        self.mustHaveTableView.register(NSNib(nibNamed: "LearningObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("ObjectiveCellID"))
-        
-        self.mustHaveTableView.register(NSNib(nibNamed: "ObjectiveClassificationTableCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("ExpertiseCellID"))
-        
         self.teamMembersView.register(NSNib(nibNamed: "StudentCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("StudentCellID"))
         
         let studentsData = try? MLDataTable(contentsOf: Bundle.main.url(forResource: "ObjetivosCompletos", withExtension: "csv")!)
@@ -184,6 +190,7 @@ class ViewController: NSViewController {
             }
         }
         self.studentName.stringValue = student.name
+        self.mustHaveTableView.deselectAll(nil)
         self.mustHaveTableView.reloadData()
     }
     
@@ -221,7 +228,15 @@ extension ViewController: NSTableViewDataSource {
             let numWords = self.objectivesToDisplay[self.selectedObjectiveIndex].tags.count
             return numWords
         }else if (tableView == self.mustHaveTableView) {
-            return self.objectivesToDisplay.count
+            guard let selectedStudent = self.selectedStudent else {
+                return 0
+            }
+            return selectedStudent.classifiedObjectives["programming"]!.count
+        }else if (tableView == self.designObjectivesTableView) {
+            guard let selectedStudent = self.selectedStudent else {
+                return 0
+            }
+            return selectedStudent.classifiedObjectives["design"]!.count
         }else if (tableView == self.teamMembersView) {
             return self.teamMembersNames.count
         }else {
@@ -250,7 +265,11 @@ extension ViewController: NSTableViewDelegate {
             // exactly how you get the text out of your data array depends on how you set it up
             
             let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 5.0
-
+            
+            self.programmingScrollViewHeight = self.programmingScrollViewHeight + yourHeight
+//            var newFrame = self.programmingScrollView.frame
+//            newFrame.size.height = self.programmingScrollViewHeight
+//            self.programmingScrollView.setFrameSize(newFrame.size)
             return yourHeight
         }else if (tableView == self.teamMembersView) {
             return CGFloat(110)
@@ -333,6 +352,7 @@ extension ViewController: NSTableViewDelegate {
             if let _ = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("ObjectiveCellID"), owner: nil) as?  NSTableCellView {
                 self.selectedObjectiveIndex = row
                 self.mustHaveTableView.reloadData()
+                self.designObjectivesTableView.reloadData()
                 self.taggerTrainingTableView.reloadData()
                 return true
             }else {
@@ -344,8 +364,7 @@ extension ViewController: NSTableViewDelegate {
             self.studentObjectiveClassifier.classifyStudentObjectives(student: self.selectedStudent!)
             self.selectedObjectiveIndex = 0
             self.displayStudentObjectives(student: selectedStudent!)
-            self.mustHaveTableView.deselectAll(nil)
-            self.mustHaveTableView.reloadData()
+            self.designObjectivesTableView.reloadData()
             self.teamMembersView.reloadData()
             self.taggerTrainingTableView.reloadData()
             return true
