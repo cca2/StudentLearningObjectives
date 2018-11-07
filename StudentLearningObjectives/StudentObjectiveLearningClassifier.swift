@@ -23,9 +23,9 @@ class StudentObjectiveClassifier {
     
     var tempObjectives:[StudentLearningObjective] = []
     var currentStudent: Student?
-    
+    let modelURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifier.mlmodel")
+
     init() {
-        let modelURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifier.mlmodel")
         let compiledUrl = try! MLModel.compileModel(at: modelURL)
         self.classifierModel = try! NLModel(contentsOf: compiledUrl)
         self.objectivesTagger = NLTagger(tagSchemes: [.lexicalClass])
