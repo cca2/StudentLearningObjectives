@@ -262,12 +262,6 @@ class ViewController: NSViewController {
         self.programmingScrollView.frame = newProgrammingFrame
     }
     
-    func classifyTeamMemberObjectives(name:String) {
-        if let student = self.studentsDict[name] {
-            self.studentObjectiveClassifier.classifyStudentObjectives(student: student)
-        }
-    }
-    
     func highlightTopics(text: String, tags:[(tag:String, value:String)]) -> NSAttributedString {
         let topicAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.red, .font:NSFont.boldSystemFont(ofSize: 16)]
         let attributedText = NSMutableAttributedString(string: "")
@@ -437,9 +431,7 @@ extension ViewController: NSTableViewDelegate {
         }else if (tableView == self.teamMembersView) {
             let cellIdentifier = "StudentCellID"
             if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as? StudentCellView  {
-                let cellStudent = self.studentsDict[self.teamMembersNames[row]]!
-                self.classifyTeamMemberObjectives(name: self.teamMembersNames[row])
-                
+                let cellStudent = self.studentsDict[self.teamMembersNames[row]]!                
                 if let selectedStudent = self.selectedStudent {
                     if selectedStudent.name == cellStudent.name {
                         cell.displaySelectedStudent(student: selectedStudent)
