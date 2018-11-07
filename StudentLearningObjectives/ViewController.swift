@@ -25,6 +25,8 @@ class ElementToDisplay {
 
 class ViewController: NSViewController {
     
+    @IBOutlet var windowView: NSView!
+    @IBOutlet weak var extraFeaturesBtn: NSButton!
     @IBOutlet weak var trainButton: NSButton!
     @IBOutlet weak var taggerTrainingTableView: NSTableView!
     @IBOutlet weak var studentName: NSTextFieldCell!
@@ -83,8 +85,9 @@ class ViewController: NSViewController {
     }
     
     @IBAction func trainButtonPressed(_ sender: Any) {
-        let selectedObjective = self.objectivesToDisplay[self.selectedObjectiveIndex]
-        self.newDataForTraining.append(selectedObjective)
+//        let selectedObjective = self.objectivesToDisplay[self.selectedObjectiveIndex]
+//        self.newDataForTraining.append(selectedObjective)
+        self.studentObjectiveClassifier.trainClassifier()
     }
     
     @IBAction func popUpItemSelected(_ sender: NSPopUpButton) {
@@ -278,6 +281,13 @@ class ViewController: NSViewController {
             }
         }
         return attributedText
+    }
+    
+    @IBAction func showExtraFeaturesPressed(_ sender: Any) {
+//        let windowFrame = self.windowView.frame
+//        let newSize = CGSize(width: windowFrame.size.width + 300.0, height: windowFrame.size.height)
+//        self.windowView.frame.size = newSize
+        self.studentObjectiveClassifier.trainClassifier()
     }
     
     override var representedObject: Any? {

@@ -699,8 +699,8 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="StudentLearningObjectives" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="1432" height="596"/>
+                    <view key="view" id="m2S-Jp-Qdl" userLabel="Window View">
+                        <rect key="frame" x="0.0" y="0.0" width="1299" height="596"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="wdO-ha-pOP" userLabel="Teams and Members Box">
@@ -1104,6 +1104,9 @@
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="showExtraFeaturesPressed:" target="XfG-lQ-9wD" id="15O-Ku-qKm"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -1140,9 +1143,6 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
-                                <connections>
-                                    <action selector="trainButtonPressed:" target="XfG-lQ-9wD" id="p9Y-UV-WB2"/>
-                                </connections>
                             </button>
                             <scrollView hidden="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ohp-Xi-aF4">
                                 <rect key="frame" x="985" y="133" width="293" height="361"/>
@@ -1276,6 +1276,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="extraFeaturesBtn" destination="bdK-Q7-Eav" id="Jcs-4B-QvS"/>
                         <outlet property="mustHaveTableView" destination="H6R-s1-hmb" id="SqZ-ow-fYV"/>
                         <outlet property="programmingScrollView" destination="9Hk-ou-fOs" id="tVw-QF-cee"/>
                         <outlet property="saveTrainingButton" destination="Unf-Lx-flx" id="Dzh-Da-lKt"/>
@@ -1284,11 +1285,12 @@
                         <outlet property="teamMembersView" destination="Ber-4w-Yro" id="6Xl-lB-7V3"/>
                         <outlet property="teamsPopUp" destination="v8q-mn-b57" id="N5q-8d-Iad"/>
                         <outlet property="trainButton" destination="wDK-tb-CLz" id="GDW-Vz-eLB"/>
+                        <outlet property="windowView" destination="m2S-Jp-Qdl" id="H0j-zZ-i1b"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="424" y="845"/>
+            <point key="canvasLocation" x="357.5" y="845"/>
         </scene>
     </scenes>
     <resources>

@@ -13,6 +13,7 @@ import CreateML
 
 protocol StudentObjectiveClassifierDelegate {
     func taggerModelUpdated() -> Void
+    func trainClassifier() -> Void
 }
 
 class StudentObjectiveClassifier {
@@ -24,8 +25,9 @@ class StudentObjectiveClassifier {
     var currentStudent: Student?
     
     init() {
-        let modelURL = Bundle.main.url(forResource: "LearningObjectivesClassifier", withExtension: "mlmodelc")!
-        self.classifierModel = try! NLModel(contentsOf: modelURL)
+        let modelURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifier.mlmodel")
+        let compiledUrl = try! MLModel.compileModel(at: modelURL)
+        self.classifierModel = try! NLModel(contentsOf: compiledUrl)
         self.objectivesTagger = NLTagger(tagSchemes: [.lexicalClass])
         self.learningObjectiveTagger = LearningObjetiveTagger()
     }
@@ -69,5 +71,30 @@ class StudentObjectiveClassifier {
 extension StudentObjectiveClassifier: StudentObjectiveClassifierDelegate {
     func taggerModelUpdated() {
         self.learningObjectiveTagger.updateModel()
+    }
+    
+    func trainClassifier() -> Void {
+        let trainingFileURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifierTraining.csv")
+        let data = try? MLDataTable(contentsOf: trainingFileURL)
+        let (trainingData, testingData) = (data?.randomSplit(by: 0.9, seed: 5))!
+        let areaClassifier = try! MLTextClassifier(trainingData: trainingData, textColumn: "Descrição", labelColumn: "Area")
+        
+        // Training accuracy as a percentage
+        let trainingAccuracy = (1.0 - areaClassifier.trainingMetrics.classificationError) * 100
+        
+        // Validation accuracy as a percentage
+        let validationAccuracy = (1.0 - areaClassifier.validationMetrics.classificationError) * 100
+        
+        let evaluationMetrics = areaClassifier.evaluation(on: testingData)
+        
+        print("Precisão do treinamento \(trainingAccuracy):\(validationAccuracy)")
+        print("Métricas de avaliação \(evaluationMetrics.classificationError)")
+        
+        let metadata = MLModelMetadata(author: "Cristiano Araújo",
+                                       shortDescription: "Um modelo para se classificar as áreas de aprendizado dos objetivos de aprendizado",
+                                       version: "1.0")
+        
+        try? areaClassifier.write(to: URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifier.mlmodel"),
+                                      metadata: metadata)
     }
 }
