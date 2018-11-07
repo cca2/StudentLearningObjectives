@@ -987,8 +987,8 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="615" height="527"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="H6R-s1-hmb">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="615" height="527"/>
+                                                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="KWD-8i-QoG" viewBased="YES" id="H6R-s1-hmb">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="615" height="502"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1046,6 +1046,10 @@
                                                                         <rect key="frame" x="-100" y="-100" width="15" height="102"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                     </scroller>
+                                                                    <tableHeaderView key="headerView" id="KWD-8i-QoG">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="615" height="25"/>
+                                                                        <autoresizingMask key="autoresizingMask"/>
+                                                                    </tableHeaderView>
                                                                 </scrollView>
                                                             </subviews>
                                                             <constraints>

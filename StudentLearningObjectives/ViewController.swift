@@ -323,8 +323,7 @@ extension ViewController: NSTableViewDelegate {
         if (tableView == self.mustHaveTableView) {
             if let objective = elementsToDisplay[row].objective {
                 let fakeField = NSTextField()
-//                let objective = self.selectedStudent!.classifiedObjectives["programming"]![row]
-                let item = objective.description + " #" + objective.priority + " #" + objective.level
+                let item = objective.description + " #" + objective.priority + " #" + objective.level + " #" + objective.topic
                 let objectiveDescriptionWidth = CGFloat(594.0)
                 
                 fakeField.stringValue = item
@@ -431,7 +430,7 @@ extension ViewController: NSTableViewDelegate {
         }else if (tableView == self.teamMembersView) {
             let cellIdentifier = "StudentCellID"
             if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as? StudentCellView  {
-                let cellStudent = self.studentsDict[self.teamMembersNames[row]]!                
+                let cellStudent = self.studentsDict[self.teamMembersNames[row]]!
                 if let selectedStudent = self.selectedStudent {
                     if selectedStudent.name == cellStudent.name {
                         cell.displaySelectedStudent(student: selectedStudent)

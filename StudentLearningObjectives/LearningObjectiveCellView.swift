@@ -14,8 +14,10 @@ class LearningObjectiveCellView: NSTableCellView {
 
     func fitForObjective(objective: StudentLearningObjective) {
         let richTextDescription = NSMutableAttributedString(string: "")
+
         richTextDescription.append(highlightTopics(text: objective.description, tags: objective.tags))
         richTextDescription.append(displayClassification(objective: objective))
+
         self.descriptionTextField.attributedStringValue = richTextDescription
         self.descriptionTextField.focusRingType = .none
     }
@@ -30,8 +32,6 @@ class LearningObjectiveCellView: NSTableCellView {
         let res = NSMutableAttributedString(string: "")
 
         let topicAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.lightGray]
-//        let areaTagAttributedString = NSAttributedString(string:"#" + objective.area, attributes: topicAttributes as [NSAttributedString.Key : Any])
-//        let priorityTagAttributedString = NSAttributedString(string:" #" + objective.priority, attributes: topicAttributes as [NSAttributedString.Key : Any])
         if (objective.priority == "must-have") {
             let priorityTagAttributedString = NSAttributedString(string:" #musthave", attributes: topicAttributes as [NSAttributedString.Key : Any])
             res.append(priorityTagAttributedString)
@@ -39,9 +39,12 @@ class LearningObjectiveCellView: NSTableCellView {
             let priorityTagAttributedString = NSAttributedString(string:" #nicetohave", attributes: topicAttributes as [NSAttributedString.Key : Any])
             res.append(priorityTagAttributedString)
         }
+        
         let expertiseLevelTagAttributedString = NSAttributedString(string:" #" + objective.level, attributes: topicAttributes as [NSAttributedString.Key : Any])
-
         res.append(expertiseLevelTagAttributedString)
+        
+        let topicTagAttributedString = NSAttributedString(string: " #" + objective.topic, attributes: topicAttributes as [NSAttributedString.Key : Any])
+        res.append(topicTagAttributedString)
         
         return res
     }

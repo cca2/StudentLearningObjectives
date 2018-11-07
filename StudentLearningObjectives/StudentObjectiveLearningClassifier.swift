@@ -17,14 +17,17 @@ protocol StudentObjectiveClassifierDelegate {
 }
 
 class StudentObjectiveClassifier {
-    let areaClassifierModel: NLModel?
     let objectivesTagger: NLTagger?
     let learningObjectiveTagger: LearningObjetiveTagger!
     
     var tempObjectives:[StudentLearningObjective] = []
     var currentStudent: Student?
-    let areaModelURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifier.mlmodel")
+    let areaModelURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesAreaClassifier.mlmodel")
+    let areaClassifierModel: NLModel?
+
     let topicsModelURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesTopicsClassifier.mlmodel")
+    let topicsClassifierModel: NLModel?
+
     let trainingFileURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifierTraining.csv")
 
     init() {
@@ -32,7 +35,13 @@ class StudentObjectiveClassifier {
         self.areaClassifierModel = try! NLModel(contentsOf: areaCompiledUrl)
         self.objectivesTagger = NLTagger(tagSchemes: [.lexicalClass])
         self.learningObjectiveTagger = LearningObjetiveTagger()
-    }
+        
+        if let topicsCompiledURL = try? MLModel.compileModel(at: topicsModelURL) {
+            self.topicsClassifierModel = try? NLModel(contentsOf: topicsCompiledURL)
+        }else {
+            self.topicsClassifierModel = nil
+        }
+     }
     
     func classifyStudentObjectives(student: Student) {
         self.currentStudent = student
@@ -54,14 +63,16 @@ class StudentObjectiveClassifier {
         self.objectivesTagger?.enumerateTags(in: description.startIndex..<description.endIndex, unit: .sentence, scheme: .lexicalClass, options: [.omitPunctuation, .omitWhitespace, .joinNames]) {
             (tag, tokenRange) -> Bool in
             let sentence = String(description[tokenRange])
-            let classification = self.areaClassifierModel?.predictedLabel(for: sentence)
+            let areaClassification = self.areaClassifierModel?.predictedLabel(for: sentence)
+            let topicClassification = self.topicsClassifierModel?.predictedLabel(for: sentence)
             
             let newObjective = StudentLearningObjective(description:sentence)
             newObjective.level = objective.level
             newObjective.priority = objective.priority
             
             self.learningObjectiveTagger.tagLearningObjetive(objective: newObjective)
-            newObjective.area = classification!
+            newObjective.area = areaClassification!
+            newObjective.topic = topicClassification!
             newObjective.level = objective.level
             newObjective.priority = objective.priority
             tempObjectives.append(newObjective)
@@ -77,6 +88,31 @@ extension StudentObjectiveClassifier: StudentObjectiveClassifierDelegate {
     
     func trainClassifier() -> Void {
         trainAreaClassifier()
+        trainTopicsClassifier()
+    }
+    
+    func trainTopicsClassifier() -> Void {
+        let data = try? MLDataTable(contentsOf: trainingFileURL)
+        let (trainingData, testingData) = (data?.randomSplit(by: 0.9, seed: 5))!
+        let topicsClassifier = try! MLTextClassifier(trainingData: trainingData, textColumn: "Descrição", labelColumn: "Tópico")
+        
+        // Training accuracy as a percentage
+        let trainingAccuracy = (1.0 - topicsClassifier.trainingMetrics.classificationError) * 100
+        
+        // Validation accuracy as a percentage
+        let validationAccuracy = (1.0 - topicsClassifier.validationMetrics.classificationError) * 100
+        
+        let evaluationMetrics = topicsClassifier.evaluation(on: testingData)
+        
+        print("Precisão do treinamento \(trainingAccuracy):\(validationAccuracy)")
+        print("Métricas de avaliação \(evaluationMetrics.classificationError)")
+        
+        let metadata = MLModelMetadata(author: "Cristiano Araújo",
+                                       shortDescription: "Um modelo para se classificar os tópicos de aprendizado dos objetivos de aprendizado",
+                                       version: "1.0")
+        
+        try? topicsClassifier.write(to: self.topicsModelURL,
+                                  metadata: metadata)
     }
     
     func trainAreaClassifier() -> Void {
