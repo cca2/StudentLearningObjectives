@@ -13,6 +13,7 @@ class StudentLearningObjective {
     var priority = "none"
     var level = "basic"
     var area = "none"
+    var topic = "none"
     var tags: [(tag:String, value:String)] = []
     
     init(description:String) {

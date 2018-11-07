@@ -715,7 +715,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="202" height="552"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="10" rowSizeStyle="automatic" headerView="Obd-Yc-UUT" viewBased="YES" id="Ber-4w-Yro" userLabel="Team Members">
+                                                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="10" rowSizeStyle="automatic" headerView="U6V-Iv-fnG" viewBased="YES" id="Ber-4w-Yro" userLabel="Team Members">
                                                         <rect key="frame" x="0.0" y="0.0" width="202" height="527"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
@@ -772,7 +772,7 @@
                                                 <rect key="frame" x="224" y="17" width="15" height="102"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <tableHeaderView key="headerView" hidden="YES" id="Obd-Yc-UUT">
+                                            <tableHeaderView key="headerView" id="U6V-Iv-fnG">
                                                 <rect key="frame" x="0.0" y="0.0" width="202" height="25"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
@@ -987,8 +987,8 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="615" height="527"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="rzf-Vq-ccb" viewBased="YES" id="H6R-s1-hmb">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="615" height="502"/>
+                                                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="H6R-s1-hmb">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="615" height="527"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1042,14 +1042,10 @@
                                                                         <rect key="frame" x="-100" y="-100" width="611" height="16"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                     </scroller>
-                                                                    <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="VHh-cI-JNF">
+                                                                    <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="VHh-cI-JNF">
                                                                         <rect key="frame" x="-100" y="-100" width="15" height="102"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                     </scroller>
-                                                                    <tableHeaderView key="headerView" focusRingType="none" id="rzf-Vq-ccb">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="615" height="25"/>
-                                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                                    </tableHeaderView>
                                                                 </scrollView>
                                                             </subviews>
                                                             <constraints>

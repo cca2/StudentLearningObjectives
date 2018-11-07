@@ -17,17 +17,19 @@ protocol StudentObjectiveClassifierDelegate {
 }
 
 class StudentObjectiveClassifier {
-    let classifierModel: NLModel?
+    let areaClassifierModel: NLModel?
     let objectivesTagger: NLTagger?
     let learningObjectiveTagger: LearningObjetiveTagger!
     
     var tempObjectives:[StudentLearningObjective] = []
     var currentStudent: Student?
-    let modelURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifier.mlmodel")
+    let areaModelURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifier.mlmodel")
+    let topicsModelURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesTopicsClassifier.mlmodel")
+    let trainingFileURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifierTraining.csv")
 
     init() {
-        let compiledUrl = try! MLModel.compileModel(at: modelURL)
-        self.classifierModel = try! NLModel(contentsOf: compiledUrl)
+        let areaCompiledUrl = try! MLModel.compileModel(at: areaModelURL)
+        self.areaClassifierModel = try! NLModel(contentsOf: areaCompiledUrl)
         self.objectivesTagger = NLTagger(tagSchemes: [.lexicalClass])
         self.learningObjectiveTagger = LearningObjetiveTagger()
     }
@@ -52,7 +54,7 @@ class StudentObjectiveClassifier {
         self.objectivesTagger?.enumerateTags(in: description.startIndex..<description.endIndex, unit: .sentence, scheme: .lexicalClass, options: [.omitPunctuation, .omitWhitespace, .joinNames]) {
             (tag, tokenRange) -> Bool in
             let sentence = String(description[tokenRange])
-            let classification = self.classifierModel?.predictedLabel(for: sentence)
+            let classification = self.areaClassifierModel?.predictedLabel(for: sentence)
             
             let newObjective = StudentLearningObjective(description:sentence)
             newObjective.level = objective.level
@@ -74,7 +76,10 @@ extension StudentObjectiveClassifier: StudentObjectiveClassifierDelegate {
     }
     
     func trainClassifier() -> Void {
-        let trainingFileURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifierTraining.csv")
+        trainAreaClassifier()
+    }
+    
+    func trainAreaClassifier() -> Void {
         let data = try? MLDataTable(contentsOf: trainingFileURL)
         let (trainingData, testingData) = (data?.randomSplit(by: 0.9, seed: 5))!
         let areaClassifier = try! MLTextClassifier(trainingData: trainingData, textColumn: "Descrição", labelColumn: "Area")
@@ -94,7 +99,7 @@ extension StudentObjectiveClassifier: StudentObjectiveClassifierDelegate {
                                        shortDescription: "Um modelo para se classificar as áreas de aprendizado dos objetivos de aprendizado",
                                        version: "1.0")
         
-        try? areaClassifier.write(to: URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifier.mlmodel"),
-                                      metadata: metadata)
+        try? areaClassifier.write(to: self.areaModelURL,
+                                  metadata: metadata)
     }
 }
