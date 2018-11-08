@@ -51,7 +51,7 @@ class ViewController: NSViewController {
     
     var newDataForTraining:[StudentLearningObjective] = []
     
-    let studentObjectiveClassifier = StudentObjectiveClassifier()
+//    let studentObjectiveClassifier = StudentObjectiveClassifier()
     @IBOutlet weak var designScrollView: NSScrollView!
     @IBOutlet weak var designObjectivesTableView: NSTableView!
     var designScrollViewHeight:CGFloat = 0.0
@@ -64,7 +64,7 @@ class ViewController: NSViewController {
     
     
     var cblSprint = CBLSprint()
-    let trainingFileURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifierTraining.csv")
+//    let trainingFileURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifierTraining.csv")
     
     @IBAction func tagHasBeenEdited(_ sender: NSTextField) {
         let newTag = sender.stringValue
@@ -83,7 +83,7 @@ class ViewController: NSViewController {
     @IBAction func saveTrainingButtonPressed(_ sender: Any) {
         let trainer = LearningObjectivesTrainer()
         trainer.updateTrainingData(newDataForTraining: self.newDataForTraining)
-        self.studentObjectiveClassifier.taggerModelUpdated()
+//        self.studentObjectiveClassifier.taggerModelUpdated()
         self.newDataForTraining = []
         self.mustHaveTableView.reloadData()
     }
@@ -91,7 +91,7 @@ class ViewController: NSViewController {
     @IBAction func trainButtonPressed(_ sender: Any) {
 //        let selectedObjective = self.objectivesToDisplay[self.selectedObjectiveIndex]
 //        self.newDataForTraining.append(selectedObjective)
-        self.studentObjectiveClassifier.trainClassifier()
+//        self.studentObjectiveClassifier.trainClassifier()
     }
     
     @IBAction func popUpItemSelected(_ sender: NSPopUpButton) {
@@ -127,41 +127,39 @@ class ViewController: NSViewController {
         self.taggerTrainingTableView.delegate = self
         
         
-        let studentsData = try? MLDataTable(contentsOf: self.trainingFileURL)
+//        let studentsData = try? MLDataTable(contentsOf: self.trainingFileURL)
         
-        guard let rows = studentsData?.rows else {return}
+//        guard let rows = studentsData?.rows else {return}
         
         self.teamsPopUp.removeAllItems()
         
-        rows.forEach{
-            row in
-            
-            let teamIndex = row.index(forKey: "Equipe")!
-            let studentIndex = row.index(forKey: "Estudante")!
-            let descriptionIndex = row.index(forKey: "Descrição")!
-            let priorityIndex = row.index(forKey: "Priorização")!
-            let expertiseLevelIndex = row.index(forKey: "Nível")!
-            
-            let teamName = row.values[teamIndex].stringValue!
-            let studentName = row.values[studentIndex].stringValue!
-            let description = row.values[descriptionIndex].stringValue!
-            let priority = row.values[priorityIndex].stringValue!
-            let expertiseLevel = row.values[expertiseLevelIndex].stringValue!
-            
-            let studentObjective = StudentLearningObjective(description: description)
-            
-            studentObjective.level = expertiseLevel
-            studentObjective.priority = priority
-            
-            self.cblSprint.sprint(teamName: teamName, studentName: studentName, description: description, level: expertiseLevel, priority: priority)
-            
-            if teamObjectivesDict[teamName] == nil {
-                teamObjectivesDict[teamName] = [:]
-                teamObjectivesDict[teamName]?[studentName] = self.cblSprint.studentsDict[studentName]
-                self.teamsPopUp.addItem(withTitle: teamName)
-            }else {
-                teamObjectivesDict[teamName]?[studentName] = self.cblSprint.studentsDict[studentName]
-            }
+//        rows.forEach{
+//            row in
+//
+//            let teamIndex = row.index(forKey: "Equipe")!
+//            let studentIndex = row.index(forKey: "Estudante")!
+//            let descriptionIndex = row.index(forKey: "Descrição")!
+//            let priorityIndex = row.index(forKey: "Priorização")!
+//            let expertiseLevelIndex = row.index(forKey: "Nível")!
+//
+//            let teamName = row.values[teamIndex].stringValue!
+//            let studentName = row.values[studentIndex].stringValue!
+//            let description = row.values[descriptionIndex].stringValue!
+//            let priority = row.values[priorityIndex].stringValue!
+//            let expertiseLevel = row.values[expertiseLevelIndex].stringValue!
+//
+//            let studentObjective = StudentLearningObjective(description: description)
+//
+//            studentObjective.level = expertiseLevel
+//            studentObjective.priority = priority
+//
+//            self.cblSprint.sprint(teamName: teamName, studentName: studentName, description: description, level: expertiseLevel, priority: priority)
+//        }
+        
+        let teamsNames = self.cblSprint.teamsName()
+        teamsNames.forEach{
+            name in
+            self.teamsPopUp.addItem(withTitle: name)
         }
         
         self.cblSprint.studentsDict.keys.forEach{
@@ -266,7 +264,8 @@ class ViewController: NSViewController {
     }
     
     @IBAction func showExtraFeaturesPressed(_ sender: Any) {
-        self.studentObjectiveClassifier.trainClassifier()
+//        self.studentObjectiveClassifier.trainClassifier()
+        self.cblSprint.studentObjectiveClassifier.trainClassifier()
     }
     
     override var representedObject: Any? {
@@ -425,8 +424,7 @@ extension ViewController: NSTableViewDelegate {
         }else if (tableView == self.teamMembersView) {
             self.selectedStudent = self.cblSprint.studentsDict[(self.cblSprint.selectedTeam?.membersNames()[row])!]
             self.studentName.stringValue = self.selectedStudent!.name
-            self.studentObjectiveClassifier.classifyStudentObjectives(student: self.selectedStudent!)
-            self.selectedObjectiveIndex = 0
+//            self.studentObjectiveClassifier.classifyStudentObjectives(student: self.selectedStudent!)
             self.displayStudentObjectives(student: selectedStudent!)
             self.teamMembersView.reloadData()
             self.taggerTrainingTableView.reloadData()

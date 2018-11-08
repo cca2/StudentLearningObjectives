@@ -7,15 +7,49 @@
 //
 
 import Foundation
+import CreateML
 
 class CBLSprint {
     var teams:Dictionary = [String:Team]()
     var studentsDict:Dictionary = [String:Student]()
     var selectedTeam:Team?
     var selectedStudent: Student?
-    
+    let studentObjectiveClassifier = StudentObjectiveClassifier()
+
+//    let trainingFileURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifierTraining.csv")
+
     init() {
+//        let studentsData = try? MLDataTable(contentsOf: self.trainingFileURL)
+        let studentsData = self.studentObjectiveClassifier.studentsData
         
+        guard let rows = studentsData?.rows else {return}
+        rows.forEach{
+            row in
+            
+            let teamIndex = row.index(forKey: "Equipe")!
+            let studentIndex = row.index(forKey: "Estudante")!
+            let descriptionIndex = row.index(forKey: "Descrição")!
+            let priorityIndex = row.index(forKey: "Priorização")!
+            let expertiseLevelIndex = row.index(forKey: "Nível")!
+            
+            let teamName = row.values[teamIndex].stringValue!
+            let studentName = row.values[studentIndex].stringValue!
+            let description = row.values[descriptionIndex].stringValue!
+            let priority = row.values[priorityIndex].stringValue!
+            let expertiseLevel = row.values[expertiseLevelIndex].stringValue!
+            
+            let studentObjective = StudentLearningObjective(description: description)
+            studentObjective.level = expertiseLevel
+            studentObjective.priority = priority
+            
+            self.sprint(teamName: teamName, studentName: studentName, description: description, level: expertiseLevel, priority: priority)
+        }
+        
+        self.studentsDict.keys.forEach{
+            name in
+            let student = self.studentsDict[name]
+            self.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
+        }
     }
     
     func sprint(teamName: String, studentName: String, description: String, level: String, priority: String) {
@@ -36,13 +70,6 @@ class CBLSprint {
             let team = Team(name: teamName)
             self.teams[teamName] = team
         }
-//        if teamObjectivesDict[teamName] == nil {
-//            teamObjectivesDict[teamName] = [:]
-//            teamObjectivesDict[teamName]?[studentName] = self.cblSprint.studentsDict[studentName]
-//            self.teamsPopUp.addItem(withTitle: teamName)
-//        }else {
-//            teamObjectivesDict[teamName]?[studentName] = self.cblSprint.studentsDict[studentName]
-//        }
     }
     
     func addTeam(newTeam:Team) {
@@ -51,6 +78,10 @@ class CBLSprint {
     
     func teamWithName(name:String) -> Team? {
         return self.teams[name]
+    }
+    
+    func teamsName() -> [String] {
+        return teams.keys.sorted()
     }
 }
 

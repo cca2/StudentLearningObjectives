@@ -23,16 +23,23 @@ class StudentObjectiveClassifier {
     var tempObjectives:[StudentLearningObjective] = []
     var currentStudent: Student?
     let areaModelURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesAreaClassifier.mlmodel")
-    let areaClassifierModel: NLModel?
+    var areaClassifierModel: NLModel?
 
     let topicsModelURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesTopicsClassifier.mlmodel")
     let topicsClassifierModel: NLModel?
 
     let trainingFileURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifierTraining.csv")
-
+    let studentsData:MLDataTable?
+    
     init() {
-        let areaCompiledUrl = try! MLModel.compileModel(at: areaModelURL)
-        self.areaClassifierModel = try! NLModel(contentsOf: areaCompiledUrl)
+        
+        let areaCompiledUrl = try? MLModel.compileModel(at: areaModelURL)
+        
+        if areaCompiledUrl != nil {
+            self.areaClassifierModel = try! NLModel(contentsOf: areaCompiledUrl!)
+        }
+        
+        self.studentsData = try? MLDataTable(contentsOf: self.trainingFileURL)
         self.objectivesTagger = NLTagger(tagSchemes: [.lexicalClass])
         self.learningObjectiveTagger = LearningObjetiveTagger()
         
@@ -44,6 +51,10 @@ class StudentObjectiveClassifier {
      }
     
     func classifyStudentObjectives(student: Student) {
+        if self.areaClassifierModel == nil {
+            self.trainAreaClassifier()
+        }
+        
         self.currentStudent = student
         tempObjectives = []
         self.currentStudent?.originalObjectives.forEach{
@@ -63,18 +74,23 @@ class StudentObjectiveClassifier {
         self.objectivesTagger?.enumerateTags(in: description.startIndex..<description.endIndex, unit: .sentence, scheme: .lexicalClass, options: [.omitPunctuation, .omitWhitespace, .joinNames]) {
             (tag, tokenRange) -> Bool in
             let sentence = String(description[tokenRange])
-            let areaClassification = self.areaClassifierModel?.predictedLabel(for: sentence)
-            let topicClassification = self.topicsClassifierModel?.predictedLabel(for: sentence)
+            let areaClassification:String? = self.areaClassifierModel?.predictedLabel(for: sentence)
+            let topicClassification:String? = self.topicsClassifierModel?.predictedLabel(for: sentence)
             
             let newObjective = StudentLearningObjective(description:sentence)
-            newObjective.level = objective.level
-            newObjective.priority = objective.priority
             
-            self.learningObjectiveTagger.tagLearningObjetive(objective: newObjective)
-            newObjective.area = areaClassification!
-            newObjective.topic = topicClassification!
+            if areaClassification != nil {
+                newObjective.area = areaClassification!
+            }
+            
+            if topicClassification != nil {
+                newObjective.topic = topicClassification!
+            }
+            
             newObjective.level = objective.level
             newObjective.priority = objective.priority
+
+            self.learningObjectiveTagger.tagLearningObjetive(objective: newObjective)
             tempObjectives.append(newObjective)
             return true
         }
