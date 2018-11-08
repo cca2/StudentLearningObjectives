@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView identifier="StudentMatchByObjectiveCellID" id="c22-O7-iKe" customClass="StudentMatchByObjectiveCellView" customModule="StudentLearningObjectives" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="347" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="0pN-Br-6Jp">
+                    <rect key="frame" x="0.0" y="0.0" width="347" height="100"/>
+                    <view key="contentView" id="Egd-lH-FXJ">
+                        <rect key="frame" x="0.0" y="0.0" width="347" height="100"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Bod-tA-KGx">
+                                <rect key="frame" x="31" y="12" width="310" height="53"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="Mjg-pO-WnS"/>
+                                </constraints>
+                                <textFieldCell key="cell" selectable="YES" id="hma-Tj-DIG">
+                                    <font key="font" metaFont="system"/>
+                                    <string key="title">Me juntar à pessoas com mais experiência nessa área e aprender o máximo sobre o processo de desenvolvimento da identidade visual do app, aprendendo a dar feedbacks realmente construtivos</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="8Rc-HG-mww">
+                                <rect key="frame" x="33" y="-2" width="314" height="5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lJH-Kj-qe6">
+                                <rect key="frame" x="31" y="73" width="103" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="99" id="0N6-ZC-Yx7"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Cristiano Araújo" id="01s-Db-NQI">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Bod-tA-KGx" secondAttribute="trailing" constant="8" id="2Of-CZ-cPx"/>
+                            <constraint firstItem="Bod-tA-KGx" firstAttribute="top" secondItem="lJH-Kj-qe6" secondAttribute="bottom" constant="8" symbolic="YES" id="78K-cm-khJ"/>
+                            <constraint firstItem="lJH-Kj-qe6" firstAttribute="leading" secondItem="Egd-lH-FXJ" secondAttribute="leading" constant="33" id="JXD-mk-5wW"/>
+                            <constraint firstItem="lJH-Kj-qe6" firstAttribute="leading" secondItem="Bod-tA-KGx" secondAttribute="leading" id="U8e-pv-NAU"/>
+                            <constraint firstItem="lJH-Kj-qe6" firstAttribute="top" secondItem="Egd-lH-FXJ" secondAttribute="top" constant="10" id="niQ-Wg-0jk"/>
+                        </constraints>
+                    </view>
+                    <color key="fillColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="0pN-Br-6Jp" secondAttribute="bottom" id="9sC-52-5cs"/>
+                <constraint firstItem="0pN-Br-6Jp" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="bDA-IW-Vfi"/>
+                <constraint firstItem="0pN-Br-6Jp" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="hxl-vQ-8m3"/>
+                <constraint firstAttribute="trailing" secondItem="0pN-Br-6Jp" secondAttribute="trailing" id="qjj-9S-KRq"/>
+            </constraints>
+            <connections>
+                <outlet property="objectiveDescription" destination="Bod-tA-KGx" id="WE0-uI-KrJ"/>
+                <outlet property="studentName" destination="lJH-Kj-qe6" id="MPg-Wv-TFv"/>
+            </connections>
+            <point key="canvasLocation" x="138.5" y="67"/>
+        </customView>
+    </objects>
+</document>

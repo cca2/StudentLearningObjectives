@@ -12,14 +12,13 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <box fixedFrame="YES" boxType="custom" borderType="none" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="33E-nM-GJM">
+                <box boxType="custom" borderType="none" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="33E-nM-GJM">
                     <rect key="frame" x="0.0" y="0.0" width="400" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="Mut-x2-mNf">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="40"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tGn-t6-vH7">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tGn-t6-vH7">
                                 <rect key="frame" x="-2" y="13" width="28" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="H2" id="uyJ-7P-F8U">
                                     <font key="font" metaFont="system" size="11"/>
@@ -43,12 +42,19 @@
                             <constraint firstItem="tGn-t6-vH7" firstAttribute="leading" secondItem="Mut-x2-mNf" secondAttribute="leading" id="GXu-DB-6ga"/>
                             <constraint firstItem="tGn-t6-vH7" firstAttribute="centerY" secondItem="Mut-x2-mNf" secondAttribute="centerY" id="Shh-Yp-a4X"/>
                             <constraint firstItem="CtZ-Lg-dgt" firstAttribute="centerX" secondItem="Mut-x2-mNf" secondAttribute="centerX" constant="-70.5" id="aTn-qV-4wP"/>
+                            <constraint firstItem="tGn-t6-vH7" firstAttribute="top" secondItem="Mut-x2-mNf" secondAttribute="top" constant="13" id="guG-ux-byj"/>
                             <constraint firstItem="tGn-t6-vH7" firstAttribute="centerX" secondItem="Mut-x2-mNf" secondAttribute="centerX" constant="-188" id="xP7-Hz-jWR"/>
                         </constraints>
                     </view>
                     <color key="fillColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </box>
             </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="33E-nM-GJM" secondAttribute="bottom" id="2YI-YG-Crh"/>
+                <constraint firstAttribute="trailing" secondItem="33E-nM-GJM" secondAttribute="trailing" id="IQ6-8r-zIm"/>
+                <constraint firstItem="33E-nM-GJM" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="JQr-3q-sKa"/>
+                <constraint firstItem="33E-nM-GJM" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="nQ2-vE-eFV"/>
+            </constraints>
             <connections>
                 <outlet property="subtitle" destination="CtZ-Lg-dgt" id="7UE-k3-6OG"/>
             </connections>
