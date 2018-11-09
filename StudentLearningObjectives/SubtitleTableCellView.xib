@@ -9,19 +9,19 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView identifier="SubtitleCellID" id="c22-O7-iKe" customClass="SubtitleTableCellView" customModule="StudentLearningObjectives" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="40"/>
+            <rect key="frame" x="0.0" y="0.0" width="671" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <box boxType="custom" borderType="none" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="33E-nM-GJM">
-                    <rect key="frame" x="0.0" y="0.0" width="400" height="40"/>
+                    <rect key="frame" x="71" y="0.0" width="589" height="40"/>
                     <view key="contentView" id="Mut-x2-mNf">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="40"/>
+                        <rect key="frame" x="0.0" y="0.0" width="589" height="40"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tGn-t6-vH7">
-                                <rect key="frame" x="-2" y="13" width="28" height="14"/>
+                                <rect key="frame" x="-2" y="13" width="217" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="H2" id="uyJ-7P-F8U">
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -46,19 +46,21 @@
                             <constraint firstItem="tGn-t6-vH7" firstAttribute="centerX" secondItem="Mut-x2-mNf" secondAttribute="centerX" constant="-188" id="xP7-Hz-jWR"/>
                         </constraints>
                     </view>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="589" id="41C-Jr-BrV"/>
+                    </constraints>
                     <color key="fillColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </box>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="33E-nM-GJM" secondAttribute="bottom" id="2YI-YG-Crh"/>
-                <constraint firstAttribute="trailing" secondItem="33E-nM-GJM" secondAttribute="trailing" id="IQ6-8r-zIm"/>
                 <constraint firstItem="33E-nM-GJM" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="JQr-3q-sKa"/>
-                <constraint firstItem="33E-nM-GJM" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="nQ2-vE-eFV"/>
+                <constraint firstItem="33E-nM-GJM" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="71" id="nQ2-vE-eFV"/>
             </constraints>
             <connections>
                 <outlet property="subtitle" destination="CtZ-Lg-dgt" id="7UE-k3-6OG"/>
             </connections>
-            <point key="canvasLocation" x="139" y="34"/>
+            <point key="canvasLocation" x="138.5" y="34"/>
         </customView>
     </objects>
 </document>

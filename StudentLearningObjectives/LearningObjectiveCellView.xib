@@ -8,12 +8,12 @@
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView identifier="ObjectiveCellID" misplaced="YES" id="c22-O7-iKe" customClass="LearningObjectiveCellView" customModule="StudentLearningObjectives" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="26"/>
+        <customView identifier="ObjectiveCellID" id="c22-O7-iKe" customClass="LearningObjectiveCellView" customModule="StudentLearningObjectives" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="671" height="26"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <box boxType="custom" borderType="none" borderWidth="5" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ctW-em-OQU">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="26"/>
+                    <rect key="frame" x="71" y="0.0" width="600" height="26"/>
                     <view key="contentView" id="TZc-a2-T3b">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="26"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -59,18 +59,18 @@
                 </box>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="ctW-em-OQU" secondAttribute="trailing" constant="-65" id="9Cl-0i-aqc"/>
+                <constraint firstAttribute="trailing" secondItem="ctW-em-OQU" secondAttribute="trailing" id="9Cl-0i-aqc"/>
                 <constraint firstAttribute="bottom" secondItem="ctW-em-OQU" secondAttribute="bottom" id="Ffo-LO-e00"/>
-                <constraint firstAttribute="trailing" secondItem="ctW-em-OQU" secondAttribute="trailing" constant="-65" id="Qcs-6x-hto"/>
-                <constraint firstItem="ctW-em-OQU" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="UXQ-A0-aWY"/>
-                <constraint firstItem="ctW-em-OQU" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="dz1-Gs-hTv"/>
+                <constraint firstAttribute="trailing" secondItem="ctW-em-OQU" secondAttribute="trailing" id="Qcs-6x-hto"/>
+                <constraint firstItem="ctW-em-OQU" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="71" id="UXQ-A0-aWY"/>
+                <constraint firstItem="ctW-em-OQU" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="71" id="dz1-Gs-hTv"/>
                 <constraint firstItem="ctW-em-OQU" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="h2n-1Z-udy"/>
                 <constraint firstAttribute="bottom" secondItem="ctW-em-OQU" secondAttribute="bottom" id="s7o-Yq-0YJ"/>
             </constraints>
             <connections>
                 <outlet property="descriptionTextField" destination="gza-wf-YTu" id="c77-d0-MAa"/>
             </connections>
-            <point key="canvasLocation" x="66.5" y="47"/>
+            <point key="canvasLocation" x="87.5" y="47"/>
         </customView>
     </objects>
 </document>
