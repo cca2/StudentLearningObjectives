@@ -11,7 +11,7 @@ import Foundation
 class StudentLearningObjective {
     var description = ""
     var priority = "none"
-    var level = "basic"
+    var level = "none"
     var area = "none"
     var topic = "none"
     var tags: [(tag:String, value:String)] = []

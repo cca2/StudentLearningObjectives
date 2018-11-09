@@ -51,7 +51,9 @@ class CBLSprint {
     
     func sprint(teamName: String, studentName: String, description: String, level: String, priority: String) {
         let studentObjective = StudentLearningObjective(description: description)
-                
+        studentObjective.level = level
+        studentObjective.priority = priority
+        
         if self.studentsDict[studentName] != nil {
             self.studentsDict[studentName]?.addOriginalObjective(objective: studentObjective)
         }else {
@@ -92,6 +94,7 @@ class CBLSprint {
                 objectives.forEach {
                     objective in
                     res.append((s, objective))
+                    print(objective)
                 }
             }
         }

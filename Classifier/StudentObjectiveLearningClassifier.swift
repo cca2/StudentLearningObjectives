@@ -26,17 +26,15 @@ class StudentObjectiveClassifier {
     var areaClassifierModel: NLModel?
 
     let topicsModelURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesTopicsClassifier.mlmodel")
-    let topicsClassifierModel: NLModel?
+    var topicsClassifierModel: NLModel?
 
     let trainingFileURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifierTraining.csv")
     let studentsData:MLDataTable?
     
     init() {
         
-        let areaCompiledUrl = try? MLModel.compileModel(at: areaModelURL)
-        
-        if areaCompiledUrl != nil {
-            self.areaClassifierModel = try! NLModel(contentsOf: areaCompiledUrl!)
+        if let areaCompiledUrl = try? MLModel.compileModel(at: areaModelURL) {
+            self.areaClassifierModel = try! NLModel(contentsOf: areaCompiledUrl)
         }
         
         self.studentsData = try? MLDataTable(contentsOf: self.trainingFileURL)
@@ -51,10 +49,6 @@ class StudentObjectiveClassifier {
      }
     
     func classifyStudentObjectives(student: Student) {
-        if self.areaClassifierModel == nil {
-            self.trainAreaClassifier()
-        }
-        
         self.currentStudent = student
         tempObjectives = []
         self.currentStudent?.originalObjectives.forEach{
@@ -69,6 +63,20 @@ class StudentObjectiveClassifier {
     }
     
     func organizeAndClassifyObjective(objective:StudentLearningObjective) {
+
+        if self.areaClassifierModel == nil {
+            self.trainAreaClassifier()
+        }
+        
+        if self.topicsClassifierModel == nil {
+            self.trainTopicsClassifier()
+            if let topicsCompiledURL = try? MLModel.compileModel(at: topicsModelURL) {
+                self.topicsClassifierModel = try? NLModel(contentsOf: topicsCompiledURL)
+            }else {
+                self.topicsClassifierModel = nil
+            }
+        }
+        
         let description = objective.description
         self.objectivesTagger?.string = description
         self.objectivesTagger?.enumerateTags(in: description.startIndex..<description.endIndex, unit: .sentence, scheme: .lexicalClass, options: [.omitPunctuation, .omitWhitespace, .joinNames]) {

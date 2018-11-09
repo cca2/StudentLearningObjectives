@@ -10,8 +10,16 @@ import Cocoa
 
 class StudentMatchByObjectiveCellView: NSTableCellView {
     @IBOutlet weak var studentName: NSTextField!
-    
+    @IBOutlet weak var priorityLevel: NSTextField!
+    @IBOutlet weak var learningLevel: NSTextField!
     @IBOutlet weak var objectiveDescription: NSTextField!
+    
+    func displayObjective(objective: StudentLearningObjective) {
+        self.objectiveDescription.stringValue = objective.description
+        self.priorityLevel.stringValue = objective.priority
+        self.learningLevel.stringValue = objective.level
+    }
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 
