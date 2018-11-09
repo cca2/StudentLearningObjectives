@@ -37,7 +37,6 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="CtZ-Lg-dgt" firstAttribute="top" secondItem="Mut-x2-mNf" secondAttribute="top" constant="11" id="5EE-0r-pSY"/>
-                            <constraint firstItem="CtZ-Lg-dgt" firstAttribute="leading" secondItem="Mut-x2-mNf" secondAttribute="leading" constant="20" id="8Vm-Qt-hqX"/>
                             <constraint firstItem="tGn-t6-vH7" firstAttribute="centerY" secondItem="CtZ-Lg-dgt" secondAttribute="centerY" id="E2V-Eo-kqs"/>
                             <constraint firstItem="tGn-t6-vH7" firstAttribute="leading" secondItem="Mut-x2-mNf" secondAttribute="leading" id="GXu-DB-6ga"/>
                             <constraint firstItem="tGn-t6-vH7" firstAttribute="centerY" secondItem="Mut-x2-mNf" secondAttribute="centerY" id="Shh-Yp-a4X"/>
@@ -54,6 +53,7 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="33E-nM-GJM" secondAttribute="bottom" id="2YI-YG-Crh"/>
+                <constraint firstItem="CtZ-Lg-dgt" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="91" id="9rv-AK-1MJ"/>
                 <constraint firstItem="33E-nM-GJM" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="JQr-3q-sKa"/>
                 <constraint firstItem="33E-nM-GJM" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="71" id="nQ2-vE-eFV"/>
             </constraints>
