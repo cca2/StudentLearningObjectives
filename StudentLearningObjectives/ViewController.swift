@@ -15,6 +15,7 @@ class ElementToDisplay {
     let title:String?
     let subtitle:String?
     let objective:StudentLearningObjective?
+    var isSelected = false
     
     init(title:String?, subtitle:String?, objective: StudentLearningObjective?) {
         self.title = title
@@ -283,7 +284,7 @@ extension ViewController: NSTableViewDelegate {
             if let objective = elementsToDisplay[row].objective {
                 let fakeField = NSTextField()
                 let item = objective.description + " #" + objective.priority + " #" + objective.level + " #" + objective.topic
-                let objectiveDescriptionWidth = CGFloat(594.0)
+                let objectiveDescriptionWidth = CGFloat(582.0)
                 
                 fakeField.stringValue = item
                 // exactly how you get the text out of your data array depends on how you set it up
@@ -308,10 +309,11 @@ extension ViewController: NSTableViewDelegate {
             var cellIdentifier = ""
             
             if tableColumn == tableView.tableColumns[0] {
-                if let objective = self.elementsToDisplay[row].objective {
+                let objectiveToDisplay = self.elementsToDisplay[row]
+                if objectiveToDisplay.objective != nil {
                     cellIdentifier = "ObjectiveCellID"
                     if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  LearningObjectiveCellView {
-                        cell.fitForObjective(objective: objective)
+                        cell.fitForObjective(objective: objectiveToDisplay)
                         return cell
                     }
                 }else if let subtitle = elementsToDisplay[row].subtitle {
@@ -320,28 +322,6 @@ extension ViewController: NSTableViewDelegate {
                         cell.subtitle.stringValue = subtitle
                         return cell
                     }
-                }
-            }
-        }else if (tableView == self.designObjectivesTableView) {
-            let objective = self.cblSprint.selectedStudent?.classifiedObjectives["design"]![row]
-            var cellIdentifier = ""
-            
-            if tableColumn == tableView.tableColumns[0] {
-                cellIdentifier = "ObjectiveCellID"
-                if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  LearningObjectiveCellView {
-                    cell.fitForObjective(objective: objective!)
-                    return cell
-                }
-            }
-        }else if (tableView == self.innovationObjectivesTableView) {
-            let objective = self.cblSprint.selectedStudent?.classifiedObjectives["innovation"]![row]
-            var cellIdentifier = ""
-            
-            if tableColumn == tableView.tableColumns[0] {
-                cellIdentifier = "ObjectiveCellID"
-                if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  LearningObjectiveCellView {
-                    cell.fitForObjective(objective: objective!)
-                    return cell
                 }
             }
         }else if (tableView == self.taggerTrainingTableView) {
@@ -389,10 +369,17 @@ extension ViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         if (tableView == self.mustHaveTableView) {
             if let _ = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("ObjectiveCellID"), owner: nil) as?  NSTableCellView {
-                self.selectedObjectiveIndex = row
                 let delegate = NSApplication.shared.delegate as! AppDelegate
                 if let selectedObjective = self.elementsToDisplay[row].objective {
                     delegate.selectedObjective = (self.cblSprint.selectedStudent!, selectedObjective)
+                    self.elementsToDisplay.forEach{
+                        element in
+                        element.isSelected = false
+                    }
+                    self.elementsToDisplay[row].isSelected = true
+                    self.mustHaveTableView.reloadData()
+                }else {
+                    self.elementsToDisplay[row].isSelected = false
                 }
                 return true
             }else {

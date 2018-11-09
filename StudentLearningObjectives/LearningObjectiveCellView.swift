@@ -11,15 +11,18 @@ import NaturalLanguage
 
 class LearningObjectiveCellView: NSTableCellView {
     @IBOutlet weak var descriptionTextField: NSTextField!
-
-    func fitForObjective(objective: StudentLearningObjective) {
+    @IBOutlet weak var selectedBox: NSBox!
+    
+    func fitForObjective(objective: ElementToDisplay) {
         let richTextDescription = NSMutableAttributedString(string: "")
 
-        richTextDescription.append(highlightTopics(text: objective.description, tags: objective.tags))
-        richTextDescription.append(displayClassification(objective: objective))
+        richTextDescription.append(highlightTopics(text: objective.objective!.description, tags: objective.objective!.tags))
+        richTextDescription.append(displayClassification(objective: objective.objective!))
 
         self.descriptionTextField.attributedStringValue = richTextDescription
         self.descriptionTextField.focusRingType = .none
+        
+        selectedBox.isHidden = !objective.isSelected
     }
     
     override func draw(_ dirtyRect: NSRect) {
