@@ -390,11 +390,10 @@ extension ViewController: NSTableViewDelegate {
         if (tableView == self.mustHaveTableView) {
             if let _ = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("ObjectiveCellID"), owner: nil) as?  NSTableCellView {
                 self.selectedObjectiveIndex = row
-                
-//                self.mustHaveTableView.reloadData()
-//                self.taggerTrainingTableView.reloadData()
                 let delegate = NSApplication.shared.delegate as! AppDelegate
-                delegate.selectedObjective = (self.cblSprint.selectedStudent!, self.elementsToDisplay[row].objective!)
+                if let selectedObjective = self.elementsToDisplay[row].objective {
+                    delegate.selectedObjective = (self.cblSprint.selectedStudent!, selectedObjective)
+                }
                 return true
             }else {
                 return false
