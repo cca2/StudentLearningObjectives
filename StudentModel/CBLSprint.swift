@@ -16,10 +16,7 @@ class CBLSprint {
     var selectedStudent: Student?
     let studentObjectiveClassifier = StudentObjectiveClassifier()
 
-//    let trainingFileURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifierTraining.csv")
-
     init() {
-//        let studentsData = try? MLDataTable(contentsOf: self.trainingFileURL)
         let studentsData = self.studentObjectiveClassifier.studentsData
         
         guard let rows = studentsData?.rows else {return}
@@ -82,6 +79,23 @@ class CBLSprint {
     
     func teamsName() -> [String] {
         return teams.keys.sorted()
+    }
+    
+    func matchStudents(student:Student, objective:StudentLearningObjective) -> [(Student, StudentLearningObjective)] {
+        var res = [(Student, StudentLearningObjective)]()
+        let names = self.studentsDict.keys.sorted()
+        names.forEach{
+            name in
+            if name != student.name {
+                let s = self.studentsDict[name]!
+                let objectives:[StudentLearningObjective] = (s.objectivesByTopic(topic: objective.topic))
+                objectives.forEach {
+                    objective in
+                    res.append((s, objective))
+                }
+            }
+        }
+        return res
     }
 }
 

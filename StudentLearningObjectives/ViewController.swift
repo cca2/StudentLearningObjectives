@@ -45,7 +45,7 @@ class ViewController: NSViewController {
     
     var selectedObjectiveIndex = -1
     var teamMembersNames:[String] = []
-    var selectedStudent:Student?
+//    var selectedStudent:Student?
     
 //    var selectedTeamName = ""
     
@@ -63,7 +63,7 @@ class ViewController: NSViewController {
     var elementsToDisplay:[ElementToDisplay] = []
     
     
-    var cblSprint = CBLSprint()
+    var cblSprint:CBLSprint!
 //    let trainingFileURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifierTraining.csv")
     
     @IBAction func tagHasBeenEdited(_ sender: NSTextField) {
@@ -106,7 +106,8 @@ class ViewController: NSViewController {
     
     func clearStudentInfo() {
         self.studentName.stringValue = ""
-        self.selectedStudent = nil
+//        self.selectedStudent = nil
+        self.cblSprint.selectedStudent = nil
         self.objectivesToDisplay = []
         mustHaveTableView.deselectAll(nil)
         mustHaveTableView.reloadData()
@@ -116,7 +117,9 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        self.cblSprint = delegate.cblSprint 
+        
         self.mustHaveTableView.dataSource = self
         self.mustHaveTableView.delegate = self
         self.mustHaveTableView.selectionHighlightStyle = NSTableView.SelectionHighlightStyle.none
@@ -126,35 +129,7 @@ class ViewController: NSViewController {
         self.taggerTrainingTableView.dataSource = self
         self.taggerTrainingTableView.delegate = self
         
-        
-//        let studentsData = try? MLDataTable(contentsOf: self.trainingFileURL)
-        
-//        guard let rows = studentsData?.rows else {return}
-        
         self.teamsPopUp.removeAllItems()
-        
-//        rows.forEach{
-//            row in
-//
-//            let teamIndex = row.index(forKey: "Equipe")!
-//            let studentIndex = row.index(forKey: "Estudante")!
-//            let descriptionIndex = row.index(forKey: "Descrição")!
-//            let priorityIndex = row.index(forKey: "Priorização")!
-//            let expertiseLevelIndex = row.index(forKey: "Nível")!
-//
-//            let teamName = row.values[teamIndex].stringValue!
-//            let studentName = row.values[studentIndex].stringValue!
-//            let description = row.values[descriptionIndex].stringValue!
-//            let priority = row.values[priorityIndex].stringValue!
-//            let expertiseLevel = row.values[expertiseLevelIndex].stringValue!
-//
-//            let studentObjective = StudentLearningObjective(description: description)
-//
-//            studentObjective.level = expertiseLevel
-//            studentObjective.priority = priority
-//
-//            self.cblSprint.sprint(teamName: teamName, studentName: studentName, description: description, level: expertiseLevel, priority: priority)
-//        }
         
         let teamsNames = self.cblSprint.teamsName()
         teamsNames.forEach{
@@ -281,7 +256,7 @@ extension ViewController: NSTableViewDataSource {
             let numWords = self.objectivesToDisplay[self.selectedObjectiveIndex].tags.count
             return numWords
         }else if (tableView == self.mustHaveTableView) {
-            guard self.selectedStudent != nil else {
+            guard self.cblSprint.selectedStudent != nil else {
                 return 0
             }
             return self.elementsToDisplay.count
@@ -348,7 +323,7 @@ extension ViewController: NSTableViewDelegate {
                 }
             }
         }else if (tableView == self.designObjectivesTableView) {
-            let objective = self.selectedStudent?.classifiedObjectives["design"]![row]
+            let objective = self.cblSprint.selectedStudent?.classifiedObjectives["design"]![row]
             var cellIdentifier = ""
             
             if tableColumn == tableView.tableColumns[0] {
@@ -359,7 +334,7 @@ extension ViewController: NSTableViewDelegate {
                 }
             }
         }else if (tableView == self.innovationObjectivesTableView) {
-            let objective = self.selectedStudent?.classifiedObjectives["innovation"]![row]
+            let objective = self.cblSprint.selectedStudent?.classifiedObjectives["innovation"]![row]
             var cellIdentifier = ""
             
             if tableColumn == tableView.tableColumns[0] {
@@ -396,7 +371,7 @@ extension ViewController: NSTableViewDelegate {
             if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as? StudentCellView  {
                 let teamMembersNames = self.cblSprint.selectedTeam?.membersNames()
                 let cellStudent = self.cblSprint.studentsDict[(teamMembersNames?[row])!]!
-                if let selectedStudent = self.selectedStudent {
+                if let selectedStudent = self.cblSprint.selectedStudent {
                     if selectedStudent.name == cellStudent.name {
                         cell.displaySelectedStudent(student: selectedStudent)
                     }else {
@@ -415,17 +390,20 @@ extension ViewController: NSTableViewDelegate {
         if (tableView == self.mustHaveTableView) {
             if let _ = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("ObjectiveCellID"), owner: nil) as?  NSTableCellView {
                 self.selectedObjectiveIndex = row
-                self.mustHaveTableView.reloadData()
-                self.taggerTrainingTableView.reloadData()
+                
+//                self.mustHaveTableView.reloadData()
+//                self.taggerTrainingTableView.reloadData()
+                let delegate = NSApplication.shared.delegate as! AppDelegate
+                delegate.selectedObjective = (self.cblSprint.selectedStudent!, self.elementsToDisplay[row].objective!)
                 return true
             }else {
                 return false
             }
         }else if (tableView == self.teamMembersView) {
-            self.selectedStudent = self.cblSprint.studentsDict[(self.cblSprint.selectedTeam?.membersNames()[row])!]
-            self.studentName.stringValue = self.selectedStudent!.name
+            self.cblSprint.selectedStudent = self.cblSprint.studentsDict[(self.cblSprint.selectedTeam?.membersNames()[row])!]
+            self.studentName.stringValue = self.cblSprint.selectedStudent!.name
 //            self.studentObjectiveClassifier.classifyStudentObjectives(student: self.selectedStudent!)
-            self.displayStudentObjectives(student: selectedStudent!)
+            self.displayStudentObjectives(student: self.cblSprint.selectedStudent!)
             self.teamMembersView.reloadData()
             self.taggerTrainingTableView.reloadData()
             return true

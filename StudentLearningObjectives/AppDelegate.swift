@@ -10,7 +10,15 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
+    var cblSprint = CBLSprint()
+    
+    var selectedObjective : (Student, StudentLearningObjective)? {
+        didSet{
+            onObjectiveSelected!(selectedObjective!.0, selectedObjective!.1)
+        }
+    }
+    
+    var onObjectiveSelected: ((Student, StudentLearningObjective)->())?
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {

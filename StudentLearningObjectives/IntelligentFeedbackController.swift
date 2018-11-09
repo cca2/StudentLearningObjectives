@@ -8,23 +8,36 @@
 
 import Cocoa
 
-class IntelligentFeedbackController: NSPageController {
+class IntelligentFeedbackController: NSPageController {    
+    var cblSprint:CBLSprint?
+    var listOfMatchesByObjective:[(Student, StudentLearningObjective)]!
     
     @IBOutlet weak var studentMatchByObjectiveList: NSTableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        self.cblSprint = delegate.cblSprint
+        
         self.studentMatchByObjectiveList.dataSource = self
         self.studentMatchByObjectiveList.delegate = self
         
         self.studentMatchByObjectiveList.register(NSNib(nibNamed: "StudentMatchByObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("StudentMatchByObjectiveCellID"))
+        
+        delegate.onObjectiveSelected = {(student, objective) in
+            self.listOfMatchesByObjective = self.cblSprint?.matchStudents(student: student, objective: objective)
+            self.studentMatchByObjectiveList.reloadData()
+        }
     }
-    
 }
 
 extension IntelligentFeedbackController: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return 5
+        if let matches = self.listOfMatchesByObjective {
+            return matches.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
@@ -38,13 +51,11 @@ extension IntelligentFeedbackController: NSTableViewDelegate {
             let cellIdentifier = "StudentMatchByObjectiveCellID"
             
             if tableColumn == tableView.tableColumns[0] {
-//                if let objective = self.elementsToDisplay[row].objective {
-//                    cellIdentifier = "ObjectiveCellID"
-                    if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  StudentMatchByObjectiveCellView {
-//                        cell.fitForObjective(objective: objective)
-                        return cell
-                    }
-//                }
+                if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  StudentMatchByObjectiveCellView {
+                    cell.studentName.stringValue = self.listOfMatchesByObjective[row].0.name
+                    cell.objectiveDescription.stringValue = self.listOfMatchesByObjective[row].1.description
+                    return cell
+                }
             }
         }
         return nil

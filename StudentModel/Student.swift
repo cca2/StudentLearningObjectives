@@ -37,24 +37,16 @@ class Student {
         self.classifiedObjectives["success skills"] = []
         self.classifiedObjectives["none"] = []
     }
-        
-    func toString() -> String {
-        var res = ""
-        res = "Objetivos de \(name)"
-        let keys = self.classifiedObjectives.keys
-        keys.forEach{
-            key in
-            res.append("\n\(key)")
-            let objectives = classifiedObjectives[key]
-            objectives?.forEach{
+    
+    func objectivesByTopic(topic: String) -> [StudentLearningObjective] {
+        var res = [StudentLearningObjective]()
+        let areas = self.classifiedObjectives.keys
+        areas.forEach{
+            area in
+            self.classifiedObjectives[area]?.forEach{
                 objective in
-                if objective.tags.count > 0 {
-                    res.append("\n")
-                    objective.tags.forEach {tag in
-                        if tag.0 == "TOPIC" {
-                            res.append("\(tag.value) ")
-                        }
-                    }
+                if objective.topic == topic {
+                    res.append(objective)
                 }
             }
         }
