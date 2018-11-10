@@ -851,23 +851,11 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <box ambiguous="YES" boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="PAb-5a-eIT" userLabel="Student Name and Objectives Box">
-                                                        <rect key="frame" x="0.0" y="-493" width="706" height="559"/>
-                                                        <view key="contentView" ambiguous="YES" id="eOP-ae-LKQ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="706" height="559"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        </view>
-                                                        <color key="borderColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </box>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="PAb-5a-eIT" firstAttribute="top" secondItem="k46-Sb-HDn" secondAttribute="top" id="3UC-UJ-PXx"/>
                                                     <constraint firstItem="rWm-Up-QBM" firstAttribute="top" secondItem="k46-Sb-HDn" secondAttribute="top" constant="47" id="aMs-eV-XCT"/>
-                                                    <constraint firstAttribute="bottom" secondItem="PAb-5a-eIT" secondAttribute="bottom" constant="-488" id="dYN-bZ-1Dk"/>
                                                     <constraint firstAttribute="bottom" secondItem="rWm-Up-QBM" secondAttribute="bottom" id="fJi-BO-LtE"/>
                                                     <constraint firstItem="rWm-Up-QBM" firstAttribute="leading" secondItem="k46-Sb-HDn" secondAttribute="leading" constant="56" id="rHq-M9-QdL"/>
-                                                    <constraint firstAttribute="trailing" secondItem="PAb-5a-eIT" secondAttribute="trailing" id="rXg-UK-DlN"/>
-                                                    <constraint firstItem="PAb-5a-eIT" firstAttribute="leading" secondItem="k46-Sb-HDn" secondAttribute="leading" id="s8h-0N-mjL"/>
                                                 </constraints>
                                             </view>
                                             <constraints>
@@ -1297,9 +1285,9 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u3C-nH-pOo">
-                                            <rect key="frame" x="57" y="21" width="264" height="21"/>
+                                            <rect key="frame" x="57" y="21" width="171" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="pessoas tem interesses parecidos" id="e51-iP-kqO">
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="matches encontrados" id="e51-iP-kqO">
                                                 <font key="font" metaFont="system" size="17"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>

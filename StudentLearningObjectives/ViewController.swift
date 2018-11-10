@@ -219,11 +219,7 @@ class ViewController: NSViewController {
         self.studentName.stringValue = student.name
         
         self.mustHaveTableView.deselectAll(nil)
-        self.programmingScrollViewHeight = 65.0
         self.mustHaveTableView.reloadData()
-        var newProgrammingFrame = self.programmingScrollView.frame
-        newProgrammingFrame.size.height = self.programmingScrollViewHeight
-        self.programmingScrollView.frame = newProgrammingFrame
     }
     
     func highlightTopics(text: String, tags:[(tag:String, value:String)]) -> NSAttributedString {
