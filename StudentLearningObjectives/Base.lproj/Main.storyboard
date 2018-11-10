@@ -1312,6 +1312,8 @@
                     </view>
                     <connections>
                         <outlet property="StudentMatchByObjectiveList" destination="clw-vX-ufJ" id="Gcb-Vl-wl1"/>
+                        <outlet property="intelligentLabel" destination="u3C-nH-pOo" id="ZRU-C4-CQN"/>
+                        <outlet property="numberOfMatchs" destination="pgu-dz-KHM" id="eAl-bh-Kaf"/>
                         <outlet property="studentMatchByObjectiveList" destination="b1g-oD-5H0" id="JLz-zz-l5N"/>
                     </connections>
                 </pagecontroller>

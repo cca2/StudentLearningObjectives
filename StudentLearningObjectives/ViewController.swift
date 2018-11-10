@@ -98,6 +98,8 @@ class ViewController: NSViewController {
     @IBAction func popUpItemSelected(_ sender: NSPopUpButton) {
         if let teamName = sender.titleOfSelectedItem {
             self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
+            let delegate = NSApplication.shared.delegate as! AppDelegate
+            delegate.selectedTeam = self.cblSprint.selectedTeam
             teamMembersNames = []
             clearStudentInfo()
             self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)

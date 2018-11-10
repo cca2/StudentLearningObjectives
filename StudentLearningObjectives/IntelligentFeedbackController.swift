@@ -14,9 +14,14 @@ class IntelligentFeedbackController: NSPageController {
     
     @IBOutlet weak var studentMatchByObjectiveList: NSTableView!
     
+    @IBOutlet weak var intelligentLabel: NSTextField!
+    @IBOutlet weak var numberOfMatchs: NSTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        self.intelligentLabel.isHidden = true
+        self.numberOfMatchs.isHidden = true
+        
         let delegate = NSApplication.shared.delegate as! AppDelegate
         self.cblSprint = delegate.cblSprint
         
@@ -27,6 +32,16 @@ class IntelligentFeedbackController: NSPageController {
         
         delegate.onObjectiveSelected = {(student, objective) in
             self.listOfMatchesByObjective = self.cblSprint?.matchStudents(student: student, objective: objective)
+            self.numberOfMatchs.stringValue = String(self.listOfMatchesByObjective.count)
+            self.numberOfMatchs.isHidden = false
+            self.intelligentLabel.isHidden = false
+            self.studentMatchByObjectiveList.reloadData()
+        }
+        
+        delegate.onTeamSelected = {
+            self.numberOfMatchs.isHidden = true
+            self.intelligentLabel.isHidden = true
+            self.listOfMatchesByObjective = []
             self.studentMatchByObjectiveList.reloadData()
         }
     }

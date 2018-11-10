@@ -12,14 +12,21 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     var cblSprint = CBLSprint()
     
+    var selectedTeam: (Team)? {
+        didSet {
+           onTeamSelected!()
+        }
+    }
+    
     var selectedObjective : (Student, StudentLearningObjective)? {
-        didSet{
+        didSet {
             onObjectiveSelected!(selectedObjective!.0, selectedObjective!.1)
         }
     }
     
     var onObjectiveSelected: ((Student, StudentLearningObjective)->())?
-
+    
+    var onTeamSelected:(() -> ())?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
