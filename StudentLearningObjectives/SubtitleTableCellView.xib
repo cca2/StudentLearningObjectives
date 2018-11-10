@@ -50,17 +50,126 @@
                     </constraints>
                     <color key="fillColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </box>
+                <customView identifier="SubtitleCellID" translatesAutoresizingMaskIntoConstraints="NO" id="AHr-Wh-61E" customClass="SubtitleTableCellView" customModule="StudentLearningObjectives" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="671" height="40"/>
+                    <subviews>
+                        <box boxType="custom" borderType="none" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="PmX-2f-nZi">
+                            <rect key="frame" x="71" y="0.0" width="589" height="40"/>
+                            <view key="contentView" id="B9j-41-Z5W">
+                                <rect key="frame" x="0.0" y="0.0" width="589" height="40"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LS7-fa-Yct">
+                                        <rect key="frame" x="-2" y="13" width="217" height="14"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="H2" id="wu8-hs-0NY">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Yg-yX-uH3">
+                                        <rect key="frame" x="20" y="10" width="219" height="19"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Subtítulo" drawsBackground="YES" id="WQQ-AI-Pfh">
+                                            <font key="font" metaFont="systemBold" size="16"/>
+                                            <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="LS7-fa-Yct" firstAttribute="centerX" secondItem="B9j-41-Z5W" secondAttribute="centerX" constant="-188" id="7dN-Aq-JtK"/>
+                                    <constraint firstItem="LS7-fa-Yct" firstAttribute="centerY" secondItem="7Yg-yX-uH3" secondAttribute="centerY" id="Eu1-uY-bDW"/>
+                                    <constraint firstItem="LS7-fa-Yct" firstAttribute="top" secondItem="B9j-41-Z5W" secondAttribute="top" constant="13" id="J9L-7K-ltd"/>
+                                    <constraint firstItem="7Yg-yX-uH3" firstAttribute="centerX" secondItem="B9j-41-Z5W" secondAttribute="centerX" constant="-165" id="KG9-s3-p3d"/>
+                                    <constraint firstItem="LS7-fa-Yct" firstAttribute="centerY" secondItem="B9j-41-Z5W" secondAttribute="centerY" id="ZMs-B4-Z7K"/>
+                                    <constraint firstItem="LS7-fa-Yct" firstAttribute="leading" secondItem="B9j-41-Z5W" secondAttribute="leading" id="l9f-yB-8rV"/>
+                                    <constraint firstItem="7Yg-yX-uH3" firstAttribute="top" secondItem="B9j-41-Z5W" secondAttribute="top" constant="11" id="uxp-58-mTU"/>
+                                </constraints>
+                            </view>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="589" id="Fjd-8k-Byx"/>
+                            </constraints>
+                            <color key="fillColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </box>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="PmX-2f-nZi" secondAttribute="bottom" id="2bj-Xd-5EG"/>
+                        <constraint firstItem="PmX-2f-nZi" firstAttribute="leading" secondItem="AHr-Wh-61E" secondAttribute="leading" constant="71" id="9EB-W4-UuY"/>
+                        <constraint firstItem="PmX-2f-nZi" firstAttribute="top" secondItem="AHr-Wh-61E" secondAttribute="top" id="UpF-YO-Hpk"/>
+                        <constraint firstItem="7Yg-yX-uH3" firstAttribute="leading" secondItem="AHr-Wh-61E" secondAttribute="leading" constant="91" id="u8h-e8-9wh"/>
+                    </constraints>
+                </customView>
             </subviews>
             <constraints>
+                <constraint firstItem="AHr-Wh-61E" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="14W-tT-Nmq"/>
                 <constraint firstAttribute="bottom" secondItem="33E-nM-GJM" secondAttribute="bottom" id="2YI-YG-Crh"/>
+                <constraint firstAttribute="trailing" secondItem="AHr-Wh-61E" secondAttribute="trailing" id="4PP-NW-TgT"/>
                 <constraint firstItem="CtZ-Lg-dgt" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="91" id="9rv-AK-1MJ"/>
                 <constraint firstItem="33E-nM-GJM" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="JQr-3q-sKa"/>
+                <constraint firstItem="AHr-Wh-61E" firstAttribute="bottom" secondItem="33E-nM-GJM" secondAttribute="bottom" id="U5a-w9-AqR"/>
                 <constraint firstItem="33E-nM-GJM" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="71" id="nQ2-vE-eFV"/>
+                <constraint firstItem="AHr-Wh-61E" firstAttribute="top" secondItem="33E-nM-GJM" secondAttribute="top" id="wz5-9t-2Ph"/>
             </constraints>
             <connections>
-                <outlet property="subtitle" destination="CtZ-Lg-dgt" id="7UE-k3-6OG"/>
+                <outlet property="subtitle" destination="7Yg-yX-uH3" id="zL7-9L-xDq"/>
             </connections>
             <point key="canvasLocation" x="138.5" y="34"/>
         </customView>
+        <tableCellView identifier="TitleCellID" id="xLD-Q0-uZI" customClass="TitleTableCellView" customModule="StudentLearningObjectives" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="671" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="none" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="Xmz-g3-4YC">
+                    <rect key="frame" x="71" y="1" width="589" height="39"/>
+                    <view key="contentView" id="vqK-jN-MeO">
+                        <rect key="frame" x="0.0" y="0.0" width="589" height="39"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aB4-I1-xES">
+                                <rect key="frame" x="-2" y="13" width="217" height="13"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="H1" id="5qM-KP-rgK">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bs3-ip-f0J">
+                                <rect key="frame" x="20" y="10" width="219" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="JLg-HZ-bgp"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Cristiano Araújo" drawsBackground="YES" id="n7s-Xv-N65">
+                                    <font key="font" metaFont="systemBold" size="18"/>
+                                    <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Bs3-ip-f0J" firstAttribute="centerX" secondItem="vqK-jN-MeO" secondAttribute="centerX" constant="-165" id="6d4-HI-4zD"/>
+                            <constraint firstItem="aB4-I1-xES" firstAttribute="top" secondItem="vqK-jN-MeO" secondAttribute="top" constant="13" id="ATa-4a-ULX"/>
+                            <constraint firstItem="Bs3-ip-f0J" firstAttribute="top" secondItem="vqK-jN-MeO" secondAttribute="top" constant="10" id="Kpf-gH-SLr"/>
+                            <constraint firstItem="Bs3-ip-f0J" firstAttribute="leading" secondItem="vqK-jN-MeO" secondAttribute="leading" constant="20" symbolic="YES" id="doO-jV-Srb"/>
+                            <constraint firstItem="aB4-I1-xES" firstAttribute="centerX" secondItem="vqK-jN-MeO" secondAttribute="centerX" constant="-188" id="eJU-4P-Ouu"/>
+                            <constraint firstItem="aB4-I1-xES" firstAttribute="leading" secondItem="vqK-jN-MeO" secondAttribute="leading" id="oR2-8K-SzY"/>
+                            <constraint firstItem="aB4-I1-xES" firstAttribute="centerY" secondItem="vqK-jN-MeO" secondAttribute="centerY" id="wE3-Lq-bvX"/>
+                            <constraint firstItem="aB4-I1-xES" firstAttribute="centerY" secondItem="Bs3-ip-f0J" secondAttribute="centerY" id="zkB-dw-iAt"/>
+                        </constraints>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="589" id="nwU-hS-6CI"/>
+                    </constraints>
+                    <color key="fillColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Xmz-g3-4YC" firstAttribute="centerY" secondItem="xLD-Q0-uZI" secondAttribute="centerY" id="gw3-Rm-mac"/>
+                <constraint firstItem="Xmz-g3-4YC" firstAttribute="leading" secondItem="xLD-Q0-uZI" secondAttribute="leading" constant="71" id="slg-Vc-MPb"/>
+            </constraints>
+            <connections>
+                <outlet property="title" destination="Bs3-ip-f0J" id="x7o-i9-1YZ"/>
+            </connections>
+            <point key="canvasLocation" x="138.5" y="140"/>
+        </tableCellView>
     </objects>
 </document>

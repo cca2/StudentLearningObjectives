@@ -127,6 +127,7 @@ class ViewController: NSViewController {
         self.mustHaveTableView.selectionHighlightStyle = NSTableView.SelectionHighlightStyle.none
         self.mustHaveTableView.register(NSNib(nibNamed: "LearningObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("ObjectiveCellID"))
         self.mustHaveTableView.register(NSNib(nibNamed: "SubtitleTableCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("SubtitleCellID"))
+        self.mustHaveTableView.register(NSNib(nibNamed: "SubtitleTableCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("TitleCellID"))
         
         self.taggerTrainingTableView.dataSource = self
         self.taggerTrainingTableView.delegate = self
@@ -159,6 +160,9 @@ class ViewController: NSViewController {
     
     func displayStudentObjectives(student:Student) {
         self.elementsToDisplay = []
+        
+        let studentName = ElementToDisplay(title: self.cblSprint.selectedStudent?.name, subtitle: nil, objective: nil)
+        self.elementsToDisplay.append(studentName)
         
         let innovationSubtitle = ElementToDisplay(title: nil, subtitle: "Inovação", objective: nil)
         self.elementsToDisplay.append(innovationSubtitle)
@@ -215,7 +219,7 @@ class ViewController: NSViewController {
             }
         }
         
-        self.studentName.stringValue = student.name
+//        self.studentName.stringValue = student.name
         
         self.mustHaveTableView.deselectAll(nil)
         self.mustHaveTableView.reloadData()
@@ -312,6 +316,12 @@ extension ViewController: NSTableViewDelegate {
                         cell.fitForObjective(objective: objectiveToDisplay)
                         return cell
                     }
+                }else if let title = elementsToDisplay[row].title {
+                    cellIdentifier = "TitleCellID"
+                    if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  TitleTableCellView {
+                        cell.title.stringValue = title
+                        return cell
+                    }
                 }else if let subtitle = elementsToDisplay[row].subtitle {
                     cellIdentifier = "SubtitleCellID"
                     if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  SubtitleTableCellView {
@@ -385,7 +395,7 @@ extension ViewController: NSTableViewDelegate {
             self.cblSprint.selectedStudent = self.cblSprint.studentsDict[(self.cblSprint.selectedTeam?.membersNames()[row])!]
             let delegate = NSApplication.shared.delegate as! AppDelegate
             delegate.selectedStudent = self.cblSprint.selectedStudent
-            self.studentName.stringValue = self.cblSprint.selectedStudent!.name
+//            self.studentName.stringValue = self.cblSprint.selectedStudent!.name
             self.displayStudentObjectives(student: self.cblSprint.selectedStudent!)
             self.teamMembersView.reloadData()
             self.taggerTrainingTableView.reloadData()
