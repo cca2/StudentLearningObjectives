@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
-        <capability name="System colors introduced in macOS 10.13" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,9 +24,9 @@
                                     <constraint firstAttribute="height" constant="45" id="Mjg-pO-WnS"/>
                                 </constraints>
                                 <textFieldCell key="cell" selectable="YES" id="hma-Tj-DIG">
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="system"/>
                                     <string key="title">Me juntar à pessoas com mais experiência nessa área e aprender o máximo sobre o processo de desenvolvimento da identidade visual do app, aprendendo a dar feedbacks realmente construtivos</string>
-                                    <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -38,18 +37,18 @@
                                 <rect key="frame" x="132" y="6" width="71" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="#musthave" id="oyY-Ku-rSG">
                                     <font key="font" metaFont="system" size="11"/>
-                                    <color key="textColor" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lJH-Kj-qe6">
                                 <rect key="frame" x="22" y="75" width="255" height="17"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="304" id="0N6-ZC-Yx7"/>
+                                    <constraint firstAttribute="width" constant="251" id="0N6-ZC-Yx7"/>
                                 </constraints>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Cristiano Araújo" id="01s-Db-NQI">
                                     <font key="font" usesAppearanceFont="YES"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -60,28 +59,28 @@
                                 </constraints>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="#basico" id="foh-g7-H3C">
                                     <font key="font" metaFont="system" size="11"/>
-                                    <color key="textColor" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Bod-tA-KGx" secondAttribute="trailing" constant="8" id="2Of-CZ-cPx"/>
+                            <constraint firstAttribute="trailing" secondItem="Bod-tA-KGx" secondAttribute="trailing" constant="15" id="2Of-CZ-cPx"/>
                             <constraint firstItem="Bod-tA-KGx" firstAttribute="top" secondItem="lJH-Kj-qe6" secondAttribute="bottom" constant="1" id="78K-cm-khJ"/>
-                            <constraint firstItem="8Rc-HG-mww" firstAttribute="leading" secondItem="Bod-tA-KGx" secondAttribute="leading" id="GW1-pE-IsY"/>
-                            <constraint firstItem="II9-Mz-081" firstAttribute="top" secondItem="Bod-tA-KGx" secondAttribute="bottom" constant="7" id="HE0-RX-xdv"/>
-                            <constraint firstItem="lJH-Kj-qe6" firstAttribute="leading" secondItem="Egd-lH-FXJ" secondAttribute="leading" constant="33" id="JXD-mk-5wW"/>
-                            <constraint firstItem="II9-Mz-081" firstAttribute="top" secondItem="Bod-tA-KGx" secondAttribute="bottom" constant="7" id="KGQ-uQ-4GF"/>
+                            <constraint firstItem="8Rc-HG-mww" firstAttribute="leading" secondItem="Bod-tA-KGx" secondAttribute="leading" constant="9" id="GW1-pE-IsY"/>
+                            <constraint firstItem="II9-Mz-081" firstAttribute="top" secondItem="Bod-tA-KGx" secondAttribute="bottom" constant="6" id="HE0-RX-xdv"/>
+                            <constraint firstItem="lJH-Kj-qe6" firstAttribute="leading" secondItem="Egd-lH-FXJ" secondAttribute="leading" constant="24" id="JXD-mk-5wW"/>
+                            <constraint firstItem="II9-Mz-081" firstAttribute="top" secondItem="Bod-tA-KGx" secondAttribute="bottom" constant="6" id="KGQ-uQ-4GF"/>
                             <constraint firstAttribute="trailing" secondItem="8Rc-HG-mww" secondAttribute="trailing" id="Lfr-6c-Kw8"/>
                             <constraint firstItem="lJH-Kj-qe6" firstAttribute="leading" secondItem="Bod-tA-KGx" secondAttribute="leading" id="U8e-pv-NAU"/>
                             <constraint firstAttribute="trailing" secondItem="Y9c-Z6-BUL" secondAttribute="trailing" constant="11" id="Vof-qW-uzJ"/>
-                            <constraint firstItem="Y9c-Z6-BUL" firstAttribute="top" secondItem="Bod-tA-KGx" secondAttribute="bottom" constant="7" id="edm-6e-1r3"/>
+                            <constraint firstItem="Y9c-Z6-BUL" firstAttribute="top" secondItem="Bod-tA-KGx" secondAttribute="bottom" constant="6" id="edm-6e-1r3"/>
                             <constraint firstItem="Y9c-Z6-BUL" firstAttribute="leading" secondItem="II9-Mz-081" secondAttribute="trailing" constant="2" id="lez-ge-d9X"/>
-                            <constraint firstItem="lJH-Kj-qe6" firstAttribute="top" secondItem="Egd-lH-FXJ" secondAttribute="top" constant="10" id="niQ-Wg-0jk"/>
+                            <constraint firstItem="lJH-Kj-qe6" firstAttribute="top" secondItem="Egd-lH-FXJ" secondAttribute="top" constant="6" id="niQ-Wg-0jk"/>
                         </constraints>
                     </view>
                     <color key="borderColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    <color key="fillColor" name="findHighlightColor" catalog="System" colorSpace="catalog"/>
+                    <color key="fillColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                 </box>
             </subviews>
             <constraints>

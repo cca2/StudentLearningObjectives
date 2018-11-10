@@ -53,7 +53,6 @@ extension IntelligentFeedbackController: NSTableViewDelegate {
             if tableColumn == tableView.tableColumns[0] {
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  StudentMatchByObjectiveCellView {
                     cell.studentName.stringValue = self.listOfMatchesByObjective[row].0.name
-//                    cell.objectiveDescription.stringValue = self.listOfMatchesByObjective[row].1.description
                     cell.displayObjective(objective: self.listOfMatchesByObjective[row].1)
                     return cell
                 }
