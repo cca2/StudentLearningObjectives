@@ -18,6 +18,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    var selectedStudent: (Student)? {
+        didSet {
+            onStudentSelected!()
+        }
+    }
+    
     var selectedObjective : (Student, StudentLearningObjective)? {
         didSet {
             onObjectiveSelected!(selectedObjective!.0, selectedObjective!.1)
@@ -25,8 +31,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     var onObjectiveSelected: ((Student, StudentLearningObjective)->())?
-    
     var onTeamSelected:(() -> ())?
+    var onStudentSelected: (() -> ())?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application

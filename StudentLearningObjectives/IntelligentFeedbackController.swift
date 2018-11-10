@@ -44,6 +44,13 @@ class IntelligentFeedbackController: NSPageController {
             self.listOfMatchesByObjective = []
             self.studentMatchByObjectiveList.reloadData()
         }
+
+        delegate.onStudentSelected = {
+            self.numberOfMatchs.isHidden = true
+            self.intelligentLabel.isHidden = true
+            self.listOfMatchesByObjective = []
+            self.studentMatchByObjectiveList.reloadData()
+        }
     }
 }
 

@@ -389,6 +389,8 @@ extension ViewController: NSTableViewDelegate {
             }
         }else if (tableView == self.teamMembersView) {
             self.cblSprint.selectedStudent = self.cblSprint.studentsDict[(self.cblSprint.selectedTeam?.membersNames()[row])!]
+            let delegate = NSApplication.shared.delegate as! AppDelegate
+            delegate.selectedStudent = self.cblSprint.selectedStudent
             self.studentName.stringValue = self.cblSprint.selectedStudent!.name
 //            self.studentObjectiveClassifier.classifyStudentObjectives(student: self.selectedStudent!)
             self.displayStudentObjectives(student: self.cblSprint.selectedStudent!)
