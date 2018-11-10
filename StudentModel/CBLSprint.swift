@@ -90,7 +90,7 @@ class CBLSprint {
             name in
             if name != student.name {
                 let s = self.studentsDict[name]!
-                let objectives:[StudentLearningObjective] = (s.objectivesByTopic(topic: objective.topic))
+                let objectives:[StudentLearningObjective] = (s.objectivesByTopic(topic: objective.topic, onlyMustHave: true))
                 objectives.forEach {
                     objective in
                     res.append((s, objective))

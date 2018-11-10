@@ -38,7 +38,7 @@ class Student {
         self.classifiedObjectives["none"] = []
     }
     
-    func objectivesByTopic(topic: String) -> [StudentLearningObjective] {
+    func objectivesByTopic(topic: String, onlyMustHave:Bool) -> [StudentLearningObjective] {
         var res = [StudentLearningObjective]()
         let areas = self.classifiedObjectives.keys
         areas.forEach{
@@ -46,7 +46,13 @@ class Student {
             self.classifiedObjectives[area]?.forEach{
                 objective in
                 if objective.topic == topic {
-                    res.append(objective)
+                    if onlyMustHave {
+                        if objective.priority == "must-have" {
+                            res.append(objective)
+                        }
+                    }else {
+                        res.append(objective)
+                    }
                 }
             }
         }

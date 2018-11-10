@@ -63,7 +63,6 @@ class ViewController: NSViewController {
     
     var elementsToDisplay:[ElementToDisplay] = []
     
-    
     var cblSprint:CBLSprint!
 //    let trainingFileURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifierTraining.csv")
     
@@ -238,7 +237,6 @@ class ViewController: NSViewController {
     }
     
     @IBAction func showExtraFeaturesPressed(_ sender: Any) {
-//        self.studentObjectiveClassifier.trainClassifier()
         self.cblSprint.studentObjectiveClassifier.trainClassifier()
     }
     
@@ -388,7 +386,6 @@ extension ViewController: NSTableViewDelegate {
             let delegate = NSApplication.shared.delegate as! AppDelegate
             delegate.selectedStudent = self.cblSprint.selectedStudent
             self.studentName.stringValue = self.cblSprint.selectedStudent!.name
-//            self.studentObjectiveClassifier.classifyStudentObjectives(student: self.selectedStudent!)
             self.displayStudentObjectives(student: self.cblSprint.selectedStudent!)
             self.teamMembersView.reloadData()
             self.taggerTrainingTableView.reloadData()

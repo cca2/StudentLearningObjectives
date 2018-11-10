@@ -67,7 +67,7 @@ extension IntelligentFeedbackController: NSTableViewDataSource {
             let objective = matches[row].1
             let fakeField = NSTextField()
             let item = objective.description
-            let objectiveDescriptionWidth = CGFloat(270.0)
+            let objectiveDescriptionWidth = CGFloat(262.0)
             
             fakeField.stringValue = item
             // exactly how you get the text out of your data array depends on how you set it up
