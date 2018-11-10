@@ -284,12 +284,12 @@ extension ViewController: NSTableViewDelegate {
             if let objective = elementsToDisplay[row].objective {
                 let fakeField = NSTextField()
                 let item = objective.description + " #" + objective.priority + " #" + objective.level + " #" + objective.topic
-                let objectiveDescriptionWidth = CGFloat(582.0)
+                let objectiveDescriptionWidth = CGFloat(540.0)
                 
                 fakeField.stringValue = item
                 // exactly how you get the text out of your data array depends on how you set it up
                 
-                let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 5.0
+                let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 10.0
                 
                 self.programmingScrollViewHeight = self.programmingScrollViewHeight + yourHeight
                 return yourHeight
