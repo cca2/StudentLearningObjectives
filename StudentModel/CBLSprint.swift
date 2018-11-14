@@ -105,6 +105,9 @@ class CBLSprint {
 class Team {
     var name: String
     var members: [String:Student] = [:]
+    var bigIdea: String?
+    var essentialQuestion: String?
+    var challenge: String?
     
     init(name: String) {
         self.name = name

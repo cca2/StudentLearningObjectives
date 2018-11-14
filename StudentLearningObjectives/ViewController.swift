@@ -15,13 +15,42 @@ class ElementToDisplay {
     let title:String?
     let subtitle:String?
     let objective:StudentLearningObjective?
+    let paragraph: String?
     var isSelected = false
     
-    init(title:String?, subtitle:String?, objective: StudentLearningObjective?) {
+    init (title:String?) {
         self.title = title
-        self.subtitle = subtitle
-        self.objective = objective
+        self.subtitle = nil
+        self.objective = nil
+        self.paragraph = nil
     }
+    
+    init (subtitle:String?) {
+        self.title = nil
+        self.subtitle = subtitle
+        self.objective = nil
+        self.paragraph = nil
+    }
+
+    init (objective:StudentLearningObjective?) {
+        self.title = nil
+        self.subtitle = nil
+        self.objective = objective
+        self.paragraph = nil
+    }
+    
+    init (paragraph:String?) {
+        self.title = nil
+        self.subtitle = nil
+        self.objective = nil
+        self.paragraph = paragraph
+    }
+}
+
+// Data model
+struct Challenge {
+    var name:String
+    var mentories: [String]
 }
 
 class ViewController: NSViewController {
@@ -35,37 +64,31 @@ class ViewController: NSViewController {
     @IBOutlet weak var teamsPopUp: NSPopUpButton!
     @IBOutlet weak var saveTrainingButton: NSButton!
     
+    @IBOutlet weak var outlineView: NSOutlineView!
     @IBOutlet weak var mustHaveTableView: NSTableView!
     @IBOutlet weak var programmingScrollView: NSScrollView!
     var programmingScrollViewHeight:CGFloat = 0.0
     
     var teamObjectivesDict:[String:[String:Student]] = [:]
     
-//    var studentsDict:Dictionary = [String:Student]()
     var objectivesToDisplay:[StudentLearningObjective] = []
     
     var selectedObjectiveIndex = -1
     var teamMembersNames:[String] = []
-//    var selectedStudent:Student?
-    
-//    var selectedTeamName = ""
     
     var newDataForTraining:[StudentLearningObjective] = []
-    
-//    let studentObjectiveClassifier = StudentObjectiveClassifier()
-    @IBOutlet weak var designScrollView: NSScrollView!
-    @IBOutlet weak var designObjectivesTableView: NSTableView!
-    var designScrollViewHeight:CGFloat = 0.0
-    
-    @IBOutlet weak var innovationScrollView: NSScrollView!
-    @IBOutlet weak var innovationObjectivesTableView: NSTableView!
-    var innovationScrollViewHeight:CGFloat = 0.0
     
     var elementsToDisplay:[ElementToDisplay] = []
     
     var cblSprint:CBLSprint!
-//    let trainingFileURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesClassifierTraining.csv")
+
+    // I assume you know how load it from a plist so I will skip
+    // that code and use a constant for simplicity
+//    let sprint = Challenge(name: "Challenge 4", mentories: ["7 pecados", "pulsai"])
+    var sprint = Challenge(name: "Challenge 4", mentories:[String]())
     
+    let keys = ["mentories"]
+
     @IBAction func tagHasBeenEdited(_ sender: NSTextField) {
         let newTag = sender.stringValue
         if (newTag == "ACTION" || newTag == "NONE" || newTag == "TOPIC" || newTag == "GENERIC_ACTION" || newTag == "GENERIC_TOPIC" || newTag == "DEVICE") {
@@ -107,18 +130,23 @@ class ViewController: NSViewController {
     }
     
     func clearStudentInfo() {
-        self.studentName.stringValue = ""
+//        self.studentName.stringValue = ""
 //        self.selectedStudent = nil
         self.cblSprint.selectedStudent = nil
         self.objectivesToDisplay = []
         mustHaveTableView.deselectAll(nil)
         mustHaveTableView.reloadData()
-        taggerTrainingTableView.reloadData()
+//        taggerTrainingTableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.outlineView.delegate = self
+        self.outlineView.dataSource = self
+        let selectionHighlightStyle = NSOutlineView.SelectionHighlightStyle.sourceList
+        self.outlineView.selectionHighlightStyle = selectionHighlightStyle
+        
         let delegate = NSApplication.shared.delegate as! AppDelegate
         self.cblSprint = delegate.cblSprint 
         
@@ -128,16 +156,14 @@ class ViewController: NSViewController {
         self.mustHaveTableView.register(NSNib(nibNamed: "LearningObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("ObjectiveCellID"))
         self.mustHaveTableView.register(NSNib(nibNamed: "SubtitleTableCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("SubtitleCellID"))
         self.mustHaveTableView.register(NSNib(nibNamed: "SubtitleTableCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("TitleCellID"))
-        
-        self.taggerTrainingTableView.dataSource = self
-        self.taggerTrainingTableView.delegate = self
-        
+                
         self.teamsPopUp.removeAllItems()
         
         let teamsNames = self.cblSprint.teamsName()
         teamsNames.forEach{
             name in
             self.teamsPopUp.addItem(withTitle: name)
+            self.sprint.mentories.append(name)
         }
         
         self.cblSprint.studentsDict.keys.forEach{
@@ -161,60 +187,60 @@ class ViewController: NSViewController {
     func displayStudentObjectives(student:Student) {
         self.elementsToDisplay = []
         
-        let studentName = ElementToDisplay(title: self.cblSprint.selectedStudent?.name, subtitle: nil, objective: nil)
+        let studentName = ElementToDisplay(title: self.cblSprint.selectedStudent?.name)
         self.elementsToDisplay.append(studentName)
         
-        let innovationSubtitle = ElementToDisplay(title: nil, subtitle: "Inovação", objective: nil)
+        let innovationSubtitle = ElementToDisplay(subtitle: "Inovação")
         self.elementsToDisplay.append(innovationSubtitle)
         
         if let innovationObjectives = student.classifiedObjectives["innovation"] {
             innovationObjectives.forEach{
                 objective in
-                let objectiveElement = ElementToDisplay(title: nil, subtitle: nil, objective: objective)
+                let objectiveElement = ElementToDisplay(objective: objective)
                 self.elementsToDisplay.append(objectiveElement)
             }
         }
         
-        let programmingSubtitle = ElementToDisplay(title: nil, subtitle: "Programação", objective: nil)
+        let programmingSubtitle = ElementToDisplay(subtitle: "Programação")
         self.elementsToDisplay.append(programmingSubtitle)
         
         if let programmingObjectives = student.classifiedObjectives["programming"] {
             programmingObjectives.forEach{
                 objective in
-                let objectiveElement = ElementToDisplay(title: nil, subtitle: nil, objective: objective)
+                let objectiveElement = ElementToDisplay(objective: objective)
                 self.elementsToDisplay.append(objectiveElement)
             }
         }
         
-        let designSubtitle = ElementToDisplay(title: nil, subtitle: "Design", objective: nil)
+        let designSubtitle = ElementToDisplay(subtitle: "Design")
         self.elementsToDisplay.append(designSubtitle)
         
         if let designObjectives = student.classifiedObjectives["design"] {
             designObjectives.forEach{
                 objective in
-                let objectiveElement = ElementToDisplay(title: nil, subtitle: nil, objective: objective)
+                let objectiveElement = ElementToDisplay(objective: objective)
                 self.elementsToDisplay.append(objectiveElement)
             }
         }
         
-        let successSkillsSubtitle = ElementToDisplay(title: nil, subtitle: "Competências de Sucesso", objective: nil)
+        let successSkillsSubtitle = ElementToDisplay(subtitle: "Competências de Sucesso")
         self.elementsToDisplay.append(successSkillsSubtitle)
         
         if let successSkillsObjectives = student.classifiedObjectives["success skills"] {
             successSkillsObjectives.forEach{
                 objective in
-                let objectiveElement = ElementToDisplay(title: nil, subtitle: nil, objective: objective)
+                let objectiveElement = ElementToDisplay(objective: objective)
                 self.elementsToDisplay.append(objectiveElement)
             }
         }
         
-        let appdevSubtitle = ElementToDisplay(title: nil, subtitle: "App Dev", objective: nil)
+        let appdevSubtitle = ElementToDisplay(subtitle: "App Dev")
         self.elementsToDisplay.append(appdevSubtitle)
         
         if let appdevObjectives = student.classifiedObjectives["appdev"] {
             appdevObjectives.forEach{
                 objective in
-                let objectiveElement = ElementToDisplay(title: nil, subtitle: nil, objective: objective)
+                let objectiveElement = ElementToDisplay(objective: objective)
                 self.elementsToDisplay.append(objectiveElement)
             }
         }
@@ -398,7 +424,7 @@ extension ViewController: NSTableViewDelegate {
 //            self.studentName.stringValue = self.cblSprint.selectedStudent!.name
             self.displayStudentObjectives(student: self.cblSprint.selectedStudent!)
             self.teamMembersView.reloadData()
-            self.taggerTrainingTableView.reloadData()
+//            self.taggerTrainingTableView.reloadData()
             return true
         }else if (tableView == self.taggerTrainingTableView) {
             return true
@@ -408,3 +434,118 @@ extension ViewController: NSTableViewDelegate {
     }
 }
 
+extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
+    
+    // You must give each row a unique identifier, referred to as `item` by the outline view
+    //   * For top-level rows, we use the values in the `keys` array
+    //   * For the hobbies sub-rows, we label them as ("hobbies", 0), ("hobbies", 1), ...
+    //     The integer is the index in the hobbies array
+    //
+    // item == nil means it's the "root" row of the outline view, which is not visible
+    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
+        if item == nil {
+            return keys[index]
+        } else if let item = item as? String, item == "mentories" {
+            return ("mentories", index)
+        } else {
+            return 0
+        }
+    }
+    
+    // Tell how many children each row has:
+    //    * The root row has 5 children: name, age, birthPlace, birthDate, hobbies
+    //    * The hobbies row has how ever many hobbies there are
+    //    * The other rows have no children
+    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
+        if item == nil {
+            return keys.count
+        } else if let item = item as? String, item == "mentories" {
+            return sprint.mentories.count
+        } else if let item = item as? String, item == "piano" {
+            return 1
+        }else {
+            return 0
+        }
+    }
+    
+    // Tell whether the row is expandable. The only expandable row is the Hobbies row
+    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
+        if let item = item as? String, item == "mentories" {
+            return true
+        }else if let item = item as? String, item == "piano"{
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    // Set the text for each row
+    func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
+        guard let columnIdentifier = tableColumn?.identifier.rawValue else {
+            return nil
+        }
+        
+        var text = ""
+        
+        // Recall that `item` is the row identiffier
+        switch (columnIdentifier, item) {
+        case ("KeyColumn", let item as String):
+            switch item {
+//            case "name":
+//                text = "Name"
+//            case "age":
+//                text = "Age"
+//            case "birthPlace":
+//                text = "Birth Place"
+//            case "birthDate":
+//                text = "Birth Date"
+            case "mentories":
+                text = "Mentorias"
+            default:
+                break
+            }
+        case ("KeyColumn", _):
+            // Remember that we identified the hobby sub-rows differently
+            if let (key, index) = item as? (String, Int), key == "mentories" {
+                text = self.sprint.mentories[index]
+            }else if let (key, index) = item as? (String, Int), key == "piano" {
+                text = "piano de corda"
+            }
+//        case ("ValueColumn", let item as String):
+//            switch item {
+//            case "name":
+//                text = sprint.name
+//            case "age":
+//                text = "\(person.age)"
+//            case "birthPlace":
+//                text = person.birthPlace
+//            case "birthDate":
+//                text = "\(person.birthDate)"
+//            default:
+//                break
+//            }
+        default:
+            text = ""
+        }
+        
+        let cellIdentifier = NSUserInterfaceItemIdentifier("OutlineViewCell")
+        let cell = outlineView.makeView(withIdentifier: cellIdentifier, owner: self) as! NSTableCellView
+        cell.textField!.stringValue = text
+        
+        return cell
+    }
+    
+    func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
+        if let (_, index) = item as? (String, Int) {
+            let teamName = self.sprint.mentories[index]
+            self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
+            let delegate = NSApplication.shared.delegate as! AppDelegate
+            delegate.selectedTeam = self.cblSprint.selectedTeam
+            teamMembersNames = []
+            clearStudentInfo()
+            self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
+            showTeamMembers()
+        }
+        return true
+    }
+}
