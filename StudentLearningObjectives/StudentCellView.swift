@@ -84,3 +84,14 @@ class StudentCellView: NSTableCellView {
     }
     
 }
+
+class TeamSummaryCellView: NSTableCellView {
+    @IBOutlet weak var teamName: NSTextField!
+    @IBOutlet weak var selectedBoxIndicator: NSBox!
+    
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
+        
+        // Drawing code here.
+    }
+}

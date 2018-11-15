@@ -13,16 +13,20 @@ class LearningObjectiveCellView: NSTableCellView {
     @IBOutlet weak var descriptionTextField: NSTextField!
     @IBOutlet weak var selectedBox: NSBox!
     
-    func fitForObjective(objective: ElementToDisplay) {
+    func fitForObjective(elementToDisplay: ElementToDisplay) {
         let richTextDescription = NSMutableAttributedString(string: "")
-
-        richTextDescription.append(highlightTopics(text: objective.objective!.description, tags: objective.objective!.tags))
-        richTextDescription.append(displayClassification(objective: objective.objective!))
+        
+        if let objective = elementToDisplay.objective {
+            richTextDescription.append(highlightTopics(text: objective.description, tags: objective.tags))
+            richTextDescription.append(displayClassification(objective: objective))
+        }else if let paragraph = elementToDisplay.paragraph {
+            richTextDescription.append(NSAttributedString(string: paragraph))
+        }
 
         self.descriptionTextField.attributedStringValue = richTextDescription
         self.descriptionTextField.focusRingType = .none
         
-        selectedBox.isHidden = !objective.isSelected
+        selectedBox.isHidden = !elementToDisplay.isSelected
     }
     
     override func draw(_ dirtyRect: NSRect) {

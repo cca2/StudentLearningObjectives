@@ -125,7 +125,7 @@ class ViewController: NSViewController {
             teamMembersNames = []
             clearStudentInfo()
             self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
-            showTeamMembers()
+            showTeamNotes()
         }
     }
     
@@ -176,11 +176,12 @@ class ViewController: NSViewController {
         self.teamMembersView.delegate = self
         self.teamMembersView.selectionHighlightStyle = NSTableView.SelectionHighlightStyle.none
         self.teamMembersView.register(NSNib(nibNamed: "StudentCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("StudentCellID"))
+//        self.teamMembersView.register(NSNib(nibNamed: "TeamSummaryCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("TeamSummaryCellID"))
 
-        showTeamMembers()
+        showTeamNotes()
     }
     
-    func showTeamMembers() {
+    func showTeamNotes() {
         self.teamMembersView.reloadData()
     }
     
@@ -335,11 +336,10 @@ extension ViewController: NSTableViewDelegate {
             var cellIdentifier = ""
             
             if tableColumn == tableView.tableColumns[0] {
-                let objectiveToDisplay = self.elementsToDisplay[row]
-                if objectiveToDisplay.objective != nil {
+                if let objective = elementsToDisplay[row].objective {
                     cellIdentifier = "ObjectiveCellID"
                     if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  LearningObjectiveCellView {
-                        cell.fitForObjective(objective: objectiveToDisplay)
+                        cell.fitForObjective(elementToDisplay: elementsToDisplay[row])
                         return cell
                     }
                 }else if let title = elementsToDisplay[row].title {
@@ -544,7 +544,7 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
             teamMembersNames = []
             clearStudentInfo()
             self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
-            showTeamMembers()
+            showTeamNotes()
         }
         return true
     }

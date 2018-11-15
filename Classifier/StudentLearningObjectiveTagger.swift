@@ -24,17 +24,22 @@ class LearningObjetiveTagger {
     let options:NLTagger.Options = [.omitPunctuation, .omitWhitespace, .joinNames]
     let tags: [NLTag]
     
-    let taggerModelURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesTagger.mlmodel")
+    let taggerModelURL:URL?
     var learningObjectiveTaggerModel: NLModel
     
     let learningObjectiveTagger: NLTagger
     
     init() {
         self.tags = [.personalName, .organizationName, topicTag, actionTag, nonActionTag, genericActionTag, genericTopicTag, deviceTag, noneTag]
-        let compiledUrl = try! MLModel.compileModel(at: self.taggerModelURL)
-        let mlModel = try! MLModel(contentsOf: compiledUrl)
+//        self.taggerModelURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesTagger.mlmodel")
+//        let compiledUrl = try! MLModel.compileModel(at: self.taggerModelURL!)
         
-        self.learningObjectiveTaggerModel = try! NLModel(mlModel: mlModel)
+        self.taggerModelURL = Bundle.main.url(forResource:"LearningObjectivesTagger", withExtension:"mlmodelc")!
+        self.learningObjectiveTaggerModel = try! NLModel(contentsOf: taggerModelURL!)
+//        let mlModel = try! MLModel(contentsOf: compiledUrl)
+        
+
+//        self.learningObjectiveTaggerModel = try! NLModel(mlModel: mlModel)
         self.learningObjectiveTagger = NLTagger(tagSchemes: [.nameType, learningObjectiveTagScheme])
         self.learningObjectiveTagger.setModels([learningObjectiveTaggerModel], forTagScheme: learningObjectiveTagScheme)
     }
@@ -54,7 +59,7 @@ class LearningObjetiveTagger {
     }
 
     func updateModel() {
-        let compiledUrl = try! MLModel.compileModel(at: self.taggerModelURL)
+        let compiledUrl = try! MLModel.compileModel(at: self.taggerModelURL!)
         let mlModel = try! MLModel(contentsOf: compiledUrl)
         self.learningObjectiveTaggerModel = try! NLModel(mlModel: mlModel)
         self.learningObjectiveTagger.setModels([learningObjectiveTaggerModel], forTagScheme: learningObjectiveTagScheme)

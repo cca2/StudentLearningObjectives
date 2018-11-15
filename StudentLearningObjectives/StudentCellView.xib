@@ -176,5 +176,44 @@
             </connections>
             <point key="canvasLocation" x="59.5" y="-41"/>
         </customView>
+        <tableCellView identifier="TeamSummaryCellID" id="tax-H1-wrp" userLabel="Team Summary Cell View" customClass="TeamSummaryCellView" customModule="StudentLearningObjectives" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="203" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <box fixedFrame="YES" boxType="custom" borderType="none" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="ZLm-ak-1v0">
+                    <rect key="frame" x="3" y="-70" width="198" height="110"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <view key="contentView" ambiguous="YES" id="omk-Lk-7UB">
+                        <rect key="frame" x="0.0" y="0.0" width="198" height="110"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BcM-rm-CBP">
+                                <rect key="frame" x="38" y="83" width="151" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="pulsai" id="Sr0-mz-EB8">
+                                    <font key="font" metaFont="systemBold"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </box>
+                <box hidden="YES" fixedFrame="YES" boxType="custom" borderType="none" borderWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="ddb-fp-qtW">
+                    <rect key="frame" x="-3" y="-3" width="10" height="43"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <view key="contentView" ambiguous="YES" id="fkj-DP-bTw">
+                        <rect key="frame" x="0.0" y="0.0" width="10" height="43"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <color key="fillColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                </box>
+            </subviews>
+            <connections>
+                <outlet property="selectedBoxIndicator" destination="ddb-fp-qtW" id="5B9-Ap-1hR"/>
+                <outlet property="teamName" destination="BcM-rm-CBP" id="2st-j6-iJJ"/>
+            </connections>
+            <point key="canvasLocation" x="59.5" y="83"/>
+        </tableCellView>
     </objects>
 </document>

@@ -34,6 +34,9 @@
 		DA3DADFD218BEC4C0072126F /* TrainingData in Resources */ = {isa = PBXBuildFile; fileRef = DA3DADFC218BEC4C0072126F /* TrainingData */; };
 		DA3DAE00218BEC740072126F /* LearningObjectivesClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADFE218BEC740072126F /* LearningObjectivesClassifier.mlmodel */; };
 		DA3DAE01218BEC740072126F /* LearningObjectivesTagger.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADFF218BEC740072126F /* LearningObjectivesTagger.mlmodel */; };
+		DA82CB53219CA2EC0057F948 /* LearningObjectivesAreaClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DA82CB52219CA2EC0057F948 /* LearningObjectivesAreaClassifier.mlmodel */; };
+		DA82CB55219CF1DE0057F948 /* LearningObjectivesTopicsClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DA82CB54219CF1DD0057F948 /* LearningObjectivesTopicsClassifier.mlmodel */; };
+		DA82CB58219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv in Resources */ = {isa = PBXBuildFile; fileRef = DA82CB57219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +91,10 @@
 		DA3DADFC218BEC4C0072126F /* TrainingData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TrainingData; sourceTree = "<group>"; };
 		DA3DADFE218BEC740072126F /* LearningObjectivesClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LearningObjectivesClassifier.mlmodel; sourceTree = "<group>"; };
 		DA3DADFF218BEC740072126F /* LearningObjectivesTagger.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LearningObjectivesTagger.mlmodel; sourceTree = "<group>"; };
+		DA82CB52219CA2EC0057F948 /* LearningObjectivesAreaClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LearningObjectivesAreaClassifier.mlmodel; sourceTree = "<group>"; };
+		DA82CB54219CF1DD0057F948 /* LearningObjectivesTopicsClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LearningObjectivesTopicsClassifier.mlmodel; sourceTree = "<group>"; };
+		DA82CB56219CF3840057F948 /* LearningObjectivesTagger.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LearningObjectivesTagger.json; sourceTree = "<group>"; };
+		DA82CB57219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LearningObjectivesClassifierTraining.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,8 +183,12 @@
 				DA3DADFC218BEC4C0072126F /* TrainingData */,
 				DA3DADBC218BEB890072126F /* Assets.xcassets */,
 				DA3DADF4218BEBCF0072126F /* icons8-auditoria-50.png */,
+				DA82CB56219CF3840057F948 /* LearningObjectivesTagger.json */,
+				DA82CB57219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv */,
 				DA3DADFE218BEC740072126F /* LearningObjectivesClassifier.mlmodel */,
+				DA82CB52219CA2EC0057F948 /* LearningObjectivesAreaClassifier.mlmodel */,
 				DA3DADFF218BEC740072126F /* LearningObjectivesTagger.mlmodel */,
+				DA82CB54219CF1DD0057F948 /* LearningObjectivesTopicsClassifier.mlmodel */,
 				DA3DADC1218BEB890072126F /* Info.plist */,
 				DA3DADC2218BEB890072126F /* StudentLearningObjectives.entitlements */,
 				DA3DADB9218BEB870072126F /* StudentLearningObjectives.xcdatamodeld */,
@@ -308,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA3DADBD218BEB890072126F /* Assets.xcassets in Resources */,
+				DA82CB58219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv in Resources */,
 				DA3DADF9218BEBCF0072126F /* LearningObjectiveCellView.xib in Resources */,
 				DA346BDD219397AC00EBF4CD /* StudentMatchByObjectiveCellView.xib in Resources */,
 				DA3DADFD218BEC4C0072126F /* TrainingData in Resources */,
@@ -344,6 +356,8 @@
 				DA3DADB8218BEB870072126F /* ViewController.swift in Sources */,
 				DA3DADF7218BEBCF0072126F /* StudentCellView.swift in Sources */,
 				DA346BDB2193975F00EBF4CD /* StudentMatchByObjectiveCellView.swift in Sources */,
+				DA82CB53219CA2EC0057F948 /* LearningObjectivesAreaClassifier.mlmodel in Sources */,
+				DA82CB55219CF1DE0057F948 /* LearningObjectivesTopicsClassifier.mlmodel in Sources */,
 				DA3DADE9218BEBAF0072126F /* LearningObjectivesTrainer.swift in Sources */,
 				DA346BE121939BDB00EBF4CD /* IntelligentFeedbackController.swift in Sources */,
 				DA346BD921915E4E00EBF4CD /* SubtitleTableCellView.swift in Sources */,
