@@ -103,5 +103,101 @@
             </connections>
             <point key="canvasLocation" x="91" y="-45"/>
         </customView>
+        <customView identifier="ParagraphCellID" id="01X-3u-e7b" userLabel="Paragraph Cell View" customClass="ParagraphCellView" customModule="StudentLearningObjectives" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="671" height="66"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="9EE-7x-v1K">
+                    <rect key="frame" x="71" y="0.0" width="600" height="66"/>
+                    <view key="contentView" id="K3G-Nk-lj1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="66"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="j06-68-qlW">
+                                <rect key="frame" x="22" y="7" width="580" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="576" id="BoL-20-LDy"/>
+                                    <constraint firstAttribute="height" constant="54" id="n5h-Aw-rUS"/>
+                                </constraints>
+                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" allowsEditingTextAttributes="YES" id="RHc-sk-Fso">
+                                    <font key="font" metaFont="system"/>
+                                    <string key="title">Isto é um teste muito interessante sobre o estado da arte em dispositivos nano estruturados. Estes dispositivos possuem uma alta densidade de material. O que os torna muito pesados.</string>
+                                    <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <box boxType="custom" borderType="none" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="tVM-fG-JWX">
+                                <rect key="frame" x="5" y="3" width="2" height="60"/>
+                                <view key="contentView" id="WrG-Q2-qAp">
+                                    <rect key="frame" x="0.0" y="0.0" width="2" height="60"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="2" id="DOA-WQ-juo"/>
+                                </constraints>
+                                <color key="fillColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </box>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="j06-68-qlW" secondAttribute="bottom" constant="7" id="8y5-e9-vWs"/>
+                            <constraint firstAttribute="bottom" secondItem="j06-68-qlW" secondAttribute="bottom" constant="7" id="BWy-fm-wtv"/>
+                            <constraint firstItem="j06-68-qlW" firstAttribute="centerY" secondItem="K3G-Nk-lj1" secondAttribute="centerY" constant="-1" id="Imx-kd-kbg"/>
+                            <constraint firstItem="j06-68-qlW" firstAttribute="leading" secondItem="K3G-Nk-lj1" secondAttribute="leading" constant="24" id="RkK-Ho-YpL"/>
+                            <constraint firstAttribute="bottom" secondItem="tVM-fG-JWX" secondAttribute="bottom" constant="3" id="ZrI-kF-ll8"/>
+                            <constraint firstItem="tVM-fG-JWX" firstAttribute="top" secondItem="K3G-Nk-lj1" secondAttribute="top" constant="3" id="dBK-ji-2C0"/>
+                            <constraint firstItem="tVM-fG-JWX" firstAttribute="leading" secondItem="K3G-Nk-lj1" secondAttribute="leading" constant="5" id="q8g-m2-a7B"/>
+                        </constraints>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="600" id="5YP-Pn-qdS"/>
+                    </constraints>
+                    <color key="borderColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                    <color key="fillColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                </box>
+                <box hidden="YES" boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="tiR-kA-Gd3" userLabel="Selected Paragraph Box">
+                    <rect key="frame" x="0.0" y="0.0" width="71" height="66"/>
+                    <view key="contentView" id="vCY-Kf-0CW">
+                        <rect key="frame" x="0.0" y="0.0" width="71" height="66"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xJY-0c-A8U">
+                                <rect key="frame" x="26" y="22" width="20" height="23"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="&gt;" id="RFq-Mh-eAA">
+                                    <font key="font" metaFont="system" size="19"/>
+                                    <color key="textColor" red="0.93558710810000001" green="0.52229225639999999" blue="0.49018478389999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="xJY-0c-A8U" firstAttribute="centerX" secondItem="vCY-Kf-0CW" secondAttribute="centerX" id="78h-e1-dGW"/>
+                            <constraint firstItem="xJY-0c-A8U" firstAttribute="centerY" secondItem="vCY-Kf-0CW" secondAttribute="centerY" id="i2x-rH-jwA"/>
+                        </constraints>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="71" id="LqD-d4-DWw"/>
+                    </constraints>
+                    <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstItem="9EE-7x-v1K" firstAttribute="leading" secondItem="01X-3u-e7b" secondAttribute="leading" constant="71" id="6fl-Vs-XhO"/>
+                <constraint firstAttribute="bottom" secondItem="9EE-7x-v1K" secondAttribute="bottom" id="GtM-Kg-Mou"/>
+                <constraint firstItem="9EE-7x-v1K" firstAttribute="leading" secondItem="01X-3u-e7b" secondAttribute="leading" constant="71" id="TDp-ZC-tQs"/>
+                <constraint firstAttribute="bottom" secondItem="tiR-kA-Gd3" secondAttribute="bottom" id="Zff-7j-HqW"/>
+                <constraint firstItem="tiR-kA-Gd3" firstAttribute="leading" secondItem="01X-3u-e7b" secondAttribute="leading" id="gy7-yp-xMw"/>
+                <constraint firstAttribute="trailing" secondItem="9EE-7x-v1K" secondAttribute="trailing" id="hkG-iI-lHK"/>
+                <constraint firstItem="9EE-7x-v1K" firstAttribute="top" secondItem="01X-3u-e7b" secondAttribute="top" id="j1a-73-4dd"/>
+                <constraint firstAttribute="bottom" secondItem="9EE-7x-v1K" secondAttribute="bottom" id="oZ8-Yn-SBQ"/>
+                <constraint firstItem="tiR-kA-Gd3" firstAttribute="top" secondItem="01X-3u-e7b" secondAttribute="top" id="paA-bX-hQ1"/>
+                <constraint firstAttribute="trailing" secondItem="9EE-7x-v1K" secondAttribute="trailing" id="qUa-kL-slA"/>
+            </constraints>
+            <connections>
+                <outlet property="descriptionTextField" destination="j06-68-qlW" id="3Dt-R2-ttm"/>
+                <outlet property="paragraphTextField" destination="j06-68-qlW" id="fRH-mH-Ivt"/>
+                <outlet property="selectedBox" destination="9EE-7x-v1K" id="Fes-Gr-aeX"/>
+            </connections>
+            <point key="canvasLocation" x="91" y="78"/>
+        </customView>
     </objects>
 </document>

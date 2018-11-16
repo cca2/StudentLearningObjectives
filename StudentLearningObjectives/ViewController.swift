@@ -213,8 +213,14 @@ class ViewController: NSViewController {
     func displayTeamInfo(team:Team) {
         self.elementsToDisplay = []
         self.elementsToDisplay.append(NoteElementToDisplay(title: team.name))
-//        self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Big Idea"))
-//        self.elementsToDisplay.append(NoteElementToDisplay(paragraph: "pequenos atos para aumentar a produtividade"))
+        self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Big Idea"))
+        self.elementsToDisplay.append(NoteElementToDisplay(paragraph: "pequenos atos para aumentar a produtividade"))
+        self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Essential Question"))
+        self.elementsToDisplay.append(NoteElementToDisplay(paragraph: "Como a falta de motivação impacta na produtividade?"))
+        self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Challenge"))
+        self.elementsToDisplay.append(NoteElementToDisplay(paragraph: "Auxiliar o usuário a priorizar tarefas através da gestão visual"))
+        self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Concept"))
+        self.elementsToDisplay.append(NoteElementToDisplay(paragraph: "App que exibe atividades, com seus níveis de dificuldade e seu progresso, de uma maneira (bem) visual"))
 
         self.mustHaveTableView.deselectAll(nil)
         self.mustHaveTableView.reloadData()
@@ -389,6 +395,12 @@ extension ViewController: NSTableViewDelegate {
                         cell.subtitle.stringValue = subtitle
                         return cell
                     }
+                }else if let paragraph = elementsToDisplay[row].paragraph {
+                    cellIdentifier = "ObjectiveCellID"
+                    if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  LearningObjectiveCellView {
+                        cell.fitForObjective(elementToDisplay: elementsToDisplay[row])
+                        return cell
+                    }
                 }
             }
         }else if (tableView == self.taggerTrainingTableView) {
@@ -462,7 +474,9 @@ extension ViewController: NSTableViewDelegate {
             }
             self.snippetsToDisplay[row].isSelected = true
             
-            if let selectedStudent = self.snippetsToDisplay[row].student {
+            if let selectedTeam = self.snippetsToDisplay[row].team {
+                self.displayTeamInfo(team: selectedTeam)
+            }else if let selectedStudent = self.snippetsToDisplay[row].student {
                 self.cblSprint.selectedStudent = selectedStudent
                 delegate.selectedStudent = selectedStudent
                 self.displayStudentObjectives(student: selectedStudent)

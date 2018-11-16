@@ -100,3 +100,14 @@ class LearningObjectiveCellView: NSTableCellView {
         return attributedText
     }
 }
+
+class ParagraphCellView: NSTableCellView {
+    @IBOutlet weak var selectedBox: NSBox!
+    @IBOutlet weak var paragraphTextField: NSTextField!
+    
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
+        
+        // Drawing code here.
+    }
+}
