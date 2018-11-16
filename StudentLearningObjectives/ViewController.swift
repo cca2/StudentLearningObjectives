@@ -11,7 +11,7 @@ import CoreML
 import NaturalLanguage
 import CreateML
 
-class ElementToDisplay {
+class NoteElementToDisplay {
     let title:String?
     let subtitle:String?
     let objective:StudentLearningObjective?
@@ -47,6 +47,20 @@ class ElementToDisplay {
     }
 }
 
+class SnippetToDisplay {
+    var isSelected:Bool = false
+    var team:Team?
+    var student:Student?
+    
+    init(team: Team) {
+        self.team = team
+    }
+    
+    init(student: Student) {
+        self.student = student
+    }
+}
+
 // Data model
 struct Challenge {
     var name:String
@@ -78,7 +92,8 @@ class ViewController: NSViewController {
     
     var newDataForTraining:[StudentLearningObjective] = []
     
-    var elementsToDisplay:[ElementToDisplay] = []
+    var elementsToDisplay:[NoteElementToDisplay] = []
+    var snippetsToDisplay:[SnippetToDisplay] = []
     
     var cblSprint:CBLSprint!
 
@@ -123,20 +138,31 @@ class ViewController: NSViewController {
             let delegate = NSApplication.shared.delegate as! AppDelegate
             delegate.selectedTeam = self.cblSprint.selectedTeam
             teamMembersNames = []
-            clearStudentInfo()
+            newTeamSelected()
             self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
             showTeamNotes()
         }
     }
     
-    func clearStudentInfo() {
-//        self.studentName.stringValue = ""
-//        self.selectedStudent = nil
+    func newTeamSelected() {
+        self.snippetsToDisplay = []
+        let selectedTeam = self.cblSprint.selectedTeam
+        let teamSnippet = SnippetToDisplay(team: selectedTeam!)
+        self.snippetsToDisplay.append(teamSnippet)
+        
+        let teamStudents = selectedTeam?.members
+        teamStudents?.forEach{
+            student in
+            let studentSnippet = SnippetToDisplay(student: student.value)
+            self.snippetsToDisplay.append(studentSnippet)
+        }
+        
         self.cblSprint.selectedStudent = nil
         self.objectivesToDisplay = []
         mustHaveTableView.deselectAll(nil)
         mustHaveTableView.reloadData()
-//        taggerTrainingTableView.reloadData()
+
+        //        taggerTrainingTableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -175,8 +201,7 @@ class ViewController: NSViewController {
         self.teamMembersView.dataSource = self
         self.teamMembersView.delegate = self
         self.teamMembersView.selectionHighlightStyle = NSTableView.SelectionHighlightStyle.none
-        self.teamMembersView.register(NSNib(nibNamed: "StudentCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("StudentCellID"))
-//        self.teamMembersView.register(NSNib(nibNamed: "TeamSummaryCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("TeamSummaryCellID"))
+        self.teamMembersView.register(NSNib(nibNamed: "SnippetCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("SnippetCellID"))
 
         showTeamNotes()
     }
@@ -185,63 +210,73 @@ class ViewController: NSViewController {
         self.teamMembersView.reloadData()
     }
     
+    func displayTeamInfo(team:Team) {
+        self.elementsToDisplay = []
+        self.elementsToDisplay.append(NoteElementToDisplay(title: team.name))
+//        self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Big Idea"))
+//        self.elementsToDisplay.append(NoteElementToDisplay(paragraph: "pequenos atos para aumentar a produtividade"))
+
+        self.mustHaveTableView.deselectAll(nil)
+        self.mustHaveTableView.reloadData()
+    }
+    
     func displayStudentObjectives(student:Student) {
         self.elementsToDisplay = []
         
-        let studentName = ElementToDisplay(title: self.cblSprint.selectedStudent?.name)
+        let studentName = NoteElementToDisplay(title: self.cblSprint.selectedStudent?.name)
         self.elementsToDisplay.append(studentName)
         
-        let innovationSubtitle = ElementToDisplay(subtitle: "Inovação")
+        let innovationSubtitle = NoteElementToDisplay(subtitle: "Inovação")
         self.elementsToDisplay.append(innovationSubtitle)
         
         if let innovationObjectives = student.classifiedObjectives["innovation"] {
             innovationObjectives.forEach{
                 objective in
-                let objectiveElement = ElementToDisplay(objective: objective)
+                let objectiveElement = NoteElementToDisplay(objective: objective)
                 self.elementsToDisplay.append(objectiveElement)
             }
         }
         
-        let programmingSubtitle = ElementToDisplay(subtitle: "Programação")
+        let programmingSubtitle = NoteElementToDisplay(subtitle: "Programação")
         self.elementsToDisplay.append(programmingSubtitle)
         
         if let programmingObjectives = student.classifiedObjectives["programming"] {
             programmingObjectives.forEach{
                 objective in
-                let objectiveElement = ElementToDisplay(objective: objective)
+                let objectiveElement = NoteElementToDisplay(objective: objective)
                 self.elementsToDisplay.append(objectiveElement)
             }
         }
         
-        let designSubtitle = ElementToDisplay(subtitle: "Design")
+        let designSubtitle = NoteElementToDisplay(subtitle: "Design")
         self.elementsToDisplay.append(designSubtitle)
         
         if let designObjectives = student.classifiedObjectives["design"] {
             designObjectives.forEach{
                 objective in
-                let objectiveElement = ElementToDisplay(objective: objective)
+                let objectiveElement = NoteElementToDisplay(objective: objective)
                 self.elementsToDisplay.append(objectiveElement)
             }
         }
         
-        let successSkillsSubtitle = ElementToDisplay(subtitle: "Competências de Sucesso")
+        let successSkillsSubtitle = NoteElementToDisplay(subtitle: "Competências de Sucesso")
         self.elementsToDisplay.append(successSkillsSubtitle)
         
         if let successSkillsObjectives = student.classifiedObjectives["success skills"] {
             successSkillsObjectives.forEach{
                 objective in
-                let objectiveElement = ElementToDisplay(objective: objective)
+                let objectiveElement = NoteElementToDisplay(objective: objective)
                 self.elementsToDisplay.append(objectiveElement)
             }
         }
         
-        let appdevSubtitle = ElementToDisplay(subtitle: "App Dev")
+        let appdevSubtitle = NoteElementToDisplay(subtitle: "App Dev")
         self.elementsToDisplay.append(appdevSubtitle)
         
         if let appdevObjectives = student.classifiedObjectives["appdev"] {
             appdevObjectives.forEach{
                 objective in
-                let objectiveElement = ElementToDisplay(objective: objective)
+                let objectiveElement = NoteElementToDisplay(objective: objective)
                 self.elementsToDisplay.append(objectiveElement)
             }
         }
@@ -289,7 +324,7 @@ extension ViewController: NSTableViewDataSource {
             }
             return self.elementsToDisplay.count
         }else if (tableView == self.teamMembersView) {
-            return (self.cblSprint.selectedTeam!.membersNames().count)
+            return self.snippetsToDisplay.count
         }else {
             return 0
         }
@@ -379,18 +414,20 @@ extension ViewController: NSTableViewDelegate {
                 }
             }
         }else if (tableView == self.teamMembersView) {
-            let cellIdentifier = "StudentCellID"
-            if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as? StudentCellView  {
-                let teamMembersNames = self.cblSprint.selectedTeam?.membersNames()
-                let cellStudent = self.cblSprint.studentsDict[(teamMembersNames?[row])!]!
-                if let selectedStudent = self.cblSprint.selectedStudent {
-                    if selectedStudent.name == cellStudent.name {
-                        cell.displaySelectedStudent(student: selectedStudent)
+            let cellIdentifier = "SnippetCellID"
+            if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as? SnippetCellView  {
+                if let team = snippetsToDisplay[row].team {
+                    if snippetsToDisplay[row].isSelected {
+                        cell.displaySelectedTeamSnippet(team: team)
                     }else {
-                        cell.displayStudent(student: cellStudent)
+                        cell.displayTeamSnippet(team: team)
                     }
-                }else {
-                    cell.displayStudent(student: cellStudent)
+                }else if let student = self.snippetsToDisplay[row].student {
+                    if self.snippetsToDisplay[row].isSelected {
+                        cell.displaySelectedStudent(student: student)
+                    }else {
+                        cell.displayStudent(student: student)
+                    }
                 }
                 return cell
             }
@@ -418,13 +455,19 @@ extension ViewController: NSTableViewDelegate {
                 return false
             }
         }else if (tableView == self.teamMembersView) {
-            self.cblSprint.selectedStudent = self.cblSprint.studentsDict[(self.cblSprint.selectedTeam?.membersNames()[row])!]
             let delegate = NSApplication.shared.delegate as! AppDelegate
-            delegate.selectedStudent = self.cblSprint.selectedStudent
-//            self.studentName.stringValue = self.cblSprint.selectedStudent!.name
-            self.displayStudentObjectives(student: self.cblSprint.selectedStudent!)
+            self.snippetsToDisplay.forEach{
+                snippet in
+                snippet.isSelected = false
+            }
+            self.snippetsToDisplay[row].isSelected = true
+            
+            if let selectedStudent = self.snippetsToDisplay[row].student {
+                self.cblSprint.selectedStudent = selectedStudent
+                delegate.selectedStudent = selectedStudent
+                self.displayStudentObjectives(student: selectedStudent)
+            }
             self.teamMembersView.reloadData()
-//            self.taggerTrainingTableView.reloadData()
             return true
         }else if (tableView == self.taggerTrainingTableView) {
             return true
@@ -541,8 +584,7 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
             self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
             let delegate = NSApplication.shared.delegate as! AppDelegate
             delegate.selectedTeam = self.cblSprint.selectedTeam
-            teamMembersNames = []
-            clearStudentInfo()
+            newTeamSelected()
             self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
             showTeamNotes()
         }

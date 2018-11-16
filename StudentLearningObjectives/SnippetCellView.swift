@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class StudentCellView: NSTableCellView {
+class SnippetCellView: NSTableCellView {
     @IBOutlet weak var studentName: NSTextField!
     @IBOutlet weak var numProgrammingObjectivesLabel: NSTextField!
     @IBOutlet weak var numAppDevObjectivesLabel: NSTextField!
@@ -26,11 +26,47 @@ class StudentCellView: NSTableCellView {
     @IBOutlet weak var selectedCellBoxIndicator: NSBox!
     let labelColor = NSColor.systemGray
     var student: Student?
-
+    var team: Team?
+    
+    func displayTeamSnippet(team:Team) {
+        self.team = team
+        
+        self.studentName.stringValue = team.name
+        self.numProgrammingObjectivesLabel.isHidden = true
+        self.numAppDevObjectivesLabel.isHidden = true
+        self.numDesignObjectivesLabel.isHidden = true
+        self.numInnovationObjectivesLabel.isHidden = true
+        self.numSuccessSkillsObjectivesLabel.isHidden = true
+        
+        self.programmingLabel.isHidden = true
+        self.appDevLabel.isHidden = true
+        self.designLabel.isHidden = true
+        self.successSkillsLabel.isHidden = true
+        self.innovationLabel.isHidden = true
+        
+        self.selectedCellBoxIndicator.fillColor = NSColor.white
+    }
+    
+    func displaySelectedTeamSnippet(team: Team) {
+        self.selectedCellBoxIndicator.fillColor = NSColor.red
+    }
+    
     func displayStudent(student: Student) {
         self.student = student        
         self.studentName.stringValue = self.student!.name
         
+        self.numProgrammingObjectivesLabel.isHidden = false
+        self.numAppDevObjectivesLabel.isHidden = false
+        self.numDesignObjectivesLabel.isHidden = false
+        self.numInnovationObjectivesLabel.isHidden = false
+        self.numSuccessSkillsObjectivesLabel.isHidden = false
+        
+        self.programmingLabel.isHidden = false
+        self.appDevLabel.isHidden = false
+        self.designLabel.isHidden = false
+        self.successSkillsLabel.isHidden = false
+        self.innovationLabel.isHidden = false
+
         let numProgramming:Int = student.classifiedObjectives["programming"]!.count
         self.numProgrammingObjectivesLabel.stringValue = String(numProgramming)
         let numDesign:Int = student.classifiedObjectives["design"]!.count
@@ -60,6 +96,7 @@ class StudentCellView: NSTableCellView {
     
     func displaySelectedStudent(student: Student) {
         self.displayStudent(student: student)
+        
         self.studentBox.fillColor = NSColor.white
         self.studentName.textColor = NSColor.black
         self.numAppDevObjectivesLabel.textColor = self.labelColor
@@ -83,15 +120,4 @@ class StudentCellView: NSTableCellView {
         // Drawing code here.
     }
     
-}
-
-class TeamSummaryCellView: NSTableCellView {
-    @IBOutlet weak var teamName: NSTextField!
-    @IBOutlet weak var selectedBoxIndicator: NSBox!
-    
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-        
-        // Drawing code here.
-    }
 }

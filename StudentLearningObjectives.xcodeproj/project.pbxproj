@@ -27,8 +27,8 @@
 		DA3DADEC218BEBAF0072126F /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADE7218BEBAF0072126F /* Student.swift */; };
 		DA3DADED218BEBAF0072126F /* StudentLearningObjectiveTagger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADE8218BEBAF0072126F /* StudentLearningObjectiveTagger.swift */; };
 		DA3DADF5218BEBCF0072126F /* LearningObjectiveCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADEE218BEBCE0072126F /* LearningObjectiveCellView.swift */; };
-		DA3DADF7218BEBCF0072126F /* StudentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADF0218BEBCE0072126F /* StudentCellView.swift */; };
-		DA3DADF8218BEBCF0072126F /* StudentCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA3DADF1218BEBCE0072126F /* StudentCellView.xib */; };
+		DA3DADF7218BEBCF0072126F /* SnippetCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADF0218BEBCE0072126F /* SnippetCellView.swift */; };
+		DA3DADF8218BEBCF0072126F /* SnippetCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA3DADF1218BEBCE0072126F /* SnippetCellView.xib */; };
 		DA3DADF9218BEBCF0072126F /* LearningObjectiveCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA3DADF2218BEBCE0072126F /* LearningObjectiveCellView.xib */; };
 		DA3DADFB218BEBCF0072126F /* icons8-auditoria-50.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3DADF4218BEBCF0072126F /* icons8-auditoria-50.png */; };
 		DA3DADFD218BEC4C0072126F /* TrainingData in Resources */ = {isa = PBXBuildFile; fileRef = DA3DADFC218BEC4C0072126F /* TrainingData */; };
@@ -37,6 +37,7 @@
 		DA82CB53219CA2EC0057F948 /* LearningObjectivesAreaClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DA82CB52219CA2EC0057F948 /* LearningObjectivesAreaClassifier.mlmodel */; };
 		DA82CB55219CF1DE0057F948 /* LearningObjectivesTopicsClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DA82CB54219CF1DD0057F948 /* LearningObjectivesTopicsClassifier.mlmodel */; };
 		DA82CB58219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv in Resources */ = {isa = PBXBuildFile; fileRef = DA82CB57219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv */; };
+		DA82CB5A219DDBB10057F948 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA82CB59219DDBB10057F948 /* Team.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,8 +85,8 @@
 		DA3DADE7218BEBAF0072126F /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		DA3DADE8218BEBAF0072126F /* StudentLearningObjectiveTagger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLearningObjectiveTagger.swift; sourceTree = "<group>"; };
 		DA3DADEE218BEBCE0072126F /* LearningObjectiveCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearningObjectiveCellView.swift; sourceTree = "<group>"; };
-		DA3DADF0218BEBCE0072126F /* StudentCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentCellView.swift; sourceTree = "<group>"; };
-		DA3DADF1218BEBCE0072126F /* StudentCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudentCellView.xib; sourceTree = "<group>"; };
+		DA3DADF0218BEBCE0072126F /* SnippetCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnippetCellView.swift; sourceTree = "<group>"; };
+		DA3DADF1218BEBCE0072126F /* SnippetCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SnippetCellView.xib; sourceTree = "<group>"; };
 		DA3DADF2218BEBCE0072126F /* LearningObjectiveCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearningObjectiveCellView.xib; sourceTree = "<group>"; };
 		DA3DADF4218BEBCF0072126F /* icons8-auditoria-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-auditoria-50.png"; sourceTree = "<group>"; };
 		DA3DADFC218BEC4C0072126F /* TrainingData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TrainingData; sourceTree = "<group>"; };
@@ -95,6 +96,7 @@
 		DA82CB54219CF1DD0057F948 /* LearningObjectivesTopicsClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LearningObjectivesTopicsClassifier.mlmodel; sourceTree = "<group>"; };
 		DA82CB56219CF3840057F948 /* LearningObjectivesTagger.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LearningObjectivesTagger.json; sourceTree = "<group>"; };
 		DA82CB57219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LearningObjectivesClassifierTraining.csv; sourceTree = "<group>"; };
+		DA82CB59219DDBB10057F948 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,12 +172,13 @@
 			children = (
 				DA3DADB5218BEB870072126F /* AppDelegate.swift */,
 				DA3DADB7218BEB870072126F /* ViewController.swift */,
+				DA82CB59219DDBB10057F948 /* Team.swift */,
 				DA3DADEE218BEBCE0072126F /* LearningObjectiveCellView.swift */,
 				DA3DADF2218BEBCE0072126F /* LearningObjectiveCellView.xib */,
 				DA346BD42191590400EBF4CD /* SubtitleTableCellView.xib */,
 				DA346BD821915E4E00EBF4CD /* SubtitleTableCellView.swift */,
-				DA3DADF0218BEBCE0072126F /* StudentCellView.swift */,
-				DA3DADF1218BEBCE0072126F /* StudentCellView.xib */,
+				DA3DADF0218BEBCE0072126F /* SnippetCellView.swift */,
+				DA3DADF1218BEBCE0072126F /* SnippetCellView.xib */,
 				DA346BDA2193975F00EBF4CD /* StudentMatchByObjectiveCellView.swift */,
 				DA346BDC219397AC00EBF4CD /* StudentMatchByObjectiveCellView.xib */,
 				DA3DADBE218BEB890072126F /* Main.storyboard */,
@@ -326,7 +329,7 @@
 				DA346BD52191590400EBF4CD /* SubtitleTableCellView.xib in Resources */,
 				DA3DADC0218BEB890072126F /* Main.storyboard in Resources */,
 				DA346BE32193CAEE00EBF4CD /* Backlog in Resources */,
-				DA3DADF8218BEBCF0072126F /* StudentCellView.xib in Resources */,
+				DA3DADF8218BEBCF0072126F /* SnippetCellView.xib in Resources */,
 				DA3DADFB218BEBCF0072126F /* icons8-auditoria-50.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,7 +357,8 @@
 			files = (
 				DA3DADF5218BEBCF0072126F /* LearningObjectiveCellView.swift in Sources */,
 				DA3DADB8218BEB870072126F /* ViewController.swift in Sources */,
-				DA3DADF7218BEBCF0072126F /* StudentCellView.swift in Sources */,
+				DA82CB5A219DDBB10057F948 /* Team.swift in Sources */,
+				DA3DADF7218BEBCF0072126F /* SnippetCellView.swift in Sources */,
 				DA346BDB2193975F00EBF4CD /* StudentMatchByObjectiveCellView.swift in Sources */,
 				DA82CB53219CA2EC0057F948 /* LearningObjectivesAreaClassifier.mlmodel in Sources */,
 				DA82CB55219CF1DE0057F948 /* LearningObjectivesTopicsClassifier.mlmodel in Sources */,

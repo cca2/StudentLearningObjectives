@@ -13,7 +13,7 @@ class LearningObjectiveCellView: NSTableCellView {
     @IBOutlet weak var descriptionTextField: NSTextField!
     @IBOutlet weak var selectedBox: NSBox!
     
-    func fitForObjective(elementToDisplay: ElementToDisplay) {
+    func fitForObjective(elementToDisplay: NoteElementToDisplay) {
         let richTextDescription = NSMutableAttributedString(string: "")
         
         if let objective = elementToDisplay.objective {
