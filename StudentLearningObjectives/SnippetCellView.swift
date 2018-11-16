@@ -48,6 +48,7 @@ class SnippetCellView: NSTableCellView {
     }
     
     func displaySelectedTeamSnippet(team: Team) {
+        displayTeamSnippet(team: team)
         self.selectedCellBoxIndicator.fillColor = NSColor.red
     }
     
