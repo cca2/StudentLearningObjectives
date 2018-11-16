@@ -365,7 +365,12 @@ extension ViewController: NSTableViewDelegate {
                 return CGFloat(40.0)
             }
         }else if (tableView == self.teamMembersView) {
-            return CGFloat(110)
+            if snippetsToDisplay[row].student != nil {
+                return CGFloat(110)
+            }else {
+                return CGFloat(40)
+            }
+            
         }else {
             return CGFloat(20)
         }

@@ -872,14 +872,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="249" height="596"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="26" horizontalPageScroll="10" verticalLineScroll="26" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z07-9x-Hqz">
+                                        <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z07-9x-Hqz">
                                             <rect key="frame" x="0.0" y="0.0" width="249" height="574"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="bZP-z8-Zzh">
                                                 <rect key="frame" x="0.0" y="0.0" width="249" height="574"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <outlineView identifier="OutlineView" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="ECd-f3-QWo" id="hlO-hb-CYW">
+                                                    <outlineView identifier="OutlineView" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="ECd-f3-QWo" id="hlO-hb-CYW">
                                                         <rect key="frame" x="0.0" y="0.0" width="249" height="574"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
@@ -1058,6 +1058,10 @@
                                                             <action selector="popUpItemSelected:" target="XfG-lQ-9wD" id="I1f-q0-bca"/>
                                                         </connections>
                                                     </popUpButton>
+                                                    <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="RKV-qN-v67">
+                                                        <rect key="frame" x="0.0" y="-2" width="204" height="5"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    </box>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="v8q-mn-b57" firstAttribute="centerX" secondItem="6QH-Jv-xgx" secondAttribute="centerX" id="9Ia-Oy-e6x"/>
