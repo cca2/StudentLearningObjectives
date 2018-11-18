@@ -151,6 +151,7 @@ class ViewController: NSViewController {
         let selectedTeam = self.cblSprint.selectedTeam
         let teamSnippet = SnippetToDisplay(team: selectedTeam!)
         self.snippetsToDisplay.append(teamSnippet)
+        teamSnippet.isSelected = true
         
         let teamStudents = selectedTeam?.members
         teamStudents?.forEach{
@@ -161,8 +162,9 @@ class ViewController: NSViewController {
         
         self.cblSprint.selectedStudent = nil
         self.objectivesToDisplay = []
-        mustHaveTableView.deselectAll(nil)
-        mustHaveTableView.reloadData()
+//        mustHaveTableView.deselectAll(nil)
+//        mustHaveTableView.reloadData()
+        self.displayTeamInfo(team: selectedTeam!)
 
         //        taggerTrainingTableView.reloadData()
     }
@@ -252,6 +254,7 @@ class ViewController: NSViewController {
     }
     
     func displayTeamInfo(team:Team) {
+        self.mustHaveTableView.deselectAll(nil)
         self.elementsToDisplay = []
         self.elementsToDisplay.append(NoteElementToDisplay(title: team.name))
         self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Big Idea"))
@@ -263,7 +266,6 @@ class ViewController: NSViewController {
         self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Concept"))
         self.elementsToDisplay.append(NoteElementToDisplay(paragraph: team.concept))
 
-        self.mustHaveTableView.deselectAll(nil)
         self.mustHaveTableView.reloadData()
     }
     
@@ -366,9 +368,6 @@ extension ViewController: NSTableViewDataSource {
             let numWords = self.objectivesToDisplay[self.selectedObjectiveIndex].tags.count
             return numWords
         }else if (tableView == self.mustHaveTableView) {
-            guard self.cblSprint?.selectedStudent != nil else {
-                return 0
-            }
             return self.elementsToDisplay.count
         }else if (tableView == self.teamMembersView) {
             return self.snippetsToDisplay.count
@@ -653,6 +652,7 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
             self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
             let delegate = NSApplication.shared.delegate as! AppDelegate
             delegate.selectedTeam = self.cblSprint.selectedTeam
+            
             newTeamSelected()
             self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
             showTeamNotes()
