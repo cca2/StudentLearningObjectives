@@ -8,6 +8,7 @@
 
 import Foundation
 import CreateML
+import CloudKit
 
 class CBLSprint {
     var teams:Dictionary = [String:Team]()
@@ -17,39 +18,65 @@ class CBLSprint {
     let studentObjectiveClassifier = StudentObjectiveClassifier()
 
     init() {
-        let studentsData = self.studentObjectiveClassifier.studentsData
-        
-        guard let rows = studentsData?.rows else {return}
-        rows.forEach{
-            row in
-            
-            let teamIndex = row.index(forKey: "Equipe")!
-            let studentIndex = row.index(forKey: "Estudante")!
-            let descriptionIndex = row.index(forKey: "Descrição")!
-            let priorityIndex = row.index(forKey: "Priorização")!
-            let expertiseLevelIndex = row.index(forKey: "Nível")!
-            
-            let teamName = row.values[teamIndex].stringValue!
-            let studentName = row.values[studentIndex].stringValue!
-            let description = row.values[descriptionIndex].stringValue!
-            let priority = row.values[priorityIndex].stringValue!
-            let expertiseLevel = row.values[expertiseLevelIndex].stringValue!
-            
-            let studentObjective = StudentLearningObjective(description: description)
-            studentObjective.level = expertiseLevel
-            studentObjective.priority = priority
-            
-            self.sprint(teamName: teamName, studentName: studentName, description: description, level: expertiseLevel, priority: priority)
-        }
-        
-        self.studentsDict.keys.forEach{
-            name in
-            let student = self.studentsDict[name]
-            self.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
-        }
     }
     
+    //    func retriveAllTeams (_ teams: [Team]?, _ error: Error?) -> Void {
+    func retrieveAllTeams(onSuccess success: @escaping () -> Void) -> Void {
+        let defaultContainer = CKContainer.default()
+        let predicate = NSPredicate(format: "TRUEPREDICATE")
+        let query = CKQuery(recordType: "TeamRecord", predicate: predicate)
+        defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
+            (records, error) in
+            guard let records = records else {
+                print (error)
+                return
+            }
+            
+            if error == nil {
+                records.forEach{record in
+                    if let team = Team.fromCKRecord(ckRecord: record) {
+                        self.teams[team.name] = team
+                    }
+                    
+                }
+                let studentsData = self.studentObjectiveClassifier.studentsData
+                
+                guard let rows = studentsData?.rows else {return}
+                rows.forEach{
+                    row in
+                    
+                    let teamIndex = row.index(forKey: "Equipe")!
+                    let studentIndex = row.index(forKey: "Estudante")!
+                    let descriptionIndex = row.index(forKey: "Descrição")!
+                    let priorityIndex = row.index(forKey: "Priorização")!
+                    let expertiseLevelIndex = row.index(forKey: "Nível")!
+                    
+                    let teamName = row.values[teamIndex].stringValue!
+                    let studentName = row.values[studentIndex].stringValue!
+                    let description = row.values[descriptionIndex].stringValue!
+                    let priority = row.values[priorityIndex].stringValue!
+                    let expertiseLevel = row.values[expertiseLevelIndex].stringValue!
+                    
+                    let studentObjective = StudentLearningObjective(description: description)
+                    studentObjective.level = expertiseLevel
+                    studentObjective.priority = priority
+                    
+                    self.sprint(teamName: teamName, studentName: studentName, description: description, level: expertiseLevel, priority: priority)
+                }
+                
+                self.studentsDict.keys.forEach{
+                    name in
+                    let student = self.studentsDict[name]
+                    self.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
+                }
+                
+                success()
+            }
+        }
+    }
+
     func sprint(teamName: String, studentName: String, description: String, level: String, priority: String) {
+        //Alimentando o dicionário de teams com as informações no CloudKit
         let studentObjective = StudentLearningObjective(description: description)
         studentObjective.level = level
         studentObjective.priority = priority
@@ -71,9 +98,9 @@ class CBLSprint {
         }
     }
     
-    func addTeam(newTeam:Team) {
-        self.teams[newTeam.name] = newTeam
-    }
+//    func addTeam(newTeam:Team) {
+//        self.teams[newTeam.name] = newTeam
+//    }
     
     func teamWithName(name:String) -> Team? {
         return self.teams[name]

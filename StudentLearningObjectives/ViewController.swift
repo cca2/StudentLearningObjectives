@@ -10,6 +10,8 @@ import Cocoa
 import CoreML
 import NaturalLanguage
 import CreateML
+import CoreData
+import CloudKit
 
 class NoteElementToDisplay {
     let title:String?
@@ -165,45 +167,84 @@ class ViewController: NSViewController {
         //        taggerTrainingTableView.reloadData()
     }
     
+    func fetchUserRecordID() {
+        let defaultContainer = CKContainer.default()
+        
+        //Fetch User Record
+        defaultContainer.fetchUserRecordID{
+            (recordID, error) -> Void in
+            if let responseError = error {
+                print(responseError)
+            }else if let userRecordID = recordID {
+                DispatchQueue.main.sync {
+                    self.fetchUserRecord(recordID: userRecordID)
+                }
+            }
+        }
+    }
+    
+    func fetchUserRecord(recordID: CKRecord.ID) {
+        let defaultContainer = CKContainer.default()
+        let privateDatabase = defaultContainer.privateCloudDatabase
+        privateDatabase.fetch(withRecordID: recordID) {
+            (record, error) -> Void in
+            if let responseError = error {
+                print(responseError)
+            }else if let userRecord = record {
+                print(userRecord)
+            }
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.outlineView.delegate = self
-        self.outlineView.dataSource = self
-        let selectionHighlightStyle = NSOutlineView.SelectionHighlightStyle.sourceList
-        self.outlineView.selectionHighlightStyle = selectionHighlightStyle
-        
-        let delegate = NSApplication.shared.delegate as! AppDelegate
-        self.cblSprint = delegate.cblSprint 
-        
         self.mustHaveTableView.dataSource = self
         self.mustHaveTableView.delegate = self
         self.mustHaveTableView.selectionHighlightStyle = NSTableView.SelectionHighlightStyle.none
         self.mustHaveTableView.register(NSNib(nibNamed: "LearningObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("ObjectiveCellID"))
         self.mustHaveTableView.register(NSNib(nibNamed: "SubtitleTableCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("SubtitleCellID"))
         self.mustHaveTableView.register(NSNib(nibNamed: "SubtitleTableCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("TitleCellID"))
-                
-        self.teamsPopUp.removeAllItems()
-        
-        let teamsNames = self.cblSprint.teamsName()
-        teamsNames.forEach{
-            name in
-            self.teamsPopUp.addItem(withTitle: name)
-            self.sprint.mentories.append(name)
-        }
-        
-        self.cblSprint.studentsDict.keys.forEach{
-            name in
-            self.teamMembersNames.append(name)
-        }
-        
-        self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: self.teamsPopUp.title)
         self.teamMembersView.dataSource = self
         self.teamMembersView.delegate = self
         self.teamMembersView.selectionHighlightStyle = NSTableView.SelectionHighlightStyle.none
         self.teamMembersView.register(NSNib(nibNamed: "SnippetCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("SnippetCellID"))
 
-        showTeamNotes()
+        //Setup da parte de CloudKit da Aplicação
+//        fetchUserRecordID()
+        
+        //Setup da parte de Outline da aplicação
+        self.outlineView.delegate = self
+        self.outlineView.dataSource = self
+        let selectionHighlightStyle = NSOutlineView.SelectionHighlightStyle.sourceList
+        self.outlineView.selectionHighlightStyle = selectionHighlightStyle
+        
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        
+
+        
+        self.cblSprint = delegate.cblSprint
+        self.cblSprint.retrieveAllTeams {
+            let teamsNames = self.cblSprint.teamsName()
+            teamsNames.forEach{
+                name in
+//                self.teamsPopUp.addItem(withTitle: name)
+                self.sprint.mentories.append(name)
+            }
+            
+            self.cblSprint.studentsDict.keys.forEach{
+                name in
+                self.teamMembersNames.append(name)
+            }
+            
+//            self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: self.teamsPopUp.title)
+
+            
+//            self.teamsPopUp.removeAllItems()
+            
+            self.showTeamNotes()
+        }
     }
     
     func showTeamNotes() {
@@ -214,13 +255,13 @@ class ViewController: NSViewController {
         self.elementsToDisplay = []
         self.elementsToDisplay.append(NoteElementToDisplay(title: team.name))
         self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Big Idea"))
-        self.elementsToDisplay.append(NoteElementToDisplay(paragraph: "pequenos atos para aumentar a produtividade"))
+        self.elementsToDisplay.append(NoteElementToDisplay(paragraph: team.bigIdea))
         self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Essential Question"))
-        self.elementsToDisplay.append(NoteElementToDisplay(paragraph: "Como a falta de motivação impacta na produtividade?"))
+        self.elementsToDisplay.append(NoteElementToDisplay(paragraph: team.essentialQuestion))
         self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Challenge"))
-        self.elementsToDisplay.append(NoteElementToDisplay(paragraph: "Auxiliar o usuário a priorizar tarefas através da gestão visual"))
+        self.elementsToDisplay.append(NoteElementToDisplay(paragraph: team.challenge))
         self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Concept"))
-        self.elementsToDisplay.append(NoteElementToDisplay(paragraph: "App que exibe atividades, com seus níveis de dificuldade e seu progresso, de uma maneira (bem) visual"))
+        self.elementsToDisplay.append(NoteElementToDisplay(paragraph: team.concept))
 
         self.mustHaveTableView.deselectAll(nil)
         self.mustHaveTableView.reloadData()
@@ -325,7 +366,7 @@ extension ViewController: NSTableViewDataSource {
             let numWords = self.objectivesToDisplay[self.selectedObjectiveIndex].tags.count
             return numWords
         }else if (tableView == self.mustHaveTableView) {
-            guard self.cblSprint.selectedStudent != nil else {
+            guard self.cblSprint?.selectedStudent != nil else {
                 return 0
             }
             return self.elementsToDisplay.count

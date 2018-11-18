@@ -38,6 +38,8 @@
 		DA82CB55219CF1DE0057F948 /* LearningObjectivesTopicsClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DA82CB54219CF1DD0057F948 /* LearningObjectivesTopicsClassifier.mlmodel */; };
 		DA82CB58219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv in Resources */ = {isa = PBXBuildFile; fileRef = DA82CB57219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv */; };
 		DA82CB5A219DDBB10057F948 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA82CB59219DDBB10057F948 /* Team.swift */; };
+		DA82CB5D219F4F8C0057F948 /* CBLSprintDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA82CB5B219F4F8C0057F948 /* CBLSprintDataModel.xcdatamodeld */; };
+		DA82CB60219F54EE0057F948 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA82CB5F219F54EE0057F948 /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,8 @@
 		DA82CB56219CF3840057F948 /* LearningObjectivesTagger.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LearningObjectivesTagger.json; sourceTree = "<group>"; };
 		DA82CB57219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LearningObjectivesClassifierTraining.csv; sourceTree = "<group>"; };
 		DA82CB59219DDBB10057F948 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		DA82CB5C219F4F8C0057F948 /* CBLSprintDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CBLSprintDataModel.xcdatamodel; sourceTree = "<group>"; };
+		DA82CB5F219F54EE0057F948 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA82CB60219F54EE0057F948 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +159,7 @@
 				DA3DADCA218BEB890072126F /* StudentLearningObjectivesTests */,
 				DA3DADD5218BEB890072126F /* StudentLearningObjectivesUITests */,
 				DA3DADB3218BEB870072126F /* Products */,
+				DA82CB5E219F54EE0057F948 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -182,6 +188,7 @@
 				DA346BDA2193975F00EBF4CD /* StudentMatchByObjectiveCellView.swift */,
 				DA346BDC219397AC00EBF4CD /* StudentMatchByObjectiveCellView.xib */,
 				DA3DADBE218BEB890072126F /* Main.storyboard */,
+				DA82CB5B219F4F8C0057F948 /* CBLSprintDataModel.xcdatamodeld */,
 				DA346BE021939BDB00EBF4CD /* IntelligentFeedbackController.swift */,
 				DA3DADFC218BEC4C0072126F /* TrainingData */,
 				DA3DADBC218BEB890072126F /* Assets.xcassets */,
@@ -215,6 +222,14 @@
 				DA3DADD8218BEB890072126F /* Info.plist */,
 			);
 			path = StudentLearningObjectivesUITests;
+			sourceTree = "<group>";
+		};
+		DA82CB5E219F54EE0057F948 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DA82CB5F219F54EE0057F948 /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,6 +300,14 @@
 				TargetAttributes = {
 					DA3DADB1218BEB870072126F = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					DA3DADC6218BEB890072126F = {
 						CreatedOnToolsVersion = 10.1;
@@ -374,6 +397,7 @@
 				DA3DADEC218BEBAF0072126F /* Student.swift in Sources */,
 				DA3DADEB218BEBAF0072126F /* StudentLearningObjective.swift in Sources */,
 				DA3DAE00218BEC740072126F /* LearningObjectivesClassifier.mlmodel in Sources */,
+				DA82CB5D219F4F8C0057F948 /* CBLSprintDataModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,6 +728,16 @@
 			);
 			currentVersion = DA3DADBA218BEB870072126F /* StudentLearningObjectives.xcdatamodel */;
 			path = StudentLearningObjectives.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		DA82CB5B219F4F8C0057F948 /* CBLSprintDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DA82CB5C219F4F8C0057F948 /* CBLSprintDataModel.xcdatamodel */,
+			);
+			currentVersion = DA82CB5C219F4F8C0057F948 /* CBLSprintDataModel.xcdatamodel */;
+			path = CBLSprintDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
