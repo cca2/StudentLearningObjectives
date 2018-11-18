@@ -27,7 +27,7 @@
                                 <color key="fillColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                             </box>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="l5R-TV-L0a">
-                                <rect key="frame" x="60" y="4" width="148" height="5"/>
+                                <rect key="frame" x="47" y="4" width="161" height="5"/>
                             </box>
                             <box boxType="custom" borderType="none" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="DEw-cm-gJV">
                                 <rect key="frame" x="8" y="6" width="198" height="108"/>
@@ -196,7 +196,7 @@
                             <constraint firstItem="tCc-bF-MiW" firstAttribute="bottom" secondItem="l5R-TV-L0a" secondAttribute="bottom" id="2kK-XM-2US"/>
                             <constraint firstItem="DEw-cm-gJV" firstAttribute="top" secondItem="9H8-GB-jjU" secondAttribute="top" constant="6" id="Eih-nu-TR2"/>
                             <constraint firstItem="tCc-bF-MiW" firstAttribute="leading" secondItem="9H8-GB-jjU" secondAttribute="leading" constant="3" id="FyA-z9-L6P"/>
-                            <constraint firstItem="l5R-TV-L0a" firstAttribute="leading" secondItem="9H8-GB-jjU" secondAttribute="leading" constant="60" id="YQI-pk-dp2"/>
+                            <constraint firstItem="l5R-TV-L0a" firstAttribute="leading" secondItem="9H8-GB-jjU" secondAttribute="leading" constant="47" id="YQI-pk-dp2"/>
                             <constraint firstItem="l5R-TV-L0a" firstAttribute="top" secondItem="DEw-cm-gJV" secondAttribute="bottom" constant="-1" id="eZK-qK-u4i"/>
                             <constraint firstItem="DEw-cm-gJV" firstAttribute="centerX" secondItem="9H8-GB-jjU" secondAttribute="centerX" id="js0-in-kmm"/>
                             <constraint firstItem="DEw-cm-gJV" firstAttribute="centerY" secondItem="9H8-GB-jjU" secondAttribute="centerY" id="kH4-Fs-N2t"/>
