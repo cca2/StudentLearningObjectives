@@ -417,6 +417,15 @@ extension ViewController: NSTableViewDelegate {
             if snippetsToDisplay[row].student != nil {
                 return CGFloat(110)
             }else {
+                let fakeField = NSTextField()
+                if let team = snippetsToDisplay[row].team {
+                    let item = team.name
+                    fakeField.stringValue = item
+                    let snippetsViewWidth = CGFloat(160.0)
+                    let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), snippetsViewWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 10.0 + 20.0
+                    
+                    return yourHeight
+                }
                 return CGFloat(40)
             }
             
