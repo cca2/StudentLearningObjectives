@@ -15,6 +15,11 @@ class StudentLearningObjective {
     var area = "none"
     var topic = "none"
     var tags: [(tag:String, value:String)] = []
+    var isAbandoned = false
+    var isStudying = false
+    var isExperimenting = false
+    var isApplyingInTheSolution = false
+    var isTeachingOthers = false
     
     init(description:String) {
         self.description = description

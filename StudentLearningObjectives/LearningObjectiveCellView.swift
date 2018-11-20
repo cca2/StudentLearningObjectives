@@ -12,6 +12,7 @@ import NaturalLanguage
 class LearningObjectiveCellView: NSTableCellView {
     @IBOutlet weak var descriptionTextField: NSTextField!
     @IBOutlet weak var selectedBox: NSBox!
+    @IBOutlet weak var statusBox: NSBox!
     
     func fitForObjective(elementToDisplay: NoteElementToDisplay) {
         let richTextDescription = NSMutableAttributedString(string: "")
@@ -105,6 +106,13 @@ class ParagraphCellView: NSTableCellView {
     @IBOutlet weak var selectedBox: NSBox!
     @IBOutlet weak var paragraphTextField: NSTextField!
     
+    func fitForParagraph(elementToDisplay: NoteElementToDisplay) {
+        let richTextDescription = NSMutableAttributedString(string: "")
+        if let paragraph = elementToDisplay.paragraph {
+            richTextDescription.append(NSAttributedString(string: paragraph))
+        }
+        self.paragraphTextField.attributedStringValue = richTextDescription
+    }
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
         

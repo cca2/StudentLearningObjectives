@@ -219,8 +219,8 @@ class ViewController: NSViewController {
         //Setup da parte de Outline da aplicação
         self.outlineView.delegate = self
         self.outlineView.dataSource = self
-        let selectionHighlightStyle = NSOutlineView.SelectionHighlightStyle.sourceList
-        self.outlineView.selectionHighlightStyle = selectionHighlightStyle
+//        let selectionHighlightStyle = NSOutlineView.SelectionHighlightStyle.sourceList
+//        self.outlineView.selectionHighlightStyle = selectionHighlightStyle
         
         let delegate = NSApplication.shared.delegate as! AppDelegate
         
@@ -379,9 +379,15 @@ extension ViewController: NSTableViewDataSource {
 
 extension ViewController: NSTableViewDelegate {
     func tableViewSelectionDidChange(_ notification: Notification) {
-        let selectedRow = self.mustHaveTableView.selectedRow
-        if selectedRow > 0 {
-            let myRowView = self.mustHaveTableView.rowView(atRow: selectedRow, makeIfNecessary: false)
+        let notesSelectedRow = self.mustHaveTableView.selectedRow
+        if notesSelectedRow > 0 {
+            let myRowView = self.mustHaveTableView.rowView(atRow: notesSelectedRow, makeIfNecessary: false)
+            myRowView?.selectionHighlightStyle = NSTableView.SelectionHighlightStyle.none
+            myRowView?.isEmphasized = false
+        }
+        let outlineSelectedRow = self.outlineView.selectedRow
+        if outlineSelectedRow > 0 {
+            let myRowView = self.outlineView.rowView(atRow: outlineSelectedRow, makeIfNecessary: false)
             myRowView?.selectionHighlightStyle = NSTableView.SelectionHighlightStyle.none
             myRowView?.isEmphasized = false
         }
@@ -390,16 +396,19 @@ extension ViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         if (tableView == self.mustHaveTableView) {
             if let objective = elementsToDisplay[row].objective {
-                let fakeField = NSTextField()
-                let item = objective.description + " #" + objective.priority + " #" + objective.level + " #" + objective.topic
-                let objectiveDescriptionWidth = CGFloat(540.0)
+//                let fakeField = NSTextField()
+//                let item = objective.description + " #" + objective.priority + " #" + objective.level + " #" + objective.topic
+//                let objectiveDescriptionWidth = CGFloat(540.0)
+//
+//                fakeField.stringValue = item
+//                // exactly how you get the text out of your data array depends on how you set it up
+//
+//                let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 10.0
+//
+//                self.programmingScrollViewHeight = self.programmingScrollViewHeight + yourHeight
+//                return yourHeight
                 
-                fakeField.stringValue = item
-                // exactly how you get the text out of your data array depends on how you set it up
-                
-                let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 10.0
-                
-                self.programmingScrollViewHeight = self.programmingScrollViewHeight + yourHeight
+                let yourHeight = CGFloat(233.0)
                 return yourHeight
             }else if let paragraph = elementsToDisplay[row].paragraph {
                 let fakeField = NSTextField()
@@ -440,7 +449,8 @@ extension ViewController: NSTableViewDelegate {
             var cellIdentifier = ""
             
             if tableColumn == tableView.tableColumns[0] {
-                if let objective = elementsToDisplay[row].objective {
+                if elementsToDisplay[row].objective != nil {
+//                    cellIdentifier = "ObjectiveCellID"
                     cellIdentifier = "ObjectiveCellID"
                     if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  LearningObjectiveCellView {
                         cell.fitForObjective(elementToDisplay: elementsToDisplay[row])
@@ -458,10 +468,10 @@ extension ViewController: NSTableViewDelegate {
                         cell.subtitle.stringValue = subtitle
                         return cell
                     }
-                }else if let paragraph = elementsToDisplay[row].paragraph {
-                    cellIdentifier = "ObjectiveCellID"
-                    if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  LearningObjectiveCellView {
-                        cell.fitForObjective(elementToDisplay: elementsToDisplay[row])
+                }else if elementsToDisplay[row].paragraph != nil {
+                    cellIdentifier = "ParagraphCellID"
+                    if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  ParagraphCellView {
+                        cell.fitForParagraph(elementToDisplay: elementsToDisplay[row])
                         return cell
                     }
                 }
@@ -667,5 +677,5 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
             showTeamNotes()
         }
         return true
-    }
+    }    
 }
