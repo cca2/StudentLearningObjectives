@@ -184,8 +184,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VGA-di-gVW">
-                                <rect key="frame" x="18" y="80" width="99" height="18"/>
-                                <buttonCell key="cell" type="check" title="Abandonado" bezelStyle="regularSquare" imagePosition="left" inset="2" id="uO9-Bv-2cx">
+                                <rect key="frame" x="18" y="80" width="98" height="18"/>
+                                <buttonCell key="cell" type="check" title="abandonado" bezelStyle="regularSquare" imagePosition="left" inset="2" id="uO9-Bv-2cx">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -195,7 +195,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="148" id="JFf-pi-nMn"/>
                                 </constraints>
-                                <buttonCell key="cell" type="check" title="Estudei a teoria" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8ER-xr-luO">
+                                <buttonCell key="cell" type="check" title="estudando" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8ER-xr-luO">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -205,7 +205,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="207" id="Fw6-cS-ENQ"/>
                                 </constraints>
-                                <buttonCell key="cell" type="check" title="Experimentei fora do projeto" bezelStyle="regularSquare" imagePosition="left" inset="2" id="5Zt-FS-iOC">
+                                <buttonCell key="cell" type="check" title="experimentando" bezelStyle="regularSquare" imagePosition="left" inset="2" id="5Zt-FS-iOC">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -215,21 +215,21 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="163" id="iYr-99-aqB"/>
                                 </constraints>
-                                <buttonCell key="cell" type="check" title="Apliquei no projeto" bezelStyle="regularSquare" imagePosition="left" inset="2" id="4zz-v3-Qim">
+                                <buttonCell key="cell" type="check" title="aplicando no projeto" bezelStyle="regularSquare" imagePosition="left" inset="2" id="4zz-v3-Qim">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tx9-Bt-c6v">
                                 <rect key="frame" x="18" y="8" width="167" height="18"/>
-                                <buttonCell key="cell" type="check" title="Ensinei outros colegas" bezelStyle="regularSquare" imagePosition="left" inset="2" id="UNB-K3-ffN">
+                                <buttonCell key="cell" type="check" title="ensinando outros colegas" bezelStyle="regularSquare" imagePosition="left" inset="2" id="UNB-K3-ffN">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xrY-lp-auX">
                                 <rect key="frame" x="18" y="98" width="91" height="18"/>
-                                <buttonCell key="cell" type="check" title="No backlog" bezelStyle="regularSquare" imagePosition="left" inset="2" id="cct-Kw-9dq">
+                                <buttonCell key="cell" type="check" title="no backlog" bezelStyle="regularSquare" imagePosition="left" inset="2" id="cct-Kw-9dq">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
