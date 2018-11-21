@@ -184,45 +184,52 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VGA-di-gVW">
-                                <rect key="frame" x="18" y="88" width="99" height="18"/>
-                                <buttonCell key="cell" type="check" title="Abandonado" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="uO9-Bv-2cx">
+                                <rect key="frame" x="18" y="80" width="99" height="18"/>
+                                <buttonCell key="cell" type="check" title="Abandonado" bezelStyle="regularSquare" imagePosition="left" inset="2" id="uO9-Bv-2cx">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4PL-LV-meq">
-                                <rect key="frame" x="18" y="68" width="152" height="18"/>
+                                <rect key="frame" x="18" y="62" width="152" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="148" id="JFf-pi-nMn"/>
                                 </constraints>
-                                <buttonCell key="cell" type="check" title="Estudei a teoria" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="8ER-xr-luO">
+                                <buttonCell key="cell" type="check" title="Estudei a teoria" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8ER-xr-luO">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tuN-mk-A0o">
-                                <rect key="frame" x="18" y="48" width="211" height="18"/>
+                                <rect key="frame" x="18" y="44" width="211" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="207" id="Fw6-cS-ENQ"/>
                                 </constraints>
-                                <buttonCell key="cell" type="check" title="Experimentei fora do projeto" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="5Zt-FS-iOC">
+                                <buttonCell key="cell" type="check" title="Experimentei fora do projeto" bezelStyle="regularSquare" imagePosition="left" inset="2" id="5Zt-FS-iOC">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="guZ-uo-XqC">
-                                <rect key="frame" x="18" y="28" width="167" height="18"/>
+                                <rect key="frame" x="18" y="26" width="167" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="163" id="iYr-99-aqB"/>
                                 </constraints>
-                                <buttonCell key="cell" type="check" title="Apliquei no projeto" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="4zz-v3-Qim">
+                                <buttonCell key="cell" type="check" title="Apliquei no projeto" bezelStyle="regularSquare" imagePosition="left" inset="2" id="4zz-v3-Qim">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tx9-Bt-c6v">
                                 <rect key="frame" x="18" y="8" width="167" height="18"/>
-                                <buttonCell key="cell" type="check" title="Ensinei outros colegas" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="UNB-K3-ffN">
+                                <buttonCell key="cell" type="check" title="Ensinei outros colegas" bezelStyle="regularSquare" imagePosition="left" inset="2" id="UNB-K3-ffN">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xrY-lp-auX">
+                                <rect key="frame" x="18" y="98" width="91" height="18"/>
+                                <buttonCell key="cell" type="check" title="No backlog" bezelStyle="regularSquare" imagePosition="left" inset="2" id="cct-Kw-9dq">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -230,16 +237,19 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="guZ-uo-XqC" firstAttribute="leading" secondItem="Tx9-Bt-c6v" secondAttribute="leading" id="6z5-u2-LNO"/>
-                            <constraint firstItem="guZ-uo-XqC" firstAttribute="top" secondItem="tuN-mk-A0o" secondAttribute="bottom" constant="6" symbolic="YES" id="7CV-bf-JpH"/>
+                            <constraint firstItem="guZ-uo-XqC" firstAttribute="top" secondItem="tuN-mk-A0o" secondAttribute="bottom" constant="4" id="7CV-bf-JpH"/>
                             <constraint firstItem="4PL-LV-meq" firstAttribute="leading" secondItem="tuN-mk-A0o" secondAttribute="leading" id="C3o-SK-8tu"/>
-                            <constraint firstItem="Tx9-Bt-c6v" firstAttribute="top" secondItem="guZ-uo-XqC" secondAttribute="bottom" constant="6" symbolic="YES" id="Ktj-vT-GNR"/>
+                            <constraint firstItem="xrY-lp-auX" firstAttribute="leading" secondItem="Cgc-f8-NaN" secondAttribute="leading" constant="20" id="Igx-Kr-HyI"/>
+                            <constraint firstItem="Tx9-Bt-c6v" firstAttribute="top" secondItem="guZ-uo-XqC" secondAttribute="bottom" constant="4" id="Ktj-vT-GNR"/>
                             <constraint firstItem="guZ-uo-XqC" firstAttribute="trailing" secondItem="Tx9-Bt-c6v" secondAttribute="trailing" id="c4y-4b-fbW"/>
-                            <constraint firstItem="tuN-mk-A0o" firstAttribute="centerY" secondItem="Cgc-f8-NaN" secondAttribute="centerY" id="eDV-VV-CP4"/>
+                            <constraint firstItem="tuN-mk-A0o" firstAttribute="centerY" secondItem="Cgc-f8-NaN" secondAttribute="centerY" constant="4" id="eDV-VV-CP4"/>
                             <constraint firstItem="tuN-mk-A0o" firstAttribute="leading" secondItem="guZ-uo-XqC" secondAttribute="leading" id="kQe-Po-dwt"/>
-                            <constraint firstItem="tuN-mk-A0o" firstAttribute="top" secondItem="4PL-LV-meq" secondAttribute="bottom" constant="6" symbolic="YES" id="qiX-ox-gKm"/>
+                            <constraint firstItem="xrY-lp-auX" firstAttribute="top" secondItem="Cgc-f8-NaN" secondAttribute="top" id="lwh-rB-NUo"/>
+                            <constraint firstAttribute="trailing" secondItem="xrY-lp-auX" secondAttribute="trailing" constant="493" id="nHf-UJ-A4i"/>
+                            <constraint firstItem="tuN-mk-A0o" firstAttribute="top" secondItem="4PL-LV-meq" secondAttribute="bottom" constant="4" id="qiX-ox-gKm"/>
                             <constraint firstItem="VGA-di-gVW" firstAttribute="leading" secondItem="4PL-LV-meq" secondAttribute="leading" id="v2P-ER-7bK"/>
                             <constraint firstItem="VGA-di-gVW" firstAttribute="leading" secondItem="Cgc-f8-NaN" secondAttribute="leading" constant="20" symbolic="YES" id="vh1-s6-Vg8"/>
-                            <constraint firstItem="4PL-LV-meq" firstAttribute="top" secondItem="VGA-di-gVW" secondAttribute="bottom" constant="6" symbolic="YES" id="wYd-oT-dKL"/>
+                            <constraint firstItem="4PL-LV-meq" firstAttribute="top" secondItem="VGA-di-gVW" secondAttribute="bottom" constant="4" id="wYd-oT-dKL"/>
                         </constraints>
                     </view>
                     <constraints>
@@ -259,9 +269,15 @@
                 <constraint firstAttribute="bottom" secondItem="8LG-os-JuO" secondAttribute="bottom" constant="-10" id="vBh-dm-4nn"/>
             </constraints>
             <connections>
+                <outlet property="abandonedCheck" destination="VGA-di-gVW" id="UNj-f0-LZf"/>
+                <outlet property="appliedCheck" destination="guZ-uo-XqC" id="UnW-nC-4ke"/>
                 <outlet property="descriptionTextField" destination="XxG-Wp-bdp" id="Wwy-w6-MbU"/>
+                <outlet property="experimentedCheck" destination="tuN-mk-A0o" id="1jf-C5-kLf"/>
+                <outlet property="inBacklogCheck" destination="xrY-lp-auX" id="fdl-Z8-qFR"/>
                 <outlet property="selectedBox" destination="8LG-os-JuO" id="AVZ-Q2-7Mv"/>
                 <outlet property="statusBox" destination="wEQ-VA-6WG" id="QBV-4I-cC0"/>
+                <outlet property="studiedCheck" destination="4PL-LV-meq" id="GQ6-PB-BOm"/>
+                <outlet property="taughtCheck" destination="Tx9-Bt-c6v" id="nRo-m5-ql7"/>
             </connections>
             <point key="canvasLocation" x="90.5" y="-129"/>
         </customView>

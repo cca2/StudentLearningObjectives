@@ -13,6 +13,12 @@ class LearningObjectiveCellView: NSTableCellView {
     @IBOutlet weak var descriptionTextField: NSTextField!
     @IBOutlet weak var selectedBox: NSBox!
     @IBOutlet weak var statusBox: NSBox!
+    @IBOutlet weak var inBacklogCheck: NSButton!
+    @IBOutlet weak var abandonedCheck: NSButton!
+    @IBOutlet weak var studiedCheck: NSButton!
+    @IBOutlet weak var experimentedCheck: NSButton!
+    @IBOutlet weak var appliedCheck: NSButton!
+    @IBOutlet weak var taughtCheck: NSButton!
     
     func fitForObjective(elementToDisplay: NoteElementToDisplay) {
         let richTextDescription = NSMutableAttributedString(string: "")
