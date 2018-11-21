@@ -221,7 +221,7 @@
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tx9-Bt-c6v">
-                                <rect key="frame" x="18" y="8" width="167" height="18"/>
+                                <rect key="frame" x="18" y="8" width="198" height="18"/>
                                 <buttonCell key="cell" type="check" title="ensinando outros colegas" bezelStyle="regularSquare" imagePosition="left" inset="2" id="UNB-K3-ffN">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -241,7 +241,7 @@
                             <constraint firstItem="4PL-LV-meq" firstAttribute="leading" secondItem="tuN-mk-A0o" secondAttribute="leading" id="C3o-SK-8tu"/>
                             <constraint firstItem="xrY-lp-auX" firstAttribute="leading" secondItem="Cgc-f8-NaN" secondAttribute="leading" constant="20" id="Igx-Kr-HyI"/>
                             <constraint firstItem="Tx9-Bt-c6v" firstAttribute="top" secondItem="guZ-uo-XqC" secondAttribute="bottom" constant="4" id="Ktj-vT-GNR"/>
-                            <constraint firstItem="guZ-uo-XqC" firstAttribute="trailing" secondItem="Tx9-Bt-c6v" secondAttribute="trailing" id="c4y-4b-fbW"/>
+                            <constraint firstItem="guZ-uo-XqC" firstAttribute="trailing" secondItem="Tx9-Bt-c6v" secondAttribute="trailing" constant="-31" id="c4y-4b-fbW"/>
                             <constraint firstItem="tuN-mk-A0o" firstAttribute="centerY" secondItem="Cgc-f8-NaN" secondAttribute="centerY" constant="4" id="eDV-VV-CP4"/>
                             <constraint firstItem="tuN-mk-A0o" firstAttribute="leading" secondItem="guZ-uo-XqC" secondAttribute="leading" id="kQe-Po-dwt"/>
                             <constraint firstItem="xrY-lp-auX" firstAttribute="top" secondItem="Cgc-f8-NaN" secondAttribute="top" id="lwh-rB-NUo"/>
