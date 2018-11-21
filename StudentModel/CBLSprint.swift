@@ -50,6 +50,7 @@ class CBLSprint {
                     let descriptionIndex = row.index(forKey: "Descrição")!
                     let priorityIndex = row.index(forKey: "Priorização")!
                     let expertiseLevelIndex = row.index(forKey: "Nível")!
+                    let statusIndex = row.index(forKey: "Status")!
                     
                     let teamName = row.values[teamIndex].stringValue!
                     let studentName = row.values[studentIndex].stringValue!
@@ -57,11 +58,13 @@ class CBLSprint {
                     let priority = row.values[priorityIndex].stringValue!
                     let expertiseLevel = row.values[expertiseLevelIndex].stringValue!
                     
-                    let studentObjective = StudentLearningObjective(description: description)
-                    studentObjective.level = expertiseLevel
-                    studentObjective.priority = priority
+                    let objectiveStatus:[Substring] = row.values[statusIndex].stringValue!.split(separator: Character(","))
                     
-                    self.sprint(teamName: teamName, studentName: studentName, description: description, level: expertiseLevel, priority: priority)
+//                    let studentObjective = StudentLearningObjective(description: description)
+//                    studentObjective.level = expertiseLevel
+//                    studentObjective.priority = priority
+                    
+                    self.sprint(teamName: teamName, studentName: studentName, description: description, level: expertiseLevel, priority: priority, status: objectiveStatus)
                 }
                 
                 self.studentsDict.keys.forEach{
@@ -75,11 +78,33 @@ class CBLSprint {
         }
     }
 
-    func sprint(teamName: String, studentName: String, description: String, level: String, priority: String) {
+    func sprint(teamName: String, studentName: String, description: String, level: String, priority: String, status: [Substring]) {
         //Alimentando o dicionário de teams com as informações no CloudKit
         let studentObjective = StudentLearningObjective(description: description)
         studentObjective.level = level
         studentObjective.priority = priority
+        
+        status.forEach{status in
+            if status == "no backlog" {
+                studentObjective.isInBacklog = true
+            }
+            if status == "abandonado" {
+                studentObjective.isAbandoned = true
+            }
+            if status == "experimentando" {
+                studentObjective.isExperimenting = true
+            }
+            if status == "estudando" {
+                studentObjective.isStudying = true
+            }
+            if status == "aplicando no app" {
+                studentObjective.isApplyingInTheSolution = true
+            }
+            if status == "ensinando em workshop" {
+                studentObjective.isTeachingOthers = true
+            }
+        }
+
         
         if self.studentsDict[studentName] != nil {
             self.studentsDict[studentName]?.addOriginalObjective(objective: studentObjective)

@@ -94,6 +94,12 @@ class StudentObjectiveClassifier {
             let topicClassification:String? = self.topicsClassifierModel.predictedLabel(for: sentence)
             
             let newObjective = StudentLearningObjective(description:sentence)
+            newObjective.isTeachingOthers = objective.isTeachingOthers
+            newObjective.isApplyingInTheSolution = objective.isApplyingInTheSolution
+            newObjective.isStudying = objective.isStudying
+            newObjective.isExperimenting = objective.isExperimenting
+            newObjective.isAbandoned = objective.isAbandoned
+            newObjective.isInBacklog = objective.isInBacklog
             
             if areaClassification != nil {
                 newObjective.area = areaClassification!

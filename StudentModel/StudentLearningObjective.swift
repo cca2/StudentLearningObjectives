@@ -20,6 +20,7 @@ class StudentLearningObjective {
     var isExperimenting = false
     var isApplyingInTheSolution = false
     var isTeachingOthers = false
+    var isInBacklog = false
     
     init(description:String) {
         self.description = description
