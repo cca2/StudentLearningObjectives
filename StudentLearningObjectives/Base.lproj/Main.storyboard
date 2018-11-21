@@ -723,12 +723,12 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <scrollView verticalHuggingPriority="240" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="9Hk-ou-fOs">
-                                                                    <rect key="frame" x="0.0" y="-2" width="671" height="595"/>
+                                                                    <rect key="frame" x="0.0" y="-2" width="671" height="570"/>
                                                                     <clipView key="contentView" id="rtK-uU-PTt">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="671" height="595"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="671" height="570"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="KWD-8i-QoG" viewBased="YES" id="H6R-s1-hmb">
+                                                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="H6R-s1-hmb">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="671" height="570"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <size key="intercellSpacing" width="3" height="2"/>
@@ -787,17 +787,13 @@
                                                                         <rect key="frame" x="-100" y="-100" width="15" height="102"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                     </scroller>
-                                                                    <tableHeaderView key="headerView" wantsLayer="YES" id="KWD-8i-QoG">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="671" height="25"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                    </tableHeaderView>
                                                                 </scrollView>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="9Hk-ou-fOs" secondAttribute="trailing" id="NYD-gS-6T6"/>
                                                                 <constraint firstAttribute="bottom" secondItem="9Hk-ou-fOs" secondAttribute="bottom" constant="-2" id="ggA-nd-XkN"/>
                                                                 <constraint firstItem="9Hk-ou-fOs" firstAttribute="leading" secondItem="HFl-OK-6r9" secondAttribute="leading" id="lV5-nG-Ddp"/>
-                                                                <constraint firstItem="9Hk-ou-fOs" firstAttribute="top" secondItem="HFl-OK-6r9" secondAttribute="top" priority="900" constant="-28" id="xdz-8g-6wm"/>
+                                                                <constraint firstItem="9Hk-ou-fOs" firstAttribute="top" secondItem="HFl-OK-6r9" secondAttribute="top" priority="900" constant="-3" id="xdz-8g-6wm"/>
                                                                 <constraint firstAttribute="trailing" secondItem="9Hk-ou-fOs" secondAttribute="trailing" id="yXe-ib-pQk"/>
                                                             </constraints>
                                                         </view>
@@ -805,7 +801,7 @@
                                                     </box>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="9Hk-ou-fOs" firstAttribute="top" secondItem="peK-Ts-pcK" secondAttribute="top" constant="-17" id="IAf-Oz-264"/>
+                                                    <constraint firstItem="9Hk-ou-fOs" firstAttribute="top" secondItem="peK-Ts-pcK" secondAttribute="top" constant="8" id="IAf-Oz-264"/>
                                                     <constraint firstItem="okh-i5-ZLA" firstAttribute="leading" secondItem="peK-Ts-pcK" secondAttribute="leading" id="VLE-TR-Bdh"/>
                                                     <constraint firstAttribute="bottom" secondItem="okh-i5-ZLA" secondAttribute="bottom" constant="20" symbolic="YES" id="oBX-3p-LSX"/>
                                                 </constraints>

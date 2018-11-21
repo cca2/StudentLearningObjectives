@@ -408,8 +408,12 @@ extension ViewController: NSTableViewDelegate {
 //                self.programmingScrollViewHeight = self.programmingScrollViewHeight + yourHeight
 //                return yourHeight
                 
-                let yourHeight = CGFloat(233.0)
+                let yourHeight = CGFloat(154.0)
                 return yourHeight
+            }else if let title = elementsToDisplay[row].title {
+                return CGFloat(40.0)
+            }else if let subtitle = elementsToDisplay[row].subtitle {
+                return CGFloat(40.0)
             }else if let paragraph = elementsToDisplay[row].paragraph {
                 let fakeField = NSTextField()
                 let item = paragraph.description
@@ -419,7 +423,7 @@ extension ViewController: NSTableViewDelegate {
                 let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), paragraphDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 10.0
                 
                 return yourHeight
-            } else {
+            }else {
                 return CGFloat(40.0)
             }
         }else if (tableView == self.teamMembersView) {

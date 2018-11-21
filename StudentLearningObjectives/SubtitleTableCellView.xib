@@ -54,13 +54,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="671" height="40"/>
                     <subviews>
                         <box boxType="custom" borderType="none" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="PmX-2f-nZi">
-                            <rect key="frame" x="71" y="0.0" width="589" height="40"/>
+                            <rect key="frame" x="71" y="0.0" width="600" height="40"/>
                             <view key="contentView" id="B9j-41-Z5W">
-                                <rect key="frame" x="0.0" y="0.0" width="589" height="40"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LS7-fa-Yct">
-                                        <rect key="frame" x="-2" y="13" width="217" height="14"/>
+                                        <rect key="frame" x="-2" y="13" width="228" height="14"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="H2" id="wu8-hs-0NY">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -87,9 +87,9 @@
                                 </constraints>
                             </view>
                             <constraints>
-                                <constraint firstAttribute="width" constant="589" id="Fjd-8k-Byx"/>
+                                <constraint firstAttribute="width" constant="600" id="Fjd-8k-Byx"/>
                             </constraints>
-                            <color key="fillColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </box>
                     </subviews>
                     <constraints>
@@ -113,20 +113,20 @@
             <connections>
                 <outlet property="subtitle" destination="7Yg-yX-uH3" id="zL7-9L-xDq"/>
             </connections>
-            <point key="canvasLocation" x="138.5" y="34"/>
+            <point key="canvasLocation" x="138.5" y="31"/>
         </customView>
         <tableCellView identifier="TitleCellID" id="xLD-Q0-uZI" customClass="TitleTableCellView" customModule="StudentLearningObjectives" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="671" height="40"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <box boxType="custom" borderType="none" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="Xmz-g3-4YC">
-                    <rect key="frame" x="71" y="1" width="589" height="39"/>
+                    <rect key="frame" x="71" y="1" width="603" height="39"/>
                     <view key="contentView" id="vqK-jN-MeO">
-                        <rect key="frame" x="0.0" y="0.0" width="589" height="39"/>
+                        <rect key="frame" x="0.0" y="0.0" width="603" height="39"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aB4-I1-xES">
-                                <rect key="frame" x="-2" y="13" width="217" height="13"/>
+                                <rect key="frame" x="-2" y="13" width="231" height="13"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="H1" id="5qM-KP-rgK">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -134,7 +134,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bs3-ip-f0J">
-                                <rect key="frame" x="20" y="10" width="219" height="19"/>
+                                <rect key="frame" x="20" y="10" width="233" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="JLg-HZ-bgp"/>
                                 </constraints>
@@ -157,9 +157,9 @@
                         </constraints>
                     </view>
                     <constraints>
-                        <constraint firstAttribute="width" constant="589" id="nwU-hS-6CI"/>
+                        <constraint firstAttribute="width" constant="603" id="nwU-hS-6CI"/>
                     </constraints>
-                    <color key="fillColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                 </box>
             </subviews>
             <constraints>
@@ -169,7 +169,7 @@
             <connections>
                 <outlet property="title" destination="Bs3-ip-f0J" id="x7o-i9-1YZ"/>
             </connections>
-            <point key="canvasLocation" x="138.5" y="140"/>
+            <point key="canvasLocation" x="138.5" y="138.5"/>
         </tableCellView>
     </objects>
 </document>
