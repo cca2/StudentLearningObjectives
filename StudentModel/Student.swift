@@ -34,6 +34,15 @@ class Student {
 //        self.activeTeam = record["activeTeam"]? as? Team
     }
     
+    func saveToRecord(database: CKDatabase) {
+        let record = CKRecord(recordType: "StudentRecord")
+        record["name"] = self.name
+        record["activeTeam"] = self.activeTeam?.id
+        database.save(record) {
+            record, error in
+        }
+    }
+    
     func addOriginalObjective(objective:StudentLearningObjective) -> Void {
         self.originalObjectives.append(objective)
     }

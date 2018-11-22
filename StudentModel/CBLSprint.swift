@@ -74,40 +74,6 @@ class CBLSprint {
                     }
                     
                 }
-                let studentsData = self.studentObjectiveClassifier.studentsData
-                
-                guard let rows = studentsData?.rows else {return}
-                rows.forEach{
-                    row in
-                    
-                    let teamIndex = row.index(forKey: "Equipe")!
-                    let studentIndex = row.index(forKey: "Estudante")!
-                    let descriptionIndex = row.index(forKey: "Descrição")!
-                    let priorityIndex = row.index(forKey: "Priorização")!
-                    let expertiseLevelIndex = row.index(forKey: "Nível")!
-                    let statusIndex = row.index(forKey: "Status")!
-                    
-                    let teamName = row.values[teamIndex].stringValue!
-                    let studentName = row.values[studentIndex].stringValue!
-                    let description = row.values[descriptionIndex].stringValue!
-                    let priority = row.values[priorityIndex].stringValue!
-                    let expertiseLevel = row.values[expertiseLevelIndex].stringValue!
-                    
-                    let objectiveStatus:[Substring] = row.values[statusIndex].stringValue!.split(separator: Character(","))
-                    
-//                    let studentObjective = StudentLearningObjective(description: description)
-//                    studentObjective.level = expertiseLevel
-//                    studentObjective.priority = priority
-                    
-                    self.sprint(teamName: teamName, studentName: studentName, description: description, level: expertiseLevel, priority: priority, status: objectiveStatus)
-                }
-                
-                self.studentsDict.keys.forEach{
-                    name in
-                    let student = self.studentsDict[name]
-                    self.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
-                }
-                
                 success()
             }
         }
@@ -154,6 +120,9 @@ class CBLSprint {
             team.addMember(newMember: self.studentsDict[studentName]!)
             if let student = self.studentsDict[studentName] {
                 student.activeTeam = team
+                let defaultContainer = CKContainer.default()
+                let database = defaultContainer.privateCloudDatabase
+//                student.saveToRecord(database: database)
             }
         }else {
             let team = Team(name: teamName)

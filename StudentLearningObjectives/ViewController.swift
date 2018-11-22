@@ -227,20 +227,49 @@ class ViewController: NSViewController {
 
         
         self.cblSprint = delegate.cblSprint
-        self.cblSprint.retrieveAllStudents {
-            self.cblSprint.retrieveAllTeams {
-                let teamsNames = self.cblSprint.teamsName()
-                teamsNames.forEach{
-                    name in
-                    self.sprint.mentories.append(name)
+        self.cblSprint.retrieveAllTeams {
+            let teamsNames = self.cblSprint.teamsName()
+            teamsNames.forEach{
+                name in
+                self.sprint.mentories.append(name)
+            }
+            
+            self.cblSprint.studentsDict.keys.forEach{
+                name in
+                self.teamMembersNames.append(name)
+            }
+            self.showTeamNotes()
+            self.cblSprint.retrieveAllStudents(onSucess: {
+                let studentsData = self.cblSprint.studentObjectiveClassifier.studentsData
+    
+                guard let rows = studentsData?.rows else {return}
+                rows.forEach{
+                    row in
+    
+                    let teamIndex = row.index(forKey: "Equipe")!
+                    let studentIndex = row.index(forKey: "Estudante")!
+                    let descriptionIndex = row.index(forKey: "Descrição")!
+                    let priorityIndex = row.index(forKey: "Priorização")!
+                    let expertiseLevelIndex = row.index(forKey: "Nível")!
+                    let statusIndex = row.index(forKey: "Status")!
+    
+                    let teamName = row.values[teamIndex].stringValue!
+                    let studentName = row.values[studentIndex].stringValue!
+                    let description = row.values[descriptionIndex].stringValue!
+                    let priority = row.values[priorityIndex].stringValue!
+                    let expertiseLevel = row.values[expertiseLevelIndex].stringValue!
+    
+                    let objectiveStatus:[Substring] = row.values[statusIndex].stringValue!.split(separator: Character(","))
+                    self.cblSprint.sprint(teamName: teamName, studentName: studentName, description: description, level: expertiseLevel, priority: priority, status: objectiveStatus)
                 }
-                
+    
                 self.cblSprint.studentsDict.keys.forEach{
                     name in
-                    self.teamMembersNames.append(name)
+                    let student = self.cblSprint.studentsDict[name]
+                    self.cblSprint.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
                 }
-                self.showTeamNotes()
-            }
+
+            })
         }
     }
     
