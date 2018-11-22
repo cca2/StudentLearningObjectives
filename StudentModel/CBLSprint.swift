@@ -30,19 +30,28 @@ class CBLSprint {
                 print (error)
                 return
             }
-            
             records.forEach{
                 record in
-                defaultContainer.privateCloudDatabase.delete(withRecordID: record.recordID){
-                    (recordID, error) -> Void in
-                    
-                    guard let recordID = recordID else {
-                        print("erro ao deletar registro")
-                        return
-                    }
-                    print("registro \(recordID) deletado com sucesso")
+                let student = Student(record: record)
+                if self.studentsDict[student.name] == nil {
+                    self.studentsDict[student.name] = student
                 }
             }
+            
+            success()
+            //Apagando todos os registros de estudantes
+//            records.forEach{
+//                record in
+//                defaultContainer.privateCloudDatabase.delete(withRecordID: record.recordID){
+//                    (recordID, error) -> Void in
+//
+//                    guard let recordID = recordID else {
+//                        print("erro ao deletar registro")
+//                        return
+//                    }
+//                    print("registro \(recordID) deletado com sucesso")
+//                }
+//            }
         }
     }
     
@@ -141,10 +150,9 @@ class CBLSprint {
             self.studentsDict[studentName] = student
         }
         
-        if (self.teams[teamName] != nil) {
-            self.teams[teamName]?.addMember(newMember: self.studentsDict[studentName]!)
-            self.studentsDict[studentName]?.activeTeam = self.teams[teamName]
-//            self.addStudentToBase(student: self.studentsDict[studentName]!)
+        if let team = self.teams[teamName] {
+            team.addMember(newMember: self.studentsDict[studentName]!)
+            self.studentsDict[studentName]?.activeTeam = team
         }else {
             let team = Team(name: teamName)
             self.teams[teamName] = team

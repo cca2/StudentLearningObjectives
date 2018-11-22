@@ -228,28 +228,19 @@ class ViewController: NSViewController {
         
         self.cblSprint = delegate.cblSprint
         self.cblSprint.retrieveAllStudents {
-            
-        }
-        
-        self.cblSprint.retrieveAllTeams {
-            let teamsNames = self.cblSprint.teamsName()
-            teamsNames.forEach{
-                name in
-//                self.teamsPopUp.addItem(withTitle: name)
-                self.sprint.mentories.append(name)
+            self.cblSprint.retrieveAllTeams {
+                let teamsNames = self.cblSprint.teamsName()
+                teamsNames.forEach{
+                    name in
+                    self.sprint.mentories.append(name)
+                }
+                
+                self.cblSprint.studentsDict.keys.forEach{
+                    name in
+                    self.teamMembersNames.append(name)
+                }
+                self.showTeamNotes()
             }
-            
-            self.cblSprint.studentsDict.keys.forEach{
-                name in
-                self.teamMembersNames.append(name)
-            }
-            
-//            self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: self.teamsPopUp.title)
-
-            
-//            self.teamsPopUp.removeAllItems()
-            
-            self.showTeamNotes()
         }
     }
     

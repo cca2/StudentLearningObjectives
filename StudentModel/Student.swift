@@ -14,6 +14,7 @@ import CloudKit
 
 class Student {
     var name = ""
+    var id = ""
     var originalObjectives:[StudentLearningObjective] = []
     var classifiedObjectives:Dictionary = [String:[StudentLearningObjective]]()
     var activeTeam: Team?
@@ -25,6 +26,12 @@ class Student {
         self.classifiedObjectives["design"] = []
         self.classifiedObjectives["success skills"] = []
         self.classifiedObjectives["none"] = []
+    }
+    
+    init(record: CKRecord) {
+        self.id = record.recordID.recordName
+        self.name = record["name"]!
+//        self.activeTeam = record["activeTeam"]? as? Team
     }
     
     func addOriginalObjective(objective:StudentLearningObjective) -> Void {
