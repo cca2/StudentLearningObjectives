@@ -114,15 +114,15 @@ class CBLSprint {
             student.name = studentName
             student.addOriginalObjective(objective: studentObjective)
             self.studentsDict[studentName] = student
+            let defaultContainer = CKContainer.default()
+            let database = defaultContainer.privateCloudDatabase
+            student.saveToRecord(database: database)
         }
         
         if let team = self.teams[teamName] {
             team.addMember(newMember: self.studentsDict[studentName]!)
             if let student = self.studentsDict[studentName] {
                 student.activeTeam = team
-                let defaultContainer = CKContainer.default()
-                let database = defaultContainer.privateCloudDatabase
-//                student.saveToRecord(database: database)
             }
         }else {
             let team = Team(name: teamName)

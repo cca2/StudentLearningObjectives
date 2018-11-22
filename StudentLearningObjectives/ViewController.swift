@@ -238,7 +238,9 @@ class ViewController: NSViewController {
                 name in
                 self.teamMembersNames.append(name)
             }
+            
             self.showTeamNotes()
+            
             self.cblSprint.retrieveAllStudents(onSucess: {
                 let studentsData = self.cblSprint.studentObjectiveClassifier.studentsData
     
