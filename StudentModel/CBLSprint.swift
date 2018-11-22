@@ -152,7 +152,9 @@ class CBLSprint {
         
         if let team = self.teams[teamName] {
             team.addMember(newMember: self.studentsDict[studentName]!)
-            self.studentsDict[studentName]?.activeTeam = team
+            if let student = self.studentsDict[studentName] {
+                student.activeTeam = team
+            }
         }else {
             let team = Team(name: teamName)
             self.teams[teamName] = team
