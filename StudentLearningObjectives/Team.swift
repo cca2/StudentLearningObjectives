@@ -10,6 +10,7 @@ import Foundation
 import CloudKit
 
 class Team {
+    var id: String?
     var name: String
     var members: [String:Student] = [:]
     var bigIdea: String?
@@ -29,7 +30,8 @@ class Team {
         let concept = ckRecord["concept"] as? String else {
             return nil
         }
-        var team = Team(name: name)
+        let team = Team(name: name)
+        team.id = ckRecord["recordName"]
         team.bigIdea = bigIdea
         team.essentialQuestion = essentialQuestion
         team.challenge = challenge

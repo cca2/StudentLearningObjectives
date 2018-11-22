@@ -10,11 +10,13 @@ import Foundation
 import NaturalLanguage
 import CoreML
 import CreateML
+import CloudKit
 
 class Student {
     var name = ""
     var originalObjectives:[StudentLearningObjective] = []
     var classifiedObjectives:Dictionary = [String:[StudentLearningObjective]]()
+    var activeTeam: Team?
     
     init() {
         self.classifiedObjectives["innovation"] = []
@@ -37,7 +39,7 @@ class Student {
         self.classifiedObjectives["success skills"] = []
         self.classifiedObjectives["none"] = []
     }
-    
+        
     func objectivesByTopic(topic: String, onlyMustHave:Bool) -> [StudentLearningObjective] {
         var res = [StudentLearningObjective]()
         let areas = self.classifiedObjectives.keys

@@ -19,6 +19,32 @@ class CBLSprint {
 
     init() {
     }
+
+    func retrieveAllStudents(onSucess success: @escaping () -> Void) -> Void {
+        let defaultContainer = CKContainer.default()
+        let predicate = NSPredicate(format: "TRUEPREDICATE")
+        let query = CKQuery(recordType: "StudentRecord", predicate: predicate)
+        defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
+            (records, error) in
+            guard let records = records else {
+                print (error)
+                return
+            }
+            
+            records.forEach{
+                record in
+                defaultContainer.privateCloudDatabase.delete(withRecordID: record.recordID){
+                    (recordID, error) -> Void in
+                    
+                    guard let recordID = recordID else {
+                        print("erro ao deletar registro")
+                        return
+                    }
+                    print("registro \(recordID) deletado com sucesso")
+                }
+            }
+        }
+    }
     
     //    func retriveAllTeams (_ teams: [Team]?, _ error: Error?) -> Void {
     func retrieveAllTeams(onSuccess success: @escaping () -> Void) -> Void {
@@ -117,15 +143,31 @@ class CBLSprint {
         
         if (self.teams[teamName] != nil) {
             self.teams[teamName]?.addMember(newMember: self.studentsDict[studentName]!)
+            self.studentsDict[studentName]?.activeTeam = self.teams[teamName]
+//            self.addStudentToBase(student: self.studentsDict[studentName]!)
         }else {
             let team = Team(name: teamName)
             self.teams[teamName] = team
         }
     }
     
-//    func addTeam(newTeam:Team) {
-//        self.teams[newTeam.name] = newTeam
-//    }
+    func addStudentToBase(student: Student) {
+        let defaultContainer = CKContainer.default()
+        let database = defaultContainer.privateCloudDatabase
+        
+        let record = CKRecord(recordType: "StudentRecord")
+        record["name"] = student.name
+        database.save(record) {
+            record, error in
+            
+            guard let record = record else {
+                print(error)
+                return
+            }
+            
+            print("record salvo com sucesso")
+        }
+    }
     
     func teamWithName(name:String) -> Team? {
         return self.teams[name]

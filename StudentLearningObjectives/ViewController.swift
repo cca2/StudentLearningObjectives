@@ -227,6 +227,10 @@ class ViewController: NSViewController {
 
         
         self.cblSprint = delegate.cblSprint
+        self.cblSprint.retrieveAllStudents {
+            
+        }
+        
         self.cblSprint.retrieveAllTeams {
             let teamsNames = self.cblSprint.teamsName()
             teamsNames.forEach{
