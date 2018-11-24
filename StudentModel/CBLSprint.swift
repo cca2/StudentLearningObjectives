@@ -26,10 +26,6 @@ class CBLSprint {
         self.id = "F2DA7D69-F4D0-FFB6-9223-051BE4DCC96B"
     }
     
-    func retriveAllSprints(onSuccess success: @escaping () -> Void) -> Void {
-    
-    }
-    
     func retrieveAllObjectives(onSuccess sucess: @escaping () -> Void) -> Void {
         let defaultContainer = CKContainer.default()
         let predicate = NSPredicate(format: "TRUEPREDICATE")

@@ -7,11 +7,19 @@
 //
 
 import Cocoa
+import CloudKit
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    var courses:[CBLCourse] = []
     var cblSprint = CBLSprint(name: "Challenge 4")
     
+    var selectedCourse: (CBLCourse)? {
+        didSet {
+            onCourseSelected!(selectedCourse!)
+        }
+    }
+
     var selectedTeam: (Team)? {
         didSet {
            onTeamSelected!()
@@ -29,13 +37,41 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             onObjectiveSelected!(selectedObjective!.0, selectedObjective!.1)
         }
     }
-    
+
+    var onCourseSelected:((CBLCourse) -> ())?
     var onObjectiveSelected: ((Student, StudentLearningObjective)->())?
     var onTeamSelected:(() -> ())?
     var onStudentSelected: (() -> ())?
 
+    func retrieveAllCourses(onSuccess sucess: @escaping () -> Void) -> Void {
+        let defaultContainer = CKContainer.default()
+        let predicate = NSPredicate(format: "TRUEPREDICATE")
+        let query = CKQuery(recordType: "CBLCourseRecord", predicate: predicate)
+        defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
+            (records, error) in
+            guard let records = records else {
+                print (error)
+                return
+            }
+            
+            print("coletei: \(records.count)")
+            
+            records.forEach{
+                record in
+                let course = CBLCourse(courseRecord: record)
+                self.courses.append(course)
+            }
+            sucess()
+        }
+    }
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        self.retrieveAllCourses {
+            if self.courses.count > 0 {
+                self.selectedCourse = self.courses.first
+            }
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

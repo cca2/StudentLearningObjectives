@@ -106,6 +106,9 @@ class ViewController: NSViewController {
     
     let keys = ["teams"]
 
+    //Salva o delegate
+    let delegate = NSApplication.shared.delegate as! AppDelegate
+    
     @IBAction func tagHasBeenEdited(_ sender: NSTextField) {
         let newTag = sender.stringValue
         if (newTag == "ACTION" || newTag == "NONE" || newTag == "TOPIC" || newTag == "GENERIC_ACTION" || newTag == "GENERIC_TOPIC" || newTag == "DEVICE") {
@@ -212,6 +215,12 @@ class ViewController: NSViewController {
         self.teamMembersView.delegate = self
         self.teamMembersView.selectionHighlightStyle = NSTableView.SelectionHighlightStyle.none
         self.teamMembersView.register(NSNib(nibNamed: "SnippetCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("SnippetCellID"))
+
+        //Closure quando o curso é selecionado
+        self.delegate.onCourseSelected = {
+            course in
+            print("curso \(course.name) selecionado")
+        }
 
         //Setup da parte de CloudKit da Aplicação
 //        fetchUserRecordID()

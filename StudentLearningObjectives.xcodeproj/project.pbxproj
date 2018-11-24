@@ -40,6 +40,7 @@
 		DA82CB5A219DDBB10057F948 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA82CB59219DDBB10057F948 /* Team.swift */; };
 		DA82CB5D219F4F8C0057F948 /* CBLSprintDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA82CB5B219F4F8C0057F948 /* CBLSprintDataModel.xcdatamodeld */; };
 		DA82CB60219F54EE0057F948 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA82CB5F219F54EE0057F948 /* CloudKit.framework */; };
+		DADFDAD621A98EE500F20101 /* CBLCouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADFDAD521A98EE500F20101 /* CBLCouse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		DA82CB59219DDBB10057F948 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		DA82CB5C219F4F8C0057F948 /* CBLSprintDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CBLSprintDataModel.xcdatamodel; sourceTree = "<group>"; };
 		DA82CB5F219F54EE0057F948 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		DADFDAD521A98EE500F20101 /* CBLCouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBLCouse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				DA346BE62193CDEF00EBF4CD /* CBLSprint.swift */,
+				DADFDAD521A98EE500F20101 /* CBLCouse.swift */,
 				DA3DADE7218BEBAF0072126F /* Student.swift */,
 				DA3DADE6218BEBAF0072126F /* StudentLearningObjective.swift */,
 			);
@@ -379,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA3DADF5218BEBCF0072126F /* LearningObjectiveCellView.swift in Sources */,
+				DADFDAD621A98EE500F20101 /* CBLCouse.swift in Sources */,
 				DA3DADB8218BEB870072126F /* ViewController.swift in Sources */,
 				DA82CB5A219DDBB10057F948 /* Team.swift in Sources */,
 				DA3DADF7218BEBCF0072126F /* SnippetCellView.swift in Sources */,
