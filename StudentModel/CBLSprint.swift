@@ -11,15 +11,59 @@ import CreateML
 import CloudKit
 
 class CBLSprint {
+    var id: String?
+    var name:String
     var teams:Dictionary = [String:Team]()
     var studentsDict:Dictionary = [String:Student]()
+    var studentLearningObjectives = [String: StudentLearningObjective]()
+    
     var selectedTeam:Team?
     var selectedStudent: Student?
     let studentObjectiveClassifier = StudentObjectiveClassifier()
 
-    init() {
+    init(name: String) {
+        self.name = name
+        self.id = "F2DA7D69-F4D0-FFB6-9223-051BE4DCC96B"
     }
-
+    
+    func retriveAllSprints(onSuccess success: @escaping () -> Void) -> Void {
+    
+    }
+    
+    func retrieveAllObjectives(onSuccess sucess: @escaping () -> Void) -> Void {
+        let defaultContainer = CKContainer.default()
+        let predicate = NSPredicate(format: "TRUEPREDICATE")
+        let query = CKQuery(recordType: "StudentLearningObjectiveRecord", predicate: predicate)
+        defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
+            (records, error) in
+            guard let records = records else {
+                print (error)
+                return
+            }
+            
+            print("coletei: \(records.count)")
+            
+            records.forEach{
+                record in
+                let objective = StudentLearningObjective(record: record)
+            }
+            //Apagando todos os registros de estudantes
+//            records.forEach{
+//                record in
+//                defaultContainer.privateCloudDatabase.delete(withRecordID: record.recordID){
+//                    (recordID, error) -> Void in
+//
+//                    guard let recordID = recordID else {
+//                        print("erro ao deletar registro")
+//                        return
+//                    }
+//                    print("registro \(recordID) deletado com sucesso")
+//                }
+//            }
+        }
+        sucess()
+    }
+    
     func retrieveAllStudents(onSucess success: @escaping () -> Void) -> Void {
         let defaultContainer = CKContainer.default()
         let predicate = NSPredicate(format: "TRUEPREDICATE")
@@ -105,8 +149,13 @@ class CBLSprint {
                 studentObjective.isTeachingOthers = true
             }
         }
-
         
+//        let defaultContainer = CKContainer.default()
+//        let database = defaultContainer.privateCloudDatabase
+//        if let recordID = studentObjective.saveToRecord(database: database) {
+//            self.studentLearningObjectives[recordID] = studentObjective
+//        }
+                
         if self.studentsDict[studentName] != nil {
             self.studentsDict[studentName]?.addOriginalObjective(objective: studentObjective)
         }else {
@@ -173,5 +222,7 @@ class CBLSprint {
         }
         return res
     }
+    
+    
 }
 

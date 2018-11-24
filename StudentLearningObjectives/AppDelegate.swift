@@ -10,7 +10,7 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    var cblSprint = CBLSprint()
+    var cblSprint = CBLSprint(name: "Challenge 4")
     
     var selectedTeam: (Team)? {
         didSet {

@@ -66,7 +66,7 @@ class SnippetToDisplay {
 // Data model
 struct Challenge {
     var name:String
-    var mentories: [String]
+    var teams: [String]
 }
 
 class ViewController: NSViewController {
@@ -101,10 +101,10 @@ class ViewController: NSViewController {
 
     // I assume you know how load it from a plist so I will skip
     // that code and use a constant for simplicity
-//    let sprint = Challenge(name: "Challenge 4", mentories: ["7 pecados", "pulsai"])
-    var sprint = Challenge(name: "Challenge 4", mentories:[String]())
+//    let sprint = Challenge(name: "Challenge 4", teams: ["7 pecados", "pulsai"])
+    var sprint = Challenge(name: "Challenge 4", teams:[String]())
     
-    let keys = ["mentories"]
+    let keys = ["teams"]
 
     @IBAction func tagHasBeenEdited(_ sender: NSTextField) {
         let newTag = sender.stringValue
@@ -231,7 +231,7 @@ class ViewController: NSViewController {
             let teamsNames = self.cblSprint.teamsName()
             teamsNames.forEach{
                 name in
-                self.sprint.mentories.append(name)
+                self.sprint.teams.append(name)
             }
             
             self.cblSprint.studentsDict.keys.forEach{
@@ -269,6 +269,10 @@ class ViewController: NSViewController {
                     name in
                     let student = self.cblSprint.studentsDict[name]
                     self.cblSprint.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
+                }
+                
+                self.cblSprint.retrieveAllObjectives {
+                    print(">>> 0 <<<")
                 }
 
             })
@@ -605,8 +609,8 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         if item == nil {
             return keys[index]
-        } else if let item = item as? String, item == "mentories" {
-            return ("mentories", index)
+        } else if let item = item as? String, item == "teams" {
+            return ("teams", index)
         } else {
             return 0
         }
@@ -619,8 +623,8 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         if item == nil {
             return keys.count
-        } else if let item = item as? String, item == "mentories" {
-            return sprint.mentories.count
+        } else if let item = item as? String, item == "teams" {
+            return sprint.teams.count
         } else if let item = item as? String, item == "piano" {
             return 1
         }else {
@@ -630,7 +634,7 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
     
     // Tell whether the row is expandable. The only expandable row is the Hobbies row
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        if let item = item as? String, item == "mentories" {
+        if let item = item as? String, item == "teams" {
             return true
         }else if let item = item as? String, item == "piano"{
             return true
@@ -659,15 +663,15 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
 //                text = "Birth Place"
 //            case "birthDate":
 //                text = "Birth Date"
-            case "mentories":
-                text = "Mentorias"
+            case "teams":
+                text = "Challenge 4"
             default:
                 break
             }
         case ("KeyColumn", _):
             // Remember that we identified the hobby sub-rows differently
-            if let (key, index) = item as? (String, Int), key == "mentories" {
-                text = self.sprint.mentories[index]
+            if let (key, index) = item as? (String, Int), key == "teams" {
+                text = self.sprint.teams[index]
             }else if let (key, index) = item as? (String, Int), key == "piano" {
                 text = "piano de corda"
             }
@@ -697,7 +701,7 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
     
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
         if let (_, index) = item as? (String, Int) {
-            let teamName = self.sprint.mentories[index]
+            let teamName = self.sprint.teams[index]
             self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
             let delegate = NSApplication.shared.delegate as! AppDelegate
             delegate.selectedTeam = self.cblSprint.selectedTeam
