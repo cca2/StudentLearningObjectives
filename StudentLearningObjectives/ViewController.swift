@@ -102,7 +102,7 @@ class ViewController: NSViewController {
     // I assume you know how load it from a plist so I will skip
     // that code and use a constant for simplicity
 //    let sprint = Challenge(name: "Challenge 4", teams: ["7 pecados", "pulsai"])
-    var sprint = Challenge(name: "Challenge 4", teams:[String]())
+//    var sprint = Challenge(name: "Challenge 4", teams:[String]())
     
     let keys = ["sprints", "teams"]
 
@@ -224,7 +224,9 @@ class ViewController: NSViewController {
         
         self.delegate.onSprintSelected = {
             sprint in
-            print("Sprint \(sprint.name) selecionada")
+            sprint.retrieveAllTeams {
+                self.outlineView.reloadData()
+            }
         }
         
         self.delegate.onSelectedCourseSprintsFetched = {
@@ -642,7 +644,10 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
         if item == nil {
             return keys.count
         } else if let item = item as? String, item == "teams" {
-            return sprint.teams.count
+            if let teams = delegate.selectedSprint?.teams {
+                return teams.count
+            }
+            return 0
         } else if let item = item as? String, item == "sprints" {
             return (delegate.selectedCourse?.sprints.count)!
         }else {
@@ -691,7 +696,9 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
         case ("KeyColumn", _):
             // Remember that we identified the hobby sub-rows differently
             if let (key, index) = item as? (String, Int), key == "teams" {
-                text = self.sprint.teams[index]
+                if let teamName = delegate.selectedSprint?.teamsName()[index] {
+                    text = teamName
+                }
             }else if let (key, index) = item as? (String, Int), key == "sprints" {
                 text = (delegate.selectedCourse?.sprints[index].name)!
             }
@@ -720,15 +727,22 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
     }
     
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
-        if let (_, index) = item as? (String, Int) {
-            let teamName = self.sprint.teams[index]
-            self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
-            let delegate = NSApplication.shared.delegate as! AppDelegate
-            delegate.selectedTeam = self.cblSprint.selectedTeam
-            
-            newTeamSelected()
-            self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
-            showTeamNotes()
+        if let (columnIdentifier, index) = item as? (String, Int) {
+            if columnIdentifier == "sprints" {
+                if let selectedSprint = self.delegate.selectedCourse?.sprints[index] {
+                    self.delegate.selectedSprint = selectedSprint
+                }
+            } else if columnIdentifier == "teams" {
+                if let teamName = self.delegate.selectedSprint?.teamsName()[index] {
+                    self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
+                    let delegate = NSApplication.shared.delegate as! AppDelegate
+                    delegate.selectedTeam = self.cblSprint.selectedTeam
+                    
+                    newTeamSelected()
+                    self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
+                    showTeamNotes()
+                }
+            }
         }
         return true
     }    

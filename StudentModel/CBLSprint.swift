@@ -103,7 +103,9 @@ class CBLSprint {
     //    func retriveAllTeams (_ teams: [Team]?, _ error: Error?) -> Void {
     func retrieveAllTeams(onSuccess success: @escaping () -> Void) -> Void {
         let defaultContainer = CKContainer.default()
-        let predicate = NSPredicate(format: "TRUEPREDICATE")
+        let teamRecord = CKRecord(recordType: "CBLSprintRecord", recordID: CKRecord.ID(recordName: self.id!))
+        let reference = CKRecord.Reference(recordID: teamRecord.recordID, action: .none)
+        let predicate = NSPredicate(format: "sprint == %@", reference)
         let query = CKQuery(recordType: "TeamRecord", predicate: predicate)
         defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
             (records, error) in
