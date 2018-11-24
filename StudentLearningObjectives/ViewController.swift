@@ -104,7 +104,7 @@ class ViewController: NSViewController {
 //    let sprint = Challenge(name: "Challenge 4", teams: ["7 pecados", "pulsai"])
     var sprint = Challenge(name: "Challenge 4", teams:[String]())
     
-    let keys = ["teams"]
+    let keys = ["sprints", "teams"]
 
     //Salva o delegate
     let delegate = NSApplication.shared.delegate as! AppDelegate
@@ -221,71 +221,78 @@ class ViewController: NSViewController {
             course in
             print("curso \(course.name) selecionado")
         }
+        
+        self.delegate.onSprintSelected = {
+            sprint in
+            print("Sprint \(sprint.name) selecionada")
+        }
+        
+        self.delegate.onSelectedCourseSprintsFetched = {
+            self.outlineView.reloadData()
+        }
 
         //Setup da parte de CloudKit da Aplicação
-//        fetchUserRecordID()
         
         //Setup da parte de Outline da aplicação
         self.outlineView.delegate = self
         self.outlineView.dataSource = self
-//        let selectionHighlightStyle = NSOutlineView.SelectionHighlightStyle.sourceList
-//        self.outlineView.selectionHighlightStyle = selectionHighlightStyle
         
         let delegate = NSApplication.shared.delegate as! AppDelegate
         
 
         
-        self.cblSprint = delegate.cblSprint
-        self.cblSprint.retrieveAllTeams {
-            let teamsNames = self.cblSprint.teamsName()
-            teamsNames.forEach{
-                name in
-                self.sprint.teams.append(name)
-            }
-            
-            self.cblSprint.studentsDict.keys.forEach{
-                name in
-                self.teamMembersNames.append(name)
-            }
-            
-            self.showTeamNotes()
-            
-            self.cblSprint.retrieveAllStudents(onSucess: {
-                let studentsData = self.cblSprint.studentObjectiveClassifier.studentsData
-    
-                guard let rows = studentsData?.rows else {return}
-                rows.forEach{
-                    row in
-    
-                    let teamIndex = row.index(forKey: "Equipe")!
-                    let studentIndex = row.index(forKey: "Estudante")!
-                    let descriptionIndex = row.index(forKey: "Descrição")!
-                    let priorityIndex = row.index(forKey: "Priorização")!
-                    let expertiseLevelIndex = row.index(forKey: "Nível")!
-                    let statusIndex = row.index(forKey: "Status")!
-    
-                    let teamName = row.values[teamIndex].stringValue!
-                    let studentName = row.values[studentIndex].stringValue!
-                    let description = row.values[descriptionIndex].stringValue!
-                    let priority = row.values[priorityIndex].stringValue!
-                    let expertiseLevel = row.values[expertiseLevelIndex].stringValue!
-    
-                    let objectiveStatus:[Substring] = row.values[statusIndex].stringValue!.split(separator: Character(","))
-                    self.cblSprint.sprint(teamName: teamName, studentName: studentName, description: description, level: expertiseLevel, priority: priority, status: objectiveStatus)
-                }
-    
-                self.cblSprint.studentsDict.keys.forEach{
-                    name in
-                    let student = self.cblSprint.studentsDict[name]
-                    self.cblSprint.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
-                }
-                
-                self.cblSprint.retrieveAllObjectives {
-                    print(">>> 0 <<<")
-                }
-
-            })
-        }
+//        self.cblSprint = delegate.selectedSprint
+//
+//        self.cblSprint.retrieveAllTeams {
+//            let teamsNames = self.cblSprint.teamsName()
+//            teamsNames.forEach{
+//                name in
+//                self.sprint.teams.append(name)
+//            }
+//
+//            self.cblSprint.studentsDict.keys.forEach{
+//                name in
+//                self.teamMembersNames.append(name)
+//            }
+//
+//            self.showTeamNotes()
+//
+//            self.cblSprint.retrieveAllStudents(onSucess: {
+//                let studentsData = self.cblSprint.studentObjectiveClassifier.studentsData
+//
+//                guard let rows = studentsData?.rows else {return}
+//                rows.forEach{
+//                    row in
+//
+//                    let teamIndex = row.index(forKey: "Equipe")!
+//                    let studentIndex = row.index(forKey: "Estudante")!
+//                    let descriptionIndex = row.index(forKey: "Descrição")!
+//                    let priorityIndex = row.index(forKey: "Priorização")!
+//                    let expertiseLevelIndex = row.index(forKey: "Nível")!
+//                    let statusIndex = row.index(forKey: "Status")!
+//
+//                    let teamName = row.values[teamIndex].stringValue!
+//                    let studentName = row.values[studentIndex].stringValue!
+//                    let description = row.values[descriptionIndex].stringValue!
+//                    let priority = row.values[priorityIndex].stringValue!
+//                    let expertiseLevel = row.values[expertiseLevelIndex].stringValue!
+//
+//                    let objectiveStatus:[Substring] = row.values[statusIndex].stringValue!.split(separator: Character(","))
+//                    self.cblSprint.sprint(teamName: teamName, studentName: studentName, description: description, level: expertiseLevel, priority: priority, status: objectiveStatus)
+//                }
+//
+//                self.cblSprint.studentsDict.keys.forEach{
+//                    name in
+//                    let student = self.cblSprint.studentsDict[name]
+//                    self.cblSprint.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
+//                }
+//
+//                self.cblSprint.retrieveAllObjectives {
+//                    print(">>> 0 <<<")
+//                }
+//
+//            })
+//        }
     }
     
     func showTeamNotes() {
@@ -620,6 +627,8 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
             return keys[index]
         } else if let item = item as? String, item == "teams" {
             return ("teams", index)
+        } else if let item = item as? String, item == "sprints" {
+            return ("sprints", index)
         } else {
             return 0
         }
@@ -634,8 +643,8 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
             return keys.count
         } else if let item = item as? String, item == "teams" {
             return sprint.teams.count
-        } else if let item = item as? String, item == "piano" {
-            return 1
+        } else if let item = item as? String, item == "sprints" {
+            return (delegate.selectedCourse?.sprints.count)!
         }else {
             return 0
         }
@@ -645,7 +654,7 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         if let item = item as? String, item == "teams" {
             return true
-        }else if let item = item as? String, item == "piano"{
+        }else if let item = item as? String, item == "sprints"{
             return true
         } else {
             return false
@@ -672,6 +681,8 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
 //                text = "Birth Place"
 //            case "birthDate":
 //                text = "Birth Date"
+            case "sprints":
+                text = "Sprints"
             case "teams":
                 text = "Challenge 4"
             default:
@@ -681,8 +692,8 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
             // Remember that we identified the hobby sub-rows differently
             if let (key, index) = item as? (String, Int), key == "teams" {
                 text = self.sprint.teams[index]
-            }else if let (key, index) = item as? (String, Int), key == "piano" {
-                text = "piano de corda"
+            }else if let (key, index) = item as? (String, Int), key == "sprints" {
+                text = (delegate.selectedCourse?.sprints[index].name)!
             }
 //        case ("ValueColumn", let item as String):
 //            switch item {

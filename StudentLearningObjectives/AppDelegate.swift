@@ -12,7 +12,6 @@ import CloudKit
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     var courses:[CBLCourse] = []
-    var cblSprint = CBLSprint(name: "Challenge 4")
     
     var selectedCourse: (CBLCourse)? {
         didSet {
@@ -20,6 +19,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
+    var selectedSprint: (CBLSprint)? {
+        didSet {
+            onSprintSelected!(selectedSprint!)
+        }
+    }
+    
     var selectedTeam: (Team)? {
         didSet {
            onTeamSelected!()
@@ -39,10 +44,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     var onCourseSelected:((CBLCourse) -> ())?
+    var onSprintSelected:((CBLSprint) -> ())?
     var onObjectiveSelected: ((Student, StudentLearningObjective)->())?
     var onTeamSelected:(() -> ())?
     var onStudentSelected: (() -> ())?
-
+    var onSelectedCourseSprintsFetched:(() -> ())?
+    
+    func selectedCourseSprintsFetched () {
+        if let onSelectedCourseSprintsFetched = onSelectedCourseSprintsFetched {
+            onSelectedCourseSprintsFetched()
+        }
+    }
+    
     func retrieveAllCourses(onSuccess sucess: @escaping () -> Void) -> Void {
         let defaultContainer = CKContainer.default()
         let predicate = NSPredicate(format: "TRUEPREDICATE")

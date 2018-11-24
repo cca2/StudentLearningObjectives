@@ -23,7 +23,7 @@ class IntelligentFeedbackController: NSPageController {
         self.numberOfMatchs.isHidden = true
         
         let delegate = NSApplication.shared.delegate as! AppDelegate
-        self.cblSprint = delegate.cblSprint
+        self.cblSprint = delegate.selectedSprint
         
         self.studentMatchByObjectiveList.dataSource = self
         self.studentMatchByObjectiveList.delegate = self

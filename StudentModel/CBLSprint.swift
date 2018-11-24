@@ -12,7 +12,7 @@ import CloudKit
 
 class CBLSprint {
     var id: String?
-    var name:String
+    var name:String?
     var teams:Dictionary = [String:Team]()
     var studentsDict:Dictionary = [String:Student]()
     var studentLearningObjectives = [String: StudentLearningObjective]()
@@ -24,6 +24,11 @@ class CBLSprint {
     init(name: String) {
         self.name = name
         self.id = "F2DA7D69-F4D0-FFB6-9223-051BE4DCC96B"
+    }
+    
+    init(sprintRecord: CKRecord) {
+        self.name = sprintRecord["name"]
+        self.id = sprintRecord.recordID.recordName
     }
     
     func retrieveAllObjectives(onSuccess sucess: @escaping () -> Void) -> Void {
