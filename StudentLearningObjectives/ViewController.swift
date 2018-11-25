@@ -228,7 +228,10 @@ class ViewController: NSViewController {
             sprint in
             sprint.retrieveAllTeams {
                 self.outlineKeys = ["sprints", "teams"]
-                self.outlineView.reloadData()
+                DispatchQueue.main.async {
+                    self.outlineView.reloadData()
+                }
+                
                 if let studentsData = sprint.studentObjectiveClassifier.studentsData {
                     let rows = studentsData.rows
                     rows.forEach{
@@ -280,7 +283,9 @@ class ViewController: NSViewController {
         
         self.delegate.onSelectedCourseSprintsFetched = {
             self.outlineKeys = ["sprints"]
-            self.outlineView.reloadData()
+            DispatchQueue.main.async {
+                self.outlineView.reloadData()
+            }
         }
 
         //Setup da parte de CloudKit da Aplicação
