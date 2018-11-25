@@ -77,26 +77,26 @@ class CBLSprint {
             }
             records.forEach{
                 record in
-                let student = Student(record: record)
-                if self.studentsDict[student.name] == nil {
-                    self.studentsDict[student.name] = student
-                }
+//                let student = Student(record: record)
+//                if self.studentsDict[student.name] == nil {
+//                    self.studentsDict[student.name] = student
+//                }
             }
             
             success()
             //Apagando todos os registros de estudantes
-//            records.forEach{
-//                record in
-//                defaultContainer.privateCloudDatabase.delete(withRecordID: record.recordID){
-//                    (recordID, error) -> Void in
-//
-//                    guard let recordID = recordID else {
-//                        print("erro ao deletar registro")
-//                        return
-//                    }
-//                    print("registro \(recordID) deletado com sucesso")
-//                }
-//            }
+            records.forEach{
+                record in
+                defaultContainer.privateCloudDatabase.delete(withRecordID: record.recordID){
+                    (recordID, error) -> Void in
+
+                    guard let recordID = recordID else {
+                        print("erro ao deletar registro")
+                        return
+                    }
+                    print("registro \(recordID) deletado com sucesso")
+                }
+            }
         }
     }
     
@@ -157,7 +157,7 @@ class CBLSprint {
 //        if let recordID = studentObjective.saveToRecord(database: database) {
 //            self.studentLearningObjectives[recordID] = studentObjective
 //        }
-                
+        
         if self.studentsDict[studentName] != nil {
             self.studentsDict[studentName]?.addOriginalObjective(objective: studentObjective)
         }else {

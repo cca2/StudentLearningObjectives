@@ -10,6 +10,7 @@ import Foundation
 
 class StudentSprintRelation {
     var student:Student?
+    var course: CBLCourse?
     var sprint:CBLSprint?
     var team:Team?
     var originalObjectives:[StudentLearningObjective] = []

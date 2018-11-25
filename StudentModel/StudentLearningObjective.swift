@@ -10,8 +10,9 @@ import Foundation
 import CloudKit
 
 class StudentLearningObjective {
-    var sprintID = ""
-    var teamID = ""
+    var courseID:String?
+    var sprintID:String?
+    var teamID:String?
     var studentID = ""
     var description = ""
     var priority = "none"
