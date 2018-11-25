@@ -15,6 +15,7 @@ import CloudKit
 class Student {
     var name = ""
     var id = ""
+    var courses:[CBLCourse] = []
     var originalObjectives:[StudentLearningObjective] = []
     var classifiedObjectives:Dictionary = [String:[StudentLearningObjective]]()
     var activeTeam: Team?
@@ -35,10 +36,10 @@ class Student {
     }
     
     func saveToRecord(database: CKDatabase) {
-        let record = CKRecord(recordType: "StudentRecord")
-        record["name"] = self.name
-        record["activeTeam"] = self.activeTeam?.id
-        database.save(record) {
+        let studentRecord = CKRecord(recordType: "StudentRecord")
+        studentRecord["name"] = self.name
+//        record["activeTeam"] = self.activeTeam?.id
+        database.save(studentRecord) {
             record, error in
         }
     }

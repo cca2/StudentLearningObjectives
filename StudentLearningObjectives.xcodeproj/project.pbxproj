@@ -41,6 +41,7 @@
 		DA82CB5D219F4F8C0057F948 /* CBLSprintDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA82CB5B219F4F8C0057F948 /* CBLSprintDataModel.xcdatamodeld */; };
 		DA82CB60219F54EE0057F948 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA82CB5F219F54EE0057F948 /* CloudKit.framework */; };
 		DADFDAD621A98EE500F20101 /* CBLCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADFDAD521A98EE500F20101 /* CBLCourse.swift */; };
+		DADFDAD821AA16D600F20101 /* StudentSprintRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADFDAD721AA16D600F20101 /* StudentSprintRelation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		DA82CB5C219F4F8C0057F948 /* CBLSprintDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CBLSprintDataModel.xcdatamodel; sourceTree = "<group>"; };
 		DA82CB5F219F54EE0057F948 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		DADFDAD521A98EE500F20101 /* CBLCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBLCourse.swift; sourceTree = "<group>"; };
+		DADFDAD721AA16D600F20101 /* StudentSprintRelation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSprintRelation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,8 @@
 				DADFDAD521A98EE500F20101 /* CBLCourse.swift */,
 				DA3DADE7218BEBAF0072126F /* Student.swift */,
 				DA3DADE6218BEBAF0072126F /* StudentLearningObjective.swift */,
+				DA82CB59219DDBB10057F948 /* Team.swift */,
+				DADFDAD721AA16D600F20101 /* StudentSprintRelation.swift */,
 			);
 			path = StudentModel;
 			sourceTree = "<group>";
@@ -181,7 +185,6 @@
 			children = (
 				DA3DADB5218BEB870072126F /* AppDelegate.swift */,
 				DA3DADB7218BEB870072126F /* ViewController.swift */,
-				DA82CB59219DDBB10057F948 /* Team.swift */,
 				DA3DADEE218BEBCE0072126F /* LearningObjectiveCellView.swift */,
 				DA3DADF2218BEBCE0072126F /* LearningObjectiveCellView.xib */,
 				DA346BD42191590400EBF4CD /* SubtitleTableCellView.xib */,
@@ -388,6 +391,7 @@
 				DA3DADF7218BEBCF0072126F /* SnippetCellView.swift in Sources */,
 				DA346BDB2193975F00EBF4CD /* StudentMatchByObjectiveCellView.swift in Sources */,
 				DA82CB53219CA2EC0057F948 /* LearningObjectivesAreaClassifier.mlmodel in Sources */,
+				DADFDAD821AA16D600F20101 /* StudentSprintRelation.swift in Sources */,
 				DA82CB55219CF1DE0057F948 /* LearningObjectivesTopicsClassifier.mlmodel in Sources */,
 				DA3DADE9218BEBAF0072126F /* LearningObjectivesTrainer.swift in Sources */,
 				DA346BE121939BDB00EBF4CD /* IntelligentFeedbackController.swift in Sources */,

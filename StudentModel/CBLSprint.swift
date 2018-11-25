@@ -118,8 +118,7 @@ class CBLSprint {
                 records.forEach{record in
                     if let team = Team.fromCKRecord(ckRecord: record) {
                         self.teams[team.name] = team
-                    }
-                    
+                    }                    
                 }
                 success()
             }

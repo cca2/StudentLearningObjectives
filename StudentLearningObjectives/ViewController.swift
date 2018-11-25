@@ -104,11 +104,15 @@ class ViewController: NSViewController {
 //    let sprint = Challenge(name: "Challenge 4", teams: ["7 pecados", "pulsai"])
 //    var sprint = Challenge(name: "Challenge 4", teams:[String]())
     
-    let keys = ["sprints", "teams"]
+    var outlineKeys:[String] = []
 
     //Salva o delegate
     let delegate = NSApplication.shared.delegate as! AppDelegate
     
+    //Database
+//    let defaultContainer = CKContainer.default()
+    let database = CKContainer.default().privateCloudDatabase
+
     @IBAction func tagHasBeenEdited(_ sender: NSTextField) {
         let newTag = sender.stringValue
         if (newTag == "ACTION" || newTag == "NONE" || newTag == "TOPIC" || newTag == "GENERIC_ACTION" || newTag == "GENERIC_TOPIC" || newTag == "DEVICE") {
@@ -189,9 +193,7 @@ class ViewController: NSViewController {
     }
     
     func fetchUserRecord(recordID: CKRecord.ID) {
-        let defaultContainer = CKContainer.default()
-        let privateDatabase = defaultContainer.privateCloudDatabase
-        privateDatabase.fetch(withRecordID: recordID) {
+        database.fetch(withRecordID: recordID) {
             (record, error) -> Void in
             if let responseError = error {
                 print(responseError)
@@ -225,11 +227,59 @@ class ViewController: NSViewController {
         self.delegate.onSprintSelected = {
             sprint in
             sprint.retrieveAllTeams {
+                self.outlineKeys = ["sprints", "teams"]
                 self.outlineView.reloadData()
+                if let studentsData = sprint.studentObjectiveClassifier.studentsData {
+                    let rows = studentsData.rows
+                    rows.forEach{
+                        row in
+                        
+                        let teamIndex = row.index(forKey: "Equipe")!
+                        let studentIndex = row.index(forKey: "Estudante")!
+                        //                let descriptionIndex = row.index(forKey: "Descrição")!
+                        //                let priorityIndex = row.index(forKey: "Priorização")!
+                        //                let expertiseLevelIndex = row.index(forKey: "Nível")!
+                        //                let statusIndex = row.index(forKey: "Status")!
+                        
+                        let teamName = row.values[teamIndex].stringValue!
+                        let studentName = row.values[studentIndex].stringValue!
+                        
+                        let studentRecord = CKRecord(recordType: "Student")
+                        studentRecord["name"] = studentName
+                        let studentReference = CKRecord.Reference(recordID: studentRecord.recordID, action: .none)
+
+                        let studentSprintRelation = CKRecord(recordType: "StudentSprintRelation")
+
+                        let sprintReference = CKRecord.Reference(recordID: CKRecord.ID(recordName: sprint.id!), action: .none)
+                        studentSprintRelation["sprint"] = sprintReference
+
+                        let teamReference = CKRecord.Reference(recordID: CKRecord.ID(recordName: (sprint.teams[teamName]?.id)!), action: .none)
+                        studentSprintRelation["team"] = teamReference
+                        studentSprintRelation["student"] = studentReference
+
+                        let studentCourseRelation = CKRecord(recordType: "StudentCourseRelation")
+                        
+                        studentCourseRelation["student"] = studentReference
+                        var sprints:[CKRecord.Reference] = []
+                        sprints.append(CKRecord.Reference(recordID: studentSprintRelation.recordID, action: .none))
+                        studentCourseRelation["sprints"] = sprints
+                        let courseReference = CKRecord.Reference(recordID: CKRecord.ID(recordName: (self.delegate.selectedCourse?.id)!), action: .none)
+                        
+
+//                        print(studentRecord.recordID.recordName)
+                        //                let description = row.values[descriptionIndex].stringValue!
+                        //                let priority = row.values[priorityIndex].stringValue!
+                        //                let expertiseLevel = row.values[expertiseLevelIndex].stringValue!
+                        
+                        //                let objectiveStatus:[Substring] = row.values[statusIndex].stringValue!.split(separator: Character(","))
+                        //                self.cblSprint.sprint(teamName: teamName, studentName: studentName, description: description, level: expertiseLevel, priority: priority, status: objectiveStatus)
+                    }
+                }
             }
         }
         
         self.delegate.onSelectedCourseSprintsFetched = {
+            self.outlineKeys = ["sprints"]
             self.outlineView.reloadData()
         }
 
@@ -238,9 +288,6 @@ class ViewController: NSViewController {
         //Setup da parte de Outline da aplicação
         self.outlineView.delegate = self
         self.outlineView.dataSource = self
-        
-        let delegate = NSApplication.shared.delegate as! AppDelegate
-        
 
         
 //        self.cblSprint = delegate.selectedSprint
@@ -626,7 +673,7 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
     // item == nil means it's the "root" row of the outline view, which is not visible
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         if item == nil {
-            return keys[index]
+            return outlineKeys[index]
         } else if let item = item as? String, item == "teams" {
             return ("teams", index)
         } else if let item = item as? String, item == "sprints" {
@@ -642,13 +689,15 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
     //    * The other rows have no children
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         if item == nil {
-            return keys.count
+            return outlineKeys.count
         } else if let item = item as? String, item == "teams" {
             if let teams = delegate.selectedSprint?.teams {
                 return teams.count
             }
             return 0
-        } else if let item = item as? String, item == "sprints" {
+        } else if let item = item as? String, item == "courses" {
+            return 1
+        }else if let item = item as? String, item == "sprints" {
             return (delegate.selectedCourse?.sprints.count)!
         }else {
             return 0
@@ -689,7 +738,9 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
             case "sprints":
                 text = "Sprints"
             case "teams":
-                text = "Challenge 4"
+                if let name = self.delegate.selectedSprint?.name {
+                    text = name
+                }
             default:
                 break
             }

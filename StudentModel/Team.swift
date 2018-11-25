@@ -31,7 +31,7 @@ class Team {
             return nil
         }
         let team = Team(name: name)
-        team.id = ckRecord["recordName"]
+        team.id = ckRecord.recordID.recordName
         team.bigIdea = bigIdea
         team.essentialQuestion = essentialQuestion
         team.challenge = challenge
