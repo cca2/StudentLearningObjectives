@@ -27,7 +27,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var selectedTeam: (Team)? {
         didSet {
-           onTeamSelected!()
+//            onTeamSelected!(selectedTeam!)
+            onTeamSelected.forEach{
+                function in
+                function!(selectedTeam!)
+            }
         }
     }
     
@@ -46,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var onCourseSelected:((CBLCourse) -> ())?
     var onSprintSelected:((CBLSprint) -> ())?
     var onObjectiveSelected: ((Student, StudentLearningObjective)->())?
-    var onTeamSelected:(() -> ())?
+    var onTeamSelected:[((Team) -> ())?] = []
     var onStudentSelected: (() -> ())?
     var onSelectedCourseSprintsFetched:(() -> ())?
     var onSelectedSprintTeamsFetched: (() -> ())?

@@ -153,29 +153,6 @@ class ViewController: NSViewController {
         }
     }
     
-    func newTeamSelected() {
-        self.snippetsToDisplay = []
-        let selectedTeam = self.cblSprint.selectedTeam
-        let teamSnippet = SnippetToDisplay(team: selectedTeam!)
-        self.snippetsToDisplay.append(teamSnippet)
-        teamSnippet.isSelected = true
-        
-        let teamStudents = selectedTeam?.members
-        teamStudents?.forEach{
-            student in
-            let studentSnippet = SnippetToDisplay(student: student.value)
-            self.snippetsToDisplay.append(studentSnippet)
-        }
-        
-        self.cblSprint.selectedStudent = nil
-        self.objectivesToDisplay = []
-//        mustHaveTableView.deselectAll(nil)
-//        mustHaveTableView.reloadData()
-        self.displayTeamInfo(team: selectedTeam!)
-
-        //        taggerTrainingTableView.reloadData()
-    }
-    
     func fetchUserRecordID() {
         let defaultContainer = CKContainer.default()
         
@@ -226,9 +203,12 @@ class ViewController: NSViewController {
         
         self.delegate.onSprintSelected = {
             sprint in
-//            sprint.retrieveAllStudents {
-//                
-//            }
+            
+            sprint.retrieveAllObjectives {
+                print(">>> 0 <<<")
+                
+            }
+            
             sprint.retrieveAllTeams {
                 self.outlineKeys = ["sprints", "teams"]
                 DispatchQueue.main.async {
@@ -374,6 +354,16 @@ class ViewController: NSViewController {
                 self.outlineView.reloadData()
             }
         }
+        
+        let teamSelectedClosure:((Team) -> ())? = {
+            team in
+            self.newTeamSelected()
+            DispatchQueue.main.async {
+                print(">>> 0 <<<")
+            }
+        }
+        
+        self.delegate.onTeamSelected.append(teamSelectedClosure)
 
         //Setup da parte de CloudKit da Aplicação
         
@@ -436,6 +426,31 @@ class ViewController: NSViewController {
 //        }
     }
     
+    func newTeamSelected() {
+        self.snippetsToDisplay = []
+        //        let selectedTeam = self.cblSprint.selectedTeam
+        let selectedTeam = self.delegate.selectedTeam
+        let teamSnippet = SnippetToDisplay(team: selectedTeam!)
+        self.snippetsToDisplay.append(teamSnippet)
+        teamSnippet.isSelected = true
+        
+        let teamStudents = selectedTeam?.members
+        teamStudents?.forEach{
+            student in
+            let studentSnippet = SnippetToDisplay(student: student.value)
+            self.snippetsToDisplay.append(studentSnippet)
+        }
+        
+//        self.cblSprint.selectedStudent = nil
+        self.objectivesToDisplay = []
+        //        mustHaveTableView.deselectAll(nil)
+        //        mustHaveTableView.reloadData()
+        self.displayTeamInfo(team: selectedTeam!)
+        
+        //        taggerTrainingTableView.reloadData()
+    }
+    
+
     func showTeamNotes() {
         self.teamMembersView.reloadData()
     }
@@ -877,13 +892,11 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
                 }
             } else if columnIdentifier == "teams" {
                 if let teamName = self.delegate.selectedSprint?.teamsName()[index] {
-                    self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
-                    let delegate = NSApplication.shared.delegate as! AppDelegate
-                    delegate.selectedTeam = self.cblSprint.selectedTeam
-                    
-                    newTeamSelected()
-                    self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
-                    showTeamNotes()
+//                    self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
+                    delegate.selectedTeam = self.delegate.selectedSprint?.teamWithName(name: teamName)
+//                    newTeamSelected()
+//                    self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
+//                    showTeamNotes()
                 }
             }
         }

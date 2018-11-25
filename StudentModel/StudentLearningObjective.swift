@@ -10,6 +10,7 @@ import Foundation
 import CloudKit
 
 class StudentLearningObjective {
+    var id: String?
     var courseID:String?
     var sprintID:String?
     var teamID:String?
@@ -32,6 +33,7 @@ class StudentLearningObjective {
     }
     
     init (record: CKRecord) {
+        self.id = record.recordID.recordName
         self.description = record["description"]!
     }
     

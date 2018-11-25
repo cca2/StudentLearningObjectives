@@ -15,7 +15,8 @@ class CBLSprint {
     var name:String?
     var teams:Dictionary = [String:Team]()
     var studentsDict:Dictionary = [String:Student]()
-    var studentLearningObjectives = [String: StudentLearningObjective]()
+    var learningObjectiveByID = [String: StudentLearningObjective]()
+    var learningObjectivesByStudentID = [String: [StudentLearningObjective]]()
     
     var selectedTeam:Team?
     var selectedStudent: Student?
@@ -33,21 +34,74 @@ class CBLSprint {
     
     func retrieveAllObjectives(onSuccess sucess: @escaping () -> Void) -> Void {
         let defaultContainer = CKContainer.default()
-        let predicate = NSPredicate(format: "TRUEPREDICATE")
+        let sprintRecord = CKRecord(recordType: "CBLSprintRecord", recordID: CKRecord.ID(recordName: self.id!))
+        let reference = CKRecord.Reference(recordID: sprintRecord.recordID, action: .none)
+        let predicate = NSPredicate(format: "sprint == %@", reference)
+        
         let query = CKQuery(recordType: "StudentLearningObjectiveRecord", predicate: predicate)
-        defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
-            (records, error) in
-            guard let records = records else {
-                print (error)
-                return
+        let operation = CKQueryOperation(query: query)
+
+        operation.resultsLimit = 100
+        var i = 0
+        operation.recordFetchedBlock = {
+            record in
+            i = i + 1
+            print("\(i): \(record["description"])")
+            let objective = StudentLearningObjective(record: record)
+            self.learningObjectiveByID[objective.id!] = objective
+            if self.learningObjectivesByStudentID[objective.studentID] == nil {
+                self.learningObjectivesByStudentID[objective.studentID] = []
+                self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
+            }else {
+                self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
             }
-            
-            print("coletei: \(records.count)")
-            
-            records.forEach{
-                record in
-                let objective = StudentLearningObjective(record: record)
+        }
+        
+        operation.queryCompletionBlock = {
+            (cursor, error) in
+            if let cursor = cursor {
+                let newOperation = CKQueryOperation(cursor: cursor)
+                newOperation.recordFetchedBlock = {
+                    record in
+                    i = i + 1
+                    print("\(i): \(record["description"])")
+                    let objective = StudentLearningObjective(record: record)
+                    self.learningObjectiveByID[objective.id!] = objective
+                    if self.learningObjectivesByStudentID[objective.studentID] == nil {
+                        self.learningObjectivesByStudentID[objective.studentID] = []
+                        self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
+                    }else {
+                        self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
+                    }
+                }
+                
+                newOperation.queryCompletionBlock = operation.queryCompletionBlock
+                defaultContainer.privateCloudDatabase.add(newOperation)
             }
+        }
+        
+        defaultContainer.privateCloudDatabase.add(operation)
+        
+//        defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
+//            (records, error) in
+//            guard let records = records else {
+//                print (error)
+//                return
+//            }
+//
+//            print("coletei: \(records.count)")
+//
+//            records.forEach{
+//                record in
+//                let objective = StudentLearningObjective(record: record)
+//                self.learningObjectiveByID[objective.id!] = objective
+//                if self.learningObjectivesByStudentID[objective.studentID] == nil {
+//                    self.learningObjectivesByStudentID[objective.studentID] = []
+//                    self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
+//                }else {
+//                    self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
+//                }
+//            }
             //Apagando todos os registros de estudantes
 //            records.forEach{
 //                record in
@@ -61,44 +115,10 @@ class CBLSprint {
 //                    print("registro \(recordID) deletado com sucesso")
 //                }
 //            }
-        }
+//        }
         sucess()
     }
     
-    func retrieveAllStudents(onSucess success: @escaping () -> Void) -> Void {
-        let defaultContainer = CKContainer.default()
-        let predicate = NSPredicate(format: "TRUEPREDICATE")
-        let query = CKQuery(recordType: "StudentRecord", predicate: predicate)
-        defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
-            (records, error) in
-            guard let records = records else {
-                print (error)
-                return
-            }
-            records.forEach{
-                record in
-//                let student = Student(record: record)
-//                if self.studentsDict[student.name] == nil {
-//                    self.studentsDict[student.name] = student
-//                }
-            }
-            
-            success()
-            //Apagando todos os registros de estudantes
-            records.forEach{
-                record in
-                defaultContainer.privateCloudDatabase.delete(withRecordID: record.recordID){
-                    (recordID, error) -> Void in
-
-                    guard let recordID = recordID else {
-                        print("erro ao deletar registro")
-                        return
-                    }
-                    print("registro \(recordID) deletado com sucesso")
-                }
-            }
-        }
-    }
     
     //    func retriveAllTeams (_ teams: [Team]?, _ error: Error?) -> Void {
     func retrieveAllTeams(onSuccess success: @escaping () -> Void) -> Void {

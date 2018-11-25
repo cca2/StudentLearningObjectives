@@ -14,6 +14,8 @@ class CBLCourse {
     var name: String?
     var id: String?
     var sprints:[CBLSprint] = []
+    var studentsByID:[String: Student] = [:]
+    
     let delegate = NSApplication.shared.delegate as! AppDelegate
 
     init(courseRecord: CKRecord) {
@@ -41,4 +43,43 @@ class CBLCourse {
             }
         }
     }
+    
+    func retrieveAllStudents(onSucess success: @escaping () -> Void) -> Void {
+        let defaultContainer = CKContainer.default()
+        let courseRecord = CKRecord(recordType: "CBLCourseRecord", recordID: CKRecord.ID(recordName: self.id!))
+        let reference = CKRecord.Reference(recordID: courseRecord.recordID, action: .none)
+        let predicate = NSPredicate(format: "course == %@", reference)
+        let query = CKQuery(recordType: "StudentRecord", predicate: predicate)
+        defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
+            (records, error) in
+            guard let records = records else {
+                print (error)
+                return
+            }
+            records.forEach{
+                record in
+                let student = Student(record: record)
+                self.studentsByID[student.id] = student
+//                if self.studentsDict[student.name] == nil {
+//                    self.studentsDict[student.name] = student
+//                }
+            }
+            
+            success()
+            //Apagando todos os registros de estudantes
+            records.forEach{
+                record in
+                defaultContainer.privateCloudDatabase.delete(withRecordID: record.recordID){
+                    (recordID, error) -> Void in
+                    
+                    guard let recordID = recordID else {
+                        print("erro ao deletar registro")
+                        return
+                    }
+                    print("registro \(recordID) deletado com sucesso")
+                }
+            }
+        }
+    }
+
 }
