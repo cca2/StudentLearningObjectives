@@ -217,6 +217,16 @@ class ViewController: NSViewController {
                 sprint.retrieveSprintInfo(studentsByID: (self.delegate.selectedCourse?.studentsByID)!) {
                     self.displayMessage(message: "Informações da Sprint \(sprint.name)")
                     self.outlineKeys = ["sprints", "teams"]
+                    
+                    if let studentsDict = self.delegate.selectedCourse?.studentsByID {
+                        let studentsIDs = studentsDict.keys
+                        studentsIDs.forEach{
+                            id in
+                            let student = studentsDict[id]
+                            self.delegate.selectedSprint?.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
+                        }
+                    }
+                    
                     self.outlineView.reloadData()
                     
                     //Esta parte só deve ser utilizada para se atualizar a partir de um

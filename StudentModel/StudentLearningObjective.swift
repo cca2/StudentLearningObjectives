@@ -35,6 +35,8 @@ class StudentLearningObjective {
     init (record: CKRecord) {
         self.id = record.recordID.recordName
         self.description = record["description"]!
+        let studentReference = record["student"] as! CKRecord.Reference
+        self.studentID = studentReference.recordID.recordName
     }
     
     func saveToRecord(sprintID: String, studentID: String, teamID: String, database: CKDatabase) -> String? {

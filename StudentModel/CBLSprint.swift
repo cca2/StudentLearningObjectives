@@ -48,7 +48,51 @@ class CBLSprint {
         }
     }
     
-    func retrieveAllObjectives(onSuccess sucess: @escaping () -> Void) -> Void {
+    func executeRetrieveObjectivesQuery (queryOperation: CKQueryOperation, onSuccess success: @escaping () -> Void) {
+        let defaultContainer = CKContainer.default()
+        let database = defaultContainer.privateCloudDatabase
+        queryOperation.database = database
+        
+        var i = 0
+
+        queryOperation.recordFetchedBlock = {
+            record in
+                        i = i + 1
+                        print("\(i): \(record["description"])")
+            let objective = StudentLearningObjective(record: record)
+            self.learningObjectiveByID[objective.id!] = objective
+            if let student = self.studentsByID?[objective.studentID] {
+                student.addOriginalObjective(objective: objective)
+            }
+            
+            if self.learningObjectivesByStudentID[objective.studentID] == nil {
+                self.learningObjectivesByStudentID[objective.studentID] = []
+                self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
+            }else {
+                self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
+            }
+        }
+        
+        // Assign a completion handler
+        queryOperation.queryCompletionBlock = {
+            cursor, error in
+            guard error==nil else {
+                // Handle the error
+                return
+            }
+            if let queryCursor = cursor {
+                let queryCursorOperation = CKQueryOperation(cursor: queryCursor)
+                self.executeRetrieveObjectivesQuery(queryOperation: queryCursorOperation, onSuccess:success)
+            }else {
+                //coletou todos os objetivos
+                success()
+            }
+        }
+        
+        database.add(queryOperation)
+    }
+    
+    func retrieveAllObjectives(onSuccess success: @escaping () -> Void) -> Void {
         let defaultContainer = CKContainer.default()
         let sprintRecord = CKRecord(recordType: "CBLSprintRecord", recordID: CKRecord.ID(recordName: self.id!))
         let reference = CKRecord.Reference(recordID: sprintRecord.recordID, action: .none)
@@ -58,45 +102,55 @@ class CBLSprint {
         let operation = CKQueryOperation(query: query)
 
         operation.resultsLimit = 100
-        var i = 0
-        operation.recordFetchedBlock = {
-            record in
-            i = i + 1
-            print("\(i): \(record["description"])")
-            let objective = StudentLearningObjective(record: record)
-            self.learningObjectiveByID[objective.id!] = objective
-            if self.learningObjectivesByStudentID[objective.studentID] == nil {
-                self.learningObjectivesByStudentID[objective.studentID] = []
-                self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
-            }else {
-                self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
-            }
-        }
-        
-        operation.queryCompletionBlock = {
-            (cursor, error) in
-            if let cursor = cursor {
-                let newOperation = CKQueryOperation(cursor: cursor)
-                newOperation.recordFetchedBlock = {
-                    record in
-                    i = i + 1
-                    print("\(i): \(record["description"])")
-                    let objective = StudentLearningObjective(record: record)
-                    self.learningObjectiveByID[objective.id!] = objective
-                    if self.learningObjectivesByStudentID[objective.studentID] == nil {
-                        self.learningObjectivesByStudentID[objective.studentID] = []
-                        self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
-                    }else {
-                        self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
-                    }
-                }
-                
-                newOperation.queryCompletionBlock = operation.queryCompletionBlock
-                defaultContainer.privateCloudDatabase.add(newOperation)
-            }
-        }
-        
-        defaultContainer.privateCloudDatabase.add(operation)
+        self.executeRetrieveObjectivesQuery(queryOperation: operation, onSuccess: success)
+//        var i = 0
+//        operation.recordFetchedBlock = {
+//            record in
+//            i = i + 1
+//            print("\(i): \(record["description"])")
+//            let objective = StudentLearningObjective(record: record)
+//            self.learningObjectiveByID[objective.id!] = objective
+//            if let student = self.studentsByID?[objective.studentID] {
+//                student.addOriginalObjective(objective: objective)
+//            }
+//
+//            if self.learningObjectivesByStudentID[objective.studentID] == nil {
+//                self.learningObjectivesByStudentID[objective.studentID] = []
+//                self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
+//            }else {
+//                self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
+//            }
+//        }
+//
+//        operation.queryCompletionBlock = {
+//            (cursor, error) in
+//            if let cursor = cursor {
+//                let newOperation = CKQueryOperation(cursor: cursor)
+//                newOperation.recordFetchedBlock = {
+//                    record in
+//                    i = i + 1
+//                    print("\(i): \(record["description"])")
+//                    let objective = StudentLearningObjective(record: record)
+//                    self.learningObjectiveByID[objective.id!] = objective
+//                    if let student = self.studentsByID?[objective.studentID] {
+//                        student.addOriginalObjective(objective: objective)
+//                    }
+//                    if self.learningObjectivesByStudentID[objective.studentID] == nil {
+//                        self.learningObjectivesByStudentID[objective.studentID] = []
+//                        self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
+//                    }else {
+//                        self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
+//                    }
+//                }
+//
+//                newOperation.queryCompletionBlock = operation.queryCompletionBlock
+//                defaultContainer.privateCloudDatabase.add(newOperation)
+//            }else {
+//                sucess()
+//            }
+//        }
+//
+//        defaultContainer.privateCloudDatabase.add(operation)
         
 //        defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
 //            (records, error) in
@@ -132,7 +186,6 @@ class CBLSprint {
 //                }
 //            }
 //        }
-        sucess()
     }
     
     
