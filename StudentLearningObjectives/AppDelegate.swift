@@ -53,6 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var onTeamSelected:[((Team) -> ())?] = []
     var onStudentSelected: (() -> ())?
     var onSelectedCourseSprintsFetched:(() -> ())?
+    var onSelectedCourseStudentsFetched:(() -> ())?
     var onSelectedSprintTeamsFetched: (() -> ())?
     
     func selectedCourseSprintsFetched () {
@@ -64,6 +65,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func selectedSprintTeamsFetched() {
         if let onSelectedSprintTeamsFetched = onSelectedSprintTeamsFetched {
             onSelectedSprintTeamsFetched()
+        }
+    }
+    
+    func selectedCourseStudentsFetched() {
+        if let onSelectedCourseStudentsFetched = onSelectedCourseStudentsFetched {
+            onSelectedCourseStudentsFetched()
         }
     }
     

@@ -15,6 +15,9 @@ class CBLSprint {
     var name:String?
     var teams:Dictionary = [String:Team]()
     var studentsDict:Dictionary = [String:Student]()
+    
+    var studentsByID:[String: Student]?
+    var teamsByID = [String:Team]()
     var learningObjectiveByID = [String: StudentLearningObjective]()
     var learningObjectivesByStudentID = [String: [StudentLearningObjective]]()
     
@@ -30,6 +33,19 @@ class CBLSprint {
     init(sprintRecord: CKRecord) {
         self.name = sprintRecord["name"]
         self.id = sprintRecord.recordID.recordName
+    }
+    
+    func retrieveSprintInfo(studentsByID:[String: Student], onSuccess success: @escaping () -> Void) -> Void {
+        self.studentsByID = studentsByID
+        self.retrieveAllTeams {
+            self.retrieveStudentSprintRelations {
+                print(">>> 10 <<<")
+                self.retrieveAllObjectives {
+                    print(">>> 20 <<<")
+                    success()
+                }
+            }
+        }
     }
     
     func retrieveAllObjectives(onSuccess sucess: @escaping () -> Void) -> Void {
@@ -123,14 +139,14 @@ class CBLSprint {
     //    func retriveAllTeams (_ teams: [Team]?, _ error: Error?) -> Void {
     func retrieveAllTeams(onSuccess success: @escaping () -> Void) -> Void {
         let defaultContainer = CKContainer.default()
-        let teamRecord = CKRecord(recordType: "CBLSprintRecord", recordID: CKRecord.ID(recordName: self.id!))
-        let reference = CKRecord.Reference(recordID: teamRecord.recordID, action: .none)
+        let sprintRecord = CKRecord(recordType: "CBLSprintRecord", recordID: CKRecord.ID(recordName: self.id!))
+        let reference = CKRecord.Reference(recordID: sprintRecord.recordID, action: .none)
         let predicate = NSPredicate(format: "sprint == %@", reference)
         let query = CKQuery(recordType: "TeamRecord", predicate: predicate)
         defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
             (records, error) in
             guard let records = records else {
-                print (error)
+                print (error?.localizedDescription)
                 return
             }
             
@@ -138,67 +154,98 @@ class CBLSprint {
                 records.forEach{record in
                     if let team = Team.fromCKRecord(ckRecord: record) {
                         self.teams[team.name] = team
-                    }                    
+                        self.teamsByID[team.id!] = team
+                    }
                 }
                 success()
             }
         }
     }
-
+    
+    func retrieveStudentSprintRelations(onSuccess success: @escaping () -> Void) -> Void {
+        let defaultContainer = CKContainer.default()
+        let sprintRecord = CKRecord(recordType: "CBLSprintRecord", recordID: CKRecord.ID(recordName: self.id!))
+        let reference = CKRecord.Reference(recordID: sprintRecord.recordID, action: .none)
+        let predicate = NSPredicate(format: "sprint == %@", reference)
+        let query = CKQuery(recordType: "StudentSprintRelation", predicate: predicate)
+        defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
+            (records, error) in
+            guard let records = records else {
+                print (error?.localizedDescription)
+                return
+            }
+            
+            if error == nil {
+                records.forEach{record in
+//                    if let relat = Team.fromCKRecord(ckRecord: record) {
+//                        self.teams[team.name] = team
+//                        self.teamsByID[team.id!] = team
+//                    }
+                    let studentReference = record["student"] as! CKRecord.Reference
+                    let teamReference = record["team"] as! CKRecord.Reference
+                    let studentID = studentReference.recordID.recordName
+                    let teamID = teamReference.recordID.recordName
+                    self.teamsByID[teamID]?.addMember(newMember: self.studentsByID![studentID]!)
+                }
+                success()
+            }
+        }
+    }
+    
     func sprint(teamName: String, studentName: String, description: String, level: String, priority: String, status: [Substring]) {
         //Alimentando o dicionário de teams com as informações no CloudKit
-        let studentObjective = StudentLearningObjective(description: description)
-        studentObjective.level = level
-        studentObjective.priority = priority
-        
-        status.forEach{status in
-            if status == "no backlog" {
-                studentObjective.isInBacklog = true
-            }
-            if status == "abandonado" {
-                studentObjective.isAbandoned = true
-            }
-            if status == "experimentando" {
-                studentObjective.isExperimenting = true
-            }
-            if status == "estudando" {
-                studentObjective.isStudying = true
-            }
-            if status == "aplicando no app" {
-                studentObjective.isApplyingInTheSolution = true
-            }
-            if status == "ensinando em workshop" {
-                studentObjective.isTeachingOthers = true
-            }
-        }
-        
-//        let defaultContainer = CKContainer.default()
-//        let database = defaultContainer.privateCloudDatabase
-//        if let recordID = studentObjective.saveToRecord(database: database) {
-//            self.studentLearningObjectives[recordID] = studentObjective
+//        let studentObjective = StudentLearningObjective(description: description)
+//        studentObjective.level = level
+//        studentObjective.priority = priority
+//        
+//        status.forEach{status in
+//            if status == "no backlog" {
+//                studentObjective.isInBacklog = true
+//            }
+//            if status == "abandonado" {
+//                studentObjective.isAbandoned = true
+//            }
+//            if status == "experimentando" {
+//                studentObjective.isExperimenting = true
+//            }
+//            if status == "estudando" {
+//                studentObjective.isStudying = true
+//            }
+//            if status == "aplicando no app" {
+//                studentObjective.isApplyingInTheSolution = true
+//            }
+//            if status == "ensinando em workshop" {
+//                studentObjective.isTeachingOthers = true
+//            }
 //        }
-        
-        if self.studentsDict[studentName] != nil {
-            self.studentsDict[studentName]?.addOriginalObjective(objective: studentObjective)
-        }else {
-            let student = Student()
-            student.name = studentName
-            student.addOriginalObjective(objective: studentObjective)
-            self.studentsDict[studentName] = student
-            let defaultContainer = CKContainer.default()
-            let database = defaultContainer.privateCloudDatabase
-            student.saveToRecord(database: database)
-        }
-        
-        if let team = self.teams[teamName] {
-            team.addMember(newMember: self.studentsDict[studentName]!)
-            if let student = self.studentsDict[studentName] {
-                student.activeTeam = team
-            }
-        }else {
-            let team = Team(name: teamName)
-            self.teams[teamName] = team
-        }
+//        
+////        let defaultContainer = CKContainer.default()
+////        let database = defaultContainer.privateCloudDatabase
+////        if let recordID = studentObjective.saveToRecord(database: database) {
+////            self.studentLearningObjectives[recordID] = studentObjective
+////        }
+//        
+//        if self.studentsDict[studentName] != nil {
+//            self.studentsDict[studentName]?.addOriginalObjective(objective: studentObjective)
+//        }else {
+//            let student = Student()
+//            student.name = studentName
+//            student.addOriginalObjective(objective: studentObjective)
+//            self.studentsDict[studentName] = student
+//            let defaultContainer = CKContainer.default()
+//            let database = defaultContainer.privateCloudDatabase
+//            student.saveToRecord(database: database)
+//        }
+//        
+//        if let team = self.teams[teamName] {
+//            team.addMember(newMember: self.studentsDict[studentName]!)
+//            if let student = self.studentsDict[studentName] {
+//                student.team = team
+//            }
+//        }else {
+//            let team = Team(name: teamName)
+//            self.teams[teamName] = team
+//        }
     }
     
     func addStudentToBase(student: Student) {

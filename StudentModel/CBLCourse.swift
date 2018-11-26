@@ -48,7 +48,7 @@ class CBLCourse {
         let defaultContainer = CKContainer.default()
         let courseRecord = CKRecord(recordType: "CBLCourseRecord", recordID: CKRecord.ID(recordName: self.id!))
         let reference = CKRecord.Reference(recordID: courseRecord.recordID, action: .none)
-        let predicate = NSPredicate(format: "course == %@", reference)
+        let predicate = NSPredicate(format: "SELF.courses contains %@", reference.recordID)
         let query = CKQuery(recordType: "StudentRecord", predicate: predicate)
         defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
             (records, error) in
@@ -60,25 +60,27 @@ class CBLCourse {
                 record in
                 let student = Student(record: record)
                 self.studentsByID[student.id] = student
+                print(student.name)
 //                if self.studentsDict[student.name] == nil {
 //                    self.studentsDict[student.name] = student
 //                }
             }
             
-            success()
+//            success()
+            
             //Apagando todos os registros de estudantes
-            records.forEach{
-                record in
-                defaultContainer.privateCloudDatabase.delete(withRecordID: record.recordID){
-                    (recordID, error) -> Void in
-                    
-                    guard let recordID = recordID else {
-                        print("erro ao deletar registro")
-                        return
-                    }
-                    print("registro \(recordID) deletado com sucesso")
-                }
-            }
+//            records.forEach{
+//                record in
+//                defaultContainer.privateCloudDatabase.delete(withRecordID: record.recordID){
+//                    (recordID, error) -> Void in
+//                    
+//                    guard let recordID = recordID else {
+//                        print("erro ao deletar registro")
+//                        return
+//                    }
+//                    print("registro \(recordID) deletado com sucesso")
+//                }
+//            }
         }
     }
 

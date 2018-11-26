@@ -188,6 +188,7 @@ class ViewController: NSViewController {
         self.mustHaveTableView.delegate = self
         self.mustHaveTableView.selectionHighlightStyle = NSTableView.SelectionHighlightStyle.none
         self.mustHaveTableView.register(NSNib(nibNamed: "LearningObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("ObjectiveCellID"))
+        self.mustHaveTableView.register(NSNib(nibNamed: "LearningObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("ParagraphCellID"))
         self.mustHaveTableView.register(NSNib(nibNamed: "SubtitleTableCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("SubtitleCellID"))
         self.mustHaveTableView.register(NSNib(nibNamed: "SubtitleTableCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("TitleCellID"))
         self.teamMembersView.dataSource = self
@@ -198,18 +199,26 @@ class ViewController: NSViewController {
         //Closure quando o curso é selecionado
         self.delegate.onCourseSelected = {
             course in
-            print("curso \(course.name) selecionado")
+            print(">>> BAIXANDO DADOS DOS ESTUDANTES <<<")
+            course.retrieveAllStudents {
+                self.delegate.selectedCourseStudentsFetched()
+                print(">>> REGISTRANDO OS ESTUDANTES <<<")
+            }
+        }
+
+        self.delegate.onSelectedCourseStudentsFetched = {
+            
         }
         
         self.delegate.onSprintSelected = {
             sprint in
             
-            sprint.retrieveAllObjectives {
-                print(">>> 0 <<<")
-                
-            }
+//            sprint.retrieveAllObjectives {
+//                print(">>> 0 <<<")
+//            }
             
-            sprint.retrieveAllTeams {
+//            sprint.retrieveAllTeams {
+            sprint.retrieveSprintInfo(studentsByID: (self.delegate.selectedCourse?.studentsByID)!) {
                 self.outlineKeys = ["sprints", "teams"]
                 DispatchQueue.main.async {
                     self.outlineView.reloadData()

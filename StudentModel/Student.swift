@@ -15,10 +15,11 @@ import CloudKit
 class Student {
     var name = ""
     var id = ""
-    var courses:[CBLCourse] = []
+//    var courses:[CBLCourse] = []
     var originalObjectives:[StudentLearningObjective] = []
     var classifiedObjectives:Dictionary = [String:[StudentLearningObjective]]()
-    var activeTeam: Team?
+//    var team: Team?
+    var teamID: String?
     
     init() {
         self.classifiedObjectives["innovation"] = []
