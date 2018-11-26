@@ -33,6 +33,12 @@ class Student {
     init(record: CKRecord) {
         self.id = record.recordID.recordName
         self.name = record["name"]!
+        self.classifiedObjectives["innovation"] = []
+        self.classifiedObjectives["programming"] = []
+        self.classifiedObjectives["appdev"] = []
+        self.classifiedObjectives["design"] = []
+        self.classifiedObjectives["success skills"] = []
+        self.classifiedObjectives["none"] = []
 //        self.activeTeam = record["activeTeam"]? as? Team
     }
     

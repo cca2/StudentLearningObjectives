@@ -455,6 +455,7 @@ class ViewController: NSViewController {
         //        mustHaveTableView.deselectAll(nil)
         //        mustHaveTableView.reloadData()
         self.displayTeamInfo(team: selectedTeam!)
+        self.teamMembersView.reloadData()
         
         //        taggerTrainingTableView.reloadData()
     }
