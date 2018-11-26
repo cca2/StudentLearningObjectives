@@ -377,9 +377,10 @@ class ViewController: NSViewController {
         let studentSelectedClosure:((Student) -> ())? = {
             student in
             //            self.newTeamSelected()
-            DispatchQueue.main.async {
-                print(">>> 100 \(student.name) selecionado <<<")
-            }
+            self.displayStudentObjectives(student: student)
+//            DispatchQueue.main.async {
+//                print(">>> 100 \(student.name) selecionado <<<")
+//            }
         }
         self.delegate.onStudentSelected.append(studentSelectedClosure)
         //Setup da parte de CloudKit da Aplicação
@@ -492,8 +493,9 @@ class ViewController: NSViewController {
     func displayStudentObjectives(student:Student) {
         self.elementsToDisplay = []
         
-        let studentName = NoteElementToDisplay(title: self.cblSprint.selectedStudent?.name)
-        self.elementsToDisplay.append(studentName)
+//        let studentName = NoteElementToDisplay(title: self.cblSprint.selectedStudent?.name)
+        let studentNameElement = NoteElementToDisplay(title: student.name)
+        self.elementsToDisplay.append(studentNameElement)
         
         let innovationSubtitle = NoteElementToDisplay(subtitle: "Inovação")
         self.elementsToDisplay.append(innovationSubtitle)
