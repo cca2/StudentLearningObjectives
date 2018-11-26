@@ -48,12 +48,12 @@ class IntelligentFeedbackController: NSPageController {
         
         delegate.onTeamSelected.append(teamSelectedClosure)
 
-        delegate.onStudentSelected = {
-            self.numberOfMatchs.isHidden = true
-            self.intelligentLabel.isHidden = true
-            self.listOfMatchesByObjective = []
-            self.studentMatchByObjectiveList.reloadData()
-        }
+//        delegate.onStudentSelected = {
+//            self.numberOfMatchs.isHidden = true
+//            self.intelligentLabel.isHidden = true
+//            self.listOfMatchesByObjective = []
+//            self.studentMatchByObjectiveList.reloadData()
+//        }
     }
 }
 

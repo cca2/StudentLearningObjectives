@@ -374,6 +374,14 @@ class ViewController: NSViewController {
         
         self.delegate.onTeamSelected.append(teamSelectedClosure)
 
+        let studentSelectedClosure:((Student) -> ())? = {
+            student in
+            //            self.newTeamSelected()
+            DispatchQueue.main.async {
+                print(">>> 100 \(student.name) selecionado <<<")
+            }
+        }
+        self.delegate.onStudentSelected.append(studentSelectedClosure)
         //Setup da parte de CloudKit da Aplicação
         
         //Setup da parte de Outline da aplicação
@@ -766,9 +774,8 @@ extension ViewController: NSTableViewDelegate {
             if let selectedTeam = self.snippetsToDisplay[row].team {
                 self.displayTeamInfo(team: selectedTeam)
             }else if let selectedStudent = self.snippetsToDisplay[row].student {
-                self.cblSprint.selectedStudent = selectedStudent
                 delegate.selectedStudent = selectedStudent
-                self.displayStudentObjectives(student: selectedStudent)
+//                self.displayStudentObjectives(student: selectedStudent)
             }
             self.teamMembersView.reloadData()
             return true
