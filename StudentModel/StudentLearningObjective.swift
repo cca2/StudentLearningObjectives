@@ -37,6 +37,13 @@ class StudentLearningObjective {
         self.description = record["description"]!
         let studentReference = record["student"] as! CKRecord.Reference
         self.studentID = studentReference.recordID.recordName
+        self.priority = record["priority"]!
+        self.isInBacklog = record["isInBacklog"]!
+        self.isAbandoned = record["isAbandoned"]!
+        self.isStudying = record["isStudying"]!
+        self.isExperimenting = record["isExperimenting"]!
+        self.isApplyingInTheSolution = record["isApplyingInTheSolution"]!
+        self.isTeachingOthers = record["isTeachingOthers"]!
     }
     
     func saveToRecord(sprintID: String, studentID: String, teamID: String, database: CKDatabase) -> String? {
