@@ -44,6 +44,10 @@ class CBLSprint {
                     print(">>> 20 <<<")
                     success()
                 }
+//                self.clearObjectivesDatabase {
+//                    print(">>> 20 <<<")
+//                    success()
+//                }
             }
         }
     }
@@ -92,6 +96,64 @@ class CBLSprint {
         database.add(queryOperation)
     }
     
+    func clearObjectivesDatabase(onSuccess success: @escaping () -> Void) -> Void {
+        let defaultContainer = CKContainer.default()
+        let database = defaultContainer.privateCloudDatabase
+        let sprintRecord = CKRecord(recordType: "CBLSprintRecord", recordID: CKRecord.ID(recordName: self.id!))
+        let predicate = NSPredicate(format: "TRUEPREDICATE")
+        
+        let query = CKQuery(recordType: "StudentLearningObjectiveRecord", predicate: predicate)
+        database.perform(query, inZoneWith: nil) {
+            record, error in
+            
+            record?.forEach{
+                record in
+                database.delete(withRecordID: record.recordID) {
+                    recordID, error in
+                    print("apaguei registro: \(recordID?.recordName)")
+                }
+            }
+        }
+        
+        let queryStudents = CKQuery(recordType: "StudentRecord", predicate: predicate)
+        database.perform(queryStudents, inZoneWith: nil) {
+            record, error in
+            
+            record?.forEach{
+                record in
+                database.delete(withRecordID: record.recordID) {
+                    recordID, error in
+                    print("apaguei registro ESTUDANTE: \(recordID?.recordName)")
+                }
+            }
+        }
+
+        let queryStudentCourseRelation = CKQuery(recordType: "StudentCourseRelation", predicate: predicate)
+        database.perform(queryStudentCourseRelation, inZoneWith: nil) {
+            record, error in
+            
+            record?.forEach{
+                record in
+                database.delete(withRecordID: record.recordID) {
+                    recordID, error in
+                    print("apaguei registro REL CURSO: \(recordID?.recordName)")
+                }
+            }
+        }
+        let queryStudentSprintRelation = CKQuery(recordType: "StudentSprintRelation", predicate: predicate)
+        database.perform(queryStudentSprintRelation, inZoneWith: nil) {
+            record, error in
+            
+            record?.forEach{
+                record in
+                database.delete(withRecordID: record.recordID) {
+                    recordID, error in
+                    print("apaguei registro REL SPRINT: \(recordID?.recordName)")
+                }
+            }
+        }
+    }
+    
     func retrieveAllObjectives(onSuccess success: @escaping () -> Void) -> Void {
         let defaultContainer = CKContainer.default()
         let sprintRecord = CKRecord(recordType: "CBLSprintRecord", recordID: CKRecord.ID(recordName: self.id!))
@@ -103,76 +165,7 @@ class CBLSprint {
 
         operation.resultsLimit = 100
         self.executeRetrieveObjectivesQuery(queryOperation: operation, onSuccess: success)
-//        var i = 0
-//        operation.recordFetchedBlock = {
-//            record in
-//            i = i + 1
-//            print("\(i): \(record["description"])")
-//            let objective = StudentLearningObjective(record: record)
-//            self.learningObjectiveByID[objective.id!] = objective
-//            if let student = self.studentsByID?[objective.studentID] {
-//                student.addOriginalObjective(objective: objective)
-//            }
-//
-//            if self.learningObjectivesByStudentID[objective.studentID] == nil {
-//                self.learningObjectivesByStudentID[objective.studentID] = []
-//                self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
-//            }else {
-//                self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
-//            }
-//        }
-//
-//        operation.queryCompletionBlock = {
-//            (cursor, error) in
-//            if let cursor = cursor {
-//                let newOperation = CKQueryOperation(cursor: cursor)
-//                newOperation.recordFetchedBlock = {
-//                    record in
-//                    i = i + 1
-//                    print("\(i): \(record["description"])")
-//                    let objective = StudentLearningObjective(record: record)
-//                    self.learningObjectiveByID[objective.id!] = objective
-//                    if let student = self.studentsByID?[objective.studentID] {
-//                        student.addOriginalObjective(objective: objective)
-//                    }
-//                    if self.learningObjectivesByStudentID[objective.studentID] == nil {
-//                        self.learningObjectivesByStudentID[objective.studentID] = []
-//                        self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
-//                    }else {
-//                        self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
-//                    }
-//                }
-//
-//                newOperation.queryCompletionBlock = operation.queryCompletionBlock
-//                defaultContainer.privateCloudDatabase.add(newOperation)
-//            }else {
-//                sucess()
-//            }
-//        }
-//
-//        defaultContainer.privateCloudDatabase.add(operation)
-        
-//        defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
-//            (records, error) in
-//            guard let records = records else {
-//                print (error)
-//                return
-//            }
-//
-//            print("coletei: \(records.count)")
-//
-//            records.forEach{
-//                record in
-//                let objective = StudentLearningObjective(record: record)
-//                self.learningObjectiveByID[objective.id!] = objective
-//                if self.learningObjectivesByStudentID[objective.studentID] == nil {
-//                    self.learningObjectivesByStudentID[objective.studentID] = []
-//                    self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
-//                }else {
-//                    self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
-//                }
-//            }
-            //Apagando todos os registros de estudantes
+//            //Apagando todos os registros de estudantes
 //            records.forEach{
 //                record in
 //                defaultContainer.privateCloudDatabase.delete(withRecordID: record.recordID){
