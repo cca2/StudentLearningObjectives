@@ -771,7 +771,7 @@ extension ViewController: NSTableViewDelegate {
             if let _ = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("ObjectiveCellID"), owner: nil) as?  NSTableCellView {
                 let delegate = NSApplication.shared.delegate as! AppDelegate
                 if let selectedObjective = self.elementsToDisplay[row].objective {
-                    delegate.selectedObjective = (self.cblSprint.selectedStudent!, selectedObjective)
+                    delegate.selectedObjective = (delegate.selectedStudent!, selectedObjective)
                     self.elementsToDisplay.forEach{
                         element in
                         element.isSelected = false

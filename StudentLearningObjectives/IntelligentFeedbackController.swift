@@ -11,7 +11,8 @@ import Cocoa
 class IntelligentFeedbackController: NSPageController {    
     var cblSprint:CBLSprint?
     var listOfMatchesByObjective:[(Student, StudentLearningObjective)]!
-    
+    let appDelegate = NSApplication.shared.delegate as! AppDelegate
+//
     @IBOutlet weak var studentMatchByObjectiveList: NSTableView!
     
     @IBOutlet weak var intelligentLabel: NSTextField!
@@ -22,16 +23,15 @@ class IntelligentFeedbackController: NSPageController {
         self.intelligentLabel.isHidden = true
         self.numberOfMatchs.isHidden = true
         
-        let delegate = NSApplication.shared.delegate as! AppDelegate
-        self.cblSprint = delegate.selectedSprint
+//        self.cblSprint = delegate.selectedSprint
         
         self.studentMatchByObjectiveList.dataSource = self
         self.studentMatchByObjectiveList.delegate = self
         
         self.studentMatchByObjectiveList.register(NSNib(nibNamed: "StudentMatchByObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("StudentMatchByObjectiveCellID"))
         
-        delegate.onObjectiveSelected = {(student, objective) in
-            self.listOfMatchesByObjective = self.cblSprint?.matchStudents(student: student, objective: objective)
+        appDelegate.onObjectiveSelected = {(student, objective) in
+            self.listOfMatchesByObjective = self.appDelegate.selectedSprint?.matchStudents(student: student, objective: objective)
             self.numberOfMatchs.stringValue = String(self.listOfMatchesByObjective.count)
             self.numberOfMatchs.isHidden = false
             self.intelligentLabel.isHidden = false
@@ -46,8 +46,16 @@ class IntelligentFeedbackController: NSPageController {
             self.studentMatchByObjectiveList.reloadData()
         }
         
-        delegate.onTeamSelected.append(teamSelectedClosure)
-
+        appDelegate.onTeamSelected.append(teamSelectedClosure)
+        
+        let studentSelectedClosure:((Student) ->())? = {
+            student in
+            self.numberOfMatchs.isHidden = true
+            self.intelligentLabel.isHidden = true
+            self.listOfMatchesByObjective = []
+            self.studentMatchByObjectiveList.reloadData()
+        }
+        appDelegate.onStudentSelected.append(studentSelectedClosure)
 //        delegate.onStudentSelected = {
 //            self.numberOfMatchs.isHidden = true
 //            self.intelligentLabel.isHidden = true

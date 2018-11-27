@@ -322,15 +322,15 @@ class CBLSprint {
     
     func matchStudents(student:Student, objective:StudentLearningObjective) -> [(Student, StudentLearningObjective)] {
         var res = [(Student, StudentLearningObjective)]()
-        let names = self.studentsDict.keys.sorted()
-        names.forEach{
-            name in
-            if name != student.name {
-                let s = self.studentsDict[name]!
-                let objectives:[StudentLearningObjective] = (s.objectivesByTopic(topic: objective.topic, onlyMustHave: true))
+        let studentsIDs = self.studentsByID?.keys.sorted()
+        studentsIDs?.forEach{
+            id in
+            if id != student.id {
+                let s = self.studentsByID?[id]!
+                let objectives:[StudentLearningObjective] = ((s?.objectivesByTopic(topic: objective.topic, onlyMustHave: true))!)
                 objectives.forEach {
                     objective in
-                    res.append((s, objective))
+                    res.append((s!, objective))
                     print(objective)
                 }
             }
