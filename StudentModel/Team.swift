@@ -10,6 +10,13 @@ import Foundation
 import CloudKit
 
 class Team {
+    enum InfoTypes {
+        case BigIdea
+        case EssentialQuestion
+        case Challenge
+        case Concept
+    }
+
     var id: String?
     var name: String
     var members: [String:Student] = [:]

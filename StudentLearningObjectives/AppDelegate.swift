@@ -76,6 +76,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    @objc func onDidUpdateTeam(_ notification:Notification) {
+        let teamUpdate = notification.object as! (Team, Team.InfoTypes)
+        let teamID = teamUpdate.0.id
+        print("atualizando team \(teamID)")
+    }
+    
     func retrieveAllCourses(onSuccess sucess: @escaping () -> Void) -> Void {
         let defaultContainer = CKContainer.default()
         let predicate = NSPredicate(format: "TRUEPREDICATE")
@@ -100,6 +106,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidUpdateTeam(_:)), name: Notification.Name("didUpdateTeam"), object: nil)
         self.retrieveAllCourses {
             if self.courses.count > 0 {
                 self.selectedCourse = self.courses.first

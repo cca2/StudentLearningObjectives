@@ -13,14 +13,7 @@ import CreateML
 import CoreData
 import CloudKit
 
-class NoteElementToDisplay {
-    enum InfoTypes {
-        case BigIdea
-        case EssentialQuestion
-        case Challenge
-        case Concept
-    }
-    
+class NoteElementToDisplay {    
     let team:Team?
     let title:String?
     let subtitle:String?
@@ -28,21 +21,21 @@ class NoteElementToDisplay {
     let paragraph: String?
     var isSelected = false
     
-    var teamInfoModified:NoteElementToDisplay.InfoTypes?
+    var teamInfoModified:Team.InfoTypes?
     
-    init (team:Team, infoType:NoteElementToDisplay.InfoTypes) {
+    init (team:Team, infoType:Team.InfoTypes) {
         self.team = team
         self.title = nil
         self.subtitle = nil
         self.objective = nil
         
-        if infoType == NoteElementToDisplay.InfoTypes.BigIdea {
+        if infoType == Team.InfoTypes.BigIdea {
             self.paragraph = team.bigIdea
-        }else if infoType == NoteElementToDisplay.InfoTypes.EssentialQuestion {
+        }else if infoType == Team.InfoTypes.EssentialQuestion {
             self.paragraph = team.essentialQuestion
-        }else if infoType == NoteElementToDisplay.InfoTypes.Challenge {
+        }else if infoType == Team.InfoTypes.Challenge {
             self.paragraph = team.challenge
-        }else if infoType == NoteElementToDisplay.InfoTypes.Concept {
+        }else if infoType == Team.InfoTypes.Concept {
             self.paragraph = team.concept
         }else {
             self.paragraph = nil
@@ -136,9 +129,9 @@ class ViewController: NSViewController {
     
     //Tags que identificam qual texto foi modificado
     var learningObjectivesByModifiedView:[NSTextView:StudentLearningObjective] = [:]
-    var teamsInfoByModifiedView:[NSTextView:(Team, NoteElementToDisplay.InfoTypes)] = [:]
+    var teamsInfoByModifiedView:[NSTextView:(Team, Team.InfoTypes)] = [:]
     var objectiveBeingEdited:StudentLearningObjective?
-    var teamBeingEdited:(Team?, NoteElementToDisplay.InfoTypes?)?
+    var teamBeingEdited:(Team?, Team.InfoTypes?)?
 
     //Salva o delegate
     let delegate = NSApplication.shared.delegate as! AppDelegate
@@ -682,6 +675,7 @@ extension ViewController: NSTextViewDelegate {
             print("modificando o objetivo")
         }else if self.teamBeingEdited != nil {
             print("Mofificando team")
+            NotificationCenter.default.post(Notification(name: Notification.Name("didUpdateTeam"), object:self.teamBeingEdited, userInfo: nil))
         }
         return true
     }    
@@ -787,7 +781,7 @@ extension ViewController: NSTableViewDelegate {
                     if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  ParagraphCellView {
                         cell.fitForParagraph(elementToDisplay: elementsToDisplay[row])
                         cell.paragraphTextView.delegate = self
-                        self.teamsInfoByModifiedView[cell.paragraphTextView] = (elementsToDisplay[row].team, elementsToDisplay[row].teamInfoModified) as? (Team, NoteElementToDisplay.InfoTypes)
+                        self.teamsInfoByModifiedView[cell.paragraphTextView] = (elementsToDisplay[row].team, elementsToDisplay[row].teamInfoModified) as? (Team, Team.InfoTypes)
                         return cell
                     }
                 }
