@@ -10,7 +10,7 @@ import Cocoa
 import NaturalLanguage
 
 class LearningObjectiveCellView: NSTableCellView {
-    @IBOutlet weak var descriptionTextField: NSTextField!
+    @IBOutlet var descriptionView: NSTextView!
     @IBOutlet weak var selectedBox: NSBox!
     @IBOutlet weak var statusBox: NSBox!
     @IBOutlet weak var inBacklogCheck: NSButton!
@@ -22,10 +22,28 @@ class LearningObjectiveCellView: NSTableCellView {
     
     func fitForObjective(elementToDisplay: NoteElementToDisplay) {
         let richTextDescription = NSMutableAttributedString(string: "")
-        
+//        if let objective = elementToDisplay.objective {
+//            richTextDescription.append(highlightTopics(text: objective.description, tags: objective.tags))
+//        }
+//        
+//        let attributedText = descriptionView.attributedString()
+//        attributedText.enumerateAttribute(NSAttributedString.Key.font, in: NSMakeRange(0, attributedText.length), options: NSAttributedString.EnumerationOptions(rawValue: 0)) {
+//            (value, range, stop) in
+//            if let font = value as? NSFont {
+//                richTextDescription.addAttribute(NSAttributedString.Key.font, value: font, range: NSMakeRange(0, richTextDescription.length))
+//            }
+//        }
+//        
+//        attributedText.enumerateAttribute(NSAttributedString.Key.foregroundColor, in: NSMakeRange(0, attributedText.length), options: NSAttributedString.EnumerationOptions(rawValue: 0)) {
+//            (value, range, stop) in
+//            if let foregroundColor = value as? NSColor {
+//                richTextDescription.addAttribute(NSAttributedString.Key.foregroundColor, value: foregroundColor, range: NSMakeRange(0, richTextDescription.length))
+//            }
+//        }
+
         if let objective = elementToDisplay.objective {
             richTextDescription.append(highlightTopics(text: objective.description, tags: objective.tags))
-            richTextDescription.append(displayClassification(objective: objective))
+            richTextDescription.append(addClassificationToDescription(objective: objective))
             if objective.isInBacklog {
                 inBacklogCheck.state = NSControl.StateValue.on
             }
@@ -44,9 +62,8 @@ class LearningObjectiveCellView: NSTableCellView {
         }else if let paragraph = elementToDisplay.paragraph {
             richTextDescription.append(NSAttributedString(string: paragraph))
         }
-
-//        self.descriptionTextField.attributedStringValue = richTextDescription
-//        self.descriptionTextField.focusRingType = .none
+        self.descriptionView.textStorage?.setAttributedString(richTextDescription)
+//        self.descriptionView.textStorage?.append(richTextDescription)
         
         selectedBox.isHidden = !elementToDisplay.isSelected
     }
@@ -57,7 +74,7 @@ class LearningObjectiveCellView: NSTableCellView {
         // Drawing code here.
     }
 
-    func displayClassification(objective: StudentLearningObjective) -> NSAttributedString {
+    func addClassificationToDescription(objective: StudentLearningObjective) -> NSAttributedString {
         let res = NSMutableAttributedString(string: "")
 
         let topicAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.lightGray]

@@ -639,7 +639,7 @@ extension ViewController: NSTableViewDelegate {
         if (tableView == self.mustHaveTableView) {
             if let objective = elementsToDisplay[row].objective {
 //                let fakeField = NSTextField()
-//                let item = objective.description + " #" + objective.priority + " #" + objective.level + " #" + objective.topic
+                let item = objective.description + " #" + objective.priority + " #" + objective.level + " #" + objective.topic
 //                let objectiveDescriptionWidth = CGFloat(540.0)
 //
 //                fakeField.stringValue = item
@@ -650,8 +650,12 @@ extension ViewController: NSTableViewDelegate {
 //                self.programmingScrollViewHeight = self.programmingScrollViewHeight + yourHeight
 //                return yourHeight
                 
-                let yourHeight = CGFloat(154.0)
-                return yourHeight
+//                let yourHeight = CGFloat(154.0)
+//                return yourHeight
+                let attributedItem = NSAttributedString(string: item)
+                let itemHeight = hightForString(attributedString: attributedItem, width: CGFloat(540.0), padding: CGFloat(10.0))
+                let cellHeight = itemHeight + 114.0
+                return cellHeight
             }else if let title = elementsToDisplay[row].title {
                 return CGFloat(40.0)
             }else if let subtitle = elementsToDisplay[row].subtitle {

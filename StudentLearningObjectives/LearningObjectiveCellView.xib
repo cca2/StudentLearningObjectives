@@ -188,7 +188,6 @@
                     </view>
                     <constraints>
                         <constraint firstAttribute="width" constant="600" id="p04-db-bNb"/>
-                        <constraint firstAttribute="height" constant="52" id="tem-ex-Zj4"/>
                     </constraints>
                     <color key="borderColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                     <color key="fillColor" name="findHighlightColor" catalog="System" colorSpace="catalog"/>
@@ -303,6 +302,8 @@
             </subviews>
             <constraints>
                 <constraint firstItem="wEQ-VA-6WG" firstAttribute="top" secondItem="Poy-6K-dbe" secondAttribute="bottom" id="3bw-ve-hbE"/>
+                <constraint firstItem="Poy-6K-dbe" firstAttribute="leading" secondItem="Cgc-f8-NaN" secondAttribute="leading" id="I2E-31-mOz"/>
+                <constraint firstItem="Poy-6K-dbe" firstAttribute="leading" secondItem="QOf-Tl-Dur" secondAttribute="trailing" id="JrL-3l-X8j"/>
                 <constraint firstItem="wEQ-VA-6WG" firstAttribute="leading" secondItem="MiI-bl-cVI" secondAttribute="leading" constant="71" id="JxR-Lz-mGZ"/>
                 <constraint firstAttribute="trailing" secondItem="Poy-6K-dbe" secondAttribute="trailing" id="a0a-03-dYf"/>
                 <constraint firstAttribute="bottom" secondItem="wEQ-VA-6WG" secondAttribute="bottom" id="dT1-Fp-EIZ"/>
@@ -313,6 +314,7 @@
             <connections>
                 <outlet property="abandonedCheck" destination="VGA-di-gVW" id="UNj-f0-LZf"/>
                 <outlet property="appliedCheck" destination="guZ-uo-XqC" id="UnW-nC-4ke"/>
+                <outlet property="descriptionView" destination="xPZ-nF-XgM" id="TNj-Vc-gUW"/>
                 <outlet property="experimentedCheck" destination="tuN-mk-A0o" id="1jf-C5-kLf"/>
                 <outlet property="inBacklogCheck" destination="xrY-lp-auX" id="fdl-Z8-qFR"/>
                 <outlet property="selectedBox" destination="8LG-os-JuO" id="AVZ-Q2-7Mv"/>
