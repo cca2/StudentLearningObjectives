@@ -89,7 +89,6 @@
             <constraints>
                 <constraint firstItem="9EE-7x-v1K" firstAttribute="leading" secondItem="01X-3u-e7b" secondAttribute="leading" constant="71" id="6fl-Vs-XhO"/>
                 <constraint firstAttribute="bottom" secondItem="9EE-7x-v1K" secondAttribute="bottom" id="GtM-Kg-Mou"/>
-                <constraint firstItem="9EE-7x-v1K" firstAttribute="leading" secondItem="01X-3u-e7b" secondAttribute="leading" constant="71" id="TDp-ZC-tQs"/>
                 <constraint firstAttribute="bottom" secondItem="tiR-kA-Gd3" secondAttribute="bottom" id="Zff-7j-HqW"/>
                 <constraint firstItem="tiR-kA-Gd3" firstAttribute="leading" secondItem="01X-3u-e7b" secondAttribute="leading" id="gy7-yp-xMw"/>
                 <constraint firstAttribute="trailing" secondItem="9EE-7x-v1K" secondAttribute="trailing" id="hkG-iI-lHK"/>
@@ -132,7 +131,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="564" height="37"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView verticallyResizable="YES" allowsDocumentBackgroundColorChange="YES" spellingCorrection="YES" smartInsertDelete="YES" id="xPZ-nF-XgM">
+                                        <textView verticallyResizable="NO" allowsDocumentBackgroundColorChange="YES" spellingCorrection="YES" smartInsertDelete="YES" id="xPZ-nF-XgM">
                                             <rect key="frame" x="0.0" y="0.0" width="564" height="37"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
