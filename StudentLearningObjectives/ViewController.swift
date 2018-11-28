@@ -211,9 +211,7 @@ class ViewController: NSViewController {
         
         self.delegate.onSprintSelected = {
             sprint in
-//            self.displayMessage(message: "Atualizando informações da sprint: \(sprint.name)")
-            DispatchQueue.main.async {
-                self.outlineView.reloadData()
+//            DispatchQueue.main.async {
                 sprint.retrieveSprintInfo(studentsByID: (self.delegate.selectedCourse?.studentsByID)!) {
                     self.displayMessage(message: "Informações da Sprint \(sprint.name)")
                     self.outlineKeys = ["sprints", "teams"]
@@ -226,7 +224,9 @@ class ViewController: NSViewController {
                             self.delegate.selectedSprint?.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
                         }
                     }
-                    
+                    DispatchQueue.main.async {
+                        self.outlineView.reloadData()
+                    }
                     
                     //Esta parte só deve ser utilizada para se atualizar a partir de um
                     //arquivo csv gerado do airtable a base de dados do cloudkit
@@ -365,7 +365,7 @@ class ViewController: NSViewController {
 //
 //                        }
 //                    }
-                }
+//                }
            }
         }
         
