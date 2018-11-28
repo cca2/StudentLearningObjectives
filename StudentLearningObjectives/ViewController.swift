@@ -14,17 +14,48 @@ import CoreData
 import CloudKit
 
 class NoteElementToDisplay {
+    enum InfoTypes {
+        case BigIdea
+        case EssentialQuestion
+        case Challenge
+        case Concept
+    }
+    
+    let team:Team?
     let title:String?
     let subtitle:String?
     let objective:StudentLearningObjective?
     let paragraph: String?
     var isSelected = false
     
+    var teamInfoModified:NoteElementToDisplay.InfoTypes?
+    
+    init (team:Team, infoType:NoteElementToDisplay.InfoTypes) {
+        self.team = team
+        self.title = nil
+        self.subtitle = nil
+        self.objective = nil
+        
+        if infoType == NoteElementToDisplay.InfoTypes.BigIdea {
+            self.paragraph = team.bigIdea
+        }else if infoType == NoteElementToDisplay.InfoTypes.EssentialQuestion {
+            self.paragraph = team.essentialQuestion
+        }else if infoType == NoteElementToDisplay.InfoTypes.Challenge {
+            self.paragraph = team.challenge
+        }else if infoType == NoteElementToDisplay.InfoTypes.Concept {
+            self.paragraph = team.concept
+        }else {
+            self.paragraph = nil
+        }
+        self.teamInfoModified = infoType
+    }
+    
     init (title:String?) {
         self.title = title
         self.subtitle = nil
         self.objective = nil
         self.paragraph = nil
+        self.team = nil
     }
     
     init (subtitle:String?) {
@@ -32,6 +63,7 @@ class NoteElementToDisplay {
         self.subtitle = subtitle
         self.objective = nil
         self.paragraph = nil
+        self.team = nil
     }
 
     init (objective:StudentLearningObjective?) {
@@ -39,14 +71,15 @@ class NoteElementToDisplay {
         self.subtitle = nil
         self.objective = objective
         self.paragraph = nil
+        self.team = nil
     }
     
-    init (paragraph:String?) {
-        self.title = nil
-        self.subtitle = nil
-        self.objective = nil
-        self.paragraph = paragraph
-    }
+//    init (paragraph:String?) {
+//        self.title = nil
+//        self.subtitle = nil
+//        self.objective = nil
+//        self.paragraph = paragraph
+//    }
 }
 
 class SnippetToDisplay {
@@ -104,6 +137,7 @@ class ViewController: NSViewController {
     //Tags que identificam qual texto foi modificado
     var learningObjectivesByModifiedView:[NSTextView:StudentLearningObjective] = [:]
     var objectiveBeingEdited:StudentLearningObjective?
+    var teamBeingEdited:(Team, NoteElementToDisplay.InfoTypes)?
 
     //Salva o delegate
     let delegate = NSApplication.shared.delegate as! AppDelegate
@@ -501,14 +535,15 @@ class ViewController: NSViewController {
             self.elementsToDisplay = []
             self.elementsToDisplay.append(NoteElementToDisplay(title: team.name))
             self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Big Idea"))
-            self.elementsToDisplay.append(NoteElementToDisplay(paragraph: team.bigIdea))
+//            self.elementsToDisplay.append(NoteElementToDisplay(paragraph: team.bigIdea))
+            self.elementsToDisplay.append(NoteElementToDisplay(team: team, infoType: .BigIdea))
             self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Essential Question"))
-            self.elementsToDisplay.append(NoteElementToDisplay(paragraph: team.essentialQuestion))
+            self.elementsToDisplay.append(NoteElementToDisplay(team: team, infoType: .EssentialQuestion))
             self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Challenge"))
-            self.elementsToDisplay.append(NoteElementToDisplay(paragraph: team.challenge))
+            self.elementsToDisplay.append(NoteElementToDisplay(team: team, infoType: .Challenge))
             self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Concept"))
-            self.elementsToDisplay.append(NoteElementToDisplay(paragraph: team.concept))
-            
+            self.elementsToDisplay.append(NoteElementToDisplay(team: team, infoType: .Concept))
+
             self.mustHaveTableView.reloadData()
         }
     }
