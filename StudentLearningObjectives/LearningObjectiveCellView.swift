@@ -125,14 +125,15 @@ class LearningObjectiveCellView: NSTableCellView {
 
 class ParagraphCellView: NSTableCellView {
     @IBOutlet weak var selectedBox: NSBox!
-    @IBOutlet weak var paragraphTextField: NSTextField!
+    @IBOutlet var paragraphTextView: NSTextView!
     
     func fitForParagraph(elementToDisplay: NoteElementToDisplay) {
         let richTextDescription = NSMutableAttributedString(string: "")
         if let paragraph = elementToDisplay.paragraph {
             richTextDescription.append(NSAttributedString(string: paragraph))
         }
-        self.paragraphTextField.attributedStringValue = richTextDescription
+//        self.paragraphTextField.attributedStringValue = richTextDescription
+        self.paragraphTextView.textStorage?.append(richTextDescription)
     }
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)

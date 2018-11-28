@@ -212,7 +212,7 @@ class ViewController: NSViewController {
         
         self.delegate.onSprintSelected = {
             sprint in
-            self.displayMessage(message: "Atualizando informações da sprint: \(sprint.name)")
+//            self.displayMessage(message: "Atualizando informações da sprint: \(sprint.name)")
             DispatchQueue.main.async {
                 sprint.retrieveSprintInfo(studentsByID: (self.delegate.selectedCourse?.studentsByID)!) {
                     self.displayMessage(message: "Informações da Sprint \(sprint.name)")
@@ -657,13 +657,8 @@ extension ViewController: NSTableViewDelegate {
             }else if let subtitle = elementsToDisplay[row].subtitle {
                 return CGFloat(40.0)
             }else if let paragraph = elementsToDisplay[row].paragraph {
-                let fakeField = NSTextField()
-                let item = paragraph.description
-                fakeField.stringValue = item
-                
-                let paragraphDescriptionWidth = CGFloat(540.0)                
-                let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), paragraphDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 10.0
-                
+                let item = NSAttributedString(string: paragraph.description)
+                let yourHeight = hightForString(attributedString: item, width: CGFloat(540.0), padding: CGFloat(10.0))
                 return yourHeight
             }else {
                 return CGFloat(40.0)
@@ -687,6 +682,19 @@ extension ViewController: NSTableViewDelegate {
         }else {
             return CGFloat(20)
         }
+    }
+    
+    func hightForString(attributedString: NSAttributedString, width:CGFloat, padding:CGFloat) -> CGFloat {
+        let storage:NSTextStorage = NSTextStorage(attributedString: attributedString)
+        let container: NSTextContainer = NSTextContainer(size: NSSize(width: width, height: CGFloat(Float.greatestFiniteMagnitude)))
+        
+        let layoutManager = NSLayoutManager()
+        storage.addLayoutManager(layoutManager)
+        container.lineFragmentPadding = padding
+        layoutManager.addTextContainer(container)
+        layoutManager.glyphRange(for: container)
+        let layoutHeight = layoutManager.usedRect(for: container).size.height
+        return layoutHeight + 20.0
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
