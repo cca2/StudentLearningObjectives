@@ -133,7 +133,21 @@ class ParagraphCellView: NSTableCellView {
             richTextDescription.append(NSAttributedString(string: paragraph))
         }
 //        self.paragraphTextField.attributedStringValue = richTextDescription
-        self.paragraphTextView.textStorage?.append(richTextDescription)
+        let attributedText = paragraphTextView.attributedString()
+        attributedText.enumerateAttribute(NSAttributedString.Key.font, in: NSMakeRange(0, attributedText.length), options: NSAttributedString.EnumerationOptions(rawValue: 0)) {
+            (value, range, stop) in
+            if let font = value as? NSFont {
+                richTextDescription.addAttribute(NSAttributedString.Key.font, value: font, range: NSMakeRange(0, richTextDescription.length))
+            }
+        }
+        
+        attributedText.enumerateAttribute(NSAttributedString.Key.foregroundColor, in: NSMakeRange(0, attributedText.length), options: NSAttributedString.EnumerationOptions(rawValue: 0)) {
+            (value, range, stop) in
+            if let foregroundColor = value as? NSColor {
+                richTextDescription.addAttribute(NSAttributedString.Key.foregroundColor, value: foregroundColor, range: NSMakeRange(0, richTextDescription.length))
+                self.paragraphTextView.textStorage?.append(richTextDescription)
+            }
+        }
     }
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)

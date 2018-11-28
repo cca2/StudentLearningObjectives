@@ -694,7 +694,7 @@ extension ViewController: NSTableViewDelegate {
         layoutManager.addTextContainer(container)
         layoutManager.glyphRange(for: container)
         let layoutHeight = layoutManager.usedRect(for: container).size.height
-        return layoutHeight + 20.0
+        return layoutHeight + 10.0
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
