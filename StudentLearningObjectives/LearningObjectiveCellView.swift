@@ -22,25 +22,6 @@ class LearningObjectiveCellView: NSTableCellView {
     
     func fitForObjective(elementToDisplay: NoteElementToDisplay) {
         let richTextDescription = NSMutableAttributedString(string: "")
-//        if let objective = elementToDisplay.objective {
-//            richTextDescription.append(highlightTopics(text: objective.description, tags: objective.tags))
-//        }
-//
-//        let attributedText = descriptionView.attributedString()
-//        attributedText.enumerateAttribute(NSAttributedString.Key.font, in: NSMakeRange(0, attributedText.length), options: NSAttributedString.EnumerationOptions(rawValue: 0)) {
-//            (value, range, stop) in
-//            if let font = value as? NSFont {
-//                richTextDescription.addAttribute(NSAttributedString.Key.font, value: font, range: NSMakeRange(0, richTextDescription.length))
-//            }
-//        }
-//
-//        attributedText.enumerateAttribute(NSAttributedString.Key.foregroundColor, in: NSMakeRange(0, attributedText.length), options: NSAttributedString.EnumerationOptions(rawValue: 0)) {
-//            (value, range, stop) in
-//            if let foregroundColor = value as? NSColor {
-//                richTextDescription.addAttribute(NSAttributedString.Key.foregroundColor, value: foregroundColor, range: NSMakeRange(0, richTextDescription.length))
-//            }
-//        }
-
         if let objective = elementToDisplay.objective {
             richTextDescription.append(highlightTopics(text: objective.description, tags: objective.tags))
             richTextDescription.append(addClassificationToDescription(objective: objective))
@@ -63,9 +44,6 @@ class LearningObjectiveCellView: NSTableCellView {
             richTextDescription.append(NSAttributedString(string: paragraph))
         }
         self.descriptionView.textStorage?.setAttributedString(richTextDescription)
-//        self.descriptionView.textStorage?.append(richTextDescription)
-        
-        selectedBox.isHidden = !elementToDisplay.isSelected
     }
     
     override func draw(_ dirtyRect: NSRect) {

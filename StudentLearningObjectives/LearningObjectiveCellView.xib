@@ -71,9 +71,6 @@
                             <constraint firstAttribute="bottom" secondItem="qPF-VF-TZd" secondAttribute="bottom" constant="5" id="w6d-UT-IMD"/>
                         </constraints>
                     </view>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="600" id="5YP-Pn-qdS"/>
-                    </constraints>
                     <color key="borderColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                     <color key="fillColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                 </box>
@@ -82,20 +79,6 @@
                     <view key="contentView" id="vCY-Kf-0CW">
                         <rect key="frame" x="0.0" y="0.0" width="71" height="27"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xJY-0c-A8U">
-                                <rect key="frame" x="26" y="2" width="20" height="23"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="&gt;" id="RFq-Mh-eAA">
-                                    <font key="font" metaFont="system" size="19"/>
-                                    <color key="textColor" red="0.93558710810000001" green="0.52229225639999999" blue="0.49018478389999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="xJY-0c-A8U" firstAttribute="centerX" secondItem="vCY-Kf-0CW" secondAttribute="centerX" id="78h-e1-dGW"/>
-                            <constraint firstItem="xJY-0c-A8U" firstAttribute="centerY" secondItem="vCY-Kf-0CW" secondAttribute="centerY" id="i2x-rH-jwA"/>
-                        </constraints>
                     </view>
                     <constraints>
                         <constraint firstAttribute="width" constant="71" id="LqD-d4-DWw"/>
@@ -143,7 +126,7 @@
                                 <color key="borderColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="fillColor" red="0.93558710810000001" green="0.52229225639999999" blue="0.49018478389999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </box>
-                            <scrollView appearanceType="aqua" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRZ-sQ-C1t">
+                            <scrollView appearanceType="aqua" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRZ-sQ-C1t">
                                 <rect key="frame" x="18" y="8" width="564" height="37"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="zfg-d5-tSC">
                                     <rect key="frame" x="0.0" y="0.0" width="564" height="37"/>
@@ -169,8 +152,8 @@
                                         </textView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="emC-tK-9tp">
-                                    <rect key="frame" x="548" y="0.0" width="16" height="37"/>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="emC-tK-9tp">
+                                    <rect key="frame" x="-100" y="-100" width="16" height="37"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -185,37 +168,8 @@
                             <constraint firstItem="59O-fI-2F7" firstAttribute="leading" secondItem="Jrt-Ff-Gvp" secondAttribute="leading" constant="5" id="kf3-vp-bZB"/>
                         </constraints>
                     </view>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="600" id="p04-db-bNb"/>
-                    </constraints>
                     <color key="borderColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                     <color key="fillColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                </box>
-                <box hidden="YES" ambiguous="YES" boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="8LG-os-JuO" userLabel="Selected Objective Box">
-                    <rect key="frame" x="0.0" y="2" width="71" height="164"/>
-                    <view key="contentView" ambiguous="YES" id="QOf-Tl-Dur">
-                        <rect key="frame" x="0.0" y="0.0" width="71" height="164"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mt3-WF-sbg">
-                                <rect key="frame" x="26" y="120" width="20" height="23"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="&gt;" id="T60-Y5-wov">
-                                    <font key="font" metaFont="system" size="19"/>
-                                    <color key="textColor" red="0.93558710810000001" green="0.52229225639999999" blue="0.49018478389999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="Mt3-WF-sbg" firstAttribute="centerX" secondItem="QOf-Tl-Dur" secondAttribute="centerX" id="O8P-8Q-DqE"/>
-                            <constraint firstItem="Mt3-WF-sbg" firstAttribute="top" secondItem="QOf-Tl-Dur" secondAttribute="top" constant="21" id="R3v-sv-Qhn"/>
-                            <constraint firstItem="Mt3-WF-sbg" firstAttribute="leading" secondItem="QOf-Tl-Dur" secondAttribute="leading" constant="28" id="gTG-9y-DdQ"/>
-                        </constraints>
-                    </view>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="71" id="GTu-hY-Omv"/>
-                    </constraints>
-                    <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                 </box>
                 <box boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="wEQ-VA-6WG">
                     <rect key="frame" x="71" y="0.0" width="600" height="114"/>
@@ -302,13 +256,10 @@
             <constraints>
                 <constraint firstItem="wEQ-VA-6WG" firstAttribute="top" secondItem="Poy-6K-dbe" secondAttribute="bottom" id="3bw-ve-hbE"/>
                 <constraint firstItem="Poy-6K-dbe" firstAttribute="leading" secondItem="Cgc-f8-NaN" secondAttribute="leading" id="I2E-31-mOz"/>
-                <constraint firstItem="Poy-6K-dbe" firstAttribute="leading" secondItem="QOf-Tl-Dur" secondAttribute="trailing" id="JrL-3l-X8j"/>
                 <constraint firstItem="wEQ-VA-6WG" firstAttribute="leading" secondItem="MiI-bl-cVI" secondAttribute="leading" constant="71" id="JxR-Lz-mGZ"/>
                 <constraint firstAttribute="trailing" secondItem="Poy-6K-dbe" secondAttribute="trailing" id="a0a-03-dYf"/>
                 <constraint firstAttribute="bottom" secondItem="wEQ-VA-6WG" secondAttribute="bottom" id="dT1-Fp-EIZ"/>
                 <constraint firstItem="Poy-6K-dbe" firstAttribute="top" secondItem="MiI-bl-cVI" secondAttribute="top" id="i0R-CC-3RQ"/>
-                <constraint firstItem="Poy-6K-dbe" firstAttribute="leading" secondItem="8LG-os-JuO" secondAttribute="trailing" id="jrW-7U-bWt"/>
-                <constraint firstAttribute="bottom" secondItem="8LG-os-JuO" secondAttribute="bottom" constant="2" id="vBh-dm-4nn"/>
             </constraints>
             <connections>
                 <outlet property="abandonedCheck" destination="VGA-di-gVW" id="UNj-f0-LZf"/>
@@ -316,7 +267,6 @@
                 <outlet property="descriptionView" destination="xPZ-nF-XgM" id="TNj-Vc-gUW"/>
                 <outlet property="experimentedCheck" destination="tuN-mk-A0o" id="1jf-C5-kLf"/>
                 <outlet property="inBacklogCheck" destination="xrY-lp-auX" id="fdl-Z8-qFR"/>
-                <outlet property="selectedBox" destination="8LG-os-JuO" id="AVZ-Q2-7Mv"/>
                 <outlet property="statusBox" destination="wEQ-VA-6WG" id="QBV-4I-cC0"/>
                 <outlet property="studiedCheck" destination="4PL-LV-meq" id="GQ6-PB-BOm"/>
                 <outlet property="taughtCheck" destination="Tx9-Bt-c6v" id="nRo-m5-ql7"/>

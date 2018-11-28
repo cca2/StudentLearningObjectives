@@ -99,12 +99,11 @@ class ViewController: NSViewController {
     
     var cblSprint:CBLSprint!
 
-    // I assume you know how load it from a plist so I will skip
-    // that code and use a constant for simplicity
-//    let sprint = Challenge(name: "Challenge 4", teams: ["7 pecados", "pulsai"])
-//    var sprint = Challenge(name: "Challenge 4", teams:[String]())
-    
     var outlineKeys:[String] = []
+    
+    //Tags que identificam qual texto foi modificado
+    var learningObjectivesByModifiedView:[NSTextView:StudentLearningObjective] = [:]
+    var objectiveBeingEdited:StudentLearningObjective?
 
     //Salva o delegate
     let delegate = NSApplication.shared.delegate as! AppDelegate
@@ -214,6 +213,7 @@ class ViewController: NSViewController {
             sprint in
 //            self.displayMessage(message: "Atualizando informações da sprint: \(sprint.name)")
             DispatchQueue.main.async {
+                self.outlineView.reloadData()
                 sprint.retrieveSprintInfo(studentsByID: (self.delegate.selectedCourse?.studentsByID)!) {
                     self.displayMessage(message: "Informações da Sprint \(sprint.name)")
                     self.outlineKeys = ["sprints", "teams"]
@@ -227,7 +227,6 @@ class ViewController: NSViewController {
                         }
                     }
                     
-                    self.outlineView.reloadData()
                     
                     //Esta parte só deve ser utilizada para se atualizar a partir de um
                     //arquivo csv gerado do airtable a base de dados do cloudkit
@@ -488,26 +487,30 @@ class ViewController: NSViewController {
     }
     
     func displayMessage(message: String) {
-        self.mustHaveTableView.deselectAll(nil)
-        self.elementsToDisplay = []
-        self.elementsToDisplay.append(NoteElementToDisplay(title: message))
-        self.mustHaveTableView.reloadData()
+        DispatchQueue.main.async {
+            self.mustHaveTableView.deselectAll(nil)
+            self.elementsToDisplay = []
+            self.elementsToDisplay.append(NoteElementToDisplay(title: message))
+            self.mustHaveTableView.reloadData()
+        }
     }
     
     func displayTeamInfo(team:Team) {
-        self.mustHaveTableView.deselectAll(nil)
-        self.elementsToDisplay = []
-        self.elementsToDisplay.append(NoteElementToDisplay(title: team.name))
-        self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Big Idea"))
-        self.elementsToDisplay.append(NoteElementToDisplay(paragraph: team.bigIdea))
-        self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Essential Question"))
-        self.elementsToDisplay.append(NoteElementToDisplay(paragraph: team.essentialQuestion))
-        self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Challenge"))
-        self.elementsToDisplay.append(NoteElementToDisplay(paragraph: team.challenge))
-        self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Concept"))
-        self.elementsToDisplay.append(NoteElementToDisplay(paragraph: team.concept))
-
-        self.mustHaveTableView.reloadData()
+        DispatchQueue.main.async {
+            self.mustHaveTableView.deselectAll(nil)
+            self.elementsToDisplay = []
+            self.elementsToDisplay.append(NoteElementToDisplay(title: team.name))
+            self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Big Idea"))
+            self.elementsToDisplay.append(NoteElementToDisplay(paragraph: team.bigIdea))
+            self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Essential Question"))
+            self.elementsToDisplay.append(NoteElementToDisplay(paragraph: team.essentialQuestion))
+            self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Challenge"))
+            self.elementsToDisplay.append(NoteElementToDisplay(paragraph: team.challenge))
+            self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Concept"))
+            self.elementsToDisplay.append(NoteElementToDisplay(paragraph: team.concept))
+            
+            self.mustHaveTableView.reloadData()
+        }
     }
     
     func displayStudentObjectives(student:Student) {
@@ -622,10 +625,16 @@ extension ViewController: NSTableViewDataSource {
 extension ViewController: NSTextViewDelegate {
     func textDidChange(_ notification: Notification) {
         print("Hello")
+        let textView = notification.object as! NSTextView
+        self.objectiveBeingEdited = self.learningObjectivesByModifiedView[textView]
     }
     
     func textShouldEndEditing(_ textObject: NSText) -> Bool {
-        print(">>> 0 <<<")
+        if self.objectiveBeingEdited != nil {
+            print("modificando o objetivo")
+        }else {
+            print("não faz nada")
+        }
         return true
     }    
 }
@@ -710,6 +719,7 @@ extension ViewController: NSTableViewDelegate {
                     if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  LearningObjectiveCellView {
                         cell.fitForObjective(elementToDisplay: elementsToDisplay[row])
                         cell.descriptionView.delegate = self
+                        self.learningObjectivesByModifiedView[cell.descriptionView] = elementsToDisplay[row].objective
                         return cell
                     }
                 }else if let title = elementsToDisplay[row].title {
@@ -728,6 +738,7 @@ extension ViewController: NSTableViewDelegate {
                     cellIdentifier = "ParagraphCellID"
                     if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  ParagraphCellView {
                         cell.fitForParagraph(elementToDisplay: elementsToDisplay[row])
+                        cell.paragraphTextView.delegate = self
                         return cell
                     }
                 }
@@ -778,6 +789,7 @@ extension ViewController: NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         if (tableView == self.mustHaveTableView) {
+            print(">>> 100 <<<")
             if let _ = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("ObjectiveCellID"), owner: nil) as?  NSTableCellView {
                 let delegate = NSApplication.shared.delegate as! AppDelegate
                 if let selectedObjective = self.elementsToDisplay[row].objective {
