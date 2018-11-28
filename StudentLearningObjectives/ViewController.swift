@@ -694,7 +694,7 @@ extension ViewController: NSTableViewDelegate {
         layoutManager.addTextContainer(container)
         layoutManager.glyphRange(for: container)
         let layoutHeight = layoutManager.usedRect(for: container).size.height
-        return layoutHeight + 10.0
+        return layoutHeight + 16.0
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -704,7 +704,6 @@ extension ViewController: NSTableViewDelegate {
             
             if tableColumn == tableView.tableColumns[0] {
                 if elementsToDisplay[row].objective != nil {
-//                    cellIdentifier = "ObjectiveCellID"
                     cellIdentifier = "ObjectiveCellID"
                     if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  LearningObjectiveCellView {
                         cell.fitForObjective(elementToDisplay: elementsToDisplay[row])
