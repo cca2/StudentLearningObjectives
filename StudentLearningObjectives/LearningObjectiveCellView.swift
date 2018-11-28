@@ -45,8 +45,8 @@ class LearningObjectiveCellView: NSTableCellView {
             richTextDescription.append(NSAttributedString(string: paragraph))
         }
 
-        self.descriptionTextField.attributedStringValue = richTextDescription
-        self.descriptionTextField.focusRingType = .none
+//        self.descriptionTextField.attributedStringValue = richTextDescription
+//        self.descriptionTextField.focusRingType = .none
         
         selectedBox.isHidden = !elementToDisplay.isSelected
     }
