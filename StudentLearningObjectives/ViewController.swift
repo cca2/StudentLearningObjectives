@@ -619,6 +619,17 @@ extension ViewController: NSTableViewDataSource {
     }
 }
 
+extension ViewController: NSTextViewDelegate {
+    func textDidChange(_ notification: Notification) {
+        print("Hello")
+    }
+    
+    func textShouldEndEditing(_ textObject: NSText) -> Bool {
+        print(">>> 0 <<<")
+        return true
+    }    
+}
+
 extension ViewController: NSTableViewDelegate {
     func tableViewSelectionDidChange(_ notification: Notification) {
         let notesSelectedRow = self.mustHaveTableView.selectedRow
@@ -638,20 +649,7 @@ extension ViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         if (tableView == self.mustHaveTableView) {
             if let objective = elementsToDisplay[row].objective {
-//                let fakeField = NSTextField()
                 let item = objective.description + " #" + objective.priority + " #" + objective.level + " #" + objective.topic
-//                let objectiveDescriptionWidth = CGFloat(540.0)
-//
-//                fakeField.stringValue = item
-//                // exactly how you get the text out of your data array depends on how you set it up
-//
-//                let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 10.0
-//
-//                self.programmingScrollViewHeight = self.programmingScrollViewHeight + yourHeight
-//                return yourHeight
-                
-//                let yourHeight = CGFloat(154.0)
-//                return yourHeight
                 let attributedItem = NSAttributedString(string: item)
                 let itemHeight = hightForString(attributedString: attributedItem, width: CGFloat(540.0), padding: CGFloat(10.0))
                 let cellHeight = itemHeight + 114.0
@@ -711,6 +709,7 @@ extension ViewController: NSTableViewDelegate {
                     cellIdentifier = "ObjectiveCellID"
                     if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  LearningObjectiveCellView {
                         cell.fitForObjective(elementToDisplay: elementsToDisplay[row])
+                        cell.descriptionView.delegate = self
                         return cell
                     }
                 }else if let title = elementsToDisplay[row].title {

@@ -25,7 +25,7 @@ class LearningObjectiveCellView: NSTableCellView {
 //        if let objective = elementToDisplay.objective {
 //            richTextDescription.append(highlightTopics(text: objective.description, tags: objective.tags))
 //        }
-//        
+//
 //        let attributedText = descriptionView.attributedString()
 //        attributedText.enumerateAttribute(NSAttributedString.Key.font, in: NSMakeRange(0, attributedText.length), options: NSAttributedString.EnumerationOptions(rawValue: 0)) {
 //            (value, range, stop) in
@@ -33,7 +33,7 @@ class LearningObjectiveCellView: NSTableCellView {
 //                richTextDescription.addAttribute(NSAttributedString.Key.font, value: font, range: NSMakeRange(0, richTextDescription.length))
 //            }
 //        }
-//        
+//
 //        attributedText.enumerateAttribute(NSAttributedString.Key.foregroundColor, in: NSMakeRange(0, attributedText.length), options: NSAttributedString.EnumerationOptions(rawValue: 0)) {
 //            (value, range, stop) in
 //            if let foregroundColor = value as? NSColor {
@@ -171,3 +171,4 @@ class ParagraphCellView: NSTableCellView {
         // Drawing code here.
     }
 }
+
