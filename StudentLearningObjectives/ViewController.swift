@@ -136,8 +136,9 @@ class ViewController: NSViewController {
     
     //Tags que identificam qual texto foi modificado
     var learningObjectivesByModifiedView:[NSTextView:StudentLearningObjective] = [:]
+    var teamsInfoByModifiedView:[NSTextView:(Team, NoteElementToDisplay.InfoTypes)] = [:]
     var objectiveBeingEdited:StudentLearningObjective?
-    var teamBeingEdited:(Team, NoteElementToDisplay.InfoTypes)?
+    var teamBeingEdited:(Team?, NoteElementToDisplay.InfoTypes?)?
 
     //Salva o delegate
     let delegate = NSApplication.shared.delegate as! AppDelegate
@@ -661,14 +662,26 @@ extension ViewController: NSTextViewDelegate {
     func textDidChange(_ notification: Notification) {
         print("Hello")
         let textView = notification.object as! NSTextView
-        self.objectiveBeingEdited = self.learningObjectivesByModifiedView[textView]
+        
+        if let objectiveBeingEdit = self.learningObjectivesByModifiedView[textView] {
+            self.objectiveBeingEdited = objectiveBeingEdit
+        }else {
+            self.objectiveBeingEdited = nil
+        }
+        
+        if let teamBeingEdited = self.teamsInfoByModifiedView[textView]?.0 {
+            self.teamBeingEdited = (teamBeingEdited, self.teamsInfoByModifiedView[textView]?.1)
+        }else {
+            self.teamBeingEdited = nil
+        }
+        
     }
     
     func textShouldEndEditing(_ textObject: NSText) -> Bool {
         if self.objectiveBeingEdited != nil {
             print("modificando o objetivo")
-        }else {
-            print("não faz nada")
+        }else if self.teamBeingEdited != nil {
+            print("Mofificando team")
         }
         return true
     }    
@@ -769,11 +782,12 @@ extension ViewController: NSTableViewDelegate {
                         cell.subtitle.stringValue = subtitle
                         return cell
                     }
-                }else if elementsToDisplay[row].paragraph != nil {
+                }else if elementsToDisplay[row].team != nil {
                     cellIdentifier = "ParagraphCellID"
                     if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  ParagraphCellView {
                         cell.fitForParagraph(elementToDisplay: elementsToDisplay[row])
                         cell.paragraphTextView.delegate = self
+                        self.teamsInfoByModifiedView[cell.paragraphTextView] = (elementsToDisplay[row].team, elementsToDisplay[row].teamInfoModified) as? (Team, NoteElementToDisplay.InfoTypes)
                         return cell
                     }
                 }
