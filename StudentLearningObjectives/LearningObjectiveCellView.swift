@@ -21,7 +21,10 @@ class LearningObjectiveCellView: NSTableCellView {
     @IBOutlet weak var taughtCheck: NSButton!
     
     func fitForObjective(elementToDisplay: NoteElementToDisplay) {
-        let richTextDescription = NSMutableAttributedString(string: "")
+        let font = NSFont.systemFont(ofSize: 16.0)
+        let attributes: [NSAttributedString.Key:Any] = [NSAttributedString.Key.font:font]
+        let richTextDescription = NSMutableAttributedString(string: "", attributes:attributes)
+
         if let objective = elementToDisplay.objective {
             richTextDescription.append(highlightTopics(text: objective.description, tags: objective.tags))
             richTextDescription.append(addClassificationToDescription(objective: objective))
@@ -76,7 +79,9 @@ class LearningObjectiveCellView: NSTableCellView {
     func highlightTopics(text: String, tags:[(tag:String, value:String)]) -> NSAttributedString {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.5
-        let topicAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.red]
+        let topicAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.red, .font:NSFont.systemFont(ofSize: 13.0)]
+        let nonTopicAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.darkGray, .font:NSFont.systemFont(ofSize: 13.0)]
+        
         let attributedText = NSMutableAttributedString(string: "")
         
         var textLexicalTags: [(string:String, rawValue:String)] = []
@@ -100,7 +105,7 @@ class LearningObjectiveCellView: NSTableCellView {
         textLexicalTags.forEach{
             lexicalTag in
             var foundTag = false
-            var newAttributedString = NSAttributedString(string: lexicalTag.string)
+            var newAttributedString = NSAttributedString(string: lexicalTag.string, attributes:nonTopicAttributes as [NSAttributedString.Key : Any])
             tempTags.forEach{tag in
                 if !foundTag {
                     if lexicalTag.string == tag.value{

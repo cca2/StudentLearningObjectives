@@ -710,7 +710,10 @@ extension ViewController: NSTableViewDelegate {
         if (tableView == self.mustHaveTableView) {
             if let objective = elementsToDisplay[row].objective {
                 let item = objective.description + " #" + objective.priority + " #" + objective.level + " #" + objective.topic
-                let attributedItem = NSAttributedString(string: item)
+                let font = NSFont.systemFont(ofSize: 13.0)
+                let attributes: [NSAttributedString.Key:Any] = [NSAttributedString.Key.font:font]
+
+                let attributedItem = NSAttributedString(string: item, attributes:attributes)
                 let itemHeight = hightForString(attributedString: attributedItem, width: CGFloat(540.0), padding: CGFloat(10.0))
                 let cellHeight = itemHeight + 114.0
                 return cellHeight
