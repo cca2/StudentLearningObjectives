@@ -11,6 +11,7 @@ import CloudKit
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    var database:CKDatabase?
     var courses:[CBLCourse] = []
     
     var selectedCourse: (CBLCourse)? {
@@ -77,16 +78,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func onDidUpdateTeam(_ notification:Notification) {
-        let teamUpdate = notification.object as! (Team, Team.InfoTypes)
-        let teamID = teamUpdate.0.id
+        let team = notification.object as! Team
+        let teamID = team.id
+        let teamRecord = CKRecord(recordType: "TeamRecord", recordID: CKRecord.ID(recordName: teamID!))
+        teamRecord["bigIdea"] = team.bigIdea
+        teamRecord["essentialQuestion"] = team.essentialQuestion
+        teamRecord["challenge"] = team.challenge
+        teamRecord["concept"] = team.concept
+
+        let operation = CKModifyRecordsOperation(recordsToSave: [teamRecord], recordIDsToDelete: nil)
+        operation.savePolicy = .changedKeys
+        
+        operation.perRecordCompletionBlock = {
+            record, error in
+            print(">>> \(record)")
+        }
+
+        operation.modifyRecordsCompletionBlock = {
+            records, recordsIDS, error in
+            print(">>> 100 <<<")
+            print(records)
+            print(error?.localizedDescription)
+        }
+        database?.add(operation)
         print("atualizando team \(teamID)")
     }
     
     func retrieveAllCourses(onSuccess sucess: @escaping () -> Void) -> Void {
-        let defaultContainer = CKContainer.default()
         let predicate = NSPredicate(format: "TRUEPREDICATE")
         let query = CKQuery(recordType: "CBLCourseRecord", predicate: predicate)
-        defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
+        database?.perform(query, inZoneWith: nil) {
             (records, error) in
             guard let records = records else {
                 print (error)
@@ -107,6 +128,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         NotificationCenter.default.addObserver(self, selector: #selector(onDidUpdateTeam(_:)), name: Notification.Name("didUpdateTeam"), object: nil)
+        database = CKContainer.default().privateCloudDatabase
         self.retrieveAllCourses {
             if self.courses.count > 0 {
                 self.selectedCourse = self.courses.first

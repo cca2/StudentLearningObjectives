@@ -675,7 +675,10 @@ extension ViewController: NSTextViewDelegate {
             print("modificando o objetivo")
         }else if self.teamBeingEdited != nil {
             print("Mofificando team")
-            NotificationCenter.default.post(Notification(name: Notification.Name("didUpdateTeam"), object:self.teamBeingEdited, userInfo: nil))
+            if self.teamBeingEdited?.1 == Team.InfoTypes.BigIdea {
+                self.teamBeingEdited!.0?.bigIdea = textObject.string.trimmingCharacters(in: CharacterSet.whitespaces)
+            }
+            NotificationCenter.default.post(Notification(name: Notification.Name("didUpdateTeam"), object:self.teamBeingEdited?.0, userInfo: nil))
         }
         return true
     }    
