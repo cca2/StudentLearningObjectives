@@ -80,7 +80,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func onDidUpdateObjective(_ notification:Notification) {
         let objective = notification.object as! StudentLearningObjective
         let objectiveID = objective.id
-        let objectiveRecord = CKRecord(recordType: "StudentLearningObjective", recordID: CKRecord.ID(recordName: objectiveID!))
+        let objectiveRecord = CKRecord(recordType: "StudentLearningObjectiveRecord", recordID: CKRecord.ID(recordName: objectiveID!))
         objectiveRecord["description"] = objective.description
         
         let operation = CKModifyRecordsOperation(recordsToSave: [objectiveRecord], recordIDsToDelete: nil)
@@ -96,6 +96,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             print(">>> 210 <<<")
             print(error?.localizedDescription as Any)
         }
+        
+        database?.add(operation)
     }
     
     @objc func onDidUpdateTeam(_ notification:Notification) {

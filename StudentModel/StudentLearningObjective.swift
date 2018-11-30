@@ -58,6 +58,10 @@ class StudentLearningObjective {
         self.isTeachingOthers = record["isTeachingOthers"]!
     }
     
+    func savetoDatabase(database: CKDatabase) -> String? {
+        return ""
+    }
+    
     func saveToRecord(sprintID: String, studentID: String, teamID: String, database: CKDatabase) -> String? {
         let record = CKRecord(recordType: "StudentLearningObjectiveRecord")
         record["area"] = self.area
