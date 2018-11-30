@@ -77,6 +77,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    @objc func onDidUpdateObjective(_ notification:Notification) {
+        let objective = notification.object as! StudentLearningObjective
+        let objectiveID = objective.id
+        let objectiveRecord = CKRecord(recordType: "StudentLearningObjective", recordID: CKRecord.ID(recordName: objectiveID!))
+        objectiveRecord["description"] = objective.description
+        
+        let operation = CKModifyRecordsOperation(recordsToSave: [objectiveRecord], recordIDsToDelete: nil)
+        operation.savePolicy = .changedKeys
+        
+        operation.perRecordCompletionBlock = {
+            record, error in
+            print(">>> 200 <<<")
+        }
+        
+        operation.modifyRecordsCompletionBlock = {
+            records, recordsIDs, error in
+            print(">>> 210 <<<")
+            print(error?.localizedDescription as Any)
+        }
+    }
+    
     @objc func onDidUpdateTeam(_ notification:Notification) {
         let team = notification.object as! Team
         let teamID = team.id
@@ -128,6 +149,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         NotificationCenter.default.addObserver(self, selector: #selector(onDidUpdateTeam(_:)), name: Notification.Name("didUpdateTeam"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidUpdateObjective(_:)), name: Notification.Name("didUpdateObjective"), object: nil)
+        
         database = CKContainer.default().privateCloudDatabase
         self.retrieveAllCourses {
             if self.courses.count > 0 {

@@ -84,38 +84,46 @@ class StudentObjectiveClassifier {
 //                self.topicsClassifierModel = nil
 //            }
 //        }
+        let sentence = String(objective.description)
+        let areaClassification:String? = self.areaClassifierModel.predictedLabel(for: sentence)
+        let topicClassification:String? = self.topicsClassifierModel.predictedLabel(for: sentence)
+        objective.area = areaClassification!
+        objective.topic = areaClassification!
+        self.learningObjectiveTagger.tagLearningObjetive(objective: objective)
+        tempObjectives.append(objective)
         
-        let description = objective.description
-        self.objectivesTagger?.string = description
-        self.objectivesTagger?.enumerateTags(in: description.startIndex..<description.endIndex, unit: .sentence, scheme: .lexicalClass, options: [.omitPunctuation, .omitWhitespace, .joinNames]) {
-            (tag, tokenRange) -> Bool in
-            let sentence = String(description[tokenRange])
-            let areaClassification:String? = self.areaClassifierModel.predictedLabel(for: sentence)
-            let topicClassification:String? = self.topicsClassifierModel.predictedLabel(for: sentence)
-            
-            let newObjective = StudentLearningObjective(description:sentence)
-            newObjective.isTeachingOthers = objective.isTeachingOthers
-            newObjective.isApplyingInTheSolution = objective.isApplyingInTheSolution
-            newObjective.isStudying = objective.isStudying
-            newObjective.isExperimenting = objective.isExperimenting
-            newObjective.isAbandoned = objective.isAbandoned
-            newObjective.isInBacklog = objective.isInBacklog
-            
-            if areaClassification != nil {
-                newObjective.area = areaClassification!
-            }
-            
-            if topicClassification != nil {
-                newObjective.topic = topicClassification!
-            }
-            
-            newObjective.level = objective.level
-            newObjective.priority = objective.priority
-
-            self.learningObjectiveTagger.tagLearningObjetive(objective: newObjective)
-            tempObjectives.append(newObjective)
-            return true
-        }
+        //Aqui é um código que tenta quebrar os objetivos em sentenças
+//        let description = objective.description
+//        self.objectivesTagger?.string = description
+//        self.objectivesTagger?.enumerateTags(in: description.startIndex..<description.endIndex, unit: .sentence, scheme: .lexicalClass, options: [.omitPunctuation, .omitWhitespace, .joinNames]) {
+//            (tag, tokenRange) -> Bool in
+//            let sentence = String(description[tokenRange])
+//            let areaClassification:String? = self.areaClassifierModel.predictedLabel(for: sentence)
+//            let topicClassification:String? = self.topicsClassifierModel.predictedLabel(for: sentence)
+//
+//            let newObjective = StudentLearningObjective(description:sentence)
+//            newObjective.isTeachingOthers = objective.isTeachingOthers
+//            newObjective.isApplyingInTheSolution = objective.isApplyingInTheSolution
+//            newObjective.isStudying = objective.isStudying
+//            newObjective.isExperimenting = objective.isExperimenting
+//            newObjective.isAbandoned = objective.isAbandoned
+//            newObjective.isInBacklog = objective.isInBacklog
+//
+//            if areaClassification != nil {
+//                newObjective.area = areaClassification!
+//            }
+//
+//            if topicClassification != nil {
+//                newObjective.topic = topicClassification!
+//            }
+//
+//            newObjective.level = objective.level
+//            newObjective.priority = objective.priority
+//
+//            self.learningObjectiveTagger.tagLearningObjetive(objective: newObjective)
+//            tempObjectives.append(newObjective)
+//            return true
+//        }
     }
 }
 

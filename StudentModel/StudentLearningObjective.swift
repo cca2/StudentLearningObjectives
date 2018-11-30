@@ -30,10 +30,22 @@ class StudentLearningObjective {
     
     init(description:String) {
         self.description = description
+        let objectiveRecord = CKRecord(recordType: "StudentLearningObjective")
+        print("novo objetivo: \(objectiveRecord.recordID)")
     }
     
     init (record: CKRecord) {
         self.id = record.recordID.recordName
+        
+        let courseReference = record["course"] as? CKRecord.Reference
+        self.courseID = courseReference?.recordID.recordName
+        
+        let sprintReference = record["sprint"] as? CKRecord.Reference
+        self.sprintID = sprintReference?.recordID.recordName
+        
+        let teamReference = record["team"] as? CKRecord.Reference
+        self.teamID = teamReference?.recordID.recordName
+        
         self.description = record["description"]!
         let studentReference = record["student"] as! CKRecord.Reference
         self.studentID = studentReference.recordID.recordName

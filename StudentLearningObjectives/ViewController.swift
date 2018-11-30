@@ -656,8 +656,8 @@ extension ViewController: NSTextViewDelegate {
         print("Hello")
         let textView = notification.object as! NSTextView
         
-        if let objectiveBeingEdit = self.learningObjectivesByModifiedView[textView] {
-            self.objectiveBeingEdited = objectiveBeingEdit
+        if let objectiveBeingEdited = self.learningObjectivesByModifiedView[textView] {
+            self.objectiveBeingEdited = objectiveBeingEdited
         }else {
             self.objectiveBeingEdited = nil
         }
@@ -673,6 +673,10 @@ extension ViewController: NSTextViewDelegate {
     func textShouldEndEditing(_ textObject: NSText) -> Bool {
         if self.objectiveBeingEdited != nil {
             print("modificando o objetivo")
+            print("antigo objetivo: \(self.objectiveBeingEdited?.description)")
+            print("novo objetivo: \(textObject.string)")
+            self.objectiveBeingEdited?.description = descriptionWithOutClassificationTags(textWithTags: textObject.string)!
+            NotificationCenter.default.post(Notification(name: Notification.Name("didUpdateObjective"), object:self.objectiveBeingEdited, userInfo: nil))
         }else if self.teamBeingEdited != nil {
             print("Mofificando team")
             if self.teamBeingEdited?.1 == Team.InfoTypes.BigIdea {
@@ -687,7 +691,12 @@ extension ViewController: NSTextViewDelegate {
             NotificationCenter.default.post(Notification(name: Notification.Name("didUpdateTeam"), object:self.teamBeingEdited?.0, userInfo: nil))
         }
         return true
-    }    
+    }
+    
+    func descriptionWithOutClassificationTags(textWithTags:String) -> String? {
+        let textWithoutTags = textWithTags.split(separator: "#", omittingEmptySubsequences: true).first?.trimmingCharacters(in: .whitespaces)
+        return textWithoutTags
+    }
 }
 
 extension ViewController: NSTableViewDelegate {
