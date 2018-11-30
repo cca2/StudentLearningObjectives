@@ -82,6 +82,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let objectiveID = objective.id
         let objectiveRecord = CKRecord(recordType: "StudentLearningObjectiveRecord", recordID: CKRecord.ID(recordName: objectiveID!))
         objectiveRecord["description"] = objective.description
+        objectiveRecord["area"] = objective.area
+        objectiveRecord["topic"] = objective.topic
         
         let operation = CKModifyRecordsOperation(recordsToSave: [objectiveRecord], recordIDsToDelete: nil)
         operation.savePolicy = .changedKeys
