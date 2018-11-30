@@ -28,9 +28,9 @@ class LearningObjectiveCellView: NSTableCellView {
         if let objective = elementToDisplay.objective {
             richTextDescription.append(highlightTopics(text: objective.description, tags: objective.tags))
             richTextDescription.append(addClassificationToDescription(objective: objective))
-            if objective.isInBacklog {
-                inBacklogCheck.state = NSControl.StateValue.on
-            }
+//            if objective.isInBacklog {
+//                inBacklogCheck.state = NSControl.StateValue.on
+//            }
             if objective.isStudying {
                 studiedCheck.state = NSControl.StateValue.on
             }
