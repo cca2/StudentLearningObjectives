@@ -11,10 +11,8 @@ import NaturalLanguage
 
 class LearningObjectiveCellView: NSTableCellView {
     @IBOutlet var descriptionView: NSTextView!
-    @IBOutlet weak var selectedBox: NSBox!
+    @IBOutlet var tagsListView: NSTextView!
     @IBOutlet weak var statusBox: NSBox!
-    @IBOutlet weak var inBacklogCheck: NSButton!
-    @IBOutlet weak var abandonedCheck: NSButton!
     @IBOutlet weak var studiedCheck: NSButton!
     @IBOutlet weak var experimentedCheck: NSButton!
     @IBOutlet weak var appliedCheck: NSButton!
@@ -27,7 +25,8 @@ class LearningObjectiveCellView: NSTableCellView {
 
         if let objective = elementToDisplay.objective {
             richTextDescription.append(highlightTopics(text: objective.description, tags: objective.tags))
-            richTextDescription.append(addClassificationToDescription(objective: objective))
+            tagsListView.textStorage?.setAttributedString(addClassificationToDescription(objective: objective))
+//            richTextDescription.append(addClassificationToDescription(objective: objective))
 //            if objective.isInBacklog {
 //                inBacklogCheck.state = NSControl.StateValue.on
 //            }
@@ -56,24 +55,24 @@ class LearningObjectiveCellView: NSTableCellView {
     }
 
     func addClassificationToDescription(objective: StudentLearningObjective) -> NSAttributedString {
-        let res = NSMutableAttributedString(string: "")
-
+        let tagsAttributedString = NSMutableAttributedString(string: "")
+        
         let topicAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.lightGray]
         if (objective.priority == "must-have") {
             let priorityTagAttributedString = NSAttributedString(string:" #musthave", attributes: topicAttributes as [NSAttributedString.Key : Any])
-            res.append(priorityTagAttributedString)
+            tagsAttributedString.append(priorityTagAttributedString)
         }else {
             let priorityTagAttributedString = NSAttributedString(string:" #nicetohave", attributes: topicAttributes as [NSAttributedString.Key : Any])
-            res.append(priorityTagAttributedString)
+            tagsAttributedString.append(priorityTagAttributedString)
         }
         
         let expertiseLevelTagAttributedString = NSAttributedString(string:" #" + objective.level, attributes: topicAttributes as [NSAttributedString.Key : Any])
-        res.append(expertiseLevelTagAttributedString)
+        tagsAttributedString.append(expertiseLevelTagAttributedString)
         
         let topicTagAttributedString = NSAttributedString(string: " #" + objective.topic, attributes: topicAttributes as [NSAttributedString.Key : Any])
-        res.append(topicTagAttributedString)
+        tagsAttributedString.append(topicTagAttributedString)
         
-        return res
+        return tagsAttributedString
     }
     
     func highlightTopics(text: String, tags:[(tag:String, value:String)]) -> NSAttributedString {

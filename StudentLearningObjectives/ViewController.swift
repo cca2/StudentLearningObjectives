@@ -718,13 +718,13 @@ extension ViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         if (tableView == self.mustHaveTableView) {
             if let objective = elementsToDisplay[row].objective {
-                let item = objective.description + " #" + objective.priority + " #" + objective.level + " #" + objective.topic
+                let item = objective.description
                 let font = NSFont.systemFont(ofSize: 13.0)
                 let attributes: [NSAttributedString.Key:Any] = [NSAttributedString.Key.font:font]
 
                 let attributedItem = NSAttributedString(string: item, attributes:attributes)
-                let itemHeight = hightForString(attributedString: attributedItem, width: CGFloat(540.0), padding: CGFloat(10.0))
-                let cellHeight = itemHeight + 78.0
+                let itemHeight = hightForString(attributedString: attributedItem, width: CGFloat(564.0), padding: CGFloat(10.0))
+                let cellHeight = itemHeight + 78.0 + 12.0
                 return cellHeight
             }else if let title = elementsToDisplay[row].title {
                 return CGFloat(40.0)
