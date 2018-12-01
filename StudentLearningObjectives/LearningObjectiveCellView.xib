@@ -125,7 +125,7 @@
                                 <color key="borderColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="fillColor" red="0.93558710810000001" green="0.52229225639999999" blue="0.49018478389999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </box>
-                            <scrollView appearanceType="aqua" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRZ-sQ-C1t">
+                            <scrollView appearanceType="aqua" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="MRZ-sQ-C1t">
                                 <rect key="frame" x="18" y="8" width="564" height="37"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="zfg-d5-tSC">
                                     <rect key="frame" x="0.0" y="0.0" width="564" height="37"/>
