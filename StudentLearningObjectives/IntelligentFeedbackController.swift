@@ -49,7 +49,7 @@ class IntelligentFeedbackController: NSPageController {
         
         self.studentMatchByObjectiveList.register(NSNib(nibNamed: "StudentMatchByObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("StudentMatchByObjectiveCellID"))
         
-        self.studentMatchByObjectiveList.register(NSNib(nibNamed: "StudentMatchByObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("StudentMatchByObjectiveCellID"))
+        self.studentMatchByObjectiveList.register(NSNib(nibNamed: "StudentMatchByObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("IntelligentAlertCellID"))
         
         appDelegate.onObjectiveSelected = {(student, objective) in
             self.listOfMatchesByObjective = self.appDelegate.selectedSprint?.matchStudents(student: student, objective: objective)
@@ -136,6 +136,11 @@ extension IntelligentFeedbackController: NSTableViewDelegate {
                         cell.displayObjective(objective: objective)
                         return cell
                     }
+                }
+            }else if let message = elementToDisplay.message {
+                let cellIdentifier = "IntelligentAlertCellID"
+                if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as? IntelligentAlertView {
+                    return cell
                 }
             }
         }
