@@ -65,14 +65,7 @@ class NoteElementToDisplay {
         self.objective = objective
         self.paragraph = nil
         self.team = nil
-    }
-    
-//    init (paragraph:String?) {
-//        self.title = nil
-//        self.subtitle = nil
-//        self.objective = nil
-//        self.paragraph = paragraph
-//    }
+    }    
 }
 
 class SnippetToDisplay {
@@ -499,14 +492,11 @@ class ViewController: NSViewController {
             self.snippetsToDisplay.append(studentSnippet)
         }
         
-//        self.cblSprint.selectedStudent = nil
         self.objectivesToDisplay = []
-        //        mustHaveTableView.deselectAll(nil)
-        //        mustHaveTableView.reloadData()
         self.displayTeamInfo(team: selectedTeam!)
         self.teamMembersView.reloadData()
-        
-        //        taggerTrainingTableView.reloadData()
+    
+//      taggerTrainingTableView.reloadData()
     }
     
 
@@ -529,7 +519,6 @@ class ViewController: NSViewController {
             self.elementsToDisplay = []
             self.elementsToDisplay.append(NoteElementToDisplay(title: team.name))
             self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Big Idea"))
-//            self.elementsToDisplay.append(NoteElementToDisplay(paragraph: team.bigIdea))
             self.elementsToDisplay.append(NoteElementToDisplay(team: team, infoType: .BigIdea))
             self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Essential Question"))
             self.elementsToDisplay.append(NoteElementToDisplay(team: team, infoType: .EssentialQuestion))
@@ -604,7 +593,6 @@ class ViewController: NSViewController {
             }
         }
         
-//        self.studentName.stringValue = student.name
         
         self.mustHaveTableView.deselectAll(nil)
         self.mustHaveTableView.reloadData()

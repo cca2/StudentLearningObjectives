@@ -34,6 +34,7 @@
 		DA3DADFD218BEC4C0072126F /* TrainingData in Resources */ = {isa = PBXBuildFile; fileRef = DA3DADFC218BEC4C0072126F /* TrainingData */; };
 		DA3DAE00218BEC740072126F /* LearningObjectivesClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADFE218BEC740072126F /* LearningObjectivesClassifier.mlmodel */; };
 		DA3DAE01218BEC740072126F /* LearningObjectivesTagger.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADFF218BEC740072126F /* LearningObjectivesTagger.mlmodel */; };
+		DA822EBA21B5A30F002B3520 /* IntelligentAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA822EB921B5A30F002B3520 /* IntelligentAlert.swift */; };
 		DA82CB53219CA2EC0057F948 /* LearningObjectivesAreaClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DA82CB52219CA2EC0057F948 /* LearningObjectivesAreaClassifier.mlmodel */; };
 		DA82CB55219CF1DE0057F948 /* LearningObjectivesTopicsClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DA82CB54219CF1DD0057F948 /* LearningObjectivesTopicsClassifier.mlmodel */; };
 		DA82CB58219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv in Resources */ = {isa = PBXBuildFile; fileRef = DA82CB57219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv */; };
@@ -96,6 +97,7 @@
 		DA3DADFC218BEC4C0072126F /* TrainingData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TrainingData; sourceTree = "<group>"; };
 		DA3DADFE218BEC740072126F /* LearningObjectivesClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LearningObjectivesClassifier.mlmodel; sourceTree = "<group>"; };
 		DA3DADFF218BEC740072126F /* LearningObjectivesTagger.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LearningObjectivesTagger.mlmodel; sourceTree = "<group>"; };
+		DA822EB921B5A30F002B3520 /* IntelligentAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntelligentAlert.swift; sourceTree = "<group>"; };
 		DA82CB52219CA2EC0057F948 /* LearningObjectivesAreaClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LearningObjectivesAreaClassifier.mlmodel; sourceTree = "<group>"; };
 		DA82CB54219CF1DD0057F948 /* LearningObjectivesTopicsClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LearningObjectivesTopicsClassifier.mlmodel; sourceTree = "<group>"; };
 		DA82CB56219CF3840057F948 /* LearningObjectivesTagger.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LearningObjectivesTagger.json; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				DA3DADBE218BEB890072126F /* Main.storyboard */,
 				DA82CB5B219F4F8C0057F948 /* CBLSprintDataModel.xcdatamodeld */,
 				DA346BE021939BDB00EBF4CD /* IntelligentFeedbackController.swift */,
+				DA822EB921B5A30F002B3520 /* IntelligentAlert.swift */,
 				DA3DADFC218BEC4C0072126F /* TrainingData */,
 				DA3DADBC218BEB890072126F /* Assets.xcassets */,
 				DA3DADF4218BEBCF0072126F /* icons8-auditoria-50.png */,
@@ -394,6 +397,7 @@
 				DADFDAD821AA16D600F20101 /* StudentSprintRelation.swift in Sources */,
 				DA82CB55219CF1DE0057F948 /* LearningObjectivesTopicsClassifier.mlmodel in Sources */,
 				DA3DADE9218BEBAF0072126F /* LearningObjectivesTrainer.swift in Sources */,
+				DA822EBA21B5A30F002B3520 /* IntelligentAlert.swift in Sources */,
 				DA346BE121939BDB00EBF4CD /* IntelligentFeedbackController.swift in Sources */,
 				DA346BD921915E4E00EBF4CD /* SubtitleTableCellView.swift in Sources */,
 				DA3DADB6218BEB870072126F /* AppDelegate.swift in Sources */,

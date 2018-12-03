@@ -12,18 +12,10 @@ protocol IntelligentAlertProtocol {
     func displayAlert(message: String) -> Void
 }
 
-//class IntelligentAlert {
-//    let message: String!
-//
-//    init(message: String) {
-//        self.message = message
-//    }
-//}
-//
 class IntelligentFeedbackController: NSPageController {
     var cblSprint:CBLSprint?
     var listOfMatchesByObjective:[(Student, StudentLearningObjective)]!
-//    var intelligentAlert: IntelligentAlert?
+    var intelligentAlert:IntelligentAlertMessage?
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
     @IBOutlet weak var studentMatchByObjectiveList: NSTableView!
     
@@ -32,6 +24,7 @@ class IntelligentFeedbackController: NSPageController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        
         self.intelligentLabel.isHidden = true
         self.numberOfMatchs.isHidden = true
         
