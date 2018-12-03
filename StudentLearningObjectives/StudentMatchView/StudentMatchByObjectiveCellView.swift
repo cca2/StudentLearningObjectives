@@ -27,3 +27,13 @@ class StudentMatchByObjectiveCellView: NSTableCellView {
     }
     
 }
+
+class IntelligentAlertView: NSTableCellView {
+    @IBOutlet weak var message: NSTextField!
+    
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
+        
+        // Drawing code here.
+    }
+}

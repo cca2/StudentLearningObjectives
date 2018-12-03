@@ -49,7 +49,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             onObjectiveSelected!(selectedObjective!.0, selectedObjective!.1)
         }
     }
+    
+    var modifiedSelectedObjectiveDescription : (String)? {
+        didSet {
+            onObjectiveDescriptionChanged!(selectedObjective!.1, modifiedSelectedObjectiveDescription!)
+        }
+    }
 
+    
     var onCourseSelected:((CBLCourse) -> ())?
     var onSprintSelected:((CBLSprint) -> ())?
     var onObjectiveSelected: ((Student, StudentLearningObjective)->())?
@@ -58,6 +65,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var onSelectedCourseSprintsFetched:(() -> ())?
     var onSelectedCourseStudentsFetched:(() -> ())?
     var onSelectedSprintTeamsFetched: (() -> ())?
+    
+    var onObjectiveDescriptionChanged: ((StudentLearningObjective, String) -> ())?
     
     func selectedCourseSprintsFetched () {
         if let onSelectedCourseSprintsFetched = onSelectedCourseSprintsFetched {
@@ -78,6 +87,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func onDidUpdateObjective(_ notification:Notification) {
+        //Aqui: Verificar se o objetivo vai ser apagado
         let objective = notification.object as! StudentLearningObjective
         let objectiveID = objective.id
         let objectiveRecord = CKRecord(recordType: "StudentLearningObjectiveRecord", recordID: CKRecord.ID(recordName: objectiveID!))

@@ -8,11 +8,23 @@
 
 import Cocoa
 
+protocol IntelligentAlertProtocol {
+    func displayAlert(message: String) -> Void
+}
+
+class IntelligentAlert {
+    let message: String!
+    
+    init(message: String) {
+        self.message = message
+    }
+}
+
 class IntelligentFeedbackController: NSPageController {    
     var cblSprint:CBLSprint?
     var listOfMatchesByObjective:[(Student, StudentLearningObjective)]!
+    var intelligentAlert: IntelligentAlert?
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
-//
     @IBOutlet weak var studentMatchByObjectiveList: NSTableView!
     
     @IBOutlet weak var intelligentLabel: NSTextField!
@@ -22,8 +34,6 @@ class IntelligentFeedbackController: NSPageController {
         // Do view setup here.
         self.intelligentLabel.isHidden = true
         self.numberOfMatchs.isHidden = true
-        
-//        self.cblSprint = delegate.selectedSprint
         
         self.studentMatchByObjectiveList.dataSource = self
         self.studentMatchByObjectiveList.delegate = self
@@ -56,6 +66,11 @@ class IntelligentFeedbackController: NSPageController {
             self.studentMatchByObjectiveList.reloadData()
         }
         appDelegate.onStudentSelected.append(studentSelectedClosure)
+        
+        let displayAlertClosure:((String) -> ())? = {
+            message in
+            
+        }
     }
 }
 
@@ -63,6 +78,8 @@ extension IntelligentFeedbackController: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         if let matches = self.listOfMatchesByObjective {
             return matches.count
+        }else if self.intelligentAlert != nil {
+            return 1
         }
         return 0
     }
@@ -102,3 +119,10 @@ extension IntelligentFeedbackController: NSTableViewDelegate {
     }
 
 }
+
+extension IntelligentFeedbackController: IntelligentAlertProtocol {
+    func displayAlert(message: String) {
+        
+    }
+}
+

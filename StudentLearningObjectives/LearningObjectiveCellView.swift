@@ -9,8 +9,28 @@
 import Cocoa
 import NaturalLanguage
 
+class EditableTextView: NSTextView {
+    var student: Student?
+    var learningObjective: StudentLearningObjective?
+    
+    override var acceptsFirstResponder: Bool {
+        return true
+    }
+    
+    override func becomeFirstResponder() -> Bool {
+        print(">>> 400 se tornando firstResponder <<<")
+        
+        if let student = student, let objective = self.learningObjective {
+            let appDelegate = NSApplication.shared.delegate as! AppDelegate
+            appDelegate
+            appDelegate.selectedObjective = (student, objective)
+        }
+        return true
+    }
+}
+
 class LearningObjectiveCellView: NSTableCellView {
-    @IBOutlet var descriptionView: NSTextView!
+    @IBOutlet var descriptionView: EditableTextView!
     @IBOutlet var tagsListView: NSTextView!
     @IBOutlet weak var statusBox: NSBox!
     @IBOutlet weak var studiedCheck: NSButton!
@@ -52,6 +72,10 @@ class LearningObjectiveCellView: NSTableCellView {
         super.draw(dirtyRect)
 
         // Drawing code here.
+    }
+    
+    override var acceptsFirstResponder: Bool {
+        return true
     }
 
     func addClassificationToDescription(objective: StudentLearningObjective) -> NSAttributedString {

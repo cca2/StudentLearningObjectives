@@ -134,7 +134,7 @@ class ViewController: NSViewController {
     var teamBeingEdited:(Team?, Team.InfoTypes?)?
 
     //Salva o delegate
-    let delegate = NSApplication.shared.delegate as! AppDelegate
+    let appDelegate = NSApplication.shared.delegate as! AppDelegate
     
     //Database
 //    let defaultContainer = CKContainer.default()
@@ -224,32 +224,32 @@ class ViewController: NSViewController {
         self.teamMembersView.register(NSNib(nibNamed: "SnippetCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("SnippetCellID"))
 
         //Closure quando o curso é selecionado
-        self.delegate.onCourseSelected = {
+        self.appDelegate.onCourseSelected = {
             course in
             print(">>> BAIXANDO DADOS DOS ESTUDANTES <<<")
             course.retrieveAllStudents {
-                self.delegate.selectedCourseStudentsFetched()
+                self.appDelegate.selectedCourseStudentsFetched()
                 print(">>> REGISTRANDO OS ESTUDANTES <<<")
             }
         }
 
-        self.delegate.onSelectedCourseStudentsFetched = {
+        self.appDelegate.onSelectedCourseStudentsFetched = {
             
         }
         
-        self.delegate.onSprintSelected = {
+        self.appDelegate.onSprintSelected = {
             sprint in
 //            DispatchQueue.main.async {
-                sprint.retrieveSprintInfo(studentsByID: (self.delegate.selectedCourse?.studentsByID)!) {
+                sprint.retrieveSprintInfo(studentsByID: (self.appDelegate.selectedCourse?.studentsByID)!) {
                     self.displayMessage(message: "Informações da Sprint \(sprint.name)")
                     self.outlineKeys = ["sprints", "teams"]
                     
-                    if let studentsDict = self.delegate.selectedCourse?.studentsByID {
+                    if let studentsDict = self.appDelegate.selectedCourse?.studentsByID {
                         let studentsIDs = studentsDict.keys
                         studentsIDs.forEach{
                             id in
                             let student = studentsDict[id]
-                            self.delegate.selectedSprint?.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
+                            self.appDelegate.selectedSprint?.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
                         }
                     }
                     DispatchQueue.main.async {
@@ -397,7 +397,7 @@ class ViewController: NSViewController {
            }
         }
         
-        self.delegate.onSelectedCourseSprintsFetched = {
+        self.appDelegate.onSelectedCourseSprintsFetched = {
             self.outlineKeys = ["sprints"]
             DispatchQueue.main.async {
                 self.outlineView.reloadData()
@@ -412,7 +412,7 @@ class ViewController: NSViewController {
             }
         }
         
-        self.delegate.onTeamSelected.append(teamSelectedClosure)
+        self.appDelegate.onTeamSelected.append(teamSelectedClosure)
 
         let studentSelectedClosure:((Student) -> ())? = {
             student in
@@ -422,7 +422,7 @@ class ViewController: NSViewController {
 //                print(">>> 100 \(student.name) selecionado <<<")
 //            }
         }
-        self.delegate.onStudentSelected.append(studentSelectedClosure)
+        self.appDelegate.onStudentSelected.append(studentSelectedClosure)
         //Setup da parte de CloudKit da Aplicação
         
         //Setup da parte de Outline da aplicação
@@ -487,7 +487,7 @@ class ViewController: NSViewController {
     func newTeamSelected() {
         self.snippetsToDisplay = []
         //        let selectedTeam = self.cblSprint.selectedTeam
-        let selectedTeam = self.delegate.selectedTeam
+        let selectedTeam = self.appDelegate.selectedTeam
         let teamSnippet = SnippetToDisplay(team: selectedTeam!)
         self.snippetsToDisplay.append(teamSnippet)
         teamSnippet.isSelected = true
@@ -655,9 +655,10 @@ extension ViewController: NSTextViewDelegate {
     func textDidChange(_ notification: Notification) {
         print("Hello")
         let textView = notification.object as! NSTextView
-        
         if let objectiveBeingEdited = self.learningObjectivesByModifiedView[textView] {
             self.objectiveBeingEdited = objectiveBeingEdited
+            //Avisar quando o objetivo for ser apagado
+            self.appDelegate.modifiedSelectedObjectiveDescription = textView.string
         }else {
             self.objectiveBeingEdited = nil
         }
@@ -780,6 +781,8 @@ extension ViewController: NSTableViewDelegate {
                 if elementsToDisplay[row].objective != nil {
                     cellIdentifier = "ObjectiveCellID"
                     if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  LearningObjectiveCellView {
+                        cell.descriptionView.learningObjective = elementsToDisplay[row].objective
+                        cell.descriptionView.student = appDelegate.selectedStudent
                         cell.fitForObjective(elementToDisplay: elementsToDisplay[row])
                         cell.descriptionView.delegate = self
                         self.learningObjectivesByModifiedView[cell.descriptionView] = elementsToDisplay[row].objective
@@ -923,14 +926,14 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
         if item == nil {
             return outlineKeys.count
         } else if let item = item as? String, item == "teams" {
-            if let teams = delegate.selectedSprint?.teams {
+            if let teams = appDelegate.selectedSprint?.teams {
                 return teams.count
             }
             return 0
         } else if let item = item as? String, item == "courses" {
             return 1
         }else if let item = item as? String, item == "sprints" {
-            return (delegate.selectedCourse?.sprints.count)!
+            return (appDelegate.selectedCourse?.sprints.count)!
         }else {
             return 0
         }
@@ -970,7 +973,7 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
             case "sprints":
                 text = "Sprints"
             case "teams":
-                if let name = self.delegate.selectedSprint?.name {
+                if let name = self.appDelegate.selectedSprint?.name {
                     text = name
                 }
             default:
@@ -979,11 +982,11 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
         case ("KeyColumn", _):
             // Remember that we identified the hobby sub-rows differently
             if let (key, index) = item as? (String, Int), key == "teams" {
-                if let teamName = delegate.selectedSprint?.teamsName()[index] {
+                if let teamName = appDelegate.selectedSprint?.teamsName()[index] {
                     text = teamName
                 }
             }else if let (key, index) = item as? (String, Int), key == "sprints" {
-                text = (delegate.selectedCourse?.sprints[index].name)!
+                text = (appDelegate.selectedCourse?.sprints[index].name)!
             }
 //        case ("ValueColumn", let item as String):
 //            switch item {
@@ -1012,13 +1015,13 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
         if let (columnIdentifier, index) = item as? (String, Int) {
             if columnIdentifier == "sprints" {
-                if let selectedSprint = self.delegate.selectedCourse?.sprints[index] {
-                    self.delegate.selectedSprint = selectedSprint
+                if let selectedSprint = self.appDelegate.selectedCourse?.sprints[index] {
+                    self.appDelegate.selectedSprint = selectedSprint
                 }
             } else if columnIdentifier == "teams" {
-                if let teamName = self.delegate.selectedSprint?.teamsName()[index] {
+                if let teamName = self.appDelegate.selectedSprint?.teamsName()[index] {
 //                    self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
-                    delegate.selectedTeam = self.delegate.selectedSprint?.teamWithName(name: teamName)
+                    appDelegate.selectedTeam = self.appDelegate.selectedSprint?.teamWithName(name: teamName)
 //                    newTeamSelected()
 //                    self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
 //                    showTeamNotes()

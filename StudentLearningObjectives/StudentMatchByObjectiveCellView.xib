@@ -39,7 +39,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y9c-Z6-BUL">
                                 <rect key="frame" x="234" y="9" width="46" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="#basico" id="foh-g7-H3C">
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -47,7 +47,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="II9-Mz-081">
                                 <rect key="frame" x="168" y="9" width="62" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="#musthave" id="oyY-Ku-rSG">
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -81,6 +81,48 @@
                 <outlet property="studentName" destination="lJH-Kj-qe6" id="MPg-Wv-TFv"/>
             </connections>
             <point key="canvasLocation" x="138.5" y="64.5"/>
+        </customView>
+        <customView identifier="StudentMatchByObjectiveCellID" id="tcG-oP-vnI" userLabel="Alert Cell View" customClass="IntelligentAlert" customModule="StudentLearningObjectives" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="347" height="106"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" cornerRadius="10" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="son-Jg-m3T">
+                    <rect key="frame" x="20" y="0.0" width="307" height="106"/>
+                    <view key="contentView" id="f8Z-Z4-pjw">
+                        <rect key="frame" x="1" y="1" width="305" height="104"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="adf-SU-xw5">
+                                <rect key="frame" x="18" y="29" width="262" height="38"/>
+                                <textFieldCell key="cell" alignment="center" title="Cuidado: Este objetivo será apagado" id="snZ-8N-zUT">
+                                    <font key="font" metaFont="system" size="16"/>
+                                    <color key="textColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" name="findHighlightColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="adf-SU-xw5" firstAttribute="top" secondItem="f8Z-Z4-pjw" secondAttribute="top" constant="37" id="K4F-Vi-W3n"/>
+                            <constraint firstAttribute="bottom" secondItem="adf-SU-xw5" secondAttribute="bottom" constant="29" id="Qlw-2z-2Z7"/>
+                            <constraint firstItem="adf-SU-xw5" firstAttribute="leading" secondItem="f8Z-Z4-pjw" secondAttribute="leading" constant="20" id="RIJ-bX-1Bi"/>
+                            <constraint firstAttribute="trailing" secondItem="adf-SU-xw5" secondAttribute="trailing" constant="27" id="kcF-WQ-zjn"/>
+                        </constraints>
+                    </view>
+                    <color key="borderColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    <color key="fillColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="son-Jg-m3T" secondAttribute="trailing" constant="20" id="NOV-SP-4h2"/>
+                <constraint firstItem="son-Jg-m3T" firstAttribute="leading" secondItem="tcG-oP-vnI" secondAttribute="leading" constant="20" id="dcv-27-X0P"/>
+                <constraint firstAttribute="bottom" secondItem="son-Jg-m3T" secondAttribute="bottom" id="fa9-6p-oBT"/>
+                <constraint firstItem="son-Jg-m3T" firstAttribute="top" secondItem="tcG-oP-vnI" secondAttribute="top" id="m1f-Wj-RUc"/>
+            </constraints>
+            <connections>
+                <outlet property="message" destination="adf-SU-xw5" id="ILD-1Z-qsw"/>
+                <outlet property="objectiveDescription" destination="adf-SU-xw5" id="Krx-H8-4iG"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="244"/>
         </customView>
     </objects>
 </document>

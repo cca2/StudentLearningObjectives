@@ -131,7 +131,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="564" height="15"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView verticallyResizable="NO" allowsDocumentBackgroundColorChange="YES" allowsUndo="YES" spellingCorrection="YES" smartInsertDelete="YES" id="xPZ-nF-XgM">
+                                        <textView verticallyResizable="NO" allowsDocumentBackgroundColorChange="YES" allowsUndo="YES" spellingCorrection="YES" smartInsertDelete="YES" id="xPZ-nF-XgM" customClass="EditableTextView" customModule="StudentLearningObjectives" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="564" height="15"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" white="0.33333000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -9,8 +9,10 @@
 import Foundation
 import CreateML
 import CloudKit
+import Cocoa
 
 class CBLSprint {
+    
     var id: String?
     var name:String?
     var teams:Dictionary = [String:Team]()
@@ -24,6 +26,8 @@ class CBLSprint {
     var selectedTeam:Team?
     var selectedStudent: Student?
     let studentObjectiveClassifier = StudentObjectiveClassifier()
+    
+    let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
     init(name: String) {
         self.name = name
@@ -33,6 +37,7 @@ class CBLSprint {
     init(sprintRecord: CKRecord) {
         self.name = sprintRecord["name"]
         self.id = sprintRecord.recordID.recordName
+        self.appDelegate.onObjectiveDescriptionChanged = self.checkObjectiveStatus        
     }
     
     func retrieveSprintInfo(studentsByID:[String: Student], onSuccess success: @escaping () -> Void) -> Void {
@@ -338,6 +343,9 @@ class CBLSprint {
         return res
     }
     
-    
+    //Esta função verifica as modificações que estão sendo feitas na descrição do objetivo, gerando alertas inteligentes
+    func checkObjectiveStatus(selectedObjecgtive:StudentLearningObjective, currentText:String) {
+        print(">>> 300 <<<")
+    }
 }
 
