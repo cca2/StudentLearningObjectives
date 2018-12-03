@@ -82,7 +82,7 @@
             </connections>
             <point key="canvasLocation" x="138.5" y="64.5"/>
         </customView>
-        <customView identifier="StudentMatchByObjectiveCellID" id="tcG-oP-vnI" userLabel="Alert Cell View" customClass="IntelligentAlert" customModule="StudentLearningObjectives" customModuleProvider="target">
+        <customView identifier="IntelligentAlertCellID" id="tcG-oP-vnI" userLabel="Alert Cell View" customClass="IntelligentAlertView" customModule="StudentLearningObjectives" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="347" height="106"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
