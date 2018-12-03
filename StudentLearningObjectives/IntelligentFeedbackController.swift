@@ -12,18 +12,18 @@ protocol IntelligentAlertProtocol {
     func displayAlert(message: String) -> Void
 }
 
-class IntelligentAlert {
-    let message: String!
-    
-    init(message: String) {
-        self.message = message
-    }
-}
-
-class IntelligentFeedbackController: NSPageController {    
+//class IntelligentAlert {
+//    let message: String!
+//
+//    init(message: String) {
+//        self.message = message
+//    }
+//}
+//
+class IntelligentFeedbackController: NSPageController {
     var cblSprint:CBLSprint?
     var listOfMatchesByObjective:[(Student, StudentLearningObjective)]!
-    var intelligentAlert: IntelligentAlert?
+//    var intelligentAlert: IntelligentAlert?
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
     @IBOutlet weak var studentMatchByObjectiveList: NSTableView!
     
@@ -78,9 +78,10 @@ extension IntelligentFeedbackController: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         if let matches = self.listOfMatchesByObjective {
             return matches.count
-        }else if self.intelligentAlert != nil {
-            return 1
         }
+//        }else if self.intelligentAlert != nil {
+//            return 1
+//        }
         return 0
     }
     
