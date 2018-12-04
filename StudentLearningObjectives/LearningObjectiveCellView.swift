@@ -105,15 +105,23 @@ class LearningObjectiveCellView: NSTableCellView {
 //            }
             if objective.isStudying {
                 studiedCheck.state = NSControl.StateValue.on
+            }else {
+                studiedCheck.state = NSControl.StateValue.off
             }
             if objective.isExperimenting {
                 experimentedCheck.state = NSControl.StateValue.on
+            }else {
+                experimentedCheck.state = NSControl.StateValue.off
             }
             if objective.isApplyingInTheSolution {
                 appliedCheck.state = NSControl.StateValue.on
+            }else {
+                appliedCheck.state = NSControl.StateValue.off
             }
             if objective.isTeachingOthers {
                 taughtCheck.state = NSControl.StateValue.on
+            }else {
+                taughtCheck.state = NSControl.StateValue.off
             }
         }else if let paragraph = elementToDisplay.paragraph {
             richTextDescription.append(NSAttributedString(string: paragraph))

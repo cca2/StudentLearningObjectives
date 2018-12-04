@@ -20,7 +20,7 @@ class StudentObjectiveClassifier {
     let objectivesTagger: NLTagger?
     let learningObjectiveTagger: LearningObjetiveTagger!
     
-    var tempObjectives:[StudentLearningObjective] = []
+//    var tempObjectives:[StudentLearningObjective] = []
     var currentStudent: Student?
 //    let areaModelURL = URL(fileURLWithPath: "./TrainingData/LearningObjectivesAreaClassifier.mlmodel")
     let areaModelURL:URL
@@ -58,20 +58,29 @@ class StudentObjectiveClassifier {
     
     func classifyStudentObjectives(student: Student) {
         self.currentStudent = student
-        tempObjectives = []
-        self.currentStudent?.originalObjectives.forEach{
-            objective in
-            organizeAndClassifyObjective(objective: objective)
-        }
+        var tempObjectives:[StudentLearningObjective] = []
+//        self.currentStudent?.originalObjectives.forEach{
+//            objective in
+//            organizeAndClassifyObjective(objective: objective)
+//        }
+        student.classifiedObjectives = [:]
         student.prepareToClassify()
-        tempObjectives.forEach{
-            objective in
-            student.classifiedObjectives[objective.area]?.append(objective)
+        if let originalObjectives = self.currentStudent?.originalObjectives {
+            originalObjectives.keys.forEach{
+                id in
+                let objective = originalObjectives[id]
+                tempObjectives = organizeAndClassifyObjective(objective: objective!)
+//                tempObjectives.append(objective!)
+                tempObjectives.forEach{
+                    objective in
+                    student.classifiedObjectives[objective.area]?.append(objective)
+                }
+            }
         }
     }
     
-    func organizeAndClassifyObjective(objective:StudentLearningObjective) {
-
+    func organizeAndClassifyObjective(objective:StudentLearningObjective) -> [StudentLearningObjective]{
+        var res = [StudentLearningObjective]()
         if self.areaClassifierModel == nil {
             self.trainAreaClassifier()
         }
@@ -90,7 +99,7 @@ class StudentObjectiveClassifier {
         objective.area = areaClassification!
         objective.topic = areaClassification!
         self.learningObjectiveTagger.tagLearningObjetive(objective: objective)
-        tempObjectives.append(objective)
+        res.append(objective)
         
         //Aqui é um código que tenta quebrar os objetivos em sentenças
 //        let description = objective.description
@@ -124,6 +133,7 @@ class StudentObjectiveClassifier {
 //            tempObjectives.append(newObjective)
 //            return true
 //        }
+        return res
     }
 }
 

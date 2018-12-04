@@ -16,7 +16,7 @@ class Student {
     var name = ""
     var id = ""
 //    var courses:[CBLCourse] = []
-    var originalObjectives:[StudentLearningObjective] = []
+    var originalObjectives:[String:StudentLearningObjective] = [:]
     var classifiedObjectives:Dictionary = [String:[StudentLearningObjective]]()
 //    var team: Team?
     var teamID: String?
@@ -52,7 +52,8 @@ class Student {
     }
     
     func addOriginalObjective(objective:StudentLearningObjective) -> Void {
-        self.originalObjectives.append(objective)
+//        self.originalObjectives.append(objective)
+        self.originalObjectives[objective.id!] = objective
     }
     
     func prepareToClassify() {

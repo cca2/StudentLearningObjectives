@@ -21,7 +21,8 @@ class CBLSprint {
     var studentsByID:[String: Student]?
     var teamsByID = [String:Team]()
     var learningObjectiveByID = [String: StudentLearningObjective]()
-    var learningObjectivesByStudentID = [String: [StudentLearningObjective]]()
+//    var learningObjectivesByStudentID = [String: [StudentLearningObjective]]()
+    var learningObjectivesByStudentID = [String: [String:StudentLearningObjective]]()
     
     var selectedTeam:Team?
     var selectedStudent: Student?
@@ -61,25 +62,25 @@ class CBLSprint {
         let defaultContainer = CKContainer.default()
         let database = defaultContainer.privateCloudDatabase
         queryOperation.database = database
-        
-        var i = 0
-
         queryOperation.recordFetchedBlock = {
             record in
-                        i = i + 1
-                        print("\(i): \(record["description"])")
             let objective = StudentLearningObjective(record: record)
             self.learningObjectiveByID[objective.id!] = objective
             if let student = self.studentsByID?[objective.studentID] {
                 student.addOriginalObjective(objective: objective)
             }
-            
             if self.learningObjectivesByStudentID[objective.studentID] == nil {
-                self.learningObjectivesByStudentID[objective.studentID] = []
-                self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
+                self.learningObjectivesByStudentID[objective.studentID] = [:]
+                self.learningObjectivesByStudentID[objective.studentID]?[objective.id!] = objective
             }else {
-                self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
+                self.learningObjectivesByStudentID[objective.studentID]?[objective.id!] = objective
             }
+//            if self.learningObjectivesByStudentID[objective.studentID] == nil {
+//                self.learningObjectivesByStudentID[objective.studentID] = []
+//                self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
+//            }else {
+//                self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
+//            }
         }
         
         // Assign a completion handler

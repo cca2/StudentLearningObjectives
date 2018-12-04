@@ -232,7 +232,6 @@ class ViewController: NSViewController {
         
         self.appDelegate.onSprintSelected = {
             sprint in
-//            DispatchQueue.main.async {
                 sprint.retrieveSprintInfo(studentsByID: (self.appDelegate.selectedCourse?.studentsByID)!) {
                     self.displayMessage(message: "Informações da Sprint \(sprint.name)")
                     self.outlineKeys = ["sprints", "teams"]
@@ -242,11 +241,16 @@ class ViewController: NSViewController {
                         studentsIDs.forEach{
                             id in
                             let student = studentsDict[id]
+                            student?.classifiedObjectives = [:]
                             self.appDelegate.selectedSprint?.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
                         }
                     }
                     DispatchQueue.main.async {
+                        self.elementsToDisplay = []
+                        self.snippetsToDisplay = []
+                        self.mustHaveTableView.reloadData()
                         self.outlineView.reloadData()
+                        self.teamMembersView.reloadData()
                     }
                     
                     //Esta parte só deve ser utilizada para se atualizar a partir de um
@@ -386,7 +390,6 @@ class ViewController: NSViewController {
 //
 //                        }
 //                    }
-//                }
            }
         }
         

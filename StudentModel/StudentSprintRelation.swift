@@ -13,7 +13,7 @@ class StudentSprintRelation {
     var course: CBLCourse?
     var sprint:CBLSprint?
     var team:Team?
-    var originalObjectives:[StudentLearningObjective] = []
+//    var originalObjectives:[StudentLearningObjective] = []
     var classifiedObjectives:Dictionary = [String:[StudentLearningObjective]]()
 }
 
