@@ -59,10 +59,6 @@ class StudentObjectiveClassifier {
     func classifyStudentObjectives(student: Student) {
         self.currentStudent = student
         var tempObjectives:[StudentLearningObjective] = []
-//        self.currentStudent?.originalObjectives.forEach{
-//            objective in
-//            organizeAndClassifyObjective(objective: objective)
-//        }
         student.classifiedObjectives = [:]
         student.prepareToClassify()
         if let originalObjectives = self.currentStudent?.originalObjectives {
@@ -70,7 +66,6 @@ class StudentObjectiveClassifier {
                 id in
                 let objective = originalObjectives[id]
                 tempObjectives = organizeAndClassifyObjective(objective: objective!)
-//                tempObjectives.append(objective!)
                 tempObjectives.forEach{
                     objective in
                     student.classifiedObjectives[objective.area]?.append(objective)

@@ -472,17 +472,17 @@
                                 </scroller>
                             </scrollView>
                             <scrollView appearanceType="aqua" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="76r-XT-TTc">
-                                <rect key="frame" x="14" y="8" width="564" height="12"/>
-                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="ZZV-Mi-XHZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="564" height="12"/>
+                                <rect key="frame" x="14" y="8" width="564" height="13"/>
+                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="ZZV-Mi-XHZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="564" height="13"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView verticallyResizable="NO" allowsDocumentBackgroundColorChange="YES" allowsUndo="YES" spellingCorrection="YES" smartInsertDelete="YES" id="cq3-PN-dbg">
-                                            <rect key="frame" x="0.0" y="0.0" width="564" height="12"/>
+                                        <textView ambiguous="YES" verticallyResizable="NO" allowsDocumentBackgroundColorChange="YES" allowsUndo="YES" spellingCorrection="YES" smartInsertDelete="YES" id="cq3-PN-dbg">
+                                            <rect key="frame" x="0.0" y="0.0" width="564" height="13"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <size key="minSize" width="564" height="12"/>
+                                            <size key="minSize" width="564" height="13"/>
                                             <size key="maxSize" width="564" height="101"/>
                                             <attributedString key="textStorage">
                                                 <fragment content=" #musthave #básico">
@@ -498,7 +498,7 @@
                                     </subviews>
                                 </clipView>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="12" id="0Mb-LM-eEh"/>
+                                    <constraint firstAttribute="height" constant="13" id="0Mb-LM-eEh"/>
                                 </constraints>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="JvU-QY-m8X">
                                     <rect key="frame" x="-100" y="-100" width="16" height="37"/>
@@ -510,7 +510,7 @@
                             <constraint firstItem="cq3-PN-dbg" firstAttribute="top" secondItem="MRZ-sQ-C1t" secondAttribute="bottom" id="AbC-dN-4cW"/>
                             <constraint firstItem="MRZ-sQ-C1t" firstAttribute="top" secondItem="Jrt-Ff-Gvp" secondAttribute="top" constant="7" id="BK2-kS-bqB"/>
                             <constraint firstAttribute="bottom" secondItem="76r-XT-TTc" secondAttribute="bottom" constant="8" id="DUY-Mk-qVO"/>
-                            <constraint firstItem="76r-XT-TTc" firstAttribute="top" secondItem="MRZ-sQ-C1t" secondAttribute="bottom" id="QjV-LU-MEx"/>
+                            <constraint firstItem="76r-XT-TTc" firstAttribute="top" secondItem="MRZ-sQ-C1t" secondAttribute="bottom" constant="-1" id="QjV-LU-MEx"/>
                             <constraint firstItem="MRZ-sQ-C1t" firstAttribute="leading" secondItem="Jrt-Ff-Gvp" secondAttribute="leading" constant="18" id="XXn-WK-gNA"/>
                             <constraint firstAttribute="bottom" secondItem="59O-fI-2F7" secondAttribute="bottom" constant="10" id="aR7-eO-h7N"/>
                             <constraint firstItem="59O-fI-2F7" firstAttribute="top" secondItem="Jrt-Ff-Gvp" secondAttribute="top" constant="10" id="aaD-iV-Vmt"/>

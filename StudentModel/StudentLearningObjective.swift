@@ -50,6 +50,7 @@ class StudentLearningObjective {
         let studentReference = record["student"] as! CKRecord.Reference
         self.studentID = studentReference.recordID.recordName
         self.priority = record["priority"]!
+        self.level = record["level"]!
         self.isInBacklog = record["isInBacklog"]!
         self.isAbandoned = record["isAbandoned"]!
         self.isStudying = record["isStudying"]!
