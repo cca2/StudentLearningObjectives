@@ -538,6 +538,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system" size="11"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="studiedCheckHasChanged:" target="MiI-bl-cVI" id="RRe-6b-uod"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tuN-mk-A0o">
                                 <rect key="frame" x="18" y="44" width="211" height="18"/>
@@ -548,6 +551,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system" size="11"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="experimentedCheckHasChanged:" target="MiI-bl-cVI" id="a9i-oJ-Zjn"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="guZ-uo-XqC">
                                 <rect key="frame" x="18" y="26" width="167" height="18"/>
@@ -558,6 +564,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system" size="11"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="appliedCheckHasChanged:" target="MiI-bl-cVI" id="VDX-8g-yrs"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tx9-Bt-c6v">
                                 <rect key="frame" x="18" y="8" width="198" height="18"/>
@@ -565,6 +574,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system" size="11"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="taughtHasChecked:" target="MiI-bl-cVI" id="xKg-qL-OpB"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>

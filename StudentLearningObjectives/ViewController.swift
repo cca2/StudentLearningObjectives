@@ -65,7 +65,7 @@ class NoteElementToDisplay {
         self.objective = objective
         self.paragraph = nil
         self.team = nil
-    }    
+    }
 }
 
 class SnippetToDisplay {
@@ -1019,3 +1019,4 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
         return true
     }    
 }
+

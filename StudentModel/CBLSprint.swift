@@ -352,6 +352,8 @@ class CBLSprint {
         if currentText == "" {
            //Notifica o usuário que o objetivo será apagado
             NotificationCenter.default.post(name: Notification.Name("didErasedObjectiveDescription"), object: selectedObjective, userInfo: nil)
+        }else {
+            NotificationCenter.default.post(name: Notification.Name("clearMessages"), object:selectedObjective, userInfo: nil)
         }
     }
 }

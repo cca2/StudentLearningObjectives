@@ -96,6 +96,12 @@ class IntelligentFeedbackController: NSPageController {
             self.studentMatchByObjectiveList.reloadData()
         }
         appDelegate.onDisplayIntelligentAlertMessage = intelligentMessageClosure
+        
+        let clearIntelligentAlertClosure: (() -> ())? = {
+            self.elementsToDisplay = []
+            self.studentMatchByObjectiveList.reloadData()
+        }
+        appDelegate.onClearIntelligentAlerts = clearIntelligentAlertClosure
     }
 }
 

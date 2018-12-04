@@ -18,8 +18,6 @@ class EditableTextView: NSTextView {
     }
     
     override func becomeFirstResponder() -> Bool {
-        print(">>> 400 se tornando firstResponder <<<")
-        
         if let student = student, let objective = self.learningObjective {
             let appDelegate = NSApplication.shared.delegate as! AppDelegate
             appDelegate.selectedObjective = (student, objective)
@@ -37,12 +35,68 @@ class LearningObjectiveCellView: NSTableCellView {
     @IBOutlet weak var appliedCheck: NSButton!
     @IBOutlet weak var taughtCheck: NSButton!
     
+    var objective:StudentLearningObjective?
+    
+    @IBAction func studiedCheckHasChanged(_ sender: NSButton) {
+        if let objective = self.objective {
+            if sender.state.rawValue == 0 {
+                objective.isStudying = false
+            }else if sender.state.rawValue == 1 {
+                objective.isStudying = true
+            }else {
+                objective.isStudying = false
+            }            
+            NotificationCenter.default.post(name: NSNotification.Name("didUpdateObjective"), object: objective, userInfo: nil)
+        }
+    }
+    
+    @IBAction func experimentedCheckHasChanged(_ sender: NSButton) {
+        if let objective = self.objective {
+            if sender.state.rawValue == 0 {
+                objective.isExperimenting = false
+            }else if sender.state.rawValue == 1 {
+                objective.isExperimenting = true
+            }else {
+                objective.isExperimenting = false
+            }
+            NotificationCenter.default.post(name: NSNotification.Name("didUpdateObjective"), object: objective, userInfo: nil)
+        }
+    }
+
+    @IBAction func appliedCheckHasChanged(_ sender: NSButton) {
+        if let objective = self.objective {
+            if sender.state.rawValue == 0 {
+                objective.isApplyingInTheSolution = false
+            }else if sender.state.rawValue == 1 {
+                objective.isApplyingInTheSolution = true
+            }else {
+                objective.isApplyingInTheSolution = false
+            }
+            NotificationCenter.default.post(name: NSNotification.Name("didUpdateObjective"), object: objective, userInfo: nil)
+        }
+    }
+
+
+    @IBAction func taughtHasChecked(_ sender: NSButton) {
+        if let objective = self.objective {
+            if sender.state.rawValue == 0 {
+                objective.isTeachingOthers = false
+            }else if sender.state.rawValue == 1 {
+                objective.isTeachingOthers = true
+            }else {
+                objective.isTeachingOthers = false
+            }
+            NotificationCenter.default.post(name: NSNotification.Name("didUpdateObjective"), object: objective, userInfo: nil)
+        }
+    }
+
     func fitForObjective(elementToDisplay: NoteElementToDisplay) {
         let font = NSFont.systemFont(ofSize: 16.0)
         let attributes: [NSAttributedString.Key:Any] = [NSAttributedString.Key.font:font]
         let richTextDescription = NSMutableAttributedString(string: "", attributes:attributes)
 
         if let objective = elementToDisplay.objective {
+            self.objective = objective
             richTextDescription.append(highlightTopics(text: objective.description, tags: objective.tags))
             tagsListView.textStorage?.setAttributedString(addClassificationToDescription(objective: objective))
 //            richTextDescription.append(addClassificationToDescription(objective: objective))
@@ -64,7 +118,7 @@ class LearningObjectiveCellView: NSTableCellView {
         }else if let paragraph = elementToDisplay.paragraph {
             richTextDescription.append(NSAttributedString(string: paragraph))
         }
-        self.descriptionView.textStorage?.setAttributedString(richTextDescription)
+        self.descriptionView.textStorage?.setAttributedString(richTextDescription)        
     }
     
     override func draw(_ dirtyRect: NSRect) {

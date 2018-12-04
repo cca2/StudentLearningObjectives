@@ -68,6 +68,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var onObjectiveDescriptionChanged: ((StudentLearningObjective, String) -> ())?
     var onDisplayIntelligentAlertMessage: ((IntelligentAlertMessage) -> ())?
+    var onClearIntelligentAlerts:(() -> ())?
     
     func selectedCourseSprintsFetched () {
         if let onSelectedCourseSprintsFetched = onSelectedCourseSprintsFetched {
@@ -95,7 +96,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         objectiveRecord["description"] = objective.description
         objectiveRecord["area"] = objective.area
         objectiveRecord["topic"] = objective.topic
-        
+        objectiveRecord["isStudying"] = objective.isStudying
+        objectiveRecord["isExperimenting"] = objective.isExperimenting
+        objectiveRecord["isApplyingInTheSolution"] = objective.isApplyingInTheSolution
+        objectiveRecord["isTeachingOthers"] = objective.isTeachingOthers
+
         let operation = CKModifyRecordsOperation(recordsToSave: [objectiveRecord], recordIDsToDelete: nil)
         operation.savePolicy = .changedKeys
         
@@ -147,6 +152,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.onDisplayIntelligentAlertMessage!(intelligentAlertMessage)
     }
     
+    @objc func onClearIntelligentAlerts(_ notification:Notification) {
+        self.onClearIntelligentAlerts!()
+    }
+    
     func retrieveAllCourses(onSuccess sucess: @escaping () -> Void) -> Void {
         let predicate = NSPredicate(format: "TRUEPREDICATE")
         let query = CKQuery(recordType: "CBLCourseRecord", predicate: predicate)
@@ -175,6 +184,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(onDidUpdateObjective(_:)), name: Notification.Name("didUpdateObjective"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(onDidEraseObjectiveDescription(_:)), name: Notification.Name("didErasedObjectiveDescription"), object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(onClearIntelligentAlerts(_:)), name: Notification.Name("clearMessages"), object: nil)
+
         
         database = CKContainer.default().privateCloudDatabase
         self.retrieveAllCourses {
