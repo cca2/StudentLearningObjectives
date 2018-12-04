@@ -1,5 +1,5 @@
 //
-//  IntelligentAlert.swift
+//  IntelligentAlertMessage.swift
 //  StudentLearningObjectives
 //
 //  Created by Cristiano Araújo on 03/12/18.

@@ -22,7 +22,6 @@ class EditableTextView: NSTextView {
         
         if let student = student, let objective = self.learningObjective {
             let appDelegate = NSApplication.shared.delegate as! AppDelegate
-            appDelegate
             appDelegate.selectedObjective = (student, objective)
         }
         return true

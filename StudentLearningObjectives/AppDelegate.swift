@@ -67,6 +67,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var onSelectedSprintTeamsFetched: (() -> ())?
     
     var onObjectiveDescriptionChanged: ((StudentLearningObjective, String) -> ())?
+    var onDisplayIntelligentAlertMessage: ((IntelligentAlertMessage) -> ())?
     
     func selectedCourseSprintsFetched () {
         if let onSelectedCourseSprintsFetched = onSelectedCourseSprintsFetched {
@@ -142,7 +143,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func onDidEraseObjectiveDescription(_ notification:Notification) {
         print(">>> 110 <<<")
         let objectiveWithErasedDescription = notification.object as! StudentLearningObjective
-        print("\(objectiveWithErasedDescription.description) será apagado!!!")
+        let intelligentAlertMessage = IntelligentAlertMessage(message: "Objetivo será apagado")
+        self.onDisplayIntelligentAlertMessage!(intelligentAlertMessage)
     }
     
     func retrieveAllCourses(onSuccess sucess: @escaping () -> Void) -> Void {

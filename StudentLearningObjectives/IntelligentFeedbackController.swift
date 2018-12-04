@@ -90,8 +90,12 @@ class IntelligentFeedbackController: NSPageController {
         let intelligentMessageClosure: ((IntelligentAlertMessage) -> ())? = {
             message in
             self.elementsToDisplay = []
+            let elementToDisplay = IntelligentElementToDisplay()
+            elementToDisplay.message = message
+            self.elementsToDisplay.append(elementToDisplay)
             self.studentMatchByObjectiveList.reloadData()
         }
+        appDelegate.onDisplayIntelligentAlertMessage = intelligentMessageClosure
     }
 }
 
@@ -111,7 +115,7 @@ extension IntelligentFeedbackController: NSTableViewDataSource {
             let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 70.0
             return yourHeight
         }else {
-            return 50.0
+            return 100.0
         }
 //        if let matches = self.listOfMatchesByObjective {
 //            let objective = matches[row].1
@@ -146,7 +150,7 @@ extension IntelligentFeedbackController: NSTableViewDelegate {
             }else if let message = elementToDisplay.message {
                 let cellIdentifier = "IntelligentAlertCellID"
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as? IntelligentAlertView {
-                    cell.message.stringValue = ">>> TESTANDO <<<"
+                    cell.message.stringValue = message.message
                     return cell
                 }
             }
