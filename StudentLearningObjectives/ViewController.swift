@@ -847,24 +847,7 @@ extension ViewController: NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         if (tableView == self.mustHaveTableView) {
-            print(">>> 100 <<<")
-            if let _ = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("ObjectiveCellID"), owner: nil) as?  NSTableCellView {
-                let delegate = NSApplication.shared.delegate as! AppDelegate
-                if let selectedObjective = self.elementsToDisplay[row].objective {
-                    delegate.selectedObjective = (delegate.selectedStudent!, selectedObjective)
-                    self.elementsToDisplay.forEach{
-                        element in
-                        element.isSelected = false
-                    }
-                    self.elementsToDisplay[row].isSelected = true
-                    self.mustHaveTableView.reloadData()
-                }else {
-                    self.elementsToDisplay[row].isSelected = false
-                }
-                return true
-            }else {
-                return false
-            }
+            return true
         }else if (tableView == self.teamMembersView) {
             let delegate = NSApplication.shared.delegate as! AppDelegate
             self.snippetsToDisplay.forEach{
