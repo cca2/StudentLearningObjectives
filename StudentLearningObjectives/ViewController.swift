@@ -643,6 +643,16 @@ extension ViewController: NSTableViewDataSource {
 }
 
 extension ViewController: NSTextViewDelegate {
+    func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+        if commandSelector == #selector(NSStandardKeyBindingResponding.insertTab(_:)) {
+            return true
+        }else if commandSelector == #selector(NSStandardKeyBindingResponding.moveDown(_:)) {
+            return true
+        }else {
+            return false
+        }
+    }
+
     func textDidChange(_ notification: Notification) {
         print("Hello")
         let textView = notification.object as! NSTextView
