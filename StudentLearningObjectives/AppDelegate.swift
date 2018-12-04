@@ -139,6 +139,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         print("atualizando team \(teamID)")
     }
     
+    @objc func onDidEraseObjectiveDescription(_ notification:Notification) {
+        print(">>> 110 <<<")
+        let objectiveWithErasedDescription = notification.object as! StudentLearningObjective
+        print("\(objectiveWithErasedDescription.description) será apagado!!!")
+    }
+    
     func retrieveAllCourses(onSuccess sucess: @escaping () -> Void) -> Void {
         let predicate = NSPredicate(format: "TRUEPREDICATE")
         let query = CKQuery(recordType: "CBLCourseRecord", predicate: predicate)
@@ -165,6 +171,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(onDidUpdateTeam(_:)), name: Notification.Name("didUpdateTeam"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(onDidUpdateObjective(_:)), name: Notification.Name("didUpdateObjective"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidEraseObjectiveDescription(_:)), name: Notification.Name("didErasedObjectiveDescription"), object: nil)
         
         database = CKContainer.default().privateCloudDatabase
         self.retrieveAllCourses {

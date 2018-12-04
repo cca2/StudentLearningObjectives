@@ -86,6 +86,12 @@ class IntelligentFeedbackController: NSPageController {
             self.studentMatchByObjectiveList.reloadData()
         }
         appDelegate.onStudentSelected.append(studentSelectedClosure)
+        
+        let intelligentMessageClosure: ((IntelligentAlertMessage) -> ())? = {
+            message in
+            self.elementsToDisplay = []
+            self.studentMatchByObjectiveList.reloadData()
+        }
     }
 }
 
@@ -140,6 +146,7 @@ extension IntelligentFeedbackController: NSTableViewDelegate {
             }else if let message = elementToDisplay.message {
                 let cellIdentifier = "IntelligentAlertCellID"
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as? IntelligentAlertView {
+                    cell.message.stringValue = ">>> TESTANDO <<<"
                     return cell
                 }
             }
