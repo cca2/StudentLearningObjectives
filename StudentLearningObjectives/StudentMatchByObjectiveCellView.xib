@@ -120,7 +120,6 @@
             </constraints>
             <connections>
                 <outlet property="message" destination="adf-SU-xw5" id="ILD-1Z-qsw"/>
-                <outlet property="objectiveDescription" destination="adf-SU-xw5" id="Krx-H8-4iG"/>
             </connections>
             <point key="canvasLocation" x="139" y="244"/>
         </customView>

@@ -20,7 +20,7 @@ class EditableTextView: NSTextView {
         }
         self.insertionPointColor = NSColor.red
         return true
-    }    
+    }
 }
 
 class LearningObjectiveCellView: NSTableCellView {
