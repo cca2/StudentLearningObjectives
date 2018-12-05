@@ -133,7 +133,7 @@ class ViewController: NSViewController {
 //    let defaultContainer = CKContainer.default()
     let database = CKContainer.default().privateCloudDatabase
 
-    var respondersChain:[NSTextView:(NSTextView?, NSTextView?)] = [:]
+    var respondersChain:[NSView:(NSView?, NSView?)] = [:]
     var lastReponderInChain: NSTextView?
     
     @IBAction func tagHasBeenEdited(_ sender: NSTextField) {
