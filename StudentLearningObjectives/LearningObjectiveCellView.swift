@@ -21,14 +21,19 @@ class EditableTextView: NSTextView {
         if let student = student, let objective = self.learningObjective {
             let appDelegate = NSApplication.shared.delegate as! AppDelegate
             appDelegate.selectedObjective = (student, objective)
+            self.insertionPointColor = NSColor.red
         }
         return true
     }
+    
+//    override func resignFirstResponder() -> Bool {
+//        return false
+//    }
 }
 
 class LearningObjectiveCellView: NSTableCellView {
     @IBOutlet var descriptionView: EditableTextView!
-    @IBOutlet var tagsListView: NSTextView!
+    @IBOutlet var tagsListView: EditableTextView!
     @IBOutlet weak var statusBox: NSBox!
     @IBOutlet weak var studiedCheck: NSButton!
     @IBOutlet weak var experimentedCheck: NSButton!
@@ -91,6 +96,7 @@ class LearningObjectiveCellView: NSTableCellView {
     }
 
     func fitForObjective(elementToDisplay: NoteElementToDisplay) {
+        self.descriptionView.nextResponder = self.tagsListView
         let font = NSFont.systemFont(ofSize: 16.0)
         let attributes: [NSAttributedString.Key:Any] = [NSAttributedString.Key.font:font]
         let richTextDescription = NSMutableAttributedString(string: "", attributes:attributes)

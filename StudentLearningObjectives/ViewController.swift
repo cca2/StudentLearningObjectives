@@ -644,9 +644,12 @@ extension ViewController: NSTableViewDataSource {
 
 extension ViewController: NSTextViewDelegate {
     func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
-        if commandSelector == #selector(NSStandardKeyBindingResponding.insertTab(_:)) {
+        if commandSelector == #selector(NSStandardKeyBindingResponding.insertTab(_:)) || commandSelector == #selector(NSStandardKeyBindingResponding.moveDown(_:)){
+            textView.window?.makeFirstResponder(textView.nextResponder)
             return true
-        }else if commandSelector == #selector(NSStandardKeyBindingResponding.moveDown(_:)) {
+        }else if commandSelector == #selector(NSStandardKeyBindingResponding.moveUp(_:)) {
+            textView.resignFirstResponder()
+            textView.window?.makeFirstResponder(textView.nextResponder)
             return true
         }else {
             return false
@@ -672,6 +675,7 @@ extension ViewController: NSTextViewDelegate {
         
     }
     
+
     func textShouldEndEditing(_ textObject: NSText) -> Bool {
         if self.objectiveBeingEdited != nil {
             print("modificando o objetivo")
