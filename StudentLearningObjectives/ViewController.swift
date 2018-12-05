@@ -20,6 +20,7 @@ class NoteElementToDisplay {
     let objective:StudentLearningObjective?
     let paragraph: String?
     var isSelected = false
+    var showObjectiveStatus = true
     
     var teamInfoModified:Team.InfoTypes?
     
@@ -732,8 +733,16 @@ extension ViewController: NSTableViewDelegate {
 
                 let attributedItem = NSAttributedString(string: item, attributes:attributes)
                 let itemHeight = hightForString(attributedString: attributedItem, width: CGFloat(564.0), padding: CGFloat(10.0))
-                let cellHeight = itemHeight + 78.0 + 12.0
-                return cellHeight
+                
+                if elementsToDisplay[row].showObjectiveStatus {
+//                    let cellHeight = itemHeight + 78.0 + 12.0
+                    let cellHeight = CGFloat(135.0)
+                    return cellHeight
+                }else {
+//                    let cellHeight = itemHeight + 12.0 + 12.0
+                    let cellHeight = CGFloat(66.0)
+                    return cellHeight
+                }
             }else if let title = elementsToDisplay[row].title {
                 return CGFloat(40.0)
             }else if let subtitle = elementsToDisplay[row].subtitle {

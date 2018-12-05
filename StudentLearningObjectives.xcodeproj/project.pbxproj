@@ -35,6 +35,7 @@
 		DA3DAE00218BEC740072126F /* LearningObjectivesClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADFE218BEC740072126F /* LearningObjectivesClassifier.mlmodel */; };
 		DA3DAE01218BEC740072126F /* LearningObjectivesTagger.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DA3DADFF218BEC740072126F /* LearningObjectivesTagger.mlmodel */; };
 		DA822EBA21B5A30F002B3520 /* IntelligentAlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA822EB921B5A30F002B3520 /* IntelligentAlertMessage.swift */; };
+		DA822EBC21B879B3002B3520 /* iconfinder_More_Functions_Menu_Horizontal_Dots_Hidden_1654371.png in Resources */ = {isa = PBXBuildFile; fileRef = DA822EBB21B879B3002B3520 /* iconfinder_More_Functions_Menu_Horizontal_Dots_Hidden_1654371.png */; };
 		DA82CB53219CA2EC0057F948 /* LearningObjectivesAreaClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DA82CB52219CA2EC0057F948 /* LearningObjectivesAreaClassifier.mlmodel */; };
 		DA82CB55219CF1DE0057F948 /* LearningObjectivesTopicsClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DA82CB54219CF1DD0057F948 /* LearningObjectivesTopicsClassifier.mlmodel */; };
 		DA82CB58219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv in Resources */ = {isa = PBXBuildFile; fileRef = DA82CB57219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv */; };
@@ -98,6 +99,7 @@
 		DA3DADFE218BEC740072126F /* LearningObjectivesClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LearningObjectivesClassifier.mlmodel; sourceTree = "<group>"; };
 		DA3DADFF218BEC740072126F /* LearningObjectivesTagger.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LearningObjectivesTagger.mlmodel; sourceTree = "<group>"; };
 		DA822EB921B5A30F002B3520 /* IntelligentAlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntelligentAlertMessage.swift; sourceTree = "<group>"; };
+		DA822EBB21B879B3002B3520 /* iconfinder_More_Functions_Menu_Horizontal_Dots_Hidden_1654371.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconfinder_More_Functions_Menu_Horizontal_Dots_Hidden_1654371.png; sourceTree = "<group>"; };
 		DA82CB52219CA2EC0057F948 /* LearningObjectivesAreaClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LearningObjectivesAreaClassifier.mlmodel; sourceTree = "<group>"; };
 		DA82CB54219CF1DD0057F948 /* LearningObjectivesTopicsClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LearningObjectivesTopicsClassifier.mlmodel; sourceTree = "<group>"; };
 		DA82CB56219CF3840057F948 /* LearningObjectivesTagger.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LearningObjectivesTagger.json; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				DA3DADFC218BEC4C0072126F /* TrainingData */,
 				DA3DADBC218BEB890072126F /* Assets.xcassets */,
 				DA3DADF4218BEBCF0072126F /* icons8-auditoria-50.png */,
+				DA822EBB21B879B3002B3520 /* iconfinder_More_Functions_Menu_Horizontal_Dots_Hidden_1654371.png */,
 				DA82CB56219CF3840057F948 /* LearningObjectivesTagger.json */,
 				DA82CB57219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv */,
 				DA3DADFE218BEC740072126F /* LearningObjectivesClassifier.mlmodel */,
@@ -354,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA3DADBD218BEB890072126F /* Assets.xcassets in Resources */,
+				DA822EBC21B879B3002B3520 /* iconfinder_More_Functions_Menu_Horizontal_Dots_Hidden_1654371.png in Resources */,
 				DA82CB58219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv in Resources */,
 				DA3DADF9218BEBCF0072126F /* LearningObjectiveCellView.xib in Resources */,
 				DA346BDD219397AC00EBF4CD /* StudentMatchByObjectiveCellView.xib in Resources */,

@@ -31,8 +31,22 @@ class LearningObjectiveCellView: NSTableCellView {
     @IBOutlet weak var experimentedCheck: NSButton!
     @IBOutlet weak var appliedCheck: NSButton!
     @IBOutlet weak var taughtCheck: NSButton!
+    @IBOutlet weak var showObjectiveStatusBtn: NSButton!
+    
+    var elementToDisplay:NoteElementToDisplay?
     
     var objective:StudentLearningObjective?
+    
+    @IBAction func showObjectiveStatusPressed(_ sender: NSButton) {
+        let state = sender.state
+        if state == NSControl.StateValue.on {
+            self.elementToDisplay?.showObjectiveStatus = true
+            statusBox.isHidden = false
+        }else if state == NSControl.StateValue.off {
+            self.elementToDisplay?.showObjectiveStatus = false
+            statusBox.isHidden = true
+        }
+    }
     
     @IBAction func studiedCheckHasChanged(_ sender: NSButton) {
         if let objective = self.objective {
@@ -88,6 +102,10 @@ class LearningObjectiveCellView: NSTableCellView {
     }
 
     func fitForObjective(elementToDisplay: NoteElementToDisplay) {
+        self.elementToDisplay = elementToDisplay
+        if (self.elementToDisplay?.showObjectiveStatus)! {
+            self.statusBox.isHidden = false
+        }
         self.descriptionView.nextResponder = self.tagsListView
         let font = NSFont.systemFont(ofSize: 16.0)
         let attributes: [NSAttributedString.Key:Any] = [NSAttributedString.Key.font:font]
