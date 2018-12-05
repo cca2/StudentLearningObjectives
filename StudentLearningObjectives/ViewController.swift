@@ -133,6 +133,9 @@ class ViewController: NSViewController {
 //    let defaultContainer = CKContainer.default()
     let database = CKContainer.default().privateCloudDatabase
 
+    var respondersChain:[NSTextView:(NSTextView?, NSTextView?)] = [:]
+    var lastReponderInChain: NSTextView?
+    
     @IBAction func tagHasBeenEdited(_ sender: NSTextField) {
         let newTag = sender.stringValue
         if (newTag == "ACTION" || newTag == "NONE" || newTag == "TOPIC" || newTag == "GENERIC_ACTION" || newTag == "GENERIC_TOPIC" || newTag == "DEVICE") {
@@ -645,11 +648,10 @@ extension ViewController: NSTableViewDataSource {
 extension ViewController: NSTextViewDelegate {
     func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
         if commandSelector == #selector(NSStandardKeyBindingResponding.insertTab(_:)) || commandSelector == #selector(NSStandardKeyBindingResponding.moveDown(_:)){
-            textView.window?.makeFirstResponder(textView.nextResponder)
+            textView.window?.makeFirstResponder(self.respondersChain[textView]?.1)
             return true
         }else if commandSelector == #selector(NSStandardKeyBindingResponding.moveUp(_:)) {
-            textView.resignFirstResponder()
-            textView.window?.makeFirstResponder(textView.nextResponder)
+            textView.window?.makeFirstResponder(self.respondersChain[textView]?.0)
             return true
         }else {
             return false
@@ -790,6 +792,16 @@ extension ViewController: NSTableViewDelegate {
                         cell.descriptionView.student = appDelegate.selectedStudent
                         cell.fitForObjective(elementToDisplay: elementsToDisplay[row])
                         cell.descriptionView.delegate = self
+                        cell.tagsListView.delegate = self
+                        
+                        //Montar a cadeia de responders
+                        if let lastResponder = lastReponderInChain {
+                            self.respondersChain[lastResponder] = (self.respondersChain[(lastResponder)]?.0, cell.descriptionView)
+                        }
+                        self.respondersChain[cell.descriptionView] = (self.lastReponderInChain, cell.tagsListView)
+                        self.respondersChain[cell.tagsListView] = (cell.descriptionView, nil)
+                        self.lastReponderInChain = cell.tagsListView
+                        
                         self.learningObjectivesByModifiedView[cell.descriptionView] = elementsToDisplay[row].objective
                         return cell
                     }
