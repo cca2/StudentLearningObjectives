@@ -19,7 +19,6 @@ class IntelligentElementToDisplay {
             let appDelegate = NSApplication.shared.delegate as! AppDelegate
             let course = appDelegate.selectedCourse
             self.student = course?.studentsByID[(objective?.studentID)!]
-            print(">>> 500 \\(self.student.name)<<<")
         }
     }
     var message:IntelligentAlertMessage?
