@@ -13,22 +13,14 @@ class EditableTextView: NSTextView {
     var student: Student?
     var learningObjective: StudentLearningObjective?
     
-    override var acceptsFirstResponder: Bool {
-        return true
-    }
-    
     override func becomeFirstResponder() -> Bool {
         if let student = student, let objective = self.learningObjective {
             let appDelegate = NSApplication.shared.delegate as! AppDelegate
             appDelegate.selectedObjective = (student, objective)
-            self.insertionPointColor = NSColor.red
         }
+        self.insertionPointColor = NSColor.red
         return true
-    }
-    
-//    override func resignFirstResponder() -> Bool {
-//        return false
-//    }
+    }    
 }
 
 class LearningObjectiveCellView: NSTableCellView {
