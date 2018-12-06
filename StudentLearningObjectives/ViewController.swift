@@ -743,15 +743,15 @@ extension ViewController: NSTableViewDelegate {
                 let attributes: [NSAttributedString.Key:Any] = [NSAttributedString.Key.font:font]
 
                 let attributedItem = NSAttributedString(string: item, attributes:attributes)
-                let itemHeight = hightForString(attributedString: attributedItem, width: CGFloat(564.0), padding: CGFloat(10.0))
+                let itemHeight = hightForString(attributedString: attributedItem, width: CGFloat(564.0), padding: CGFloat(4.0))
                 
                 if elementsToDisplay[row].showObjectiveStatus {
 //                    let cellHeight = itemHeight + 78.0 + 12.0
                     let cellHeight = CGFloat(135.0)
                     return cellHeight
                 }else {
-//                    let cellHeight = itemHeight + 12.0 + 12.0
-                    let cellHeight = CGFloat(66.0)
+                    let cellHeight = itemHeight + 14.0
+//                    let cellHeight = CGFloat(46.0)
                     return cellHeight
                 }
             }else if let title = elementsToDisplay[row].title {

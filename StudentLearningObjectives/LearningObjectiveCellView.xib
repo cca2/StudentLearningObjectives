@@ -114,9 +114,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <box boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="59O-fI-2F7">
-                                <rect key="frame" x="5" y="10" width="1" height="26"/>
+                                <rect key="frame" x="5" y="0.0" width="1" height="36"/>
                                 <view key="contentView" id="0eB-po-eOK">
-                                    <rect key="frame" x="0.0" y="0.0" width="1" height="26"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1" height="36"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <constraints>
@@ -257,7 +257,7 @@
                             <constraint firstItem="MRZ-sQ-C1t" firstAttribute="top" secondItem="Jrt-Ff-Gvp" secondAttribute="top" constant="10" id="BK2-kS-bqB"/>
                             <constraint firstAttribute="bottom" secondItem="76r-XT-TTc" secondAttribute="bottom" constant="8" id="DUY-Mk-qVO"/>
                             <constraint firstItem="MRZ-sQ-C1t" firstAttribute="leading" secondItem="Jrt-Ff-Gvp" secondAttribute="leading" constant="18" id="XXn-WK-gNA"/>
-                            <constraint firstAttribute="bottom" secondItem="59O-fI-2F7" secondAttribute="bottom" constant="10" id="aR7-eO-h7N"/>
+                            <constraint firstAttribute="bottom" secondItem="59O-fI-2F7" secondAttribute="bottom" id="aR7-eO-h7N"/>
                             <constraint firstItem="59O-fI-2F7" firstAttribute="top" secondItem="Jrt-Ff-Gvp" secondAttribute="top" constant="10" id="aaD-iV-Vmt"/>
                             <constraint firstItem="76r-XT-TTc" firstAttribute="leading" secondItem="59O-fI-2F7" secondAttribute="trailing" constant="8" id="dL4-bk-uAf"/>
                             <constraint firstAttribute="trailing" secondItem="76r-XT-TTc" secondAttribute="trailing" constant="22" id="dUi-YX-ToM"/>
