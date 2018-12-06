@@ -26,8 +26,17 @@ class StudentLearningObjective {
     var isExperimenting = false
     var isApplyingInTheSolution = false
     var isTeachingOthers = false
-    var isInBacklog = false
+    var isInBacklog = true
     var tagsListString: String?
+    
+    init(courseID:String, sprintID:String, teamID:String, studentID:String) {
+        let objectiveRecord = CKRecord(recordType: "StudentLearningObjective")
+        self.id = objectiveRecord.recordID.recordName
+        self.courseID = courseID
+        self.sprintID = sprintID
+        self.teamID = teamID
+        self.studentID = studentID
+    }
     
     init(description:String) {
         self.description = description

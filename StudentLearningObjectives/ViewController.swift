@@ -616,6 +616,23 @@ class ViewController: NSViewController {
         self.mustHaveTableView.reloadData()
     }
     
+    func row(objective: StudentLearningObjective) -> Int {
+        var res = 0
+        var index = 0
+        self.elementsToDisplay.forEach{element in
+            if let elementObjective = element.objective {
+                if objective === elementObjective {
+                    index = res
+                }else {
+                    res = res + 1
+                }
+            }else {
+                res = res + 1
+            }
+        }
+        return index
+    }
+    
     func highlightTopics(text: String, tags:[(tag:String, value:String)]) -> NSAttributedString {
         let topicAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.red, .font:NSFont.boldSystemFont(ofSize: 16)]
         let attributedText = NSMutableAttributedString(string: "")
@@ -672,6 +689,17 @@ extension ViewController: NSTextViewDelegate {
             return true
         }else if commandSelector == #selector(insertNewline(_:)){
             print("adicionar um novo objetivo")
+            self.objectiveBeingEdited = self.learningObjectivesByModifiedView[textView]
+            let newObjectiveRow = row(objective: objectiveBeingEdited!) + 1
+            print("objetivo na linha: \(newObjectiveRow)")
+            let courseID = appDelegate.selectedCourse?.id
+            let sprintID = appDelegate.selectedSprint?.id
+            let teamID = appDelegate.selectedTeam?.id
+            let studentID = appDelegate.selectedStudent?.id
+            let newObjective:StudentLearningObjective = StudentLearningObjective(courseID: courseID!, sprintID: sprintID!, teamID: teamID!, studentID: studentID!)
+            let newElementToDisplay = NoteElementToDisplay(objective: newObjective)
+            elementsToDisplay.insert(newElementToDisplay, at: newObjectiveRow)
+            self.mustHaveTableView.insertRows(at: [newObjectiveRow], withAnimation: [])
             return true
         }else {
             return false
@@ -836,6 +864,7 @@ extension ViewController: NSTableViewDelegate {
         let layoutHeight = layoutManager.usedRect(for: container).size.height
         return layoutHeight + 16.0
     }
+    
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         tableColumn?.headerCell.backgroundColor = NSColor.white

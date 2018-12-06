@@ -53,6 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var modifiedSelectedObjectiveDescription : (String)? {
         didSet {
             if let objective = selectedObjective?.1 {
+                //Aqui: está chamando este método mesmo quando é a tags list que é modificada e não a descrição
                 onObjectiveDescriptionChanged!(objective, modifiedSelectedObjectiveDescription!)
             }
         }
