@@ -658,6 +658,11 @@ extension ViewController: NSTableViewDataSource {
 }
 
 extension ViewController: NSTextViewDelegate {
+    func textView(_ textView: NSTextView, completions words: [String], forPartialWordRange charRange: NSRange, indexOfSelectedItem index: UnsafeMutablePointer<Int>?) -> [String] {
+        print(words)
+        return ["básico", "senior", "expert", "musthave", "nicetohave"]
+    }
+    
     func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
         if commandSelector == #selector(NSStandardKeyBindingResponding.insertTab(_:)) || commandSelector == #selector(NSStandardKeyBindingResponding.moveDown(_:)){
             textView.window?.makeFirstResponder(self.respondersChain[textView]?.1)
@@ -689,7 +694,15 @@ extension ViewController: NSTextViewDelegate {
         
     }
     
-
+    func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
+        if let rString = replacementString {
+            if rString == "#" {
+                textView.complete(nil)
+            }
+        }
+        return true
+    }
+    
     func textShouldEndEditing(_ textObject: NSText) -> Bool {
         if self.objectiveBeingEdited != nil {
             print("modificando o objetivo")
