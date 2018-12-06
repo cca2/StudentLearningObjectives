@@ -503,11 +503,19 @@ class ViewController: NSViewController {
         self.snippetsToDisplay.append(teamSnippet)
         teamSnippet.isSelected = true
         
+        var studentsSnippets = [SnippetToDisplay]()
         let teamStudents = selectedTeam?.members
         teamStudents?.forEach{
             student in
             let studentSnippet = SnippetToDisplay(student: student.value)
-            self.snippetsToDisplay.append(studentSnippet)
+            studentsSnippets.append(studentSnippet)
+        }
+        
+        studentsSnippets = studentsSnippets.sorted(by: {($0.student?.name)! < $1.student!.name})
+        
+        studentsSnippets.forEach{
+            snippet in
+            self.snippetsToDisplay.append(snippet)
         }
         
         self.objectivesToDisplay = []
@@ -691,21 +699,31 @@ extension ViewController: NSTextViewDelegate {
             print("adicionar um novo objetivo")
             self.objectiveBeingEdited = self.learningObjectivesByModifiedView[textView]
             let newObjectiveRow = row(objective: objectiveBeingEdited!) + 1
-            print("objetivo na linha: \(newObjectiveRow)")
-            let courseID = appDelegate.selectedCourse?.id
-            let sprintID = appDelegate.selectedSprint?.id
-            let teamID = appDelegate.selectedTeam?.id
-            let studentID = appDelegate.selectedStudent?.id
-            let newObjective:StudentLearningObjective = StudentLearningObjective(courseID: courseID!, sprintID: sprintID!, teamID: teamID!, studentID: studentID!)
+            let newObjective = createNewObjectiveAfterCurrentObjective(currentObjective: self.objectiveBeingEdited!)
             let newElementToDisplay = NoteElementToDisplay(objective: newObjective)
             elementsToDisplay.insert(newElementToDisplay, at: newObjectiveRow)
+            self.mustHaveTableView.beginUpdates()
             self.mustHaveTableView.insertRows(at: [newObjectiveRow], withAnimation: [])
+            self.mustHaveTableView.endUpdates()
             return true
         }else {
             return false
         }
     }
-
+    
+    func createNewObjectiveAfterCurrentObjective(currentObjective: StudentLearningObjective) -> StudentLearningObjective? {
+        var res:StudentLearningObjective?
+        let courseID = currentObjective.courseID
+        let sprintID = currentObjective.sprintID
+        let teamID = currentObjective.teamID
+        let studentID = currentObjective.studentID
+        res = StudentLearningObjective(courseID: courseID!, sprintID: sprintID!, teamID: teamID!, studentID: studentID)
+        let student = appDelegate.selectedCourse?.studentsByID[studentID]
+        student?.addOriginalObjective(objective: res!)
+        appDelegate.selectedSprint?.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
+        return res
+    }
+    
     func textDidChange(_ notification: Notification) {
         print("Hello")
         let textView = notification.object as! EditableTextView
