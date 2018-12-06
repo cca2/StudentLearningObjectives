@@ -52,7 +52,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var modifiedSelectedObjectiveDescription : (String)? {
         didSet {
-            onObjectiveDescriptionChanged!(selectedObjective!.1, modifiedSelectedObjectiveDescription!)
+            if let objective = selectedObjective?.1 {
+                onObjectiveDescriptionChanged!(objective, modifiedSelectedObjectiveDescription!)
+            }
         }
     }
 
@@ -100,6 +102,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         objectiveRecord["isExperimenting"] = objective.isExperimenting
         objectiveRecord["isApplyingInTheSolution"] = objective.isApplyingInTheSolution
         objectiveRecord["isTeachingOthers"] = objective.isTeachingOthers
+        objectiveRecord["isAbandoned"] = objective.isAbandoned
 
         let operation = CKModifyRecordsOperation(recordsToSave: [objectiveRecord], recordIDsToDelete: nil)
         operation.savePolicy = .changedKeys

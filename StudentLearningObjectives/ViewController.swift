@@ -709,9 +709,14 @@ extension ViewController: NSTextViewDelegate {
     func textShouldEndEditing(_ textObject: NSText) -> Bool {
         if self.objectiveBeingEdited != nil {
             print("modificando o objetivo")
-            print("antigo objetivo: \(self.objectiveBeingEdited?.description)")
-            print("novo objetivo: \(textObject.string)")
-            self.objectiveBeingEdited?.description = descriptionWithOutClassificationTags(textWithTags: textObject.string)!
+            if let objective = self.objectiveBeingEdited {
+                let textView = textObject as! EditableTextView
+                if textView.isTagsList {
+                    checkObjectiveState(objective: objective, tagsList: textObject.string)
+                }else if textView.isObjectiveDescription {
+                    objective.description = descriptionWithOutClassificationTags(textWithTags: textObject.string)!
+                }
+            }
             NotificationCenter.default.post(Notification(name: Notification.Name("didUpdateObjective"), object:self.objectiveBeingEdited, userInfo: nil))
         }else if self.teamBeingEdited != nil {
             print("Mofificando team")
@@ -727,6 +732,30 @@ extension ViewController: NSTextViewDelegate {
             NotificationCenter.default.post(Notification(name: Notification.Name("didUpdateTeam"), object:self.teamBeingEdited?.0, userInfo: nil))
         }
         return true
+    }
+    
+    func checkObjectiveState(objective: StudentLearningObjective, tagsList: String) {
+        if tagsList.contains("#abandonado") {
+            objective.isAbandoned = true
+        }else {
+            objective.isAbandoned = false
+        }
+        
+        if tagsList.contains("#estudado") {
+            objective.isStudying = true
+        }else {
+            objective.isStudying = false
+        }
+        if tagsList.contains("#experimentado") {
+            objective.isExperimenting = true
+        }else {
+            objective.isExperimenting = false
+        }
+        if tagsList.contains("#aplicado") {
+            objective.isApplyingInTheSolution = true
+        }else {
+            objective.isApplyingInTheSolution = false
+        }
     }
     
     func descriptionWithOutClassificationTags(textWithTags:String) -> String? {
@@ -832,6 +861,7 @@ extension ViewController: NSTableViewDelegate {
                         self.lastReponderInChain = cell.tagsListView
                         
                         self.learningObjectivesByModifiedView[cell.descriptionView] = elementsToDisplay[row].objective
+                        self.learningObjectivesByModifiedView[cell.tagsListView] = elementsToDisplay[row].objective
                         return cell
                     }
                 }else if let title = elementsToDisplay[row].title {

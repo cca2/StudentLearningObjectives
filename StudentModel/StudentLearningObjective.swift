@@ -27,6 +27,7 @@ class StudentLearningObjective {
     var isApplyingInTheSolution = false
     var isTeachingOthers = false
     var isInBacklog = false
+    var tagsListString: String?
     
     init(description:String) {
         self.description = description
