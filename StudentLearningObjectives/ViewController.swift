@@ -660,7 +660,7 @@ extension ViewController: NSTableViewDataSource {
 extension ViewController: NSTextViewDelegate {
     func textView(_ textView: NSTextView, completions words: [String], forPartialWordRange charRange: NSRange, indexOfSelectedItem index: UnsafeMutablePointer<Int>?) -> [String] {
         print(words)
-        return ["básico", "senior", "expert", "musthave", "nicetohave"]
+        return ["basic", "senior", "expert", "musthave", "nicetohave"]
     }
     
     func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
@@ -670,6 +670,9 @@ extension ViewController: NSTextViewDelegate {
         }else if commandSelector == #selector(NSStandardKeyBindingResponding.moveUp(_:)) {
             textView.window?.makeFirstResponder(self.respondersChain[textView]?.0)
             return true
+        }else if commandSelector == #selector(insertNewline(_:)){
+            print("adicionar um novo objetivo")
+            return true
         }else {
             return false
         }
@@ -677,7 +680,7 @@ extension ViewController: NSTextViewDelegate {
 
     func textDidChange(_ notification: Notification) {
         print("Hello")
-        let textView = notification.object as! NSTextView
+        let textView = notification.object as! EditableTextView
         if let objectiveBeingEdited = self.learningObjectivesByModifiedView[textView] {
             self.objectiveBeingEdited = objectiveBeingEdited
             //Avisar quando o objetivo for ser apagado

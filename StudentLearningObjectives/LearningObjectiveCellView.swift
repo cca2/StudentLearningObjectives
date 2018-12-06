@@ -18,7 +18,7 @@ class EditableTextView: NSTextView {
             let appDelegate = NSApplication.shared.delegate as! AppDelegate
             appDelegate.selectedObjective = (student, objective)
         }
-//        self.insertionPointColor = NSColor.red
+        self.insertionPointColor = NSColor.red
         return true
     }
 }
