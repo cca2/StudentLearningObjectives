@@ -747,7 +747,6 @@ extension ViewController: NSTableViewDelegate {
                 
                 if elementsToDisplay[row].showObjectiveStatus {
                     let cellHeight = itemHeight + 84.0 + 18.0
-//                    let cellHeight = CGFloat(135.0)
                     return cellHeight
                 }else {
                     let cellHeight = itemHeight + 14.0
