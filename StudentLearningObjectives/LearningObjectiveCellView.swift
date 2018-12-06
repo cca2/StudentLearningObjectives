@@ -120,26 +120,22 @@ class LearningObjectiveCellView: NSTableCellView {
 //            if objective.isInBacklog {
 //                inBacklogCheck.state = NSControl.StateValue.on
 //            }
-            if objective.isStudying {
-                studiedCheck.state = NSControl.StateValue.on
-            }else {
-                studiedCheck.state = NSControl.StateValue.off
-            }
-            if objective.isExperimenting {
-                experimentedCheck.state = NSControl.StateValue.on
-            }else {
-                experimentedCheck.state = NSControl.StateValue.off
-            }
-            if objective.isApplyingInTheSolution {
-                appliedCheck.state = NSControl.StateValue.on
-            }else {
-                appliedCheck.state = NSControl.StateValue.off
-            }
-            if objective.isTeachingOthers {
-                taughtCheck.state = NSControl.StateValue.on
-            }else {
-                taughtCheck.state = NSControl.StateValue.off
-            }
+            
+//            if objective.isExperimenting {
+//                experimentedCheck.state = NSControl.StateValue.on
+//            }else {
+//                experimentedCheck.state = NSControl.StateValue.off
+//            }
+//            if objective.isApplyingInTheSolution {
+//                appliedCheck.state = NSControl.StateValue.on
+//            }else {
+//                appliedCheck.state = NSControl.StateValue.off
+//            }
+//            if objective.isTeachingOthers {
+//                taughtCheck.state = NSControl.StateValue.on
+//            }else {
+//                taughtCheck.state = NSControl.StateValue.off
+//            }
         }else if let paragraph = elementToDisplay.paragraph {
             richTextDescription.append(NSAttributedString(string: paragraph))
         }
@@ -172,6 +168,19 @@ class LearningObjectiveCellView: NSTableCellView {
         let expertiseLevelTagAttributedString = NSAttributedString(string:" #" + objective.level, attributes: topicAttributes as [NSAttributedString.Key : Any])
         tagsAttributedString.append(expertiseLevelTagAttributedString)
         
+        if objective.isStudying {
+            tagsAttributedString.append(NSAttributedString(string: " #estudado", attributes: topicAttributes as [NSAttributedString.Key: Any]))
+        }
+        if objective.isExperimenting {
+            tagsAttributedString.append(NSAttributedString(string: " #experimentado", attributes: topicAttributes as [NSAttributedString.Key: Any]))
+        }
+        if objective.isApplyingInTheSolution {
+            tagsAttributedString.append(NSAttributedString(string: " #aplicado", attributes: topicAttributes as [NSAttributedString.Key: Any]))
+        }
+        if objective.isTeachingOthers {
+            tagsAttributedString.append(NSAttributedString(string: " #ensinado", attributes: topicAttributes as [NSAttributedString.Key: Any]))
+        }
+
 //        let topicTagAttributedString = NSAttributedString(string: " #" + objective.topic, attributes: topicAttributes as [NSAttributedString.Key : Any])
 //        tagsAttributedString.append(topicTagAttributedString)
         

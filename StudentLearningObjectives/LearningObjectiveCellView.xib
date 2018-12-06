@@ -30,7 +30,7 @@
                                             <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <size key="minSize" width="564" height="17"/>
-                                            <size key="maxSize" width="564" height="43"/>
+                                            <size key="maxSize" width="564" height="64"/>
                                             <attributedString key="textStorage">
                                                 <fragment content="Isto é um teste">
                                                     <attributes>
@@ -104,285 +104,358 @@
             <point key="canvasLocation" x="90.5" y="196.5"/>
         </customView>
         <customView identifier="ObjectiveCellID" id="MiI-bl-cVI" userLabel="Learning Objective With Status Cell View" customClass="LearningObjectiveCellView" customModule="StudentLearningObjectives" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="671" height="130"/>
+            <rect key="frame" x="0.0" y="0.0" width="671" height="64"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Poy-6K-dbe">
-                    <rect key="frame" x="72" y="84" width="599" height="46"/>
+                    <rect key="frame" x="72" y="0.0" width="599" height="64"/>
                     <view key="contentView" id="Jrt-Ff-Gvp">
-                        <rect key="frame" x="0.0" y="0.0" width="599" height="46"/>
+                        <rect key="frame" x="0.0" y="0.0" width="599" height="64"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <box boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="59O-fI-2F7">
-                                <rect key="frame" x="5" y="0.0" width="1" height="36"/>
+                            <box boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="59O-fI-2F7" userLabel="Vertical Line Box">
+                                <rect key="frame" x="5" y="5" width="1" height="54"/>
                                 <view key="contentView" id="0eB-po-eOK">
-                                    <rect key="frame" x="0.0" y="0.0" width="1" height="36"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1" height="54"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="1" id="mNQ-sj-4fM"/>
+                                    <constraint firstAttribute="width" constant="1" id="xCI-Va-7iv"/>
                                 </constraints>
                                 <color key="borderColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="fillColor" red="0.93558710810000001" green="0.52229225639999999" blue="0.49018478389999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </box>
-                            <scrollView appearanceType="aqua" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="MRZ-sQ-C1t">
-                                <rect key="frame" x="18" y="21" width="563" height="15"/>
-                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="zfg-d5-tSC">
-                                    <rect key="frame" x="0.0" y="0.0" width="563" height="15"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <textView verticallyResizable="NO" allowsDocumentBackgroundColorChange="YES" allowsUndo="YES" spellingCorrection="YES" smartInsertDelete="YES" id="xPZ-nF-XgM" customClass="EditableTextView" customModule="StudentLearningObjectives" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="563" height="15"/>
+                            <stackView distribution="fillEqually" orientation="vertical" alignment="leading" spacing="1" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X2L-Ng-e45">
+                                <rect key="frame" x="14" y="11" width="564" height="44"/>
+                                <subviews>
+                                    <scrollView appearanceType="aqua" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="MRZ-sQ-C1t">
+                                        <rect key="frame" x="0.0" y="14" width="564" height="30"/>
+                                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="zfg-d5-tSC">
+                                            <rect key="frame" x="0.0" y="0.0" width="564" height="30"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="textColor" white="0.33333000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="563" height="15"/>
-                                            <size key="maxSize" width="564" height="101"/>
-                                            <attributedString key="textStorage">
-                                                <fragment content="Trabalhar bem com frameworks de ">
-                                                    <attributes>
-                                                        <color key="NSColor" white="0.33333000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <font key="NSFont" size="13" name="HelveticaNeue"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content="HealthKit">
-                                                    <attributes>
-                                                        <color key="NSColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="13" name="HelveticaNeue"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content=", ">
-                                                    <attributes>
-                                                        <color key="NSColor" white="0.33333000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <font key="NSFont" size="13" name="HelveticaNeue"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content="Notifications">
-                                                    <attributes>
-                                                        <color key="NSColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="13" name="HelveticaNeue"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content=" ,">
-                                                    <attributes>
-                                                        <color key="NSColor" white="0.33333000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <font key="NSFont" size="13" name="HelveticaNeue"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content="multithreading">
-                                                    <attributes>
-                                                        <color key="NSColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="13" name="HelveticaNeue"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content=".">
-                                                    <attributes>
-                                                        <color key="NSColor" white="0.33333000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <font key="NSFont" size="13" name="HelveticaNeue"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                        </textView>
-                                    </subviews>
-                                </clipView>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="15" id="cks-Sf-f6O"/>
-                                </constraints>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="emC-tK-9tp">
-                                    <rect key="frame" x="-100" y="-100" width="16" height="37"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                            </scrollView>
-                            <scrollView appearanceType="aqua" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="76r-XT-TTc">
-                                <rect key="frame" x="14" y="8" width="563" height="13"/>
-                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="ZZV-Mi-XHZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="563" height="13"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <textView verticallyResizable="NO" allowsDocumentBackgroundColorChange="YES" allowsUndo="YES" spellingCorrection="YES" smartInsertDelete="YES" id="cq3-PN-dbg" customClass="EditableTextView" customModule="StudentLearningObjectives" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="563" height="14"/>
+                                            <subviews>
+                                                <textView verticallyResizable="NO" allowsDocumentBackgroundColorChange="YES" allowsUndo="YES" spellingCorrection="YES" smartInsertDelete="YES" id="xPZ-nF-XgM" customClass="EditableTextView" customModule="StudentLearningObjectives" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="564" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="textColor" white="0.33333000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    <size key="minSize" width="564" height="30"/>
+                                                    <size key="maxSize" width="564" height="101"/>
+                                                    <attributedString key="textStorage">
+                                                        <fragment content="Quero aprender mais de ">
+                                                            <attributes>
+                                                                <color key="NSColor" white="0.33333000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                    <tabStops>
+                                                                        <textTab alignment="left" location="28">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="56">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="84">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="112">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="140">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="168">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="196">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="224">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="252">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="280">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="308">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="336">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                    </tabStops>
+                                                                </paragraphStyle>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment content="machine">
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                    <tabStops>
+                                                                        <textTab alignment="left" location="28">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="56">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="84">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="112">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="140">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="168">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="196">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="224">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="252">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="280">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="308">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="336">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                    </tabStops>
+                                                                </paragraphStyle>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment content=" ">
+                                                            <attributes>
+                                                                <color key="NSColor" white="0.33333000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                    <tabStops>
+                                                                        <textTab alignment="left" location="28">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="56">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="84">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="112">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="140">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="168">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="196">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="224">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="252">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="280">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="308">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="336">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                    </tabStops>
+                                                                </paragraphStyle>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment content="learning">
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                    <tabStops>
+                                                                        <textTab alignment="left" location="28">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="56">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="84">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="112">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="140">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="168">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="196">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="224">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="252">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="280">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="308">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="336">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                    </tabStops>
+                                                                </paragraphStyle>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment content=", acredito ser uma área com muito potencial e sei muito pouco sobre.">
+                                                            <attributes>
+                                                                <color key="NSColor" white="0.33333000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                    <tabStops>
+                                                                        <textTab alignment="left" location="28">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="56">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="84">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="112">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="140">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="168">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="196">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="224">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="252">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="280">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="308">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="336">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                    </tabStops>
+                                                                </paragraphStyle>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                </textView>
+                                            </subviews>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </clipView>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="564" id="Icw-k7-NOO"/>
+                                            <constraint firstAttribute="height" constant="30" id="L62-JI-Ztk"/>
+                                        </constraints>
+                                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="emC-tK-9tp">
+                                            <rect key="frame" x="-100" y="-100" width="16" height="37"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                    </scrollView>
+                                    <scrollView appearanceType="aqua" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="76r-XT-TTc">
+                                        <rect key="frame" x="0.0" y="0.0" width="550" height="13"/>
+                                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="ZZV-Mi-XHZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="550" height="13"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="textColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <size key="minSize" width="563" height="13"/>
-                                            <size key="maxSize" width="564" height="101"/>
-                                            <attributedString key="textStorage">
-                                                <fragment content=" #musthave #básico">
-                                                    <attributes>
-                                                        <color key="NSColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="11" name="Helvetica"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                        </textView>
-                                    </subviews>
-                                </clipView>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="13" id="0Mb-LM-eEh"/>
-                                </constraints>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="JvU-QY-m8X">
-                                    <rect key="frame" x="-100" y="-100" width="16" height="37"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                            </scrollView>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="tJ2-2E-Wrl">
-                                <rect key="frame" x="25" y="-7" width="41" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="41" id="A24-ir-5m7"/>
-                                    <constraint firstAttribute="height" constant="18" id="orO-kU-n5B"/>
-                                </constraints>
-                                <buttonCell key="cell" type="roundRect" bezelStyle="roundedRect" image="iconfinder_More_Functions_Menu_Horizontal_Dots_Hidden_1654371" imagePosition="left" alignment="left" imageScaling="proportionallyDown" inset="2" id="xAv-RB-Zp5">
-                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="cellTitle"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="showObjectiveStatusPressed:" target="MiI-bl-cVI" id="Jw7-v6-f60"/>
-                                </connections>
-                            </button>
+                                            <subviews>
+                                                <textView verticallyResizable="NO" allowsDocumentBackgroundColorChange="YES" allowsUndo="YES" spellingCorrection="YES" smartInsertDelete="YES" id="cq3-PN-dbg" customClass="EditableTextView" customModule="StudentLearningObjectives" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="550" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="textColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <size key="minSize" width="550" height="13"/>
+                                                    <size key="maxSize" width="782" height="101"/>
+                                                    <attributedString key="textStorage">
+                                                        <fragment content=" #musthave #básico">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="11" name="Helvetica"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                </textView>
+                                            </subviews>
+                                        </clipView>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="13" id="im1-36-ejw"/>
+                                        </constraints>
+                                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="JvU-QY-m8X">
+                                            <rect key="frame" x="-100" y="-100" width="16" height="37"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                    </scrollView>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="76r-XT-TTc" firstAttribute="top" secondItem="xPZ-nF-XgM" secondAttribute="bottom" id="6ho-1H-W2q"/>
-                            <constraint firstItem="tJ2-2E-Wrl" firstAttribute="top" secondItem="MRZ-sQ-C1t" secondAttribute="bottom" constant="10" id="AB9-Q8-aly"/>
-                            <constraint firstItem="cq3-PN-dbg" firstAttribute="top" secondItem="MRZ-sQ-C1t" secondAttribute="bottom" id="AbC-dN-4cW"/>
-                            <constraint firstItem="MRZ-sQ-C1t" firstAttribute="top" secondItem="Jrt-Ff-Gvp" secondAttribute="top" constant="10" id="BK2-kS-bqB"/>
-                            <constraint firstAttribute="bottom" secondItem="76r-XT-TTc" secondAttribute="bottom" constant="8" id="DUY-Mk-qVO"/>
-                            <constraint firstItem="MRZ-sQ-C1t" firstAttribute="leading" secondItem="Jrt-Ff-Gvp" secondAttribute="leading" constant="18" id="XXn-WK-gNA"/>
-                            <constraint firstAttribute="bottom" secondItem="59O-fI-2F7" secondAttribute="bottom" id="aR7-eO-h7N"/>
-                            <constraint firstItem="59O-fI-2F7" firstAttribute="top" secondItem="Jrt-Ff-Gvp" secondAttribute="top" constant="10" id="aaD-iV-Vmt"/>
-                            <constraint firstItem="76r-XT-TTc" firstAttribute="leading" secondItem="59O-fI-2F7" secondAttribute="trailing" constant="8" id="dL4-bk-uAf"/>
-                            <constraint firstAttribute="trailing" secondItem="76r-XT-TTc" secondAttribute="trailing" constant="22" id="dUi-YX-ToM"/>
-                            <constraint firstAttribute="trailing" secondItem="MRZ-sQ-C1t" secondAttribute="trailing" constant="18" id="kQ4-hM-oJW"/>
-                            <constraint firstItem="59O-fI-2F7" firstAttribute="leading" secondItem="Jrt-Ff-Gvp" secondAttribute="leading" constant="5" id="kf3-vp-bZB"/>
-                            <constraint firstItem="tJ2-2E-Wrl" firstAttribute="leading" secondItem="Jrt-Ff-Gvp" secondAttribute="leading" constant="25" id="swF-Bd-6m2"/>
+                            <constraint firstItem="59O-fI-2F7" firstAttribute="top" secondItem="Jrt-Ff-Gvp" secondAttribute="top" constant="5" id="6uA-Ay-5j2"/>
+                            <constraint firstAttribute="bottom" secondItem="59O-fI-2F7" secondAttribute="bottom" constant="5" id="G5v-c9-f5k"/>
+                            <constraint firstItem="59O-fI-2F7" firstAttribute="leading" secondItem="Jrt-Ff-Gvp" secondAttribute="leading" constant="5" id="GYd-t9-ErO"/>
+                            <constraint firstItem="X2L-Ng-e45" firstAttribute="top" secondItem="Jrt-Ff-Gvp" secondAttribute="top" constant="9" id="HBx-hL-YcC"/>
+                            <constraint firstItem="X2L-Ng-e45" firstAttribute="leading" secondItem="59O-fI-2F7" secondAttribute="trailing" constant="8" id="KHO-Kh-ys8"/>
+                            <constraint firstAttribute="bottom" secondItem="X2L-Ng-e45" secondAttribute="bottom" constant="11" id="nTv-Qf-2Yd"/>
                         </constraints>
                     </view>
-                    <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="46" id="GQO-0R-5Ey"/>
-                    </constraints>
                     <color key="borderColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
-                    <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                </box>
-                <box boxType="custom" borderType="none" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="GxI-H8-fAF">
-                    <rect key="frame" x="0.0" y="0.0" width="72" height="130"/>
-                    <view key="contentView" id="TWb-V9-ffm">
-                        <rect key="frame" x="0.0" y="0.0" width="72" height="130"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="72" id="PCc-nt-UMC"/>
-                    </constraints>
-                    <color key="fillColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
-                </box>
-                <box hidden="YES" boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="wEQ-VA-6WG">
-                    <rect key="frame" x="77" y="0.0" width="175" height="84"/>
-                    <view key="contentView" id="Cgc-f8-NaN">
-                        <rect key="frame" x="0.0" y="0.0" width="175" height="84"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4PL-LV-meq">
-                                <rect key="frame" x="18" y="62" width="152" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="148" id="JFf-pi-nMn"/>
-                                </constraints>
-                                <buttonCell key="cell" type="check" title="estudar" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8ER-xr-luO">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="studiedCheckHasChanged:" target="MiI-bl-cVI" id="RRe-6b-uod"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tuN-mk-A0o">
-                                <rect key="frame" x="18" y="44" width="139" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="135" id="Fw6-cS-ENQ"/>
-                                </constraints>
-                                <buttonCell key="cell" type="check" title="experimentar" bezelStyle="regularSquare" imagePosition="left" inset="2" id="5Zt-FS-iOC">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="experimentedCheckHasChanged:" target="MiI-bl-cVI" id="a9i-oJ-Zjn"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="guZ-uo-XqC">
-                                <rect key="frame" x="18" y="26" width="152" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="148" id="iYr-99-aqB"/>
-                                </constraints>
-                                <buttonCell key="cell" type="check" title="aplicar na solução" bezelStyle="regularSquare" imagePosition="left" inset="2" id="4zz-v3-Qim">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="appliedCheckHasChanged:" target="MiI-bl-cVI" id="VDX-8g-yrs"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tx9-Bt-c6v">
-                                <rect key="frame" x="18" y="8" width="152" height="18"/>
-                                <buttonCell key="cell" type="check" title="ensinar outros colegas" bezelStyle="regularSquare" imagePosition="left" inset="2" id="UNB-K3-ffN">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="taughtHasChecked:" target="MiI-bl-cVI" id="xKg-qL-OpB"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="guZ-uo-XqC" firstAttribute="leading" secondItem="Tx9-Bt-c6v" secondAttribute="leading" id="6z5-u2-LNO"/>
-                            <constraint firstItem="guZ-uo-XqC" firstAttribute="top" secondItem="tuN-mk-A0o" secondAttribute="bottom" constant="4" id="7CV-bf-JpH"/>
-                            <constraint firstItem="4PL-LV-meq" firstAttribute="leading" secondItem="tuN-mk-A0o" secondAttribute="leading" id="C3o-SK-8tu"/>
-                            <constraint firstItem="Tx9-Bt-c6v" firstAttribute="top" secondItem="guZ-uo-XqC" secondAttribute="bottom" constant="4" id="Ktj-vT-GNR"/>
-                            <constraint firstItem="guZ-uo-XqC" firstAttribute="trailing" secondItem="Tx9-Bt-c6v" secondAttribute="trailing" id="c4y-4b-fbW"/>
-                            <constraint firstItem="tuN-mk-A0o" firstAttribute="centerY" secondItem="Cgc-f8-NaN" secondAttribute="centerY" constant="-11" id="eDV-VV-CP4"/>
-                            <constraint firstItem="tuN-mk-A0o" firstAttribute="leading" secondItem="guZ-uo-XqC" secondAttribute="leading" id="kQe-Po-dwt"/>
-                            <constraint firstItem="tuN-mk-A0o" firstAttribute="top" secondItem="4PL-LV-meq" secondAttribute="bottom" constant="4" id="qiX-ox-gKm"/>
-                            <constraint firstItem="4PL-LV-meq" firstAttribute="leading" secondItem="Cgc-f8-NaN" secondAttribute="leading" constant="20" symbolic="YES" id="riJ-b9-W0e"/>
-                            <constraint firstItem="tuN-mk-A0o" firstAttribute="top" secondItem="Cgc-f8-NaN" secondAttribute="top" constant="24" id="u8V-eW-BeK"/>
-                        </constraints>
-                    </view>
-                    <constraints>
-                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="84" id="8sL-0Q-B68"/>
-                        <constraint firstAttribute="width" constant="175" id="mXo-YE-DV5"/>
-                    </constraints>
                     <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                 </box>
             </subviews>
             <constraints>
-                <constraint firstItem="Poy-6K-dbe" firstAttribute="leading" secondItem="GxI-H8-fAF" secondAttribute="trailing" id="1q7-eN-W0k"/>
-                <constraint firstItem="Poy-6K-dbe" firstAttribute="top" secondItem="GxI-H8-fAF" secondAttribute="top" id="67e-fA-tnB"/>
-                <constraint firstItem="wEQ-VA-6WG" firstAttribute="leading" secondItem="MiI-bl-cVI" secondAttribute="leading" constant="77" id="JxR-Lz-mGZ"/>
-                <constraint firstAttribute="trailing" secondItem="Poy-6K-dbe" secondAttribute="trailing" id="Mos-hc-YWS"/>
-                <constraint firstAttribute="bottom" secondItem="wEQ-VA-6WG" secondAttribute="bottom" id="R2n-sa-2y3"/>
-                <constraint firstAttribute="bottom" secondItem="GxI-H8-fAF" secondAttribute="bottom" id="Spp-6v-Sgb"/>
-                <constraint firstItem="GxI-H8-fAF" firstAttribute="top" secondItem="MiI-bl-cVI" secondAttribute="top" id="cxq-7S-Dud"/>
-                <constraint firstItem="GxI-H8-fAF" firstAttribute="leading" secondItem="MiI-bl-cVI" secondAttribute="leading" id="eIF-m1-h5U"/>
+                <constraint firstItem="Poy-6K-dbe" firstAttribute="leading" secondItem="MiI-bl-cVI" secondAttribute="leading" constant="72" id="KvL-dD-PeE"/>
+                <constraint firstAttribute="bottom" secondItem="Poy-6K-dbe" secondAttribute="bottom" id="MLF-ad-cpE"/>
+                <constraint firstItem="Poy-6K-dbe" firstAttribute="top" secondItem="MiI-bl-cVI" secondAttribute="top" id="P4z-I6-ufk"/>
+                <constraint firstAttribute="trailing" secondItem="Poy-6K-dbe" secondAttribute="trailing" id="py3-sH-NH0"/>
             </constraints>
             <connections>
-                <outlet property="appliedCheck" destination="guZ-uo-XqC" id="UnW-nC-4ke"/>
                 <outlet property="descriptionView" destination="xPZ-nF-XgM" id="TNj-Vc-gUW"/>
-                <outlet property="experimentedCheck" destination="tuN-mk-A0o" id="1jf-C5-kLf"/>
-                <outlet property="showObjectiveStatusBtn" destination="tJ2-2E-Wrl" id="0Ay-tx-lFv"/>
-                <outlet property="statusBox" destination="wEQ-VA-6WG" id="QBV-4I-cC0"/>
-                <outlet property="studiedCheck" destination="4PL-LV-meq" id="GQ6-PB-BOm"/>
                 <outlet property="tagsListView" destination="cq3-PN-dbg" id="8qb-HJ-UD1"/>
-                <outlet property="taughtCheck" destination="Tx9-Bt-c6v" id="nRo-m5-ql7"/>
             </connections>
-            <point key="canvasLocation" x="90.5" y="-154"/>
+            <point key="canvasLocation" x="90.5" y="-90"/>
         </customView>
     </objects>
-    <resources>
-        <image name="iconfinder_More_Functions_Menu_Horizontal_Dots_Hidden_1654371" width="256" height="256"/>
-    </resources>
 </document>

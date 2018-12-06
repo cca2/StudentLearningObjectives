@@ -660,7 +660,7 @@ extension ViewController: NSTableViewDataSource {
 extension ViewController: NSTextViewDelegate {
     func textView(_ textView: NSTextView, completions words: [String], forPartialWordRange charRange: NSRange, indexOfSelectedItem index: UnsafeMutablePointer<Int>?) -> [String] {
         print(words)
-        return ["basic", "senior", "expert", "musthave", "nicetohave"]
+        return ["musthave", "nicetohave", "basic", "senior", "expert", "abandonado", "estudado", "experimentado", "aplicado", "ensinado"]
     }
     
     func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
@@ -761,13 +761,8 @@ extension ViewController: NSTableViewDelegate {
                 let attributedItem = NSAttributedString(string: item, attributes:attributes)
                 let itemHeight = hightForString(attributedString: attributedItem, width: CGFloat(564.0), padding: CGFloat(4.0))
                 
-                if elementsToDisplay[row].showObjectiveStatus {
-                    let cellHeight = itemHeight + 84.0 + 18.0
-                    return cellHeight
-                }else {
-                    let cellHeight = itemHeight + 14.0
-                    return cellHeight
-                }
+                let cellHeight = itemHeight + 20.0
+                return cellHeight
             }else if let title = elementsToDisplay[row].title {
                 return CGFloat(40.0)
             }else if let subtitle = elementsToDisplay[row].subtitle {

@@ -4,4 +4,4 @@ Ter uma visão específica de objetivo individualmente
 ter uma visão para o acompanhamento do objetivo: onde o usuário possa marcar o status do objetivo: abandonado, estudando, experimentando, aplicando, ensinando
 Permiter apagar objetivos
 Permitir adicionar objetivos
-corrigir bug que quando carrega a sprint ele repete objetivos
+Os objetivos com mais de uma linha não estão sendo mostrados corretamente
