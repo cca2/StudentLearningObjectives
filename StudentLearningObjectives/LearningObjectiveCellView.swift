@@ -46,6 +46,7 @@ class LearningObjectiveCellView: NSTableCellView {
             self.elementToDisplay?.showObjectiveStatus = false
             statusBox.isHidden = true
         }
+        NotificationCenter.default.post(name: NSNotification.Name("didChangeShowStatusForObjective"), object: elementToDisplay)
     }
     
     @IBAction func studiedCheckHasChanged(_ sender: NSButton) {

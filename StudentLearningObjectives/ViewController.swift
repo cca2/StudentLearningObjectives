@@ -20,7 +20,7 @@ class NoteElementToDisplay {
     let objective:StudentLearningObjective?
     let paragraph: String?
     var isSelected = false
-    var showObjectiveStatus = true
+    var showObjectiveStatus = false
     
     var teamInfoModified:Team.InfoTypes?
     
@@ -204,9 +204,20 @@ class ViewController: NSViewController {
         }
     }
     
+    @objc func didChangeShowStatusForObjective(_ notification:Notification) {
+        let elementToDisplay = notification.object as! NoteElementToDisplay
+        if let index = try self.elementsToDisplay.firstIndex(where: {$0 === elementToDisplay}) {
+            self.mustHaveTableView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: index))
+            self.mustHaveTableView.beginUpdates()
+            self.mustHaveTableView.endUpdates()
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(didChangeShowStatusForObjective(_:)), name: Notification.Name("didChangeShowStatusForObjective"), object: nil)
+        
         // Do any additional setup after loading the view.
         self.mustHaveTableView.dataSource = self
         self.mustHaveTableView.delegate = self

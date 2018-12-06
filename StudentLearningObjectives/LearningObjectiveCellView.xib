@@ -283,7 +283,7 @@
                     </constraints>
                     <color key="fillColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
                 </box>
-                <box boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="wEQ-VA-6WG">
+                <box hidden="YES" boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="wEQ-VA-6WG">
                     <rect key="frame" x="77" y="0.0" width="175" height="84"/>
                     <view key="contentView" id="Cgc-f8-NaN">
                         <rect key="frame" x="0.0" y="0.0" width="175" height="84"/>
