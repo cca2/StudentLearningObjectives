@@ -691,7 +691,7 @@ extension ViewController: NSTextViewDelegate {
             if let objectiveBeingEdited = appDelegate.selectedObjective?.1 {
                 let newObjectiveRow = row(objective: objectiveBeingEdited) + 1
                 let newObjective = createNewObjectiveAfterCurrentObjective(currentObjective: objectiveBeingEdited)
-                self.objectiveBeingEdited = newObjective
+                appDelegate.selectedObjective = (appDelegate.selectedStudent, newObjective) as? (Student, StudentLearningObjective)
                 let newElementToDisplay = NoteElementToDisplay(objective: newObjective)
                 elementsToDisplay.insert(newElementToDisplay, at: newObjectiveRow)
                 self.mustHaveTableView.beginUpdates()

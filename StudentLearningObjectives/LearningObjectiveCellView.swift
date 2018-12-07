@@ -15,7 +15,7 @@ class EditableTextView: NSTextView {
     
     var isObjectiveDescription = false
     var isTagsList = false
-    
+
     override var acceptsFirstResponder: Bool { return true }
     
     override func becomeFirstResponder() -> Bool {
@@ -24,6 +24,10 @@ class EditableTextView: NSTextView {
             appDelegate.selectedObjective = (student, objective)
         }
         self.insertionPointColor = NSColor.red
+        if isObjectiveDescription {
+            self.font = NSFont.systemFont(ofSize: CGFloat(13.0))
+            self.textColor = NSColor.darkGray
+        }
         return true
     }
 }
@@ -49,8 +53,8 @@ class LearningObjectiveCellView: NSTableCellView {
         self.descriptionView.isObjectiveDescription = true
         
         self.descriptionView.nextResponder = self.tagsListView
-        let font = NSFont.systemFont(ofSize: 16.0)
-        let attributes: [NSAttributedString.Key:Any] = [NSAttributedString.Key.font:font]
+        let font = NSFont.systemFont(ofSize: 13.0)
+        let attributes: [NSAttributedString.Key:Any] = [.font:font, .foregroundColor:NSColor.darkGray]
         let richTextDescription = NSMutableAttributedString(string: "", attributes:attributes)
 
         richTextDescription.append(highlightTopics(text: objective.description, tags: objective.tags))
