@@ -735,15 +735,12 @@ extension ViewController: NSTextViewDelegate {
                 self.objectiveBeingEdited?.description = textView.string
                 //Aumentar ou diminuir a altura da NSTextView da descrição do objetivo
                 //Aqui precisa terminar para aumentar ou diminuir a altura
-                if upperBoundRange > 90 {
-                    //precisa aumentar a altura da textview da descrição do objetivo
-                    
-                    if let objectiveBeingEdited = self.objectiveBeingEdited {
-                        let index = row(objective: objectiveBeingEdited)
-                        self.mustHaveTableView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: index))
-                        self.mustHaveTableView.beginUpdates()
-                        self.mustHaveTableView.endUpdates()
-                    }
+                //precisa aumentar a altura da textview da descrição do objetivo
+                if let objectiveBeingEdited = self.objectiveBeingEdited {
+                    let index = row(objective: objectiveBeingEdited)
+                    self.mustHaveTableView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: index))
+                    self.mustHaveTableView.beginUpdates()
+                    self.mustHaveTableView.endUpdates()
                 }
             }
 
