@@ -135,7 +135,9 @@ class ViewController: NSViewController {
     let database = CKContainer.default().privateCloudDatabase
 
     var respondersChain:[NSView:(NSView?, NSView?)] = [:]
-    var lastReponderInChain: NSTextView?
+    var objectiveRespondersCellsList:[Int:(Int, Int, LearningObjectiveCellView)] = [:]
+    
+    var lastResponderInChain: NSTextView?
     
     @IBAction func tagHasBeenEdited(_ sender: NSTextField) {
         let newTag = sender.stringValue
@@ -204,19 +206,8 @@ class ViewController: NSViewController {
         }
     }
     
-    @objc func didChangeShowStatusForObjective(_ notification:Notification) {
-        let elementToDisplay = notification.object as! NoteElementToDisplay
-        if let index = try self.elementsToDisplay.firstIndex(where: {$0 === elementToDisplay}) {
-            self.mustHaveTableView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: index))
-            self.mustHaveTableView.beginUpdates()
-            self.mustHaveTableView.endUpdates()
-        }
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(didChangeShowStatusForObjective(_:)), name: Notification.Name("didChangeShowStatusForObjective"), object: nil)
         
         // Do any additional setup after loading the view.
         self.mustHaveTableView.dataSource = self
@@ -697,14 +688,18 @@ extension ViewController: NSTextViewDelegate {
             return true
         }else if commandSelector == #selector(insertNewline(_:)){
             print("adicionar um novo objetivo")
-            self.objectiveBeingEdited = self.learningObjectivesByModifiedView[textView]
-            let newObjectiveRow = row(objective: objectiveBeingEdited!) + 1
-            let newObjective = createNewObjectiveAfterCurrentObjective(currentObjective: self.objectiveBeingEdited!)
-            let newElementToDisplay = NoteElementToDisplay(objective: newObjective)
-            elementsToDisplay.insert(newElementToDisplay, at: newObjectiveRow)
-            self.mustHaveTableView.beginUpdates()
-            self.mustHaveTableView.insertRows(at: [newObjectiveRow], withAnimation: [])
-            self.mustHaveTableView.endUpdates()
+            if let objectiveBeingEdited = appDelegate.selectedObjective?.1 {
+                let newObjectiveRow = row(objective: objectiveBeingEdited) + 1
+                let newObjective = createNewObjectiveAfterCurrentObjective(currentObjective: objectiveBeingEdited)
+                self.objectiveBeingEdited = newObjective
+                let newElementToDisplay = NoteElementToDisplay(objective: newObjective)
+                elementsToDisplay.insert(newElementToDisplay, at: newObjectiveRow)
+                self.mustHaveTableView.beginUpdates()
+                self.mustHaveTableView.insertRows(at: [newObjectiveRow], withAnimation: [])
+                self.mustHaveTableView.endUpdates()
+            }
+            //precisa fazer o novo objetivo ser o firstResponder
+            //O problema aqui é que a tabela é recarregada apenas na célula que foi alterada
             return true
         }else {
             return false
@@ -727,21 +722,14 @@ extension ViewController: NSTextViewDelegate {
     func textDidChange(_ notification: Notification) {
         print("Hello")
         let textView = notification.object as! EditableTextView
-        print(textView.selectedRange().upperBound)
-        let upperBoundRange = textView.selectedRange().upperBound
-        if let objectiveBeingEdited = self.learningObjectivesByModifiedView[textView] {
-            self.objectiveBeingEdited = objectiveBeingEdited
+        if let objectiveBeingEdited = appDelegate.selectedObjective?.1 {
             if textView.isObjectiveDescription {
-                self.objectiveBeingEdited?.description = textView.string
+                objectiveBeingEdited.description = textView.string
                 //Aumentar ou diminuir a altura da NSTextView da descrição do objetivo
-                //Aqui precisa terminar para aumentar ou diminuir a altura
-                //precisa aumentar a altura da textview da descrição do objetivo
-                if let objectiveBeingEdited = self.objectiveBeingEdited {
-                    let index = row(objective: objectiveBeingEdited)
-                    self.mustHaveTableView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: index))
-                    self.mustHaveTableView.beginUpdates()
-                    self.mustHaveTableView.endUpdates()
-                }
+                let index = row(objective: objectiveBeingEdited)
+                self.mustHaveTableView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: index))
+                self.mustHaveTableView.beginUpdates()
+                self.mustHaveTableView.endUpdates()
             }
 
             //Avisar quando o objetivo for ser apagado
@@ -898,7 +886,6 @@ extension ViewController: NSTableViewDelegate {
         return layoutHeight + 16.0
     }
     
-    
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         tableColumn?.headerCell.backgroundColor = NSColor.white
         if (tableView == self.mustHaveTableView) {
@@ -908,22 +895,31 @@ extension ViewController: NSTableViewDelegate {
                 if elementsToDisplay[row].objective != nil {
                     cellIdentifier = "ObjectiveCellID"
                     if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  LearningObjectiveCellView {
+                        let objective = elementsToDisplay[row].objective
                         cell.descriptionView.learningObjective = elementsToDisplay[row].objective
-                        cell.descriptionView.student = appDelegate.selectedStudent
-                        cell.fitForObjective(elementToDisplay: elementsToDisplay[row])
+                        cell.objective = objective
                         cell.descriptionView.delegate = self
                         cell.tagsListView.delegate = self
                         
                         //Montar a cadeia de responders
-                        if let lastResponder = lastReponderInChain {
-                            self.respondersChain[lastResponder] = (self.respondersChain[(lastResponder)]?.0, cell.descriptionView)
+                        if self.objectiveRespondersCellsList[row - 1] != nil {
+                            print("o objetivo anterior existe")
+                        }else {
+                            print("a célula do anterior não existe")
                         }
-                        self.respondersChain[cell.descriptionView] = (self.lastReponderInChain, cell.tagsListView)
-                        self.respondersChain[cell.tagsListView] = (cell.descriptionView, nil)
-                        self.lastReponderInChain = cell.tagsListView
-                        
-                        self.learningObjectivesByModifiedView[cell.descriptionView] = elementsToDisplay[row].objective
-                        self.learningObjectivesByModifiedView[cell.tagsListView] = elementsToDisplay[row].objective
+//                        if let lastResponder = lastResponderInChain {
+//                            self.respondersChain[lastResponder] = (self.respondersChain[(lastResponder)]?.0, cell.descriptionView)
+//                        }
+//                        self.respondersChain[cell.descriptionView] = (self.lastResponderInChain, cell.tagsListView)
+//                        self.respondersChain[cell.tagsListView] = (cell.descriptionView, nil)
+//                        self.lastResponderInChain = cell.tagsListView
+//
+//                        self.learningObjectivesByModifiedView[cell.descriptionView] = elementsToDisplay[row].objective
+//                        self.learningObjectivesByModifiedView[cell.tagsListView] = elementsToDisplay[row].objective
+//                        //Faz o objetivo sendo editado ser o firstResponder
+//                        if objective != nil && objective === objectiveBeingEdited {
+//                            cell.descriptionView.window?.makeFirstResponder(self)
+//                        }
                         return cell
                     }
                 }else if let title = elementsToDisplay[row].title {

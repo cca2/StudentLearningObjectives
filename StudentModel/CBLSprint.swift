@@ -346,10 +346,7 @@ class CBLSprint {
     
     //Esta função verifica as modificações que estão sendo feitas na descrição do objetivo, gerando alertas inteligentes
     func checkObjectiveStatus(selectedObjective:StudentLearningObjective, currentText:String) {
-        print(">>> 300 <<<")
-        print(selectedObjective.description)
-        print(currentText)
-        
+        print(">>> 300 <<<")        
         if currentText == "" {
            //Notifica o usuário que o objetivo será apagado
             NotificationCenter.default.post(name: Notification.Name("didErasedObjectiveDescription"), object: selectedObjective, userInfo: nil)

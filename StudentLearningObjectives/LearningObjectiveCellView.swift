@@ -16,8 +16,10 @@ class EditableTextView: NSTextView {
     var isObjectiveDescription = false
     var isTagsList = false
     
+    override var acceptsFirstResponder: Bool { return true }
+    
     override func becomeFirstResponder() -> Bool {
-        if let student = student, let objective = self.learningObjective {
+        if let student = self.student, let objective = self.learningObjective {
             let appDelegate = NSApplication.shared.delegate as! AppDelegate
             appDelegate.selectedObjective = (student, objective)
         }
@@ -30,29 +32,30 @@ class LearningObjectiveCellView: NSTableCellView {
     @IBOutlet var descriptionView: EditableTextView!
     @IBOutlet var tagsListView: EditableTextView!
     
-    var elementToDisplay:NoteElementToDisplay?
-    
-    var objective:StudentLearningObjective?
-    
+    var objective:StudentLearningObjective? {
+        didSet {
+            let delegate = NSApplication.shared.delegate as! AppDelegate
+            let student = delegate.selectedStudent
+            descriptionView.student = student
+            descriptionView.learningObjective = objective
+            tagsListView.student = student
+            tagsListView.learningObjective = objective
+            fitForObjective(objective: objective!)
+        }
+    }
 
-    func fitForObjective(elementToDisplay: NoteElementToDisplay) {
+    func fitForObjective(objective: StudentLearningObjective) {
         self.tagsListView.isTagsList = true
         self.descriptionView.isObjectiveDescription = true
         
-        self.elementToDisplay = elementToDisplay
         self.descriptionView.nextResponder = self.tagsListView
         let font = NSFont.systemFont(ofSize: 16.0)
         let attributes: [NSAttributedString.Key:Any] = [NSAttributedString.Key.font:font]
         let richTextDescription = NSMutableAttributedString(string: "", attributes:attributes)
 
-        if let objective = elementToDisplay.objective {
-            self.objective = objective
-            richTextDescription.append(highlightTopics(text: objective.description, tags: objective.tags))
-            tagsListView.textStorage?.setAttributedString(addClassificationToDescription(objective: objective))
-        }else if let paragraph = elementToDisplay.paragraph {
-            richTextDescription.append(NSAttributedString(string: paragraph))
-        }
-        self.descriptionView.textStorage?.setAttributedString(richTextDescription)        
+        richTextDescription.append(highlightTopics(text: objective.description, tags: objective.tags))
+        tagsListView.textStorage?.setAttributedString(addClassificationToDescription(objective: objective))
+        self.descriptionView.textStorage?.setAttributedString(richTextDescription)
     }
     
     override func draw(_ dirtyRect: NSRect) {

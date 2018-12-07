@@ -5,3 +5,6 @@ ter uma visão para o acompanhamento do objetivo: onde o usuário possa marcar o
 Permiter apagar objetivos
 Permitir adicionar objetivos
 Os objetivos com mais de uma linha não estão sendo mostrados corretamente
+A nova célula de objetivo está com formatação errada
+As setas para cima e para baixo não estão funcionando corretamente quando o objetivo tem mais de uma linha
+Precisa encadear o novo objetivo na lista de responders
