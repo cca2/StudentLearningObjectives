@@ -727,8 +727,26 @@ extension ViewController: NSTextViewDelegate {
     func textDidChange(_ notification: Notification) {
         print("Hello")
         let textView = notification.object as! EditableTextView
+        print(textView.selectedRange().upperBound)
+        let upperBoundRange = textView.selectedRange().upperBound
         if let objectiveBeingEdited = self.learningObjectivesByModifiedView[textView] {
             self.objectiveBeingEdited = objectiveBeingEdited
+            if textView.isObjectiveDescription {
+                self.objectiveBeingEdited?.description = textView.string
+                //Aumentar ou diminuir a altura da NSTextView da descrição do objetivo
+                //Aqui precisa terminar para aumentar ou diminuir a altura
+                if upperBoundRange > 90 {
+                    //precisa aumentar a altura da textview da descrição do objetivo
+                    
+                    if let objectiveBeingEdited = self.objectiveBeingEdited {
+                        let index = row(objective: objectiveBeingEdited)
+                        self.mustHaveTableView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: index))
+                        self.mustHaveTableView.beginUpdates()
+                        self.mustHaveTableView.endUpdates()
+                    }
+                }
+            }
+
             //Avisar quando o objetivo for ser apagado
             self.appDelegate.modifiedSelectedObjectiveDescription = textView.string
         }else {
