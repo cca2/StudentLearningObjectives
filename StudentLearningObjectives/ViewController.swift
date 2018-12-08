@@ -787,10 +787,29 @@ extension ViewController: NSTextViewDelegate {
     }
     
     func checkObjectiveState(objective: StudentLearningObjective, tagsList: String) {
+        if tagsList.contains("#inbacklog") {
+            objective.isInBacklog = true
+        }else {
+            objective.isInBacklog = false
+        }
         if tagsList.contains("#abandonado") {
             objective.isAbandoned = true
         }else {
             objective.isAbandoned = false
+        }
+        
+        if tagsList.contains("#musthave") {
+            objective.priority = "must-have"
+        }else if tagsList.contains("#nicetohave"){
+            objective.priority = "nice-to-have"
+        }
+        
+        if tagsList.contains("#básico") {
+            objective.level = "básico"
+        }else if tagsList.contains("#senior") {
+            objective.level = "senior"
+        }else if tagsList.contains("#expert") {
+            objective.level = "expert"
         }
         
         if tagsList.contains("#estudado") {
