@@ -99,11 +99,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         objectiveRecord["description"] = objective.description
         objectiveRecord["area"] = objective.area
         objectiveRecord["topic"] = objective.topic
+        
+        objectiveRecord["isInBacklog"] = objective.isInBacklog
         objectiveRecord["isStudying"] = objective.isStudying
         objectiveRecord["isExperimenting"] = objective.isExperimenting
         objectiveRecord["isApplyingInTheSolution"] = objective.isApplyingInTheSolution
         objectiveRecord["isTeachingOthers"] = objective.isTeachingOthers
         objectiveRecord["isAbandoned"] = objective.isAbandoned
+        
+        objectiveRecord["priority"] = objective.priority
+        objectiveRecord["level"] = objective.level
+                
+        let courseReference = CKRecord.Reference(recordID: CKRecord.ID(recordName: objective.courseID!), action: .none)
+        objectiveRecord["course"] = courseReference
+        let sprintReference = CKRecord.Reference(recordID: CKRecord.ID(recordName: objective.sprintID!), action: .none)
+        objectiveRecord["sprint"] = sprintReference
+        let teamReference = CKRecord.Reference(recordID: CKRecord.ID(recordName: objective.teamID!), action: .none)
+        objectiveRecord["team"] = teamReference
+        let studentReference = CKRecord.Reference(recordID: CKRecord.ID(recordName: objective.studentID), action: .none)
+        objectiveRecord["student"] = studentReference
 
         let operation = CKModifyRecordsOperation(recordsToSave: [objectiveRecord], recordIDsToDelete: nil)
         operation.savePolicy = .changedKeys
@@ -142,11 +156,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         operation.modifyRecordsCompletionBlock = {
             records, recordsIDS, error in
             print(">>> 100 <<<")
-            print(records)
-            print(error?.localizedDescription)
+            print(records!)
+            print(error?.localizedDescription as Any)
         }
         database?.add(operation)
-        print("atualizando team \(teamID)")
+        print("atualizando team \(String(describing: teamID))")
     }
     
     @objc func onDidEraseObjectiveDescription(_ notification:Notification) {

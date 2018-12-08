@@ -124,6 +124,7 @@ class ViewController: NSViewController {
     //Tags que identificam qual texto foi modificado
     var learningObjectivesByModifiedView:[NSTextView:StudentLearningObjective] = [:]
     var teamsInfoByModifiedView:[NSTextView:(Team, Team.InfoTypes)] = [:]
+    var lastModifiedObjective:StudentLearningObjective?
     var objectiveBeingEdited:StudentLearningObjective?
     var teamBeingEdited:(Team?, Team.InfoTypes?)?
 
@@ -714,6 +715,7 @@ extension ViewController: NSTextViewDelegate {
         let studentID = currentObjective.studentID
         res = StudentLearningObjective(courseID: courseID!, sprintID: sprintID!, teamID: teamID!, studentID: studentID)
         let student = appDelegate.selectedCourse?.studentsByID[studentID]
+        
         student?.addOriginalObjective(objective: res!)
         appDelegate.selectedSprint?.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
         return res
@@ -725,6 +727,7 @@ extension ViewController: NSTextViewDelegate {
         if let objectiveBeingEdited = appDelegate.selectedObjective?.1 {
             if textView.isObjectiveDescription {
                 objectiveBeingEdited.description = textView.string
+                self.lastModifiedObjective = objectiveBeingEdited
                 //Aumentar ou diminuir a altura da NSTextView da descrição do objetivo
                 let index = row(objective: objectiveBeingEdited)
                 self.mustHaveTableView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: index))
@@ -756,9 +759,9 @@ extension ViewController: NSTextViewDelegate {
     }
     
     func textShouldEndEditing(_ textObject: NSText) -> Bool {
-        if self.objectiveBeingEdited != nil {
+        if self.lastModifiedObjective != nil {
             print("modificando o objetivo")
-            if let objective = self.objectiveBeingEdited {
+            if let objective = self.lastModifiedObjective {
                 let textView = textObject as! EditableTextView
                 if textView.isTagsList {
                     checkObjectiveState(objective: objective, tagsList: textObject.string)
@@ -766,7 +769,7 @@ extension ViewController: NSTextViewDelegate {
                     objective.description = descriptionWithOutClassificationTags(textWithTags: textObject.string)!
                 }
             }
-            NotificationCenter.default.post(Notification(name: Notification.Name("didUpdateObjective"), object:self.objectiveBeingEdited, userInfo: nil))
+            NotificationCenter.default.post(Notification(name: Notification.Name("didUpdateObjective"), object:self.lastModifiedObjective, userInfo: nil))
         }else if self.teamBeingEdited != nil {
             print("Mofificando team")
             if self.teamBeingEdited?.1 == Team.InfoTypes.BigIdea {

@@ -36,6 +36,9 @@ class StudentLearningObjective {
         self.sprintID = sprintID
         self.teamID = teamID
         self.studentID = studentID
+        self.isInBacklog = true
+        self.priority = "must-have"
+        self.level = "básico"
     }
     
     init(description:String) {
