@@ -725,9 +725,9 @@ extension ViewController: NSTextViewDelegate {
         print("Hello")
         let textView = notification.object as! EditableTextView
         if let objectiveBeingEdited = appDelegate.selectedObjective?.1 {
+            self.lastModifiedObjective = objectiveBeingEdited
             if textView.isObjectiveDescription {
                 objectiveBeingEdited.description = textView.string
-                self.lastModifiedObjective = objectiveBeingEdited
                 //Aumentar ou diminuir a altura da NSTextView da descrição do objetivo
                 let index = row(objective: objectiveBeingEdited)
                 self.mustHaveTableView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: index))
