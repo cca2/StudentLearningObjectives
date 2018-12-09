@@ -24,10 +24,17 @@ class EditableTextView: NSTextView {
             appDelegate.selectedObjective = (student, objective)
         }
         self.insertionPointColor = NSColor.red
-        self.font = NSFont.systemFont(ofSize: CGFloat(13.0))
-        self.textColor = NSColor.lightGray
+//        self.font = NSFont.systemFont(ofSize: CGFloat(13.0))
+//        self.textColor = NSColor.lightGray
         return true
     }
+    
+//    override func draw(_ dirtyRect: NSRect) {
+//        super.draw(dirtyRect)
+//        self.insertionPointColor = NSColor.red
+//        self.font = NSFont.systemFont(ofSize: CGFloat(13.0))
+//        self.textColor = NSColor.darkGray
+//    }
     
 }
 
@@ -43,15 +50,19 @@ class TagsListTextView: EditableTextView {
         }
     }
     
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-        self.font = NSFont.systemFont(ofSize: CGFloat(11.0))
-    }
+//    override func draw(_ dirtyRect: NSRect) {
+//        super.draw(dirtyRect)
+//        self.insertionPointColor = NSColor.red
+//        self.font = NSFont.systemFont(ofSize: CGFloat(11.0))
+//        self.textColor = NSColor.lightGray
+//        highLightTags()
+//    }
 
     override func becomeFirstResponder() -> Bool {
         super.becomeFirstResponder()
-        self.font = NSFont.systemFont(ofSize: CGFloat(11.0))
-        self.textColor = NSColor.lightGray
+        self.insertionPointColor = NSColor.red
+//        self.font = NSFont.systemFont(ofSize: CGFloat(11.0))
+//        self.textColor = NSColor.lightGray
         
         highLightTags()
         return true
@@ -75,7 +86,7 @@ class TagsListTextView: EditableTextView {
             self.textStorage?.setAttributedString(tagsAttributedString)
         }else {
             self.textColor = NSColor.lightGray
-            self.font = NSFont(name: "Helvetica", size: CGFloat(11.0))
+//            self.font = NSFont(name: "Helvetica", size: CGFloat(11.0))
         }
     }
     
