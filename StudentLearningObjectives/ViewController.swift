@@ -994,35 +994,24 @@ extension ViewController: NSTableViewDelegate {
                         cell.descriptionView.delegate = self
                         cell.tagsListView.delegate = self
                         self.objectiveRespondersCellsList.append(cell)
+
                         //Montar a cadeia de responders
                         if row == 0 {
 //                            self.objectiveRespondersCellsList.append(cell)
                         }else {
-                            let previousCell = self.objectiveRespondersCellsList[row - 1]
-                            previousCell?.tagsListView.moveDownResponder = cell.descriptionView
-                            cell.descriptionView.moveUpResponder = previousCell?.tagsListView
-//                            self.objectiveRespondersCellsList.append(cell)
+                            if let previousCell = self.objectiveRespondersCellsList[row - 1] {
+                                previousCell.tagsListView.moveDownResponder = cell.descriptionView
+                                cell.descriptionView.moveUpResponder = previousCell.tagsListView
+                            }else {
+                                for i in (0...(row - 1)).reversed() {
+                                    if let previousCell = self.objectiveRespondersCellsList[i] {
+                                        previousCell.tagsListView.moveDownResponder = cell.descriptionView
+                                        cell.descriptionView.moveUpResponder = previousCell.tagsListView
+                                        break
+                                    }
+                                }
+                            }
                         }
-//                        if self.objectiveRespondersCellsList[row - 1] != nil {
-//                            print("a célula do objetivo anterior existe")
-//                            }
-//
-//                        }else {
-//                            print("a célula do anterior não existe")
-//                        }
-//                        if let lastResponder = lastResponderInChain {
-//                            self.respondersChain[lastResponder] = (self.respondersChain[(lastResponder)]?.0, cell.descriptionView)
-//                        }
-//                        self.respondersChain[cell.descriptionView] = (self.lastResponderInChain, cell.tagsListView)
-//                        self.respondersChain[cell.tagsListView] = (cell.descriptionView, nil)
-//                        self.lastResponderInChain = cell.tagsListView
-//
-//                        self.learningObjectivesByModifiedView[cell.descriptionView] = elementsToDisplay[row].objective
-//                        self.learningObjectivesByModifiedView[cell.tagsListView] = elementsToDisplay[row].objective
-//                        //Faz o objetivo sendo editado ser o firstResponder
-//                        if objective != nil && objective === objectiveBeingEdited {
-//                            cell.descriptionView.window?.makeFirstResponder(self)
-//                        }
                         return cell
                     }
                 }else if let title = elementsToDisplay[row].title {
