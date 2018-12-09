@@ -24,16 +24,25 @@ class EditableTextView: NSTextView {
             appDelegate.selectedObjective = (student, objective)
         }
         self.insertionPointColor = NSColor.red
-        if isObjectiveDescription {
-            self.font = NSFont.systemFont(ofSize: CGFloat(13.0))
-            self.textColor = NSColor.darkGray
-        }
+        self.font = NSFont.systemFont(ofSize: CGFloat(13.0))
+        self.textColor = NSColor.darkGray
         return true
     }
 }
 
 class TagsListTextView: EditableTextView {
     override var isTagsList: Bool {return true}
+    override var isObjectiveDescription: Bool {return false}
+    
+    override func becomeFirstResponder() -> Bool {
+        super.becomeFirstResponder()
+        self.font = NSFont.systemFont(ofSize: CGFloat(11.0))
+        self.textColor = NSColor.lightGray
+        
+        print(self.attributedString())
+        return true
+    }
+    
 }
 
 class LearningObjectiveCellView: NSTableCellView {

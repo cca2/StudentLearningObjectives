@@ -686,7 +686,7 @@ extension ViewController: NSTextViewDelegate {
             return ["inbacklog", "abandonado"]
         }
         
-        if !(tagsList.contains("#basic") || (tagsList.contains("#senior")) || (tagsList.contains("#expert"))) {
+        if !(tagsList.contains("#básico") || (tagsList.contains("#senior")) || (tagsList.contains("#expert"))) {
             return ["básico", "senior", "expert"]
         }
 

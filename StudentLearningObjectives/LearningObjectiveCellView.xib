@@ -393,7 +393,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="550" height="13"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <textView verticallyResizable="NO" allowsDocumentBackgroundColorChange="YES" allowsUndo="YES" spellingCorrection="YES" smartInsertDelete="YES" id="cq3-PN-dbg" customClass="EditableTextView" customModule="StudentLearningObjectives" customModuleProvider="target">
+                                                <textView verticallyResizable="NO" allowsDocumentBackgroundColorChange="YES" allowsUndo="YES" spellingCorrection="YES" smartInsertDelete="YES" id="cq3-PN-dbg" customClass="TagsListTextView" customModule="StudentLearningObjectives" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="550" height="14"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="textColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
