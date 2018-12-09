@@ -781,52 +781,44 @@ extension ViewController: NSTextViewDelegate {
     }
 
     func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
-
-        let string = textView.string
-//        let lowerBoundIndex = string.index(string.startIndex, offsetBy: textView.rangeForUserCompletion.lowerBound)
-//        let upperBoundIndex = string.index(string.startIndex, offsetBy: textView.rangeForUserCompletion.upperBound)
-//        if upperBoundIndex > lowerBoundIndex {
-//            print(string)
-//            print(textView.string[lowerBoundIndex...upperBoundIndex])
-//        }
-//
-//        print(">>> 260 <<<")
-//        print(affectedCharRange)
-//        print(textView.selectedRanges)
-
-        if affectedCharRange.length == 0 {
-            if (textView.string.contains("#musthave") || textView.string.contains("nicetohave")) && (textView.string.contains("#inbacklog") || textView.string.contains("#abandonado"))
-                &&  (textView.string.contains("#ensinado") && textView.string.contains("estudado") && textView.string.contains("experimentado") && textView.string.contains("aplicado")){
-                return false
-            }
-            print(">>> 10 <<<")
-            if let rString = replacementString {
-                print(">>> 20 <<<")
-                if rString.contains("#") {
-                    print(">>> 30 <<<")
-                    textView.complete(self)
-                    return true
-                }else if rString == " " {
-                    print(">>> 40 <<<")
-                    return true
-                }else {
-                    print(">>> 50 <<<")
-                    let completions = ["inbacklog", "abandonado", "musthave", "nicetohave", "basic", "senior", "expert", "estudado", "experimentado", "aplicado", "ensinado"]
-                    var replacementValid = false
-                    completions.forEach{completion in
-                        if rString == completion {
-                            print(">>> 60 \(rString) == \(completion) <<<")
-                            replacementValid = true
-                        }
-                    }
-                    return replacementValid
+        let textView = textView as! EditableTextView
+        if textView.isTagsList {
+            let string = textView.string
+            if affectedCharRange.length == 0 {
+                if (textView.string.contains("#musthave") || textView.string.contains("nicetohave")) && (textView.string.contains("#inbacklog") || textView.string.contains("#abandonado"))
+                    &&  (textView.string.contains("#ensinado") && textView.string.contains("estudado") && textView.string.contains("experimentado") && textView.string.contains("aplicado")){
+                    return false
                 }
+                print(">>> 10 <<<")
+                if let rString = replacementString {
+                    print(">>> 20 <<<")
+                    if rString.contains("#") {
+                        print(">>> 30 <<<")
+                        textView.complete(self)
+                        return true
+                    }else if rString == " " {
+                        print(">>> 40 <<<")
+                        return true
+                    }else {
+                        print(">>> 50 <<<")
+                        let completions = ["inbacklog", "abandonado", "musthave", "nicetohave", "basic", "senior", "expert", "estudado", "experimentado", "aplicado", "ensinado"]
+                        var replacementValid = false
+                        completions.forEach{completion in
+                            if rString == completion {
+                                print(">>> 60 \(rString) == \(completion) <<<")
+                                replacementValid = true
+                            }
+                        }
+                        return replacementValid
+                    }
+                }
+                print(">>> 60 <<<")
+                return true
+            }else {
+                return true
             }
-            print(">>> 60 <<<")
-            return true
-        }else {
-            return true
         }
+        return true
     }
 
     func textShouldEndEditing(_ textObject: NSText) -> Bool {
