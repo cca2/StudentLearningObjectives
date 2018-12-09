@@ -687,7 +687,7 @@ extension ViewController: NSTextViewDelegate {
         }
         
         if !(tagsList.contains("#basic") || (tagsList.contains("#senior")) || (tagsList.contains("#expert"))) {
-            return ["basic", "senior", "expert"]
+            return ["básico", "senior", "expert"]
         }
 
         var rCompletions:[String] = []
@@ -755,21 +755,27 @@ extension ViewController: NSTextViewDelegate {
         print("Hello")
         let textView = notification.object as! EditableTextView
         print("novo texto: \(textView.string)")
-        if let objectiveBeingEdited = appDelegate.selectedObjective?.1 {
-            self.lastModifiedObjective = objectiveBeingEdited
-            if textView.isObjectiveDescription {
-                objectiveBeingEdited.description = textView.string
-                //Aumentar ou diminuir a altura da NSTextView da descrição do objetivo
-                let index = row(objective: objectiveBeingEdited)
-                self.mustHaveTableView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: index))
-                self.mustHaveTableView.beginUpdates()
-                self.mustHaveTableView.endUpdates()
+        if textView.isTagsList {
+            if let objectiveBeingEdited = appDelegate.selectedObjective?.1 {
+                self.lastModifiedObjective = objectiveBeingEdited
             }
+        }else if textView.isObjectiveDescription {
+            if let objectiveBeingEdited = appDelegate.selectedObjective?.1 {
+                self.lastModifiedObjective = objectiveBeingEdited
+                if textView.isObjectiveDescription {
+                    objectiveBeingEdited.description = textView.string
+                    //Aumentar ou diminuir a altura da NSTextView da descrição do objetivo
+                    let index = row(objective: objectiveBeingEdited)
+                    self.mustHaveTableView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: index))
+                    self.mustHaveTableView.beginUpdates()
+                    self.mustHaveTableView.endUpdates()
+                }
 
-            //Avisar quando o objetivo for ser apagado
-            self.appDelegate.modifiedSelectedObjectiveDescription = textView.string
-        }else {
-            self.objectiveBeingEdited = nil
+                //Avisar quando o objetivo for ser apagado
+                self.appDelegate.modifiedSelectedObjectiveDescription = textView.string
+            }else {
+                self.objectiveBeingEdited = nil
+            }
         }
         
         if let teamBeingEdited = self.teamsInfoByModifiedView[textView]?.0 {
@@ -801,7 +807,7 @@ extension ViewController: NSTextViewDelegate {
                         return true
                     }else {
                         print(">>> 50 <<<")
-                        let completions = ["inbacklog", "abandonado", "musthave", "nicetohave", "basic", "senior", "expert", "estudado", "experimentado", "aplicado", "ensinado"]
+                        let completions = ["inbacklog", "abandonado", "musthave", "nicetohave", "básico", "senior", "expert", "estudado", "experimentado", "aplicado", "ensinado"]
                         var replacementValid = false
                         completions.forEach{completion in
                             if rString == completion {
