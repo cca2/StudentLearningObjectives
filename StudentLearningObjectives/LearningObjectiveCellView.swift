@@ -13,8 +13,8 @@ class EditableTextView: NSTextView {
     var student: Student?
     var learningObjective: StudentLearningObjective?
     
-    var isObjectiveDescription = false
-    var isTagsList = false
+    var isObjectiveDescription: Bool {return true}
+    var isTagsList: Bool {return false}
 
     override var acceptsFirstResponder: Bool { return true }
     
@@ -32,9 +32,13 @@ class EditableTextView: NSTextView {
     }
 }
 
+class TagsListTextView: EditableTextView {
+    override var isTagsList: Bool {return true}
+}
+
 class LearningObjectiveCellView: NSTableCellView {
     @IBOutlet var descriptionView: EditableTextView!
-    @IBOutlet var tagsListView: EditableTextView!
+    @IBOutlet var tagsListView: TagsListTextView!
     
     var objective:StudentLearningObjective? {
         didSet {
@@ -49,8 +53,8 @@ class LearningObjectiveCellView: NSTableCellView {
     }
 
     func fitForObjective(objective: StudentLearningObjective) {
-        self.tagsListView.isTagsList = true
-        self.descriptionView.isObjectiveDescription = true
+//        self.tagsListView.isTagsList = true
+//        self.descriptionView.isObjectiveDescription = true
         
         self.descriptionView.nextResponder = self.tagsListView
         let font = NSFont.systemFont(ofSize: 13.0)
