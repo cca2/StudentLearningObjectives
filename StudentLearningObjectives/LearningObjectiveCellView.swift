@@ -78,10 +78,10 @@ class LearningObjectiveCellView: NSTableCellView {
         let topicAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.lightGray]
         let mustHaveTagAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.blue, .font:NSFont.boldSystemFont(ofSize: CGFloat(11.0))]
         if (objective.priority == "must-have") {
-            let priorityTagAttributedString = NSAttributedString(string:" #musthave", attributes: mustHaveTagAttributes as [NSAttributedString.Key : Any])
+            let priorityTagAttributedString = NSAttributedString(string:"#musthave", attributes: mustHaveTagAttributes as [NSAttributedString.Key : Any])
             tagsAttributedString.append(priorityTagAttributedString)
         }else {
-            let priorityTagAttributedString = NSAttributedString(string:" #nicetohave", attributes: topicAttributes as [NSAttributedString.Key : Any])
+            let priorityTagAttributedString = NSAttributedString(string:"#nicetohave", attributes: topicAttributes as [NSAttributedString.Key : Any])
             tagsAttributedString.append(priorityTagAttributedString)
         }
         
@@ -105,7 +105,6 @@ class LearningObjectiveCellView: NSTableCellView {
 
 //        let topicTagAttributedString = NSAttributedString(string: " #" + objective.topic, attributes: topicAttributes as [NSAttributedString.Key : Any])
 //        tagsAttributedString.append(topicTagAttributedString)
-        
         return tagsAttributedString
     }
     

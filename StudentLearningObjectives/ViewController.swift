@@ -676,8 +676,38 @@ extension ViewController: NSTableViewDataSource {
 
 extension ViewController: NSTextViewDelegate {
     func textView(_ textView: NSTextView, completions words: [String], forPartialWordRange charRange: NSRange, indexOfSelectedItem index: UnsafeMutablePointer<Int>?) -> [String] {
-        print(words)
-        return ["musthave", "nicetohave", "basic", "senior", "expert", "abandonado", "estudado", "experimentado", "aplicado", "ensinado"]
+        let tagsList = textView.string
+        
+        if !(tagsList.contains("#musthave") || (tagsList.contains("#nicetohave"))) {
+           return ["musthave", "nicetohave"]
+        }
+        
+        if !(tagsList.contains("#inbacklog") || (tagsList.contains("#abandonado"))) {
+            return ["inbacklog", "abandonado"]
+        }
+        
+        if !(tagsList.contains("#basic") || (tagsList.contains("#senior")) || (tagsList.contains("#expert"))) {
+            return ["basic", "senior", "expert"]
+        }
+
+        var rCompletions:[String] = []
+        if !(tagsList.contains("#estudado")) {
+            rCompletions.append("estudado")
+        }
+
+        if !((tagsList.contains("#experimentado"))) {
+            rCompletions.append("experimentado")
+        }
+
+        if !((tagsList.contains("#aplicado"))) {
+            rCompletions.append("aplicado")
+        }
+
+        if !((tagsList.contains("#ensinado"))) {
+            rCompletions.append("ensinado")
+        }
+
+        return rCompletions
     }
     
     func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
@@ -724,6 +754,7 @@ extension ViewController: NSTextViewDelegate {
     func textDidChange(_ notification: Notification) {
         print("Hello")
         let textView = notification.object as! EditableTextView
+        print("novo texto: \(textView.string)")
         if let objectiveBeingEdited = appDelegate.selectedObjective?.1 {
             self.lastModifiedObjective = objectiveBeingEdited
             if textView.isObjectiveDescription {
@@ -748,16 +779,56 @@ extension ViewController: NSTextViewDelegate {
         }
         
     }
-    
+
     func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
-        if let rString = replacementString {
-            if rString == "#" {
-                textView.complete(nil)
+
+        let string = textView.string
+//        let lowerBoundIndex = string.index(string.startIndex, offsetBy: textView.rangeForUserCompletion.lowerBound)
+//        let upperBoundIndex = string.index(string.startIndex, offsetBy: textView.rangeForUserCompletion.upperBound)
+//        if upperBoundIndex > lowerBoundIndex {
+//            print(string)
+//            print(textView.string[lowerBoundIndex...upperBoundIndex])
+//        }
+//
+//        print(">>> 260 <<<")
+//        print(affectedCharRange)
+//        print(textView.selectedRanges)
+
+        if affectedCharRange.length == 0 {
+            if (textView.string.contains("#musthave") || textView.string.contains("nicetohave")) && (textView.string.contains("#inbacklog") || textView.string.contains("#abandonado"))
+                &&  (textView.string.contains("#ensinado") && textView.string.contains("estudado") && textView.string.contains("experimentado") && textView.string.contains("aplicado")){
+                return false
             }
+            print(">>> 10 <<<")
+            if let rString = replacementString {
+                print(">>> 20 <<<")
+                if rString.contains("#") {
+                    print(">>> 30 <<<")
+                    textView.complete(self)
+                    return true
+                }else if rString == " " {
+                    print(">>> 40 <<<")
+                    return true
+                }else {
+                    print(">>> 50 <<<")
+                    let completions = ["inbacklog", "abandonado", "musthave", "nicetohave", "basic", "senior", "expert", "estudado", "experimentado", "aplicado", "ensinado"]
+                    var replacementValid = false
+                    completions.forEach{completion in
+                        if rString == completion {
+                            print(">>> 60 \(rString) == \(completion) <<<")
+                            replacementValid = true
+                        }
+                    }
+                    return replacementValid
+                }
+            }
+            print(">>> 60 <<<")
+            return true
+        }else {
+            return true
         }
-        return true
     }
-    
+
     func textShouldEndEditing(_ textObject: NSText) -> Bool {
         if self.lastModifiedObjective != nil {
             print("modificando o objetivo")
