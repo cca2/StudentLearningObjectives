@@ -756,6 +756,7 @@ extension ViewController: NSTextViewDelegate {
         let textView = notification.object as! EditableTextView
         print("novo texto: \(textView.string)")
         if textView.isTagsList {
+            let tagsView = textView as! TagsListTextView
             if let objectiveBeingEdited = appDelegate.selectedObjective?.1 {
                 self.lastModifiedObjective = objectiveBeingEdited
             }
