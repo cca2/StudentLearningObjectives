@@ -28,6 +28,7 @@ class EditableTextView: NSTextView {
         self.textColor = NSColor.lightGray
         return true
     }
+    
 }
 
 class TagsListTextView: EditableTextView {
@@ -41,6 +42,12 @@ class TagsListTextView: EditableTextView {
             }
         }
     }
+    
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
+        self.font = NSFont.systemFont(ofSize: CGFloat(11.0))
+    }
+
     override func becomeFirstResponder() -> Bool {
         super.becomeFirstResponder()
         self.font = NSFont.systemFont(ofSize: CGFloat(11.0))
@@ -61,31 +68,15 @@ class TagsListTextView: EditableTextView {
         tagsAttributedString.append(self.attributedString())
         
         let topicAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.lightGray]
-        let mustHaveTagAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.blue, .font:NSFont.boldSystemFont(ofSize: CGFloat(11.0))]
+        let mustHaveTagAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.blue]
 
         if tagsAttributedString.string.contains("#musthave") {
             tagsAttributedString.replaceCharacters(in: NSMakeRange(0, String("#musthave").count), with: NSAttributedString(string: "#musthave", attributes: mustHaveTagAttributes as [NSAttributedString.Key : Any]))
             self.textStorage?.setAttributedString(tagsAttributedString)
         }else {
             self.textColor = NSColor.lightGray
-            self.font = NSFont.systemFont(ofSize: CGFloat(11.0))
+            self.font = NSFont(name: "Helvetica", size: CGFloat(11.0))
         }
-//        let string = self.string
-//        let substrings = string.split(separator: Character(" "))
-//
-//        substrings.forEach{
-//            tag in
-//            if tag != substrings.first {
-//                tagsAttributedString.append(NSAttributedString(string: " "))
-//            }
-//            if tag == "#musthave" {
-//                tagsAttributedString.append(NSAttributedString(string: String(tag), attributes: mustHaveTagAttributes as [NSAttributedString.Key : Any]))
-//            }else {
-//                tagsAttributedString.append(NSAttributedString(string: String(tag), attributes: topicAttributes as [NSAttributedString.Key : Any]))
-//            }
-//        }
-//        tagsAttributedString.append(NSAttributedString(string: " "))
-//        self.textStorage?.setAttributedString(tagsAttributedString)
     }
     
 }
@@ -134,7 +125,7 @@ class LearningObjectiveCellView: NSTableCellView {
         let tagsAttributedString = NSMutableAttributedString(string: "")
         
         let topicAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.lightGray]
-        let mustHaveTagAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.blue, .font:NSFont.boldSystemFont(ofSize: CGFloat(11.0))]
+        let mustHaveTagAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.blue]
         if (objective.priority == "must-have") {
             let priorityTagAttributedString = NSAttributedString(string:"#musthave", attributes: mustHaveTagAttributes as [NSAttributedString.Key : Any])
             tagsAttributedString.append(priorityTagAttributedString)
