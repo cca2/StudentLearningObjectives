@@ -712,10 +712,10 @@ extension ViewController: NSTextViewDelegate {
     
     func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
         if commandSelector == #selector(NSStandardKeyBindingResponding.insertTab(_:)) || commandSelector == #selector(NSStandardKeyBindingResponding.moveDown(_:)){
-            textView.window?.makeFirstResponder(self.respondersChain[textView]?.1)
+            textView.moveDown(nil)
             return true
         }else if commandSelector == #selector(NSStandardKeyBindingResponding.moveUp(_:)) {
-            textView.window?.makeFirstResponder(self.respondersChain[textView]?.0)
+                textView.moveUp(nil)
             return true
         }else if commandSelector == #selector(insertNewline(_:)){
             print("adicionar um novo objetivo")

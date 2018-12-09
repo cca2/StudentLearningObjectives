@@ -13,29 +13,31 @@ class EditableTextView: NSTextView {
     var student: Student?
     var learningObjective: StudentLearningObjective?
     
+    var moveUpResponder:EditableTextView?
+    var moveDownResponder:EditableTextView?
+    
     var isObjectiveDescription: Bool {return true}
     var isTagsList: Bool {return false}
 
     override var acceptsFirstResponder: Bool { return true }
-    
+    override func resignFirstResponder() -> Bool {
+        self.insertionPointColor = NSColor.clear
+        return true
+    }
     override func becomeFirstResponder() -> Bool {
         if let student = self.student, let objective = self.learningObjective {
             let appDelegate = NSApplication.shared.delegate as! AppDelegate
             appDelegate.selectedObjective = (student, objective)
         }
         self.insertionPointColor = NSColor.red
-//        self.font = NSFont.systemFont(ofSize: CGFloat(13.0))
-//        self.textColor = NSColor.lightGray
         return true
     }
     
-//    override func draw(_ dirtyRect: NSRect) {
-//        super.draw(dirtyRect)
-//        self.insertionPointColor = NSColor.red
-//        self.font = NSFont.systemFont(ofSize: CGFloat(13.0))
-//        self.textColor = NSColor.darkGray
-//    }
-    
+    override func moveDown(_ sender: Any?) {
+        if let moveDownResponder = self.moveDownResponder {
+            self.window?.makeFirstResponder(moveDownResponder)
+        }
+    }
 }
 
 class TagsListTextView: EditableTextView {
@@ -50,23 +52,26 @@ class TagsListTextView: EditableTextView {
         }
     }
     
-//    override func draw(_ dirtyRect: NSRect) {
-//        super.draw(dirtyRect)
-//        self.insertionPointColor = NSColor.red
-//        self.font = NSFont.systemFont(ofSize: CGFloat(11.0))
-//        self.textColor = NSColor.lightGray
-//        highLightTags()
-//    }
-
+    override func moveUp(_ sender: Any?) {
+        if let moveUpResponder = self.moveUpResponder {
+            self.window?.makeFirstResponder(moveUpResponder)
+        }
+    }
+    
     override func becomeFirstResponder() -> Bool {
-        super.becomeFirstResponder()
-        self.insertionPointColor = NSColor.red
+        let res = super.becomeFirstResponder()
 //        self.font = NSFont.systemFont(ofSize: CGFloat(11.0))
 //        self.textColor = NSColor.lightGray
         
         highLightTags()
-        return true
+        self.insertionPointColor = NSColor.red
+        return res
     }
+    
+//    override func resignFirstResponder() -> Bool {
+//        self.insertionPointColor = NSColor.clear
+//        return true
+//    }
     
     override func didChangeText() {
         self.changedMustHave = self.string.contains("#musthave")
@@ -126,6 +131,8 @@ class LearningObjectiveCellView: NSTableCellView {
         super.draw(dirtyRect)
 
         // Drawing code here.
+        self.tagsListView.moveUpResponder = self.descriptionView
+        self.descriptionView.moveDownResponder = self.tagsListView
     }
     
     override var acceptsFirstResponder: Bool {
