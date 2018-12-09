@@ -136,7 +136,7 @@ class ViewController: NSViewController {
     let database = CKContainer.default().privateCloudDatabase
 
     var respondersChain:[NSView:(NSView?, NSView?)] = [:]
-    var objectiveRespondersCellsList:[Int:(Int, Int, LearningObjectiveCellView)] = [:]
+    var objectiveRespondersCellsList:[LearningObjectiveCellView?] = []
     
     var lastResponderInChain: NSTextView?
     
@@ -613,6 +613,7 @@ class ViewController: NSViewController {
         
         
         self.mustHaveTableView.deselectAll(nil)
+        self.objectiveRespondersCellsList = []
         self.mustHaveTableView.reloadData()
     }
     
@@ -992,13 +993,23 @@ extension ViewController: NSTableViewDelegate {
                         cell.objective = objective
                         cell.descriptionView.delegate = self
                         cell.tagsListView.delegate = self
-                        
+                        self.objectiveRespondersCellsList.append(cell)
                         //Montar a cadeia de responders
-                        if self.objectiveRespondersCellsList[row - 1] != nil {
-                            print("o objetivo anterior existe")
+                        if row == 0 {
+//                            self.objectiveRespondersCellsList.append(cell)
                         }else {
-                            print("a célula do anterior não existe")
+                            let previousCell = self.objectiveRespondersCellsList[row - 1]
+                            previousCell?.tagsListView.moveDownResponder = cell.descriptionView
+                            cell.descriptionView.moveUpResponder = previousCell?.tagsListView
+//                            self.objectiveRespondersCellsList.append(cell)
                         }
+//                        if self.objectiveRespondersCellsList[row - 1] != nil {
+//                            print("a célula do objetivo anterior existe")
+//                            }
+//
+//                        }else {
+//                            print("a célula do anterior não existe")
+//                        }
 //                        if let lastResponder = lastResponderInChain {
 //                            self.respondersChain[lastResponder] = (self.respondersChain[(lastResponder)]?.0, cell.descriptionView)
 //                        }
@@ -1015,18 +1026,21 @@ extension ViewController: NSTableViewDelegate {
                         return cell
                     }
                 }else if let title = elementsToDisplay[row].title {
+                    self.objectiveRespondersCellsList.append(nil)
                     cellIdentifier = "TitleCellID"
                     if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  TitleTableCellView {
                         cell.title.stringValue = title
                         return cell
                     }
                 }else if let subtitle = elementsToDisplay[row].subtitle {
+                    self.objectiveRespondersCellsList.append(nil)
                     cellIdentifier = "SubtitleCellID"
                     if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  SubtitleTableCellView {
                         cell.subtitle.stringValue = subtitle
                         return cell
                     }
                 }else if elementsToDisplay[row].team != nil {
+                    self.objectiveRespondersCellsList.append(nil)
                     cellIdentifier = "ParagraphCellID"
                     if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  ParagraphCellView {
                         cell.fitForParagraph(elementToDisplay: elementsToDisplay[row])
@@ -1034,6 +1048,8 @@ extension ViewController: NSTableViewDelegate {
                         self.teamsInfoByModifiedView[cell.paragraphTextView] = (elementsToDisplay[row].team, elementsToDisplay[row].teamInfoModified) as? (Team, Team.InfoTypes)
                         return cell
                     }
+                }else {
+                    self.objectiveRespondersCellsList.append(nil)
                 }
             }
         }else if (tableView == self.taggerTrainingTableView) {

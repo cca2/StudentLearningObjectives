@@ -38,6 +38,13 @@ class EditableTextView: NSTextView {
             self.window?.makeFirstResponder(moveDownResponder)
         }
     }
+
+    override func moveUp(_ sender: Any?) {
+        if let moveUpResponder = self.moveUpResponder {
+            self.window?.makeFirstResponder(moveUpResponder)
+        }
+    }
+    
 }
 
 class TagsListTextView: EditableTextView {
@@ -49,12 +56,6 @@ class TagsListTextView: EditableTextView {
             if oldValue != changedMustHave {
                 highLightTags()
             }
-        }
-    }
-    
-    override func moveUp(_ sender: Any?) {
-        if let moveUpResponder = self.moveUpResponder {
-            self.window?.makeFirstResponder(moveUpResponder)
         }
     }
     
