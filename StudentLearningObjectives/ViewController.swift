@@ -993,7 +993,7 @@ extension ViewController: NSTableViewDelegate {
                         cell.objective = objective
                         cell.descriptionView.delegate = self
                         cell.tagsListView.delegate = self
-                        self.objectiveRespondersCellsList.append(cell)
+                        self.objectiveRespondersCellsList.insert(cell, at: row)
 
                         //Montar a cadeia de responders
                         if row == 0 {
@@ -1010,6 +1010,12 @@ extension ViewController: NSTableViewDelegate {
                                         break
                                     }
                                 }
+                            }
+                        }
+                        if self.objectiveRespondersCellsList.count > (row + 1) {
+                            if let nextCell = self.objectiveRespondersCellsList[row + 1] {
+                                cell.tagsListView.moveDownResponder = nextCell.descriptionView
+                                nextCell.descriptionView.moveUpResponder = cell.tagsListView
                             }
                         }
                         return cell

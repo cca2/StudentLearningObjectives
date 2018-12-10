@@ -20,10 +20,12 @@ class EditableTextView: NSTextView {
     var isTagsList: Bool {return false}
 
     override var acceptsFirstResponder: Bool { return true }
+    
     override func resignFirstResponder() -> Bool {
         self.insertionPointColor = NSColor.clear
         return true
     }
+    
     override func becomeFirstResponder() -> Bool {
         if let student = self.student, let objective = self.learningObjective {
             let appDelegate = NSApplication.shared.delegate as! AppDelegate
@@ -61,18 +63,9 @@ class TagsListTextView: EditableTextView {
     
     override func becomeFirstResponder() -> Bool {
         let res = super.becomeFirstResponder()
-//        self.font = NSFont.systemFont(ofSize: CGFloat(11.0))
-//        self.textColor = NSColor.lightGray
-        
         highLightTags()
-        self.insertionPointColor = NSColor.red
         return res
     }
-    
-//    override func resignFirstResponder() -> Bool {
-//        self.insertionPointColor = NSColor.clear
-//        return true
-//    }
     
     override func didChangeText() {
         self.changedMustHave = self.string.contains("#musthave")
@@ -92,7 +85,6 @@ class TagsListTextView: EditableTextView {
             self.textStorage?.setAttributedString(tagsAttributedString)
         }else {
             self.textColor = NSColor.lightGray
-//            self.font = NSFont(name: "Helvetica", size: CGFloat(11.0))
         }
     }
     
@@ -115,9 +107,6 @@ class LearningObjectiveCellView: NSTableCellView {
     }
 
     func fitForObjective(objective: StudentLearningObjective) {
-//        self.tagsListView.isTagsList = true
-//        self.descriptionView.isObjectiveDescription = true
-        
         self.descriptionView.nextResponder = self.tagsListView
         let font = NSFont.systemFont(ofSize: 13.0)
         let attributes: [NSAttributedString.Key:Any] = [.font:font, .foregroundColor:NSColor.darkGray]
