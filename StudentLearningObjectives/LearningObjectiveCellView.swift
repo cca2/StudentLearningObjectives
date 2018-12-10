@@ -147,6 +147,9 @@ class LearningObjectiveCellView: NSTableCellView {
         if objective.isAbandoned {
             tagsAttributedString.append(NSAttributedString(string: " #abandonado", attributes: topicAttributes as [NSAttributedString.Key: Any]))
         }
+        if objective.isInBacklog {
+            tagsAttributedString.append(NSAttributedString(string: " #inbacklog", attributes: topicAttributes as [NSAttributedString.Key: Any]))
+        }
         if objective.isStudying {
             tagsAttributedString.append(NSAttributedString(string: " #estudado", attributes: topicAttributes as [NSAttributedString.Key: Any]))
         }

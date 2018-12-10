@@ -8,6 +8,7 @@
 
 import Cocoa
 import CloudKit
+import UserNotifications
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
