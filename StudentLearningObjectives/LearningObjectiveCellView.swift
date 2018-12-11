@@ -18,7 +18,10 @@ class EditableTextView: NSTextView {
     
     var isObjectiveDescription: Bool {return true}
     var isTagsList: Bool {return false}
-
+    
+    static let inBacklogAlpha = 0.8
+    static let abandonedAlpha = 0.3
+    
     override var acceptsFirstResponder: Bool { return true }
     
     override func resignFirstResponder() -> Bool {
@@ -53,10 +56,30 @@ class TagsListTextView: EditableTextView {
     override var isTagsList: Bool {return true}
     override var isObjectiveDescription: Bool {return false}
     
-    private var changedMustHave:Bool? {
+    private var changedPriority:Bool? {
         didSet {
-            if oldValue != changedMustHave {
+            if oldValue != changedPriority {
                 highLightTags()
+            }
+        }
+    }
+    
+    
+    private var backlogStatus:String? {
+        didSet {
+            if oldValue != backlogStatus {
+                highLightTags()
+                if let backlogStatus = backlogStatus {
+                    if backlogStatus == "#abandonado" {
+                        if let onDidAbandonObjective = self.onDidAbandonObjective {
+                            onDidAbandonObjective()
+                        }
+                    }else if backlogStatus == "#inbacklog" {
+                        if let onDidObjectiveInBacklog = self.onDidObjectiveInBacklog {
+                            onDidObjectiveInBacklog()
+                        }
+                    }
+                }
             }
         }
     }
@@ -68,23 +91,44 @@ class TagsListTextView: EditableTextView {
     }
     
     override func didChangeText() {
-        self.changedMustHave = self.string.contains("#musthave")
+        self.changedPriority = self.string.contains("#musthave")
+        if self.string.contains("#abandonado") {
+            self.backlogStatus = "#abandonado"
+        }else if self.string.contains("#inbacklog") {
+            self.backlogStatus = "#inbacklog"
+        }
         super.didChangeText()
     }
     
+    var onDidAbandonObjective:(() -> ())?
+    var onDidObjectiveInBacklog:(() -> ())?
     
     func highLightTags() {
         let tagsAttributedString = NSMutableAttributedString(string: "")
         tagsAttributedString.append(self.attributedString())
         
         let topicAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.lightGray]
-        let mustHaveTagAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.blue]
+        let mustHaveTagAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.blue.withAlphaComponent(CGFloat(EditableTextView.inBacklogAlpha))]
 
         if tagsAttributedString.string.contains("#musthave") {
             tagsAttributedString.replaceCharacters(in: NSMakeRange(0, String("#musthave").count), with: NSAttributedString(string: "#musthave", attributes: mustHaveTagAttributes as [NSAttributedString.Key : Any]))
             self.textStorage?.setAttributedString(tagsAttributedString)
-        }else {
-            self.textColor = NSColor.lightGray
+        }
+        if tagsAttributedString.string.contains("#abandonado"){
+            let abandonedTagAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.orange.withAlphaComponent(CGFloat(EditableTextView.inBacklogAlpha))]
+            if let abandonedRange = tagsAttributedString.string.range(of: "#abandonado") {
+                let abandonedOffset = abandonedRange.lowerBound.encodedOffset
+                tagsAttributedString.replaceCharacters(in: NSMakeRange(abandonedOffset, String("#abandonado").count), with: NSAttributedString(string: "#abandonado", attributes: abandonedTagAttributes as [NSAttributedString.Key : Any]))
+                self.textStorage?.setAttributedString(tagsAttributedString)
+            }
+        }
+        if tagsAttributedString.string.contains("#inbacklog"){
+            let inbacklogTagAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.lightGray.withAlphaComponent(CGFloat(EditableTextView.inBacklogAlpha))]
+            if let inBacklogRange = tagsAttributedString.string.range(of: "#inbacklog") {
+                let abandonedOffset = inBacklogRange.lowerBound.encodedOffset
+                tagsAttributedString.replaceCharacters(in: NSMakeRange(abandonedOffset, String("#inbacklog").count), with: NSAttributedString(string: "#inbacklog", attributes: inbacklogTagAttributes as [NSAttributedString.Key : Any]))
+                self.textStorage?.setAttributedString(tagsAttributedString)
+            }
         }
     }
     
@@ -105,7 +149,17 @@ class LearningObjectiveCellView: NSTableCellView {
             fitForObjective(objective: objective!)
         }
     }
-
+    
+    func onDidAbandonObjective() {
+        self.descriptionView.alphaValue = CGFloat(EditableTextView.abandonedAlpha)
+        self.tagsListView.alphaValue = CGFloat(EditableTextView.abandonedAlpha)
+    }
+    
+    func onDidObjectiveInBacklog() {
+        self.descriptionView.alphaValue = CGFloat(EditableTextView.inBacklogAlpha)
+        self.tagsListView.alphaValue = CGFloat(EditableTextView.inBacklogAlpha)
+    }
+    
     func fitForObjective(objective: StudentLearningObjective) {
         self.descriptionView.nextResponder = self.tagsListView
         let font = NSFont.systemFont(ofSize: 13.0)
@@ -123,6 +177,8 @@ class LearningObjectiveCellView: NSTableCellView {
         // Drawing code here.
         self.tagsListView.moveUpResponder = self.descriptionView
         self.descriptionView.moveDownResponder = self.tagsListView
+        self.tagsListView.onDidAbandonObjective = self.onDidAbandonObjective
+        self.tagsListView.onDidObjectiveInBacklog = self.onDidObjectiveInBacklog
     }
     
     override var acceptsFirstResponder: Bool {
@@ -133,7 +189,8 @@ class LearningObjectiveCellView: NSTableCellView {
         let tagsAttributedString = NSMutableAttributedString(string: "")
         
         let topicAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.lightGray]
-        let mustHaveTagAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.blue]
+        let mustHaveTagAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.blue.withAlphaComponent(CGFloat(EditableTextView.inBacklogAlpha))]
+        let abandonedTagAttribuites:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.orange.withAlphaComponent(CGFloat(EditableTextView.abandonedAlpha))]
         if (objective.priority == "must-have") {
             let priorityTagAttributedString = NSAttributedString(string:"#musthave", attributes: mustHaveTagAttributes as [NSAttributedString.Key : Any])
             tagsAttributedString.append(priorityTagAttributedString)
@@ -145,7 +202,7 @@ class LearningObjectiveCellView: NSTableCellView {
         let expertiseLevelTagAttributedString = NSAttributedString(string:" #" + objective.level, attributes: topicAttributes as [NSAttributedString.Key : Any])
         tagsAttributedString.append(expertiseLevelTagAttributedString)
         if objective.isAbandoned {
-            tagsAttributedString.append(NSAttributedString(string: " #abandonado", attributes: topicAttributes as [NSAttributedString.Key: Any]))
+            tagsAttributedString.append(NSAttributedString(string: " #abandonado", attributes: abandonedTagAttribuites as [NSAttributedString.Key: Any]))
         }
         if objective.isInBacklog {
             tagsAttributedString.append(NSAttributedString(string: " #inbacklog", attributes: topicAttributes as [NSAttributedString.Key: Any]))
