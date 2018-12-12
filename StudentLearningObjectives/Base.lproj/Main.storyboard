@@ -869,14 +869,14 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z07-9x-Hqz">
-                                            <rect key="frame" x="0.0" y="0.0" width="249" height="574"/>
+                                            <rect key="frame" x="0.0" y="61" width="249" height="513"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="bZP-z8-Zzh">
-                                                <rect key="frame" x="0.0" y="0.0" width="249" height="574"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="249" height="513"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <outlineView identifier="OutlineView" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="ECd-f3-QWo" id="hlO-hb-CYW">
-                                                        <rect key="frame" x="0.0" y="0.0" width="249" height="574"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="249" height="513"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -953,7 +953,22 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                         </scrollView>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jzf-yW-uo8">
+                                            <rect key="frame" x="64.5" y="19" width="119" height="23"/>
+                                            <buttonCell key="cell" type="roundTextured" title="Apagar Database" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HXM-bw-Rac">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="clearDatabase:" target="XfG-lQ-9wD" id="beB-mU-sla"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="Jzf-yW-uo8" secondAttribute="trailing" constant="66" id="RYM-wH-yKO"/>
+                                        <constraint firstItem="Jzf-yW-uo8" firstAttribute="leading" secondItem="zSY-hb-4At" secondAttribute="leading" constant="65" id="iKf-Ne-ORK"/>
+                                        <constraint firstAttribute="bottom" secondItem="Jzf-yW-uo8" secondAttribute="bottom" constant="20" id="yUo-T6-L3U"/>
+                                    </constraints>
                                 </view>
                                 <color key="fillColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </box>
@@ -1106,6 +1121,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="clearDatabase" destination="Jzf-yW-uo8" id="tvM-gt-lsB"/>
+                        <outlet property="clearDatabaseButton" destination="Jzf-yW-uo8" id="8Ca-Rc-SOz"/>
                         <outlet property="extraFeaturesBtn" destination="bdK-Q7-Eav" id="Jcs-4B-QvS"/>
                         <outlet property="mustHaveTableView" destination="H6R-s1-hmb" id="SqZ-ow-fYV"/>
                         <outlet property="outlineView" destination="hlO-hb-CYW" id="C4N-lQ-99t"/>

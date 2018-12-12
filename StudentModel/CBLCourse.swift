@@ -61,12 +61,8 @@ class CBLCourse {
                 let student = Student(record: record)
                 self.studentsByID[student.id] = student
                 print(student.name)
-//                if self.studentsDict[student.name] == nil {
-//                    self.studentsDict[student.name] = student
-//                }
             }
             
-//            success()
             
             //Apagando todos os registros de estudantes
 //            records.forEach{

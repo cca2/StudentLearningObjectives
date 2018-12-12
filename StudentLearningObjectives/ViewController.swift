@@ -90,6 +90,7 @@ struct Challenge {
 }
 
 class ViewController: NSViewController {
+    @IBOutlet weak var clearDatabaseButton: NSButton!
     
     @IBOutlet var windowView: NSView!
     @IBOutlet weak var extraFeaturesBtn: NSButton!
@@ -103,6 +104,90 @@ class ViewController: NSViewController {
     @IBOutlet weak var outlineView: NSOutlineView!
     @IBOutlet weak var mustHaveTableView: NSTableView!
     @IBOutlet weak var programmingScrollView: NSScrollView!
+    @IBOutlet weak var clearDatabase: NSButton!
+    
+    @IBAction func clearDatabase(_ sender: Any) {
+        print("---- APAGANDO A BASE DE DADOS ----")
+        print("---- APAGANDO A BASE DE ESTUDANTES ----)")
+        let defaultContainer = CKContainer.default()
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "StudentRecord", predicate: predicate)
+        defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
+            (records, error) in
+            guard let records = records else {
+                print (error)
+                return
+            }
+            records.forEach{
+                record in
+                let student = Student(record: record)
+                print(student.name)
+                defaultContainer.privateCloudDatabase.delete(withRecordID: record.recordID){
+                    (recordID, error) -> Void in
+
+                    guard let recordID = recordID else {
+                        print("erro ao deletar registro")
+                        return
+                    }
+                    print("registro \(recordID) deletado com sucesso")
+                }
+            }
+            
+            print("---- APAGANDO A BASE DE OBJETIVOS ----)")
+            
+            let query = CKQuery(recordType: "StudentLearningObjectiveRecord", predicate: predicate)
+            self.database.perform(query, inZoneWith: nil) {
+                record, error in
+                
+                record?.forEach{
+                    record in
+                    self.database.delete(withRecordID: record.recordID) {
+                        recordID, error in
+                        print("apaguei registro: \(recordID?.recordName)")
+                    }
+                }
+            }
+            
+            let queryStudents = CKQuery(recordType: "StudentRecord", predicate: predicate)
+            self.database.perform(queryStudents, inZoneWith: nil) {
+                record, error in
+                
+                record?.forEach{
+                    record in
+                    self.database.delete(withRecordID: record.recordID) {
+                        recordID, error in
+                        print("apaguei registro ESTUDANTE: \(recordID?.recordName)")
+                    }
+                }
+            }
+            
+            let queryStudentCourseRelation = CKQuery(recordType: "StudentCourseRelation", predicate: predicate)
+            self.database.perform(queryStudentCourseRelation, inZoneWith: nil) {
+                record, error in
+                
+                record?.forEach{
+                    record in
+                    self.database.delete(withRecordID: record.recordID) {
+                        recordID, error in
+                        print("apaguei registro REL CURSO: \(recordID?.recordName)")
+                    }
+                }
+            }
+            let queryStudentSprintRelation = CKQuery(recordType: "StudentSprintRelation", predicate: predicate)
+            self.database.perform(queryStudentSprintRelation, inZoneWith: nil) {
+                record, error in
+                
+                record?.forEach{
+                    record in
+                    self.database.delete(withRecordID: record.recordID) {
+                        recordID, error in
+                        print("apaguei registro REL SPRINT: \(recordID?.recordName)")
+                    }
+                }
+            }
+
+        }
+    }
     var programmingScrollViewHeight:CGFloat = 0.0
     
     var teamObjectivesDict:[String:[String:Student]] = [:]

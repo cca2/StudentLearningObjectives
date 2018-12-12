@@ -26,7 +26,7 @@ class EditableTextView: NSTextView {
     
     override func resignFirstResponder() -> Bool {
         self.insertionPointColor = NSColor.clear
-        return true
+        return super.resignFirstResponder()
     }
     
     override func becomeFirstResponder() -> Bool {
