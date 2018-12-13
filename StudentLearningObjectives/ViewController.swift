@@ -470,9 +470,11 @@ class ViewController: NSViewController {
                 self.elementsToDisplay = []
                 self.snippetsToDisplay = []
                 self.objectiveRespondersCellsList = []
-                self.mustHaveTableView.reloadData()
-                self.outlineView.reloadData()
-                self.teamMembersView.reloadData()
+                DispatchQueue.main.async {
+                    self.mustHaveTableView.reloadData()
+                    self.outlineView.reloadData()
+                    self.teamMembersView.reloadData()
+                }
            }
         }
         
