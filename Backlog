@@ -3,9 +3,7 @@ Criar o mecanismo de treinamento que leva em consideração o treinamento com os
 Ter uma visão específica de objetivo individualmente
 ter uma visão para o acompanhamento do objetivo: onde o usuário possa marcar o status do objetivo: abandonado, estudando, experimentando, aplicando, ensinando
 Permiter apagar objetivos
-Permitir adicionar objetivos
-Os objetivos com mais de uma linha não estão sendo mostrados corretamente
-A nova célula de objetivo está com formatação errada
 As setas para cima e para baixo não estão funcionando corretamente quando o objetivo tem mais de uma linha
 Gerar um notificação quando um dos objetivos é atualizado
 Quando tento adicionar uma tag de abandonado no início ele mostra musthave
+Permitir alterar e salvar as informações do time: big idea, essential question, etc

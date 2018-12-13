@@ -21,7 +21,7 @@ class NoteElementToDisplay {
     let paragraph: String?
     var isSelected = false
     var showObjectiveStatus = false
-    
+        
     var teamInfoModified:Team.InfoTypes?
     
     init (team:Team, infoType:Team.InfoTypes) {
@@ -105,6 +105,136 @@ class ViewController: NSViewController {
     @IBOutlet weak var mustHaveTableView: NSTableView!
     @IBOutlet weak var programmingScrollView: NSScrollView!
     @IBOutlet weak var clearDatabase: NSButton!
+    @IBOutlet weak var csv2DatabaseButton: NSButton!
+    
+    @IBAction func saveCSV2Database(_ sender: Any) {        
+        print("---- SALVANDO DADOS DO CSV PARA A BASE DE DADOS ----")
+        //Esta parte só deve ser utilizada para se atualizar a partir de um
+        //arquivo csv gerado do airtable a base de dados do cloudkit
+        let sprint = self.appDelegate.selectedSprint!
+        let courseReference = CKRecord.Reference(recordID: CKRecord.ID(recordName: (self.appDelegate.selectedCourse?.id)!), action: .none)
+        let sprintReference = CKRecord.Reference(recordID: CKRecord.ID(recordName: sprint.id!), action: .none)
+
+        var studentsNames = [String]()
+        var studentReferences = [String: CKRecord.Reference]()
+        var teamReferences = [String: CKRecord.Reference]()
+
+        if let studentsData = sprint.studentObjectiveClassifier.studentsData {
+            let rows = studentsData.rows
+            rows.forEach{
+                row in
+
+                let teamIndex = row.index(forKey: "Equipe")!
+                let studentIndex = row.index(forKey: "Estudante")!
+                let descriptionIndex = row.index(forKey: "Descrição")!
+                let priorityIndex = row.index(forKey: "Priorização")!
+                let expertiseLevelIndex = row.index(forKey: "Nível")!
+                let statusIndex = row.index(forKey: "Status")!
+
+                let description = row.values[descriptionIndex].stringValue!
+                let priority = row.values[priorityIndex].stringValue!
+                let expertiseLevel = row.values[expertiseLevelIndex].stringValue!
+                let objectiveStatus:[Substring] = row.values[statusIndex].stringValue!.split(separator: Character(","))
+
+                let teamName = row.values[teamIndex].stringValue!
+                let studentName = row.values[studentIndex].stringValue!
+
+                let learningObjectiveRecord = CKRecord(recordType: "StudentLearningObjectiveRecord")
+                learningObjectiveRecord["course"] = courseReference
+                learningObjectiveRecord["sprint"] = sprintReference
+                learningObjectiveRecord["description"] = description
+                learningObjectiveRecord["priority"] = priority
+                learningObjectiveRecord["level"] = expertiseLevel
+                learningObjectiveRecord["priority"] = priority
+                learningObjectiveRecord["isInBacklog"] = false
+                learningObjectiveRecord["isAbandoned"] = false
+                learningObjectiveRecord["isExperimenting"] = false
+                learningObjectiveRecord["isStudying"] = false
+                learningObjectiveRecord["isApplyingInTheSolution"] = false
+                learningObjectiveRecord["isTeachingOthers"] = false
+
+                objectiveStatus.forEach{status in
+                    if status == "no backlog" {
+                        learningObjectiveRecord["isInBacklog"] = true
+                    }
+                    if status == "abandonado" {
+                        learningObjectiveRecord["isAbandoned"] = true
+                    }
+                    if status == "experimentando" {
+                        learningObjectiveRecord["isExperimenting"] = true
+                    }
+                    if status == "estudando" {
+                        learningObjectiveRecord["isStudying"] = true
+                    }
+                    if status == "aplicando no app" {
+                        learningObjectiveRecord["isApplyingInTheSolution"] = true
+                    }
+                    if status == "ensinando em workshop" {
+                        learningObjectiveRecord["isTeachingOthers"] = true
+                    }
+                }
+
+
+                if let reference = studentReferences[studentName] {
+                    learningObjectiveRecord["student"] = reference
+                }
+
+                if let reference = teamReferences[teamName] {
+                    learningObjectiveRecord["team"] = reference
+                }
+
+                if studentsNames.contains(studentName) {
+                }else {
+                    studentsNames.append(studentName)
+                    let studentRecord = CKRecord(recordType: "StudentRecord")
+                    studentRecord["name"] = studentName
+
+                    var courses:[CKRecord.Reference] = []
+                    courses.append(courseReference)
+                    studentRecord["courses"] = courses
+
+                    let studentReference = CKRecord.Reference(recordID: studentRecord.recordID, action: .none)
+                    studentReferences[studentName] = studentReference
+
+                    learningObjectiveRecord["student"] = studentReference
+
+                    let studentSprintRelation = CKRecord(recordType: "StudentSprintRelation")
+
+                    studentSprintRelation["sprint"] = sprintReference
+
+                    let teamReference = CKRecord.Reference(recordID: CKRecord.ID(recordName: (sprint.teams[teamName]?.id)!), action: .none)
+                    teamReferences[teamName] = teamReference
+
+                    learningObjectiveRecord["team"] = teamReference
+                    studentSprintRelation["team"] = teamReference
+                    studentSprintRelation["student"] = studentReference
+
+                    let studentCourseRelation = CKRecord(recordType: "StudentCourseRelation")
+                    studentCourseRelation["student"] = studentReference
+                    var sprints:[CKRecord.Reference] = []
+                    sprints.append(CKRecord.Reference(recordID: studentSprintRelation.recordID, action: .none))
+                    studentCourseRelation["sprints"] = sprints
+                    studentCourseRelation["course"] = courseReference
+
+                    self.database.save(studentRecord) {
+                        record, error in
+                    }
+
+                    self.database.save(studentCourseRelation) {
+                        record, error in
+                    }
+
+                    self.database.save(studentSprintRelation) {
+                        record, error in
+                    }
+                }
+
+                self.database.save(learningObjectiveRecord) {
+                    record, error in
+                }
+            }
+        }
+    }
     
     @IBAction func clearDatabase(_ sender: Any) {
         print("---- APAGANDO A BASE DE DADOS ----")
@@ -340,148 +470,12 @@ class ViewController: NSViewController {
                     DispatchQueue.main.async {
                         self.elementsToDisplay = []
                         self.snippetsToDisplay = []
+                        self.objectiveRespondersCellsList = []
                         self.mustHaveTableView.reloadData()
                         self.outlineView.reloadData()
                         self.teamMembersView.reloadData()
                     }
                     
-                    //Esta parte só deve ser utilizada para se atualizar a partir de um
-                    //arquivo csv gerado do airtable a base de dados do cloudkit
-//                    let courseReference = CKRecord.Reference(recordID: CKRecord.ID(recordName: (self.delegate.selectedCourse?.id)!), action: .none)
-//                    let sprintReference = CKRecord.Reference(recordID: CKRecord.ID(recordName: sprint.id!), action: .none)
-//    
-//                    var studentsNames = [String]()
-//                    var studentReferences = [String: CKRecord.Reference]()
-//                    var teamReferences = [String: CKRecord.Reference]()
-    
-//                    if let studentsData = sprint.studentObjectiveClassifier.studentsData {
-//                        let rows = studentsData.rows
-//                        rows.forEach{
-//                            row in
-//
-//                            let teamIndex = row.index(forKey: "Equipe")!
-//                            let studentIndex = row.index(forKey: "Estudante")!
-//                            let descriptionIndex = row.index(forKey: "Descrição")!
-//                            let priorityIndex = row.index(forKey: "Priorização")!
-//                            let expertiseLevelIndex = row.index(forKey: "Nível")!
-//                            let statusIndex = row.index(forKey: "Status")!
-//
-//                            let description = row.values[descriptionIndex].stringValue!
-//                            let priority = row.values[priorityIndex].stringValue!
-//                            let expertiseLevel = row.values[expertiseLevelIndex].stringValue!
-//                            let objectiveStatus:[Substring] = row.values[statusIndex].stringValue!.split(separator: Character(","))
-//
-//                            let teamName = row.values[teamIndex].stringValue!
-//                            if teamName == "pulsai" {
-//                                let studentName = row.values[studentIndex].stringValue!
-//
-//                                let learningObjectiveRecord = CKRecord(recordType: "StudentLearningObjectiveRecord")
-//                                learningObjectiveRecord["course"] = courseReference
-//                                learningObjectiveRecord["sprint"] = sprintReference
-//                                learningObjectiveRecord["description"] = description
-//                                learningObjectiveRecord["priority"] = priority
-//                                learningObjectiveRecord["level"] = expertiseLevel
-//                                learningObjectiveRecord["priority"] = priority
-//                                learningObjectiveRecord["isInBacklog"] = false
-//                                learningObjectiveRecord["isAbandoned"] = false
-//                                learningObjectiveRecord["isExperimenting"] = false
-//                                learningObjectiveRecord["isStudying"] = false
-//                                learningObjectiveRecord["isApplyingInTheSolution"] = false
-//                                learningObjectiveRecord["isTeachingOthers"] = false
-//
-//                                objectiveStatus.forEach{status in
-//                                    if status == "no backlog" {
-//                                        learningObjectiveRecord["isInBacklog"] = true
-//                                    }
-//                                    if status == "abandonado" {
-//                                        learningObjectiveRecord["isAbandoned"] = true
-//                                    }
-//                                    if status == "experimentando" {
-//                                        learningObjectiveRecord["isExperimenting"] = true
-//                                    }
-//                                    if status == "estudando" {
-//                                        learningObjectiveRecord["isStudying"] = true
-//                                    }
-//                                    if status == "aplicando no app" {
-//                                        learningObjectiveRecord["isApplyingInTheSolution"] = true
-//                                    }
-//                                    if status == "ensinando em workshop" {
-//                                        learningObjectiveRecord["isTeachingOthers"] = true
-//                                    }
-//                                }
-//
-//
-//                                if let reference = studentReferences[studentName] {
-//                                    learningObjectiveRecord["student"] = reference
-//                                }
-//
-//                                if let reference = teamReferences[teamName] {
-//                                    learningObjectiveRecord["team"] = reference
-//                                }
-//
-//                                if studentsNames.contains(studentName) {
-//                                }else {
-//                                    studentsNames.append(studentName)
-//                                    let studentRecord = CKRecord(recordType: "StudentRecord")
-//                                    studentRecord["name"] = studentName
-//
-//                                    var courses:[CKRecord.Reference] = []
-//                                    courses.append(courseReference)
-//                                    studentRecord["courses"] = courses
-//
-//                                    let studentReference = CKRecord.Reference(recordID: studentRecord.recordID, action: .none)
-//                                    studentReferences[studentName] = studentReference
-//
-//                                    learningObjectiveRecord["student"] = studentReference
-//
-//                                    let studentSprintRelation = CKRecord(recordType: "StudentSprintRelation")
-//
-//                                    studentSprintRelation["sprint"] = sprintReference
-//
-//                                    let teamReference = CKRecord.Reference(recordID: CKRecord.ID(recordName: (sprint.teams[teamName]?.id)!), action: .none)
-//                                    teamReferences[teamName] = teamReference
-//
-//                                    learningObjectiveRecord["team"] = teamReference
-//                                    studentSprintRelation["team"] = teamReference
-//                                    studentSprintRelation["student"] = studentReference
-//
-//                                    let studentCourseRelation = CKRecord(recordType: "StudentCourseRelation")
-//                                    studentCourseRelation["student"] = studentReference
-//                                    var sprints:[CKRecord.Reference] = []
-//                                    sprints.append(CKRecord.Reference(recordID: studentSprintRelation.recordID, action: .none))
-//                                    studentCourseRelation["sprints"] = sprints
-//                                    studentCourseRelation["course"] = courseReference
-//
-//                                    self.database.save(studentRecord) {
-//                                        record, error in
-//                                    }
-//
-//                                    self.database.save(studentCourseRelation) {
-//                                        record, error in
-//                                    }
-//
-//                                    self.database.save(studentSprintRelation) {
-//                                        record, error in
-//                                    }
-//                                }
-//
-//                                self.database.save(learningObjectiveRecord) {
-//                                    record, error in
-//                                }
-//
-//
-//                                //                        print(studentRecord.recordID.recordName)
-//                                //                let description = row.values[descriptionIndex].stringValue!
-//                                //                let priority = row.values[priorityIndex].stringValue!
-//                                //                let expertiseLevel = row.values[expertiseLevelIndex].stringValue!
-//
-//                                //                let objectiveStatus:[Substring] = row.values[statusIndex].stringValue!.split(separator: Character(","))
-//                                //                self.cblSprint.sprint(teamName: teamName, studentName: studentName, description: description, level: expertiseLevel, priority: priority, status: objectiveStatus)
-//
-//                            }
-//
-//                        }
-//                    }
            }
         }
         
@@ -612,6 +606,7 @@ class ViewController: NSViewController {
             self.mustHaveTableView.deselectAll(nil)
             self.elementsToDisplay = []
             self.elementsToDisplay.append(NoteElementToDisplay(title: message))
+            self.objectiveRespondersCellsList = []
             self.mustHaveTableView.reloadData()
         }
     }
@@ -629,7 +624,7 @@ class ViewController: NSViewController {
             self.elementsToDisplay.append(NoteElementToDisplay(team: team, infoType: .Challenge))
             self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Concept"))
             self.elementsToDisplay.append(NoteElementToDisplay(team: team, infoType: .Concept))
-
+            self.objectiveRespondersCellsList = []
             self.mustHaveTableView.reloadData()
         }
     }
@@ -637,7 +632,6 @@ class ViewController: NSViewController {
     func displayStudentObjectives(student:Student) {
         self.elementsToDisplay = []
         
-//        let studentName = NoteElementToDisplay(title: self.cblSprint.selectedStudent?.name)
         let studentNameElement = NoteElementToDisplay(title: student.name)
         self.elementsToDisplay.append(studentNameElement)
         
@@ -665,7 +659,7 @@ class ViewController: NSViewController {
         
         let designSubtitle = NoteElementToDisplay(subtitle: "Design")
         self.elementsToDisplay.append(designSubtitle)
-        
+            
         if let designObjectives = student.classifiedObjectives["design"] {
             designObjectives.forEach{
                 objective in
@@ -1065,6 +1059,7 @@ extension ViewController: NSTableViewDelegate {
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        print(">>> ELEMENT: \(elementsToDisplay)")
         tableColumn?.headerCell.backgroundColor = NSColor.white
         if (tableView == self.mustHaveTableView) {
             var cellIdentifier = ""

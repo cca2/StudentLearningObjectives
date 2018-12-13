@@ -30,13 +30,15 @@ class Team {
     }
     
     static func fromCKRecord(ckRecord: CKRecord) -> Team? {
-        guard let name = ckRecord["name"] as? String,
-        let bigIdea = ckRecord["bigIdea"] as? String,
-        let essentialQuestion = ckRecord["essentialQuestion"] as? String,
-        let challenge = ckRecord["challenge"] as? String,
-        let concept = ckRecord["concept"] as? String else {
+        guard let name = ckRecord["name"] as? String else {
             return nil
         }
+        
+        let bigIdea = ckRecord["bigIdea"] as? String
+        let essentialQuestion = ckRecord["essentialQuestion"] as? String
+        let challenge = ckRecord["challenge"] as? String
+        let concept = ckRecord["concept"] as? String
+        
         let team = Team(name: name)
         team.id = ckRecord.recordID.recordName
         team.bigIdea = bigIdea

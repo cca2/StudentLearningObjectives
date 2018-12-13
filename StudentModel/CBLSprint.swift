@@ -65,6 +65,7 @@ class CBLSprint {
         queryOperation.recordFetchedBlock = {
             record in
             let objective = StudentLearningObjective(record: record)
+            print("coletou objetivo: \(objective.description)")
             self.learningObjectiveByID[objective.id!] = objective
             if let student = self.studentsByID?[objective.studentID] {
                 student.addOriginalObjective(objective: objective)
@@ -171,20 +172,6 @@ class CBLSprint {
 
         operation.resultsLimit = 100
         self.executeRetrieveObjectivesQuery(queryOperation: operation, onSuccess: success)
-//            //Apagando todos os registros de estudantes
-//            records.forEach{
-//                record in
-//                defaultContainer.privateCloudDatabase.delete(withRecordID: record.recordID){
-//                    (recordID, error) -> Void in
-//
-//                    guard let recordID = recordID else {
-//                        print("erro ao deletar registro")
-//                        return
-//                    }
-//                    print("registro \(recordID) deletado com sucesso")
-//                }
-//            }
-//        }
     }
     
     

@@ -37,9 +37,10 @@
 		DA822EBA21B5A30F002B3520 /* IntelligentAlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA822EB921B5A30F002B3520 /* IntelligentAlertMessage.swift */; };
 		DA822EBC21B879B3002B3520 /* iconfinder_More_Functions_Menu_Horizontal_Dots_Hidden_1654371.png in Resources */ = {isa = PBXBuildFile; fileRef = DA822EBB21B879B3002B3520 /* iconfinder_More_Functions_Menu_Horizontal_Dots_Hidden_1654371.png */; };
 		DA822EBE21BB810D002B3520 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA822EBD21BB810D002B3520 /* LinkedList.swift */; };
+		DA822EC021C1A3CD002B3520 /* LearningObjectivesClassifierTraining.csv in Resources */ = {isa = PBXBuildFile; fileRef = DA822EBF21C1A3CD002B3520 /* LearningObjectivesClassifierTraining.csv */; };
 		DA82CB53219CA2EC0057F948 /* LearningObjectivesAreaClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DA82CB52219CA2EC0057F948 /* LearningObjectivesAreaClassifier.mlmodel */; };
 		DA82CB55219CF1DE0057F948 /* LearningObjectivesTopicsClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DA82CB54219CF1DD0057F948 /* LearningObjectivesTopicsClassifier.mlmodel */; };
-		DA82CB58219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv in Resources */ = {isa = PBXBuildFile; fileRef = DA82CB57219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv */; };
+		DA82CB58219CF39E0057F948 /* LearningObjectivesClassifierTraining2.csv in Resources */ = {isa = PBXBuildFile; fileRef = DA82CB57219CF39E0057F948 /* LearningObjectivesClassifierTraining2.csv */; };
 		DA82CB5A219DDBB10057F948 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA82CB59219DDBB10057F948 /* Team.swift */; };
 		DA82CB5D219F4F8C0057F948 /* CBLSprintDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA82CB5B219F4F8C0057F948 /* CBLSprintDataModel.xcdatamodeld */; };
 		DA82CB60219F54EE0057F948 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA82CB5F219F54EE0057F948 /* CloudKit.framework */; };
@@ -102,10 +103,11 @@
 		DA822EB921B5A30F002B3520 /* IntelligentAlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntelligentAlertMessage.swift; sourceTree = "<group>"; };
 		DA822EBB21B879B3002B3520 /* iconfinder_More_Functions_Menu_Horizontal_Dots_Hidden_1654371.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconfinder_More_Functions_Menu_Horizontal_Dots_Hidden_1654371.png; sourceTree = "<group>"; };
 		DA822EBD21BB810D002B3520 /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
+		DA822EBF21C1A3CD002B3520 /* LearningObjectivesClassifierTraining.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LearningObjectivesClassifierTraining.csv; sourceTree = "<group>"; };
 		DA82CB52219CA2EC0057F948 /* LearningObjectivesAreaClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LearningObjectivesAreaClassifier.mlmodel; sourceTree = "<group>"; };
 		DA82CB54219CF1DD0057F948 /* LearningObjectivesTopicsClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LearningObjectivesTopicsClassifier.mlmodel; sourceTree = "<group>"; };
 		DA82CB56219CF3840057F948 /* LearningObjectivesTagger.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LearningObjectivesTagger.json; sourceTree = "<group>"; };
-		DA82CB57219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LearningObjectivesClassifierTraining.csv; sourceTree = "<group>"; };
+		DA82CB57219CF39E0057F948 /* LearningObjectivesClassifierTraining2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LearningObjectivesClassifierTraining2.csv; sourceTree = "<group>"; };
 		DA82CB59219DDBB10057F948 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		DA82CB5C219F4F8C0057F948 /* CBLSprintDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CBLSprintDataModel.xcdatamodel; sourceTree = "<group>"; };
 		DA82CB5F219F54EE0057F948 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -209,7 +211,8 @@
 				DA3DADF4218BEBCF0072126F /* icons8-auditoria-50.png */,
 				DA822EBB21B879B3002B3520 /* iconfinder_More_Functions_Menu_Horizontal_Dots_Hidden_1654371.png */,
 				DA82CB56219CF3840057F948 /* LearningObjectivesTagger.json */,
-				DA82CB57219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv */,
+				DA822EBF21C1A3CD002B3520 /* LearningObjectivesClassifierTraining.csv */,
+				DA82CB57219CF39E0057F948 /* LearningObjectivesClassifierTraining2.csv */,
 				DA3DADFE218BEC740072126F /* LearningObjectivesClassifier.mlmodel */,
 				DA82CB52219CA2EC0057F948 /* LearningObjectivesAreaClassifier.mlmodel */,
 				DA3DADFF218BEC740072126F /* LearningObjectivesTagger.mlmodel */,
@@ -361,9 +364,10 @@
 			files = (
 				DA3DADBD218BEB890072126F /* Assets.xcassets in Resources */,
 				DA822EBC21B879B3002B3520 /* iconfinder_More_Functions_Menu_Horizontal_Dots_Hidden_1654371.png in Resources */,
-				DA82CB58219CF39E0057F948 /* LearningObjectivesClassifierTraining.csv in Resources */,
+				DA82CB58219CF39E0057F948 /* LearningObjectivesClassifierTraining2.csv in Resources */,
 				DA3DADF9218BEBCF0072126F /* LearningObjectiveCellView.xib in Resources */,
 				DA346BDD219397AC00EBF4CD /* StudentMatchByObjectiveCellView.xib in Resources */,
+				DA822EC021C1A3CD002B3520 /* LearningObjectivesClassifierTraining.csv in Resources */,
 				DA3DADFD218BEC4C0072126F /* TrainingData in Resources */,
 				DA346BD52191590400EBF4CD /* SubtitleTableCellView.xib in Resources */,
 				DA3DADC0218BEB890072126F /* Main.storyboard in Resources */,

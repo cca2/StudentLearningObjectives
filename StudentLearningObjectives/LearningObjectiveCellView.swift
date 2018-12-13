@@ -235,8 +235,7 @@ class LearningObjectiveCellView: NSTableCellView {
             tagsAttributedString.append(NSAttributedString(string: " #abandonado", attributes: abandonedTagAttribuites as [NSAttributedString.Key: Any]))
             self.backlogStatus = "#abandonado"
             self.tagsListView.backlogStatus = "#abandonado"
-        }
-        if objective.isInBacklog {
+        }else if objective.isInBacklog {
             tagsAttributedString.append(NSAttributedString(string: " #inbacklog", attributes: topicAttributes as [NSAttributedString.Key: Any]))
             self.backlogStatus = "#inbacklog"
             self.tagsListView.backlogStatus = "#inbacklog"
@@ -309,8 +308,12 @@ class LearningObjectiveCellView: NSTableCellView {
 class ParagraphCellView: NSTableCellView {
     @IBOutlet weak var selectedBox: NSBox!
     @IBOutlet var paragraphTextView: NSTextView!
+
+    var infoType:Team.InfoTypes?
     
     func fitForParagraph(elementToDisplay: NoteElementToDisplay) {
+        self.infoType = elementToDisplay.teamInfoModified
+        
         let richTextDescription = NSMutableAttributedString(string: "")
         if let paragraph = elementToDisplay.paragraph {
             richTextDescription.append(NSAttributedString(string: paragraph))
