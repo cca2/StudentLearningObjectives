@@ -39,7 +39,7 @@ class NoteElementToDisplay {
         }else if infoType == Team.InfoTypes.Concept {
             self.paragraph = team.concept
         }else {
-            self.paragraph = nil
+            self.paragraph = "TESTANDO"
         }
         self.teamInfoModified = infoType
     }

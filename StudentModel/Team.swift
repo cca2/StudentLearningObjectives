@@ -34,10 +34,22 @@ class Team {
             return nil
         }
         
-        let bigIdea = ckRecord["bigIdea"] as? String
-        let essentialQuestion = ckRecord["essentialQuestion"] as? String
-        let challenge = ckRecord["challenge"] as? String
-        let concept = ckRecord["concept"] as? String
+        var bigIdea = ckRecord["bigIdea"] as? String
+        if bigIdea == nil {
+            bigIdea = ""
+        }
+        var essentialQuestion = ckRecord["essentialQuestion"] as? String
+        if essentialQuestion == nil {
+            essentialQuestion = ""
+        }
+        var challenge = ckRecord["challenge"] as? String
+        if challenge == nil {
+            challenge = ""
+        }
+        var concept = ckRecord["concept"] as? String
+        if concept == nil {
+            concept = ""
+        }
         
         let team = Team(name: name)
         team.id = ckRecord.recordID.recordName

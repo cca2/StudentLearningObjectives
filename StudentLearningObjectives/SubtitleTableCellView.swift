@@ -13,7 +13,6 @@ class SubtitleTableCellView: NSTableCellView {
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-        
         // Drawing code here.
     }
 }
@@ -22,8 +21,7 @@ class TitleTableCellView: NSTableCellView {
     @IBOutlet weak var title: NSTextField!
     
     override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-        
+        super.draw(dirtyRect)        
         // Drawing code here.
     }
 }

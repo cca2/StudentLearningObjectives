@@ -52,6 +52,16 @@ class EditableTextView: NSTextView {
     
 }
 
+class ParagraphTextView: EditableTextView {
+    
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
+        self.font = NSFont.systemFont(ofSize: 13.0)
+        self.textColor = NSColor.darkGray
+        self.backgroundColor = NSColor.white
+    }
+}
+
 class TagsListTextView: EditableTextView {
     override var isTagsList: Bool {return true}
     override var isObjectiveDescription: Bool {return false}
@@ -86,7 +96,6 @@ class TagsListTextView: EditableTextView {
     
     override func becomeFirstResponder() -> Bool {
         let res = super.becomeFirstResponder()
-//        highLightTags()
         return res
     }
     
@@ -101,7 +110,6 @@ class TagsListTextView: EditableTextView {
         }else if self.string.contains("#inbacklog") {
             self.backlogStatus = "#inbacklog"
         }
-//        super.didChangeText()
     }
     
     var onDidAbandonObjective:(() -> ())?
@@ -307,7 +315,7 @@ class LearningObjectiveCellView: NSTableCellView {
 
 class ParagraphCellView: NSTableCellView {
     @IBOutlet weak var selectedBox: NSBox!
-    @IBOutlet var paragraphTextView: EditableTextView!
+    @IBOutlet var paragraphTextView: ParagraphTextView!
 
     var infoType:Team.InfoTypes?
     
