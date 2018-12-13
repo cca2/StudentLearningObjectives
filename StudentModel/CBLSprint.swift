@@ -106,7 +106,7 @@ class CBLSprint {
     func clearObjectivesDatabase(onSuccess success: @escaping () -> Void) -> Void {
         let defaultContainer = CKContainer.default()
         let database = defaultContainer.privateCloudDatabase
-        let sprintRecord = CKRecord(recordType: "CBLSprintRecord", recordID: CKRecord.ID(recordName: self.id!))
+//        let sprintRecord = CKRecord(recordType: "CBLSprintRecord", recordID: CKRecord.ID(recordName: self.id!))
         let predicate = NSPredicate(format: "TRUEPREDICATE")
         
         let query = CKQuery(recordType: "StudentLearningObjectiveRecord", predicate: predicate)
@@ -117,7 +117,7 @@ class CBLSprint {
                 record in
                 database.delete(withRecordID: record.recordID) {
                     recordID, error in
-                    print("apaguei registro: \(recordID?.recordName)")
+                    print("apaguei registro: \(String(describing: recordID?.recordName))")
                 }
             }
         }
@@ -130,7 +130,7 @@ class CBLSprint {
                 record in
                 database.delete(withRecordID: record.recordID) {
                     recordID, error in
-                    print("apaguei registro ESTUDANTE: \(recordID?.recordName)")
+                    print("apaguei registro ESTUDANTE: \(String(describing: recordID?.recordName))")
                 }
             }
         }
@@ -143,7 +143,7 @@ class CBLSprint {
                 record in
                 database.delete(withRecordID: record.recordID) {
                     recordID, error in
-                    print("apaguei registro REL CURSO: \(recordID?.recordName)")
+                    print("apaguei registro REL CURSO: \(String(describing: recordID?.recordName))")
                 }
             }
         }
@@ -155,14 +155,14 @@ class CBLSprint {
                 record in
                 database.delete(withRecordID: record.recordID) {
                     recordID, error in
-                    print("apaguei registro REL SPRINT: \(recordID?.recordName)")
+                    print("apaguei registro REL SPRINT: \(String(describing: recordID?.recordName))")
                 }
             }
         }
     }
     
     func retrieveAllObjectives(onSuccess success: @escaping () -> Void) -> Void {
-        let defaultContainer = CKContainer.default()
+//        let defaultContainer = CKContainer.default()
         let sprintRecord = CKRecord(recordType: "CBLSprintRecord", recordID: CKRecord.ID(recordName: self.id!))
         let reference = CKRecord.Reference(recordID: sprintRecord.recordID, action: .none)
         let predicate = NSPredicate(format: "sprint == %@", reference)
@@ -185,7 +185,7 @@ class CBLSprint {
         defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
             (records, error) in
             guard let records = records else {
-                print (error?.localizedDescription)
+                print (error?.localizedDescription as Any)
                 return
             }
             
@@ -210,7 +210,7 @@ class CBLSprint {
         defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
             (records, error) in
             guard let records = records else {
-                print (error?.localizedDescription)
+                print (error?.localizedDescription as Any)
                 return
             }
             
@@ -297,11 +297,11 @@ class CBLSprint {
             record, error in
             
             guard let record = record else {
-                print(error)
+                print(error as Any)
                 return
             }
             
-            print("record salvo com sucesso")
+            print("record \(record) salvo com sucesso")
         }
     }
     

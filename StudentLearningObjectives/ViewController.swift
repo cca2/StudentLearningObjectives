@@ -245,7 +245,7 @@ class ViewController: NSViewController {
         defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
             (records, error) in
             guard let records = records else {
-                print (error)
+                print (error as Any)
                 return
             }
             records.forEach{
@@ -273,7 +273,7 @@ class ViewController: NSViewController {
                     record in
                     self.database.delete(withRecordID: record.recordID) {
                         recordID, error in
-                        print("apaguei registro: \(recordID?.recordName)")
+                        print("apaguei registro: \(String(describing: recordID?.recordName))")
                     }
                 }
             }
@@ -286,7 +286,7 @@ class ViewController: NSViewController {
                     record in
                     self.database.delete(withRecordID: record.recordID) {
                         recordID, error in
-                        print("apaguei registro ESTUDANTE: \(recordID?.recordName)")
+                        print("apaguei registro ESTUDANTE: \(String(describing: recordID?.recordName))")
                     }
                 }
             }
@@ -299,7 +299,7 @@ class ViewController: NSViewController {
                     record in
                     self.database.delete(withRecordID: record.recordID) {
                         recordID, error in
-                        print("apaguei registro REL CURSO: \(recordID?.recordName)")
+                        print("apaguei registro REL CURSO: \(String(describing: recordID?.recordName))")
                     }
                 }
             }
@@ -311,7 +311,7 @@ class ViewController: NSViewController {
                     record in
                     self.database.delete(withRecordID: record.recordID) {
                         recordID, error in
-                        print("apaguei registro REL SPRINT: \(recordID?.recordName)")
+                        print("apaguei registro REL SPRINT: \(String(describing: recordID?.recordName))")
                     }
                 }
             }
@@ -454,28 +454,25 @@ class ViewController: NSViewController {
         
         self.appDelegate.onSprintSelected = {
             sprint in
-                sprint.retrieveSprintInfo(studentsByID: (self.appDelegate.selectedCourse?.studentsByID)!) {
-                    self.displayMessage(message: "Informações da Sprint \(sprint.name)")
-                    self.outlineKeys = ["sprints", "teams"]
-                    
-                    if let studentsDict = self.appDelegate.selectedCourse?.studentsByID {
-                        let studentsIDs = studentsDict.keys
-                        studentsIDs.forEach{
-                            id in
-                            let student = studentsDict[id]
-                            student?.classifiedObjectives = [:]
-                            self.appDelegate.selectedSprint?.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
-                        }
+            sprint.retrieveSprintInfo(studentsByID: (self.appDelegate.selectedCourse?.studentsByID)!) {
+                self.displayMessage(message: "Informações da Sprint \(String(describing: sprint.name))")
+                self.outlineKeys = ["sprints", "teams"]
+                
+                if let studentsDict = self.appDelegate.selectedCourse?.studentsByID {
+                    let studentsIDs = studentsDict.keys
+                    studentsIDs.forEach{
+                        id in
+                        let student = studentsDict[id]
+                        student?.classifiedObjectives = [:]
+                        self.appDelegate.selectedSprint?.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
                     }
-                    DispatchQueue.main.async {
-                        self.elementsToDisplay = []
-                        self.snippetsToDisplay = []
-                        self.objectiveRespondersCellsList = []
-                        self.mustHaveTableView.reloadData()
-                        self.outlineView.reloadData()
-                        self.teamMembersView.reloadData()
-                    }
-                    
+                }
+                self.elementsToDisplay = []
+                self.snippetsToDisplay = []
+                self.objectiveRespondersCellsList = []
+                self.mustHaveTableView.reloadData()
+                self.outlineView.reloadData()
+                self.teamMembersView.reloadData()
            }
         }
         
@@ -836,7 +833,7 @@ extension ViewController: NSTextViewDelegate {
         let textView = notification.object as! EditableTextView
         print("novo texto: \(textView.string)")
         if textView.isTagsList {
-            let tagsView = textView as! TagsListTextView
+//            let tagsView = textView as! TagsListTextView
             if let objectiveBeingEdited = appDelegate.selectedObjective?.1 {
                 self.lastModifiedObjective = objectiveBeingEdited
             }
@@ -870,7 +867,7 @@ extension ViewController: NSTextViewDelegate {
     func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
         let textView = textView as! EditableTextView
         if textView.isTagsList {
-            let string = textView.string
+//            let string = textView.string
             if affectedCharRange.length == 0 {
                 if (textView.string.contains("#musthave") || textView.string.contains("nicetohave")) && (textView.string.contains("#inbacklog") || textView.string.contains("#abandonado"))
                     &&  (textView.string.contains("#ensinado") && textView.string.contains("estudado") && textView.string.contains("experimentado") && textView.string.contains("aplicado")){
@@ -1013,16 +1010,16 @@ extension ViewController: NSTableViewDelegate {
                 
                 let cellHeight = itemHeight + 20.0
                 return cellHeight
-            }else if let title = elementsToDisplay[row].title {
+            }else if elementsToDisplay[row].title != nil {
                 return CGFloat(40.0)
-            }else if let subtitle = elementsToDisplay[row].subtitle {
+            }else if elementsToDisplay[row].subtitle != nil {
                 return CGFloat(40.0)
             }else if let paragraph = elementsToDisplay[row].paragraph {
                 let item = NSAttributedString(string: paragraph.description)
-                let yourHeight = hightForString(attributedString: item, width: CGFloat(540.0), padding: CGFloat(10.0))
+                let yourHeight = hightForString(attributedString: item, width: CGFloat(564.0), padding: CGFloat(4.2))
                 return yourHeight
             }else {
-                return CGFloat(40.0)
+                return CGFloat(20.0)
             }
         }else if (tableView == self.teamMembersView) {
             if snippetsToDisplay[row].student != nil {

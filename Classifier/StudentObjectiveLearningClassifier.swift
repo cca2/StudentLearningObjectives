@@ -76,9 +76,9 @@ class StudentObjectiveClassifier {
     
     func organizeAndClassifyObjective(objective:StudentLearningObjective) -> [StudentLearningObjective]{
         var res = [StudentLearningObjective]()
-        if self.areaClassifierModel == nil {
-            self.trainAreaClassifier()
-        }
+//        if self.areaClassifierModel == nil {
+//            self.trainAreaClassifier()
+//        }
         
 //        if self.topicsClassifierModel == nil {
 //            self.trainTopicsClassifier()
@@ -90,7 +90,7 @@ class StudentObjectiveClassifier {
 //        }
         let sentence = String(objective.description)
         let areaClassification:String? = self.areaClassifierModel.predictedLabel(for: sentence)
-        let topicClassification:String? = self.topicsClassifierModel.predictedLabel(for: sentence)
+//        let topicClassification:String? = self.topicsClassifierModel.predictedLabel(for: sentence)
         objective.area = areaClassification!
         objective.topic = areaClassification!
         self.learningObjectiveTagger.tagLearningObjetive(objective: objective)

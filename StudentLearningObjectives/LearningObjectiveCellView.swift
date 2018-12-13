@@ -307,7 +307,7 @@ class LearningObjectiveCellView: NSTableCellView {
 
 class ParagraphCellView: NSTableCellView {
     @IBOutlet weak var selectedBox: NSBox!
-    @IBOutlet var paragraphTextView: NSTextView!
+    @IBOutlet var paragraphTextView: EditableTextView!
 
     var infoType:Team.InfoTypes?
     

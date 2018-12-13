@@ -166,7 +166,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc func onDidEraseObjectiveDescription(_ notification:Notification) {
         print(">>> 110 <<<")
-        let objectiveWithErasedDescription = notification.object as! StudentLearningObjective
+//        let objectiveWithErasedDescription = notification.object as! StudentLearningObjective
         let intelligentAlertMessage = IntelligentAlertMessage(message: "Objetivo será apagado")
         self.onDisplayIntelligentAlertMessage!(intelligentAlertMessage)
     }
@@ -181,7 +181,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         database?.perform(query, inZoneWith: nil) {
             (records, error) in
             guard let records = records else {
-                print (error)
+                print (error as Any)
                 return
             }
             

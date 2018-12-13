@@ -53,7 +53,7 @@ class CBLCourse {
         defaultContainer.privateCloudDatabase.perform(query, inZoneWith: nil) {
             (records, error) in
             guard let records = records else {
-                print (error)
+                print (error as Any)
                 return
             }
             records.forEach{
