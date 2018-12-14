@@ -953,7 +953,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                         </scrollView>
-                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jzf-yW-uo8">
+                                        <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jzf-yW-uo8">
                                             <rect key="frame" x="64.5" y="19" width="119" height="23"/>
                                             <buttonCell key="cell" type="roundTextured" title="Apagar Database" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HXM-bw-Rac">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -963,7 +963,7 @@
                                                 <action selector="clearDatabase:" target="XfG-lQ-9wD" id="beB-mU-sla"/>
                                             </connections>
                                         </button>
-                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0in-wW-rCJ">
+                                        <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0in-wW-rCJ">
                                             <rect key="frame" x="68.5" y="43" width="110" height="23"/>
                                             <buttonCell key="cell" type="roundTextured" title="csv to database" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="C0c-x7-cD2">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
