@@ -1231,7 +1231,7 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
             case .Course: text = node.label
             case .Sprint: text = node.label
             case .Objectives: text = node.label
-            case .Team: text = node.label
+            case .Note: text = node.label
             default: break
         }
         
@@ -1244,16 +1244,10 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
     
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
         //Aqui: Precisa reescrever
-        if let (columnIdentifier, index) = item as? (String, Int) {
-            if columnIdentifier == "sprints" {
-                if let selectedSprint = self.appDelegate.selectedCourse?.sprints[index] {
-                    self.appDelegate.selectedSprint = selectedSprint
-                }
-            } else if columnIdentifier == "teams" {
-                if let teamName = self.appDelegate.selectedSprint?.teamsName()[index] {
-                    appDelegate.selectedTeam = self.appDelegate.selectedSprint?.teamWithName(name: teamName)
-                }
-            }
+        let node = item as! CBLNotesNode
+        if node.level == .Note {
+            let teamName = node.note.team.name
+            appDelegate.selectedTeam = self.appDelegate.selectedSprint?.teamWithName(name: teamName)
         }
         return true
     }    
