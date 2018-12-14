@@ -52,7 +52,12 @@ class EditableTextView: NSTextView {
     
 }
 
+class LearningObjectiveTextView: EditableTextView {
+    
+}
+
 class ParagraphTextView: EditableTextView {
+    var isParagraph:Bool {return true}
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -154,7 +159,7 @@ class TagsListTextView: EditableTextView {
 }
 
 class LearningObjectiveCellView: NSTableCellView {
-    @IBOutlet var descriptionView: EditableTextView!
+    @IBOutlet var descriptionView: LearningObjectiveTextView!
     @IBOutlet var tagsListView: TagsListTextView!
     
     var backlogStatus:String? {

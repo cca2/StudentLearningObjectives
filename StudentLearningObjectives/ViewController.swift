@@ -18,7 +18,7 @@ class NoteElementToDisplay {
     let title:String?
     let subtitle:String?
     let objective:StudentLearningObjective?
-    let paragraph: String?
+    var paragraph: String?
     var isSelected = false
     var showObjectiveStatus = false
         
@@ -833,19 +833,19 @@ extension ViewController: NSTextViewDelegate {
     func textDidChange(_ notification: Notification) {
         print("Hello")
         let textView = notification.object as! EditableTextView
-        print("novo texto: \(textView.string)")
-        if textView.isTagsList {
+        let index = self.mustHaveTableView.row(for: textView)
+        if textView is TagsListTextView {
 //            let tagsView = textView as! TagsListTextView
             if let objectiveBeingEdited = appDelegate.selectedObjective?.1 {
                 self.lastModifiedObjective = objectiveBeingEdited
             }
-        }else if textView.isObjectiveDescription {
+        }else if textView is LearningObjectiveTextView {
             if let objectiveBeingEdited = appDelegate.selectedObjective?.1 {
                 self.lastModifiedObjective = objectiveBeingEdited
                 if textView.isObjectiveDescription {
                     objectiveBeingEdited.description = textView.string
                     //Aumentar ou diminuir a altura da NSTextView da descrição do objetivo
-                    let index = row(objective: objectiveBeingEdited)
+//                    let index = row(objective: objectiveBeingEdited)
                     self.mustHaveTableView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: index))
                     self.mustHaveTableView.beginUpdates()
                     self.mustHaveTableView.endUpdates()
@@ -856,6 +856,11 @@ extension ViewController: NSTextViewDelegate {
             }else {
                 self.objectiveBeingEdited = nil
             }
+        }else if textView is ParagraphTextView {
+            elementsToDisplay[index].paragraph? = textView.string
+            self.mustHaveTableView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: index))
+            self.mustHaveTableView.beginUpdates()
+            self.mustHaveTableView.endUpdates()
         }
         
         if let teamBeingEdited = self.teamsInfoByModifiedView[textView]?.0 {
@@ -1017,7 +1022,7 @@ extension ViewController: NSTableViewDelegate {
             }else if elementsToDisplay[row].subtitle != nil {
                 return CGFloat(40.0)
             }else if let paragraph = elementsToDisplay[row].paragraph {
-                let item = NSAttributedString(string: paragraph.description)
+                let item = NSAttributedString(string: paragraph)
                 let yourHeight = hightForString(attributedString: item, width: CGFloat(564.0), padding: CGFloat(4.0))
                 return yourHeight
             }else {
