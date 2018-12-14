@@ -194,6 +194,7 @@ class CBLSprint {
                     if let team = Team.fromCKRecord(ckRecord: record) {
                         self.teams[team.name] = team
                         self.teamsByID[team.id!] = team
+                        self.appDelegate.topNoteNode.add(CBLNote(course: self.appDelegate.selectedCourse!, sprint: self, team: team))
                     }
                 }
                 success()

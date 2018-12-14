@@ -333,7 +333,7 @@ class ViewController: NSViewController {
     var snippetsToDisplay:[SnippetToDisplay] = []
     
     var cblSprint:CBLSprint!
-
+    //Trabalhando com o menu da outlineView
     var outlineKeys:[String] = []
     
     //Tags que identificam qual texto foi modificado
@@ -424,7 +424,7 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         self.mustHaveTableView.dataSource = self
         self.mustHaveTableView.delegate = self
@@ -440,7 +440,7 @@ class ViewController: NSViewController {
 
         //Closure quando o curso é selecionado
         self.appDelegate.onCourseSelected = {
-            course in
+            course in            
             print(">>> BAIXANDO DADOS DOS ESTUDANTES <<<")
             course.retrieveAllStudents {
                 self.appDelegate.selectedCourseStudentsFetched()
@@ -448,10 +448,6 @@ class ViewController: NSViewController {
             }
         }
 
-        self.appDelegate.onSelectedCourseStudentsFetched = {
-            
-        }
-        
         self.appDelegate.onSprintSelected = {
             sprint in
             sprint.retrieveSprintInfo(studentsByID: (self.appDelegate.selectedCourse?.studentsByID)!) {
@@ -481,7 +477,7 @@ class ViewController: NSViewController {
         self.appDelegate.onSelectedCourseSprintsFetched = {
             self.outlineKeys = ["sprints"]
             DispatchQueue.main.async {
-                self.outlineView.reloadData()
+//                self.outlineView.reloadData()
             }
         }
         
@@ -1204,109 +1200,39 @@ extension ViewController: NSTableViewDelegate {
 
 extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
     
-    // You must give each row a unique identifier, referred to as `item` by the outline view
-    //   * For top-level rows, we use the values in the `keys` array
-    //   * For the hobbies sub-rows, we label them as ("hobbies", 0), ("hobbies", 1), ...
-    //     The integer is the index in the hobbies array
-    //
-    // item == nil means it's the "root" row of the outline view, which is not visible
-    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        if item == nil {
-            return outlineKeys[index]
-        } else if let item = item as? String, item == "teams" {
-            return ("teams", index)
-        } else if let item = item as? String, item == "sprints" {
-            return ("sprints", index)
-        } else {
-            return 0
-        }
-    }
-    
-    // Tell how many children each row has:
-    //    * The root row has 5 children: name, age, birthPlace, birthDate, hobbies
-    //    * The hobbies row has how ever many hobbies there are
-    //    * The other rows have no children
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        if item == nil {
-            return outlineKeys.count
-        } else if let item = item as? String, item == "teams" {
-            if let teams = appDelegate.selectedSprint?.teams {
-                return teams.count
-            }
-            return 0
-        } else if let item = item as? String, item == "courses" {
-            return 1
-        }else if let item = item as? String, item == "sprints" {
-            return (appDelegate.selectedCourse?.sprints.count)!
-        }else {
-            return 0
-        }
+        let node = (item as? CBLNotesNode) ?? self.appDelegate.topNoteNode
+        return node.children.count        //        if item == nil {
     }
     
     // Tell whether the row is expandable. The only expandable row is the Hobbies row
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        if let item = item as? String, item == "teams" {
-            return true
-        }else if let item = item as? String, item == "sprints"{
-            return true
-        } else {
-            return false
-        }
+        let node = (item as? CBLNotesNode) ?? self.appDelegate.topNoteNode
+        return node.children.count > 0
+    }
+    
+    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any
+    {
+        let node = (item as? CBLNotesNode) ?? self.appDelegate.topNoteNode
+        return node.children[index]
     }
     
     // Set the text for each row
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
+        
         guard let columnIdentifier = tableColumn?.identifier.rawValue else {
             return nil
         }
-        
+
         var text = ""
-        
-        // Recall that `item` is the row identiffier
-        switch (columnIdentifier, item) {
-        case ("KeyColumn", let item as String):
-            switch item {
-//            case "name":
-//                text = "Name"
-//            case "age":
-//                text = "Age"
-//            case "birthPlace":
-//                text = "Birth Place"
-//            case "birthDate":
-//                text = "Birth Date"
-            case "sprints":
-                text = "Sprints"
-            case "teams":
-                if let name = self.appDelegate.selectedSprint?.name {
-                    text = name
-                }
-            default:
-                break
-            }
-        case ("KeyColumn", _):
-            // Remember that we identified the hobby sub-rows differently
-            if let (key, index) = item as? (String, Int), key == "teams" {
-                if let teamName = appDelegate.selectedSprint?.teamsName()[index] {
-                    text = teamName
-                }
-            }else if let (key, index) = item as? (String, Int), key == "sprints" {
-                text = (appDelegate.selectedCourse?.sprints[index].name)!
-            }
-//        case ("ValueColumn", let item as String):
-//            switch item {
-//            case "name":
-//                text = sprint.name
-//            case "age":
-//                text = "\(person.age)"
-//            case "birthPlace":
-//                text = person.birthPlace
-//            case "birthDate":
-//                text = "\(person.birthDate)"
-//            default:
-//                break
-//            }
-        default:
-            text = ""
+
+        let node = (item as? CBLNotesNode) ?? appDelegate.topNoteNode
+        switch node.level {
+            case .Course: text = node.label
+            case .Sprint: text = node.label
+            case .Objectives: text = node.label
+            case .Team: text = node.label
+            default: break
         }
         
         let cellIdentifier = NSUserInterfaceItemIdentifier("OutlineViewCell")
@@ -1317,6 +1243,7 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
     }
     
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
+        //Aqui: Precisa reescrever
         if let (columnIdentifier, index) = item as? (String, Int) {
             if columnIdentifier == "sprints" {
                 if let selectedSprint = self.appDelegate.selectedCourse?.sprints[index] {
@@ -1324,11 +1251,7 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
                 }
             } else if columnIdentifier == "teams" {
                 if let teamName = self.appDelegate.selectedSprint?.teamsName()[index] {
-//                    self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
                     appDelegate.selectedTeam = self.appDelegate.selectedSprint?.teamWithName(name: teamName)
-//                    newTeamSelected()
-//                    self.cblSprint.selectedTeam = self.cblSprint.teamWithName(name: teamName)
-//                    showTeamNotes()
                 }
             }
         }

@@ -39,6 +39,7 @@ class CBLCourse {
                         self.sprints.append(sprint)
                     }
                     self.delegate.selectedCourseSprintsFetched()
+                    self.delegate.selectedSprint = self.sprints.first
                 }
             }
         }

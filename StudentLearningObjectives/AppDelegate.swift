@@ -14,7 +14,8 @@ import UserNotifications
 class AppDelegate: NSObject, NSApplicationDelegate {
     var database:CKDatabase?
     var courses:[CBLCourse] = []
-    
+    var topNoteNode = CBLNotesNode()
+
     var selectedCourse: (CBLCourse)? {
         didSet {
             onCourseSelected!(selectedCourse!)

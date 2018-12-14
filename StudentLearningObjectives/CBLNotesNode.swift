@@ -10,7 +10,7 @@ import Foundation
 
 class CBLNotesNode {
     enum Level {case Top, Course, Sprint, Team, Objectives, Note}
-    let subLevels:[Level:Level] = [.Top:.Course, .Course:.Sprint, .Sprint:.Team]
+    let subLevels:[Level:Level] = [.Top:.Course, .Course:.Sprint, .Sprint:.Objectives, .Objectives:.Team, .Team:.Note]
     
     var label = ""
     var level = Level.Top
@@ -24,6 +24,7 @@ class CBLNotesNode {
         case .Course: subLabel = note.sprint.name!
         case .Sprint: subLabel = "Objetivos"
         case .Objectives: subLabel = note.team.name
+        case .Note: self.note = note
             return
         default:
             return
