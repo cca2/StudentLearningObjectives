@@ -190,12 +190,16 @@ class CBLSprint {
             }
             
             if error == nil {
+                var sortedTeams = [Team]()
                 records.forEach{record in
                     if let team = Team.fromCKRecord(ckRecord: record) {
                         self.teams[team.name] = team
                         self.teamsByID[team.id!] = team
-                        self.appDelegate.topNoteNode.add(CBLNote(course: self.appDelegate.selectedCourse!, sprint: self, team: team))
+                        sortedTeams.append(team)
                     }
+                }
+                sortedTeams.sorted(by: {$0.name < $1.name}).forEach{team in
+                    self.appDelegate.topNoteNode.add(CBLNote(course: self.appDelegate.selectedCourse!, sprint: self, team: team))
                 }
                 success()
             }

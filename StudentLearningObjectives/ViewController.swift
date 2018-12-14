@@ -1243,7 +1243,6 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
     }
     
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
-        //Aqui: Precisa reescrever
         let node = item as! CBLNotesNode
         if node.level == .Note {
             let teamName = node.note.team.name
