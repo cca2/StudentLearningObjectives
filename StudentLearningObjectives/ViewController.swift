@@ -1018,7 +1018,7 @@ extension ViewController: NSTableViewDelegate {
                 return CGFloat(40.0)
             }else if let paragraph = elementsToDisplay[row].paragraph {
                 let item = NSAttributedString(string: paragraph.description)
-                let yourHeight = hightForString(attributedString: item, width: CGFloat(564.0), padding: CGFloat(4.2))
+                let yourHeight = hightForString(attributedString: item, width: CGFloat(564.0), padding: CGFloat(4.0))
                 return yourHeight
             }else {
                 return CGFloat(20.0)
@@ -1054,7 +1054,7 @@ extension ViewController: NSTableViewDelegate {
         layoutManager.addTextContainer(container)
         layoutManager.glyphRange(for: container)
         let layoutHeight = layoutManager.usedRect(for: container).size.height
-        return layoutHeight + 16.0
+        return layoutHeight + 12.0
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
