@@ -931,9 +931,9 @@ extension ViewController: NSTextViewDelegate {
             }else if self.teamBeingEdited?.1 == .EssentialQuestion {
                 self.teamBeingEdited?.0?.essentialQuestion = textObject.string.trimmingCharacters(in: .whitespaces)
             }else if self.teamBeingEdited?.1 == .Challenge {
-                self.teamBeingEdited?.0?.concept = textObject.string.trimmingCharacters(in: .whitespaces)
-            }else if self.teamBeingEdited?.1 == .Concept {
                 self.teamBeingEdited?.0?.challenge = textObject.string.trimmingCharacters(in: .whitespaces)
+            }else if self.teamBeingEdited?.1 == .Concept {
+                self.teamBeingEdited?.0?.concept = textObject.string.trimmingCharacters(in: .whitespaces)
             }
             NotificationCenter.default.post(Notification(name: Notification.Name("didUpdateTeam"), object:self.teamBeingEdited?.0, userInfo: nil))
         }

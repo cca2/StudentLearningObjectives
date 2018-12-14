@@ -65,14 +65,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var onSprintSelected:((CBLSprint) -> ())?
     var onObjectiveSelected: ((Student, StudentLearningObjective)->())?
     var onTeamSelected:[((Team) -> ())?] = []
-    var onStudentSelected: [((Student) -> ())?] = []
+    var onStudentSelected:[((Student) -> ())?] = []
     var onSelectedCourseSprintsFetched:(() -> ())?
     var onSelectedCourseStudentsFetched:(() -> ())?
-    var onSelectedSprintTeamsFetched: (() -> ())?
+    var onSelectedSprintTeamsFetched:(() -> ())?
     
-    var onObjectiveDescriptionChanged: ((StudentLearningObjective, String) -> ())?
-    var onDisplayIntelligentAlertMessage: ((IntelligentAlertMessage) -> ())?
+    var onObjectiveDescriptionChanged:((StudentLearningObjective, String) -> ())?
+    var onDisplayIntelligentAlertMessage:((IntelligentAlertMessage) -> ())?
     var onClearIntelligentAlerts:(() -> ())?
+    
+    //Ações relacionadas a mudanças nas informações da equipe relacionadas a CBL (bigidea, etc)
+    var onBigIdeaChanged:(() -> ())?
+    
     
     func selectedCourseSprintsFetched () {
         if let onSelectedCourseSprintsFetched = onSelectedCourseSprintsFetched {
@@ -91,7 +95,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             onSelectedCourseStudentsFetched()
         }
     }
-    
+      
     @objc func onDidUpdateObjective(_ notification:Notification) {
         //Aqui: Verificar se o objetivo vai ser apagado
         let objective = notification.object as! StudentLearningObjective
