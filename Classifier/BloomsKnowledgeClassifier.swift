@@ -16,7 +16,8 @@ protocol BloomsKnowledgeClassifierProtocol {
 }
 
 class BloomsKnowledgeClassifier {
-    //https://tips.uark.edu/using-blooms-taxonomy/
+//    https://tips.uark.edu/using-blooms-taxonomy/
+//    https://teachonline.asu.edu/2012/07/writing-measurable-learning-objectives/
     enum Level {case Remember, Understand, Apply, Analyze, Evaluate, Create}
     enum MeasurableVertStatus {case NoVerb, OneVerb, MoreThanOneVerb}
     

@@ -50,10 +50,6 @@ class CBLSprint {
                     print(">>> 20 <<<")
                     success()
                 }
-//                self.clearObjectivesDatabase {
-//                    print(">>> 20 <<<")
-//                    success()
-//                }
             }
         }
     }
@@ -76,12 +72,6 @@ class CBLSprint {
             }else {
                 self.learningObjectivesByStudentID[objective.studentID]?[objective.id!] = objective
             }
-//            if self.learningObjectivesByStudentID[objective.studentID] == nil {
-//                self.learningObjectivesByStudentID[objective.studentID] = []
-//                self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
-//            }else {
-//                self.learningObjectivesByStudentID[objective.studentID]?.append(objective)
-//            }
         }
         
         // Assign a completion handler
