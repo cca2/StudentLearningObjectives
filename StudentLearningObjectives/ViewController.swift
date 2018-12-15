@@ -235,13 +235,7 @@ class ViewController: NSViewController {
             }
         }
     }
-    
-    @IBAction func classifyObjectives(_ sender: Any) {
-//        let classifier = BloomsKnowledgeClassifier()
-//        let verbs = classifier.containsOnlyOneVerb(objective: "Aprender a projetar para pequenos dispositivos tendo em vista que cada vez mais usamos telas menores, como o whatch e celulares.")
-//        print(verbs)
-    }
-    
+        
     @IBAction func clearDatabase(_ sender: Any) {
         print("---- APAGANDO A BASE DE DADOS ----")
         print("---- APAGANDO A BASE DE ESTUDANTES ----)")
@@ -628,6 +622,23 @@ class ViewController: NSViewController {
             self.objectiveRespondersCellsList = []
             self.mustHaveTableView.reloadData()
         }
+    }
+    
+    func displayAllObjectives() {
+        self.elementsToDisplay = []
+        if let sprint = self.appDelegate.selectedSprint {
+            let sprintNameElement = NoteElementToDisplay(title: String("Objetivos de Aprendizado: \(sprint.name!)"))
+            self.elementsToDisplay.append(sprintNameElement)
+            sprint.learningObjectiveByID.keys.forEach{
+                key in
+                let objective = sprint.learningObjectiveByID[key]
+                let objectiveElement = NoteElementToDisplay(objective: objective)
+                self.elementsToDisplay.append(objectiveElement)
+            }
+        }
+        self.mustHaveTableView.deselectAll(nil)
+        self.objectiveRespondersCellsList = []
+        self.mustHaveTableView.reloadData()
     }
     
     func displayStudentObjectives(student:Student) {
@@ -1247,8 +1258,12 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
         let node = item as! CBLNotesNode
         if node.level == .Note {
-            let teamName = node.note.team.name
-            appDelegate.selectedTeam = self.appDelegate.selectedSprint?.teamWithName(name: teamName)
+            if let teamName = node.note.team?.name {
+                appDelegate.selectedTeam = self.appDelegate.selectedSprint?.teamWithName(name: teamName)
+            }else {
+                //Vai mostrar todos os objetivos
+                self.displayAllObjectives()
+            }
         }
         return true
     }    

@@ -973,27 +973,14 @@
                                                 <action selector="saveCSV2Database:" target="XfG-lQ-9wD" id="z7P-On-xAi"/>
                                             </connections>
                                         </button>
-                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yD2-f1-hdc">
-                                            <rect key="frame" x="72" y="70" width="103" height="32"/>
-                                            <buttonCell key="cell" type="push" title="Classificar" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xOT-KH-9RP">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="classifyObjectives:" target="XfG-lQ-9wD" id="pd4-Km-gCd"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="0in-wW-rCJ" secondAttribute="trailing" constant="71" id="3ri-qa-FOA"/>
                                         <constraint firstAttribute="bottom" secondItem="0in-wW-rCJ" secondAttribute="bottom" constant="44" id="7RF-CH-f4a"/>
                                         <constraint firstItem="0in-wW-rCJ" firstAttribute="leading" secondItem="zSY-hb-4At" secondAttribute="leading" constant="69" id="Bu8-SV-jaj"/>
-                                        <constraint firstAttribute="bottom" secondItem="yD2-f1-hdc" secondAttribute="bottom" constant="77" id="GaK-rF-9uG"/>
                                         <constraint firstAttribute="trailing" secondItem="Jzf-yW-uo8" secondAttribute="trailing" constant="66" id="RYM-wH-yKO"/>
                                         <constraint firstItem="Jzf-yW-uo8" firstAttribute="leading" secondItem="zSY-hb-4At" secondAttribute="leading" constant="65" id="iKf-Ne-ORK"/>
-                                        <constraint firstAttribute="trailing" secondItem="yD2-f1-hdc" secondAttribute="trailing" constant="80" id="sMz-lF-Gmm"/>
                                         <constraint firstAttribute="bottom" secondItem="Jzf-yW-uo8" secondAttribute="bottom" constant="20" id="yUo-T6-L3U"/>
-                                        <constraint firstItem="yD2-f1-hdc" firstAttribute="leading" secondItem="zSY-hb-4At" secondAttribute="leading" constant="78" id="znN-ts-A3b"/>
                                     </constraints>
                                 </view>
                                 <color key="fillColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

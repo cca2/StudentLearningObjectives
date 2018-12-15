@@ -23,7 +23,13 @@ class CBLNotesNode {
         case .Top: subLabel = note.course.name!
         case .Course: subLabel = note.sprint.name!
         case .Sprint: subLabel = "Objetivos"
-        case .Objectives: subLabel = note.team.name
+        case .Objectives: do {
+            if let team = note.team {
+                subLabel = team.name
+            }else {
+                subLabel = "Todos os objetivos"
+            }
+        }
         case .Note: self.note = note
             return
         default:
@@ -44,9 +50,9 @@ class CBLNotesNode {
 class CBLNote {
     let course:CBLCourse!
     let sprint: CBLSprint!
-    let team: Team!
+    let team: Team?
     
-    init(course: CBLCourse, sprint: CBLSprint, team: Team) {
+    init(course: CBLCourse, sprint: CBLSprint, team: Team?) {
         self.course = course
         self.sprint = sprint
         self.team = team
