@@ -10,6 +10,8 @@ import Cocoa
 import NaturalLanguage
 
 class EditableTextView: NSTextView {
+    let appDelegate = NSApplication.shared.delegate as! AppDelegate
+
     var student: Student?
     var learningObjective: StudentLearningObjective?
     
@@ -31,7 +33,6 @@ class EditableTextView: NSTextView {
     
     override func becomeFirstResponder() -> Bool {
         if let student = self.student, let objective = self.learningObjective {
-            let appDelegate = NSApplication.shared.delegate as! AppDelegate
             appDelegate.selectedObjective = (student, objective)
         }
         self.insertionPointColor = NSColor.red
@@ -61,7 +62,7 @@ class ParagraphTextView: EditableTextView {
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-        self.font = NSFont.systemFont(ofSize: 13.0)
+        self.font = self.appDelegate.appMainFont
         self.textColor = NSColor.darkGray
         self.backgroundColor = NSColor.white
     }
@@ -159,6 +160,8 @@ class TagsListTextView: EditableTextView {
 }
 
 class LearningObjectiveCellView: NSTableCellView {
+    let appDelegate = NSApplication.shared.delegate as! AppDelegate
+
     @IBOutlet var descriptionView: LearningObjectiveTextView!
     @IBOutlet var tagsListView: TagsListTextView!
     
@@ -274,8 +277,8 @@ class LearningObjectiveCellView: NSTableCellView {
     func highlightTopics(text: String, tags:[(tag:String, value:String)]) -> NSAttributedString {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.5
-        let topicAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.red, .font:NSFont.systemFont(ofSize: 13.0)]
-        let nonTopicAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.darkGray, .font:NSFont.systemFont(ofSize: 13.0)]
+        let topicAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.red, .font:self.appDelegate.appMainFont]
+        let nonTopicAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:NSColor.darkGray, .font:self.appDelegate.appMainFont]
         
         let attributedText = NSMutableAttributedString(string: "")
         

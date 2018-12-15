@@ -236,6 +236,12 @@ class ViewController: NSViewController {
         }
     }
     
+    @IBAction func classifyObjectives(_ sender: Any) {
+//        let classifier = BloomsKnowledgeClassifier()
+//        let verbs = classifier.containsOnlyOneVerb(objective: "Aprender a projetar para pequenos dispositivos tendo em vista que cada vez mais usamos telas menores, como o whatch e celulares.")
+//        print(verbs)
+    }
+    
     @IBAction func clearDatabase(_ sender: Any) {
         print("---- APAGANDO A BASE DE DADOS ----")
         print("---- APAGANDO A BASE DE ESTUDANTES ----)")
@@ -627,7 +633,7 @@ class ViewController: NSViewController {
     func displayStudentObjectives(student:Student) {
         self.elementsToDisplay = []
         
-        let studentNameElement = NoteElementToDisplay(title: student.name)
+        let studentNameElement = NoteElementToDisplay(title: String("Objetivos de Aprendizado: \(student.name)"))
         self.elementsToDisplay.append(studentNameElement)
         
         let innovationSubtitle = NoteElementToDisplay(subtitle: "Inovação")
@@ -1005,7 +1011,7 @@ extension ViewController: NSTableViewDelegate {
         if (tableView == self.mustHaveTableView) {
             if let objective = elementsToDisplay[row].objective {
                 let item = objective.description
-                let font = NSFont.systemFont(ofSize: 13.0)
+                let font = self.appDelegate.appMainFont
                 let attributes: [NSAttributedString.Key:Any] = [NSAttributedString.Key.font:font]
 
                 let attributedItem = NSAttributedString(string: item, attributes:attributes)
@@ -1220,10 +1226,6 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
     // Set the text for each row
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         
-        guard let columnIdentifier = tableColumn?.identifier.rawValue else {
-            return nil
-        }
-
         var text = ""
 
         let node = (item as? CBLNotesNode) ?? appDelegate.topNoteNode

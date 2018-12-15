@@ -12,6 +12,8 @@ import UserNotifications
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    let appMainFont = NSFont.systemFont(ofSize: 14.0)
+    
     var database:CKDatabase?
     var courses:[CBLCourse] = []
     var topNoteNode = CBLNotesNode()
@@ -48,7 +50,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var selectedObjective : (Student, StudentLearningObjective)? {
         didSet {
-            onObjectiveSelected!(selectedObjective!.0, selectedObjective!.1)
+            //Aqui: precisa finalizar descomentar para voltar a mostrar matches de objetivos
+//            onObjectiveSelected!(selectedObjective!.0, selectedObjective!.1)
+            self.classifyUsingBloomsTaxonomy(objective: (selectedObjective?.1.description)!)
         }
     }
     
@@ -95,6 +99,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let onSelectedCourseStudentsFetched = onSelectedCourseStudentsFetched {
             onSelectedCourseStudentsFetched()
         }
+    }
+    
+    func classifyUsingBloomsTaxonomy(objective: String) {
+        let classifier = BloomsKnowledgeClassifier()
+        classifier.checkForMeasurableVerb(objective: objective, onCheked: {
+            status, verbs in
+            if status == BloomsKnowledgeClassifier.MeasurableVertStatus.NoVerb {
+                let intelligentAlertMessage = IntelligentAlertMessage(message: "O objetivo não possui uma ação mensurável")
+                self.onDisplayIntelligentAlertMessage!(intelligentAlertMessage)
+            }
+        })
     }
       
     @objc func onDidUpdateObjective(_ notification:Notification) {
@@ -171,7 +186,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc func onDidEraseObjectiveDescription(_ notification:Notification) {
         print(">>> 110 <<<")
-//        let objectiveWithErasedDescription = notification.object as! StudentLearningObjective
         let intelligentAlertMessage = IntelligentAlertMessage(message: "Objetivo será apagado")
         self.onDisplayIntelligentAlertMessage!(intelligentAlertMessage)
     }
