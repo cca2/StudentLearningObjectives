@@ -635,6 +635,17 @@ class ViewController: NSViewController {
                 let objectiveElement = NoteElementToDisplay(objective: objective)
                 self.elementsToDisplay.append(objectiveElement)
             }
+            self.elementsToDisplay.sort(by: {
+                if let objective0 = $0.objective, let objective1 = $1.objective {
+                    return objective0.description < objective1.description
+                }else if let title = $0.title, let objective = $1.objective {
+                    return true
+                }else if let objective = $0.objective, let title = $1.title {
+                    return false
+                }else {
+                    return true
+                }
+            })
         }
         self.mustHaveTableView.deselectAll(nil)
         self.objectiveRespondersCellsList = []
@@ -767,6 +778,14 @@ extension ViewController: NSTableViewDataSource {
 }
 
 extension ViewController: NSTextViewDelegate {
+    func textView(_ textView: NSTextView, willChangeSelectionFromCharacterRange oldSelectedCharRange: NSRange, toCharacterRange newSelectedCharRange: NSRange) -> NSRange {
+        //Aqui: Estou trabalhando na seleção de palavras
+        print(">>> 700 <<<")
+        print(oldSelectedCharRange)
+        print(newSelectedCharRange)
+        return newSelectedCharRange
+    }
+
     func textView(_ textView: NSTextView, completions words: [String], forPartialWordRange charRange: NSRange, indexOfSelectedItem index: UnsafeMutablePointer<Int>?) -> [String] {
         let tagsList = textView.string
         
@@ -1266,6 +1285,6 @@ extension ViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
             }
         }
         return true
-    }    
+    }
 }
 
