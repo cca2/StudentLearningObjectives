@@ -20,7 +20,7 @@ class NoteElementToDisplay {
     let objective:StudentLearningObjective?
     var paragraph: String?
     var isSelected = false
-    var showObjectiveStatus = false
+    var showObjectiveTags = true
         
     var teamInfoModified:Team.InfoTypes?
     
@@ -431,6 +431,7 @@ class ViewController: NSViewController {
         self.mustHaveTableView.selectionHighlightStyle = NSTableView.SelectionHighlightStyle.none
         self.mustHaveTableView.register(NSNib(nibNamed: "LearningObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("ObjectiveCellID"))
         self.mustHaveTableView.register(NSNib(nibNamed: "LearningObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("ParagraphCellID"))
+        self.mustHaveTableView.register(NSNib(nibNamed: "LearningObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("LearningObjectiveWithoutTagsCellID"))
         self.mustHaveTableView.register(NSNib(nibNamed: "SubtitleTableCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("SubtitleCellID"))
         self.mustHaveTableView.register(NSNib(nibNamed: "SubtitleTableCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("TitleCellID"))
         self.teamMembersView.dataSource = self
@@ -634,13 +635,14 @@ class ViewController: NSViewController {
                 let objective = sprint.learningObjectiveByID[key]
                 let objectiveElement = NoteElementToDisplay(objective: objective)
                 self.elementsToDisplay.append(objectiveElement)
+                objectiveElement.showObjectiveTags = false
             }
             self.elementsToDisplay.sort(by: {
                 if let objective0 = $0.objective, let objective1 = $1.objective {
                     return objective0.description < objective1.description
-                }else if let title = $0.title, let objective = $1.objective {
+                }else if let _ = $0.title, let _ = $1.objective {
                     return true
-                }else if let objective = $0.objective, let title = $1.title {
+                }else if let _ = $0.objective, let _ = $1.title {
                     return false
                 }else {
                     return true
@@ -889,7 +891,7 @@ extension ViewController: NSTextViewDelegate {
                 self.objectiveBeingEdited = nil
             }
         }else if textView is ParagraphTextView {
-            elementsToDisplay[index].paragraph? = textView.string
+            elementsToDisplay[index].objective?.description = textView.string
             self.mustHaveTableView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: index))
             self.mustHaveTableView.beginUpdates()
             self.mustHaveTableView.endUpdates()
@@ -1047,7 +1049,12 @@ extension ViewController: NSTableViewDelegate {
                 let attributedItem = NSAttributedString(string: item, attributes:attributes)
                 let itemHeight = hightForString(attributedString: attributedItem, width: CGFloat(564.0), padding: CGFloat(4.0))
                 
-                let cellHeight = itemHeight + 20.0
+                var cellHeight:CGFloat = 0.0
+                if elementsToDisplay[row].showObjectiveTags {
+                    cellHeight = itemHeight + 20.0
+                }else {
+                    cellHeight = itemHeight + 5.0
+                }
                 return cellHeight
             }else if elementsToDisplay[row].title != nil {
                 return CGFloat(40.0)
@@ -1095,46 +1102,60 @@ extension ViewController: NSTableViewDelegate {
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        print(">>> ELEMENT: \(elementsToDisplay)")
         tableColumn?.headerCell.backgroundColor = NSColor.white
+        let noteElement = elementsToDisplay[row]
         if (tableView == self.mustHaveTableView) {
             var cellIdentifier = ""
             
             if tableColumn == tableView.tableColumns[0] {
-                if elementsToDisplay[row].objective != nil {
-                    cellIdentifier = "ObjectiveCellID"
-                    if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  LearningObjectiveCellView {
-                        let objective = elementsToDisplay[row].objective
-                        cell.descriptionView.learningObjective = elementsToDisplay[row].objective
-                        cell.objective = objective
-                        cell.descriptionView.delegate = self
-                        cell.tagsListView.delegate = self
-                        self.objectiveRespondersCellsList.insert(cell, at: row)
-
-                        //Montar a cadeia de responders
-                        if row == 0 {
-//                            self.objectiveRespondersCellsList.append(cell)
-                        }else {
-                            if let previousCell = self.objectiveRespondersCellsList[row - 1] {
-                                previousCell.tagsListView.moveDownResponder = cell.descriptionView
-                                cell.descriptionView.moveUpResponder = previousCell.tagsListView
+                if noteElement.objective != nil {
+                    if noteElement.showObjectiveTags {
+                        cellIdentifier = "ObjectiveCellID"
+                        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  LearningObjectiveCellView {
+                            let objective = noteElement.objective
+                            cell.descriptionView.learningObjective = noteElement.objective
+                            cell.objective = objective
+                            cell.descriptionView.delegate = self
+                            if noteElement.showObjectiveTags {
+                                cell.tagsListView.delegate = self
                             }else {
-                                for i in (0...(row - 1)).reversed() {
-                                    if let previousCell = self.objectiveRespondersCellsList[i] {
-                                        previousCell.tagsListView.moveDownResponder = cell.descriptionView
-                                        cell.descriptionView.moveUpResponder = previousCell.tagsListView
-                                        break
+                                cell.tagsListView.isHidden = true
+                            }
+                            self.objectiveRespondersCellsList.insert(cell, at: row)
+                            
+                            //Montar a cadeia de responders
+                            if row == 0 {
+                                //                            self.objectiveRespondersCellsList.append(cell)
+                            }else {
+                                if let previousCell = self.objectiveRespondersCellsList[row - 1] {
+                                    previousCell.tagsListView.moveDownResponder = cell.descriptionView
+                                    cell.descriptionView.moveUpResponder = previousCell.tagsListView
+                                }else {
+                                    for i in (0...(row - 1)).reversed() {
+                                        if let previousCell = self.objectiveRespondersCellsList[i] {
+                                            previousCell.tagsListView.moveDownResponder = cell.descriptionView
+                                            cell.descriptionView.moveUpResponder = previousCell.tagsListView
+                                            break
+                                        }
                                     }
                                 }
                             }
-                        }
-                        if self.objectiveRespondersCellsList.count > (row + 1) {
-                            if let nextCell = self.objectiveRespondersCellsList[row + 1] {
-                                cell.tagsListView.moveDownResponder = nextCell.descriptionView
-                                nextCell.descriptionView.moveUpResponder = cell.tagsListView
+                            if self.objectiveRespondersCellsList.count > (row + 1) {
+                                if let nextCell = self.objectiveRespondersCellsList[row + 1] {
+                                    cell.tagsListView.moveDownResponder = nextCell.descriptionView
+                                    nextCell.descriptionView.moveUpResponder = cell.tagsListView
+                                }
                             }
+                            return cell
                         }
-                        return cell
+                    }else {
+                        cellIdentifier = "LearningObjectiveWithoutTagsCellID"
+                        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  LearningObjectiveWithoutTagsView {
+                            let objective = noteElement.objective
+                            cell.objectiveDescription.string = (objective?.description)!
+                            cell.objectiveDescription.delegate = self
+                            return cell
+                        }
                     }
                 }else if let title = elementsToDisplay[row].title {
                     self.objectiveRespondersCellsList.append(nil)

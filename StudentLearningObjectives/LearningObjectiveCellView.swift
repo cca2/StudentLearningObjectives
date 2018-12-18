@@ -357,3 +357,8 @@ class ParagraphCellView: NSTableCellView {
     }
 }
 
+class LearningObjectiveWithoutTagsView: NSTableCellView {
+    
+    @IBOutlet var objectiveDescription: ParagraphTextView!
+}
+
