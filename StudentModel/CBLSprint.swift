@@ -26,7 +26,7 @@ class CBLSprint {
     
     var selectedTeam:Team?
     var selectedStudent: Student?
-    let studentObjectiveClassifier = StudentObjectiveClassifier()
+    let studentObjectiveAreaClassifier = StudentObjetiveAreaClassifier()
     
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 

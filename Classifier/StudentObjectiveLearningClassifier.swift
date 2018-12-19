@@ -11,12 +11,12 @@ import NaturalLanguage
 import CoreML
 import CreateML
 
-protocol StudentObjectiveClassifierDelegate {
+protocol StudentObjetiveAreaClassifierDelegate {
     func taggerModelUpdated() -> Void
     func trainClassifier() -> Void
 }
 
-class StudentObjectiveClassifier {
+class StudentObjetiveAreaClassifier {
     let objectivesTagger: NLTagger?
     let learningObjectiveTagger: LearningObjetiveTagger!
     
@@ -132,7 +132,7 @@ class StudentObjectiveClassifier {
     }
 }
 
-extension StudentObjectiveClassifier: StudentObjectiveClassifierDelegate {
+extension StudentObjetiveAreaClassifier: StudentObjetiveAreaClassifierDelegate {
     func taggerModelUpdated() {
         self.learningObjectiveTagger.updateModel()
     }

@@ -119,7 +119,7 @@ class ViewController: NSViewController {
         var studentReferences = [String: CKRecord.Reference]()
         var teamReferences = [String: CKRecord.Reference]()
 
-        if let studentsData = sprint.studentObjectiveClassifier.studentsData {
+        if let studentsData = sprint.studentObjectiveAreaClassifier.studentsData {
             let rows = studentsData.rows
             rows.forEach{
                 row in
@@ -372,7 +372,7 @@ class ViewController: NSViewController {
     @IBAction func saveTrainingButtonPressed(_ sender: Any) {
         let trainer = LearningObjectivesTrainer()
         trainer.updateTrainingData(newDataForTraining: self.newDataForTraining)
-//        self.studentObjectiveClassifier.taggerModelUpdated()
+//        self.StudentObjetiveAreaClassifier.taggerModelUpdated()
         self.newDataForTraining = []
         self.mustHaveTableView.reloadData()
     }
@@ -380,7 +380,7 @@ class ViewController: NSViewController {
     @IBAction func trainButtonPressed(_ sender: Any) {
 //        let selectedObjective = self.objectivesToDisplay[self.selectedObjectiveIndex]
 //        self.newDataForTraining.append(selectedObjective)
-//        self.studentObjectiveClassifier.trainClassifier()
+//        self.StudentObjetiveAreaClassifier.trainClassifier()
     }
     
     @IBAction func popUpItemSelected(_ sender: NSPopUpButton) {
@@ -461,7 +461,7 @@ class ViewController: NSViewController {
                         id in
                         let student = studentsDict[id]
                         student?.classifiedObjectives = [:]
-                        self.appDelegate.selectedSprint?.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
+                        self.appDelegate.selectedSprint?.studentObjectiveAreaClassifier.classifyStudentObjectives(student: student!)
                     }
                 }
                 self.elementsToDisplay = []
@@ -525,7 +525,7 @@ class ViewController: NSViewController {
 //            self.showTeamNotes()
 //
 //            self.cblSprint.retrieveAllStudents(onSucess: {
-//                let studentsData = self.cblSprint.studentObjectiveClassifier.studentsData
+//                let studentsData = self.cblSprint.StudentObjetiveAreaClassifier.studentsData
 //
 //                guard let rows = studentsData?.rows else {return}
 //                rows.forEach{
@@ -551,7 +551,7 @@ class ViewController: NSViewController {
 //                self.cblSprint.studentsDict.keys.forEach{
 //                    name in
 //                    let student = self.cblSprint.studentsDict[name]
-//                    self.cblSprint.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
+//                    self.cblSprint.StudentObjetiveAreaClassifier.classifyStudentObjectives(student: student!)
 //                }
 //
 //                self.cblSprint.retrieveAllObjectives {
@@ -755,7 +755,7 @@ class ViewController: NSViewController {
     
     @IBAction func showExtraFeaturesPressed(_ sender: Any) {
         //Aqui: precisa implementar a ferramenta que treina as tags em: tópico de aprendizado, ferramenta e dispositivo
-//        self.cblSprint.studentObjectiveClassifier.trainClassifier()
+//        self.cblSprint.StudentObjetiveAreaClassifier.trainClassifier()
     }
     
     override var representedObject: Any? {
@@ -861,7 +861,7 @@ extension ViewController: NSTextViewDelegate {
         let student = appDelegate.selectedCourse?.studentsByID[studentID]
         
         student?.addOriginalObjective(objective: res!)
-        appDelegate.selectedSprint?.studentObjectiveClassifier.classifyStudentObjectives(student: student!)
+        appDelegate.selectedSprint?.studentObjectiveAreaClassifier.classifyStudentObjectives(student: student!)
         return res
     }
     
