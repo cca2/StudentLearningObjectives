@@ -754,7 +754,8 @@ class ViewController: NSViewController {
     }
     
     @IBAction func showExtraFeaturesPressed(_ sender: Any) {
-        self.cblSprint.studentObjectiveClassifier.trainClassifier()
+        //Aqui: precisa implementar a ferramenta que treina as tags em: tópico de aprendizado, ferramenta e dispositivo
+//        self.cblSprint.studentObjectiveClassifier.trainClassifier()
     }
     
     override var representedObject: Any? {

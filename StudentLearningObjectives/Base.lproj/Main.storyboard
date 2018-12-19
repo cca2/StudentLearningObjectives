@@ -839,7 +839,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="596"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <button hidden="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bdK-Q7-Eav">
+                                        <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bdK-Q7-Eav">
                                             <rect key="frame" x="16" y="58" width="19" height="19"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="19" id="bKt-Ih-wz2"/>
