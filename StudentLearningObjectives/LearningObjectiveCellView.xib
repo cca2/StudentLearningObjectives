@@ -285,7 +285,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="564" height="17"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView verticallyResizable="YES" allowsDocumentBackgroundColorChange="YES" spellingCorrection="YES" smartInsertDelete="YES" id="bxo-W1-qo0" customClass="ParagraphTextView" customModule="StudentLearningObjectives" customModuleProvider="target">
+                                        <textView importsGraphics="NO" verticallyResizable="YES" selectionGranularity="word" allowsDocumentBackgroundColorChange="YES" allowsUndo="YES" spellingCorrection="YES" smartInsertDelete="YES" id="bxo-W1-qo0" customClass="ParagraphTextView" customModule="StudentLearningObjectives" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="564" height="17"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -360,8 +360,6 @@
             </constraints>
             <connections>
                 <outlet property="objectiveDescription" destination="bxo-W1-qo0" id="wSq-vZ-t0u"/>
-                <outlet property="paragraphTextView" destination="bxo-W1-qo0" id="qnn-v6-P7O"/>
-                <outlet property="selectedBox" destination="vUV-Ir-DxO" id="mUd-Lp-y9S"/>
             </connections>
             <point key="canvasLocation" x="91" y="71"/>
         </customView>

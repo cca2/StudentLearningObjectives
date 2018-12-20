@@ -63,8 +63,8 @@ class ParagraphTextView: EditableTextView {
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
         self.font = self.appDelegate.appMainFont
-        self.textColor = NSColor.darkGray
-        self.backgroundColor = NSColor.white
+//        self.textColor = NSColor.darkGray
+//        self.backgroundColor = NSColor.white
     }
 }
 
@@ -359,6 +359,6 @@ class ParagraphCellView: NSTableCellView {
 
 class LearningObjectiveWithoutTagsView: NSTableCellView {
     
-    @IBOutlet var objectiveDescription: ParagraphTextView!
+    @IBOutlet var objectiveDescription: ParagraphTextView!    
 }
 

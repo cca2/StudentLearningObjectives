@@ -79,9 +79,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var onDisplayIntelligentAlertMessage:((IntelligentAlertMessage) -> ())?
     var onClearIntelligentAlerts:(() -> ())?
     
-    //Ações relacionadas a mudanças nas informações da equipe relacionadas a CBL (bigidea, etc)
-    var onBigIdeaChanged:(() -> ())?
-    
+    var onTrainingTaggerSelected:(() -> ())?
     
     func selectedCourseSprintsFetched () {
         if let onSelectedCourseSprintsFetched = onSelectedCourseSprintsFetched {
@@ -102,14 +100,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func classifyUsingBloomsTaxonomy(objective: String) {
-        let classifier = BloomsKnowledgeClassifier()
-        classifier.checkForMeasurableVerb(objective: objective, onCheked: {
-            status, verbs in
-            if status == BloomsKnowledgeClassifier.MeasurableVertStatus.NoVerb {
-                let intelligentAlertMessage = IntelligentAlertMessage(message: "O objetivo não possui uma ação mensurável")
-                self.onDisplayIntelligentAlertMessage!(intelligentAlertMessage)
-            }
-        })
+//        let classifier = BloomsKnowledgeClassifier()
+//        classifier.checkForMeasurableVerb(objective: objective, onCheked: {
+//            status, verbs in
+//            if status == BloomsKnowledgeClassifier.MeasurableVertStatus.NoVerb {
+//                let intelligentAlertMessage = IntelligentAlertMessage(message: "O objetivo não possui uma ação mensurável")
+//                self.onDisplayIntelligentAlertMessage!(intelligentAlertMessage)
+//            }
+//        })
     }
       
     @objc func onDidUpdateObjective(_ notification:Notification) {

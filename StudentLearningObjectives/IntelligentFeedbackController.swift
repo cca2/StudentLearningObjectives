@@ -8,11 +8,10 @@
 
 import Cocoa
 
-protocol IntelligentAlertProtocol {
-    func displayAlert(message: String) -> Void
+protocol IntelligentElementToDisplayProtocol {
 }
 
-class IntelligentElementToDisplay {
+class IntelligentElementToDisplay: IntelligentElementToDisplayProtocol {
     var student:Student?
     var objective:StudentLearningObjective? {
         didSet {
@@ -24,13 +23,17 @@ class IntelligentElementToDisplay {
     var message:IntelligentAlertMessage?
 }
 
+class NounsTaggerOptionsElementToDisplay: IntelligentElementToDisplayProtocol {
+    
+}
+
 class IntelligentFeedbackController: NSPageController {
     var cblSprint:CBLSprint?
     var listOfMatchesByObjective:[(Student, StudentLearningObjective)]!
     var intelligentAlert:IntelligentAlertMessage?
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
     
-    var elementsToDisplay:[IntelligentElementToDisplay] = []
+    var elementsToDisplay:[IntelligentElementToDisplayProtocol] = []
     
     @IBOutlet weak var studentMatchByObjectiveList: NSTableView!
     
@@ -50,6 +53,8 @@ class IntelligentFeedbackController: NSPageController {
         
         self.studentMatchByObjectiveList.register(NSNib(nibNamed: "StudentMatchByObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("IntelligentAlertCellID"))
         
+        self.studentMatchByObjectiveList.register(NSNib(nibNamed: "StudentMatchByObjectiveCellView", bundle: .main), forIdentifier: NSUserInterfaceItemIdentifier("TrainingAlertCellID"))
+        
         appDelegate.onObjectiveSelected = {(student, objective) in
             self.listOfMatchesByObjective = self.appDelegate.selectedSprint?.matchStudents(student: student, objective: objective)
             self.elementsToDisplay = []
@@ -63,6 +68,13 @@ class IntelligentFeedbackController: NSPageController {
                 self.intelligentLabel.isHidden = false
                 self.studentMatchByObjectiveList.reloadData()
             }
+        }
+        
+        appDelegate.onTrainingTaggerSelected = {
+            print(">>> 800 <<<")
+            self.elementsToDisplay = []
+            self.elementsToDisplay.append(NounsTaggerOptionsElementToDisplay())
+            self.studentMatchByObjectiveList.reloadData()
         }
         
         let teamSelectedClosure:((Team) -> ())? = {
@@ -111,31 +123,39 @@ extension IntelligentFeedbackController: NSTableViewDataSource {
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         let elementToDisplay = self.elementsToDisplay[row]
-        if let objective = elementToDisplay.objective {
-            let fakeField = NSTextField()
-            let item = objective.description
-            let objectiveDescriptionWidth = CGFloat(262.0)
-            fakeField.stringValue = item
-            // exactly how you get the text out of your data array depends on how you set it up
-            let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 70.0
-            return yourHeight
+        
+        if elementToDisplay is IntelligentElementToDisplay {
+            let elementToDisplay = elementToDisplay as! IntelligentElementToDisplay
+            if let objective = elementToDisplay.objective {
+                let fakeField = NSTextField()
+                let item = objective.description
+                let objectiveDescriptionWidth = CGFloat(262.0)
+                fakeField.stringValue = item
+                // exactly how you get the text out of your data array depends on how you set it up
+                let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 70.0
+                return yourHeight
+            }else {
+                return 100.0
+            }
+    //        if let matches = self.listOfMatchesByObjective {
+    //            let objective = matches[row].1
+    //            let fakeField = NSTextField()
+    //            let item = objective.description
+    //            let objectiveDescriptionWidth = CGFloat(262.0)
+    //
+    //            fakeField.stringValue = item
+    //            // exactly how you get the text out of your data array depends on how you set it up
+    //
+    //            let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 70.0
+    //            return yourHeight
+    //        }else {
+    //            return 50.0
+    //        }
+        }else if elementToDisplay is NounsTaggerOptionsElementToDisplay {
+            return 130.0
         }else {
-            return 100.0
+            return 0.0
         }
-//        if let matches = self.listOfMatchesByObjective {
-//            let objective = matches[row].1
-//            let fakeField = NSTextField()
-//            let item = objective.description
-//            let objectiveDescriptionWidth = CGFloat(262.0)
-//
-//            fakeField.stringValue = item
-//            // exactly how you get the text out of your data array depends on how you set it up
-//
-//            let yourHeight = fakeField.cell!.cellSize(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), objectiveDescriptionWidth, CGFloat(Float.greatestFiniteMagnitude))).height + 70.0
-//            return yourHeight
-//        }else {
-//            return 50.0
-//        }
     }
 }
 
@@ -143,19 +163,27 @@ extension IntelligentFeedbackController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         if (tableView == self.studentMatchByObjectiveList) {
             let elementToDisplay = self.elementsToDisplay[row]
-            if let objective = elementToDisplay.objective {
-                let cellIdentifier = "StudentMatchByObjectiveCellID"
-                if tableColumn == tableView.tableColumns[0] {
-                    if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  StudentMatchByObjectiveCellView {
-                        cell.studentName.stringValue = (elementToDisplay.student?.name)!
-                        cell.displayObjective(objective: objective)
+            if elementToDisplay is IntelligentElementToDisplay {
+                let elementToDisplay = elementToDisplay as! IntelligentElementToDisplay
+                if let objective = elementToDisplay.objective {
+                    let cellIdentifier = "StudentMatchByObjectiveCellID"
+                    if tableColumn == tableView.tableColumns[0] {
+                        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as?  StudentMatchByObjectiveCellView {
+                            cell.studentName.stringValue = (elementToDisplay.student?.name)!
+                            cell.displayObjective(objective: objective)
+                            return cell
+                        }
+                    }
+                }else if let message = elementToDisplay.message {
+                    let cellIdentifier = "IntelligentAlertCellID"
+                    if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as? IntelligentAlertView {
+                        cell.message.stringValue = message.message
                         return cell
                     }
                 }
-            }else if let message = elementToDisplay.message {
-                let cellIdentifier = "IntelligentAlertCellID"
-                if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as? IntelligentAlertView {
-                    cell.message.stringValue = message.message
+            }else if elementToDisplay is NounsTaggerOptionsElementToDisplay {
+                let cellIdentifier = "TrainingAlertCellID"
+                if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as? TrainingAlertView {
                     return cell
                 }
             }
@@ -165,7 +193,7 @@ extension IntelligentFeedbackController: NSTableViewDelegate {
 
 }
 
-extension IntelligentFeedbackController: IntelligentAlertProtocol {
+extension IntelligentFeedbackController: IntelligentElementToDisplayProtocol {
     func displayAlert(message: String) {
         
     }

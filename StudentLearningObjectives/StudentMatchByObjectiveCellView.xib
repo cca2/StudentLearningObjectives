@@ -123,26 +123,26 @@
             </connections>
             <point key="canvasLocation" x="139" y="244"/>
         </customView>
-        <customView identifier="IntelligentAlertCellID" id="yoH-1c-mTc" userLabel="Training Tagger" customClass="IntelligentAlertView" customModule="StudentLearningObjectives" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="347" height="94"/>
+        <customView identifier="TrainingAlertCellID" id="yoH-1c-mTc" userLabel="Training Tagger" customClass="TrainingAlertView" customModule="StudentLearningObjectives" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="347" height="130"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <box boxType="custom" cornerRadius="10" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="g7Z-EW-2ws">
-                    <rect key="frame" x="20" y="0.0" width="307" height="94"/>
+                    <rect key="frame" x="20" y="0.0" width="307" height="130"/>
                     <view key="contentView" id="sau-2y-LYN">
-                        <rect key="frame" x="1" y="1" width="305" height="92"/>
+                        <rect key="frame" x="1" y="1" width="305" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NAV-Jb-JPE">
-                                <rect key="frame" x="27" y="55" width="244" height="18"/>
+                                <rect key="frame" x="19" y="97" width="244" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="radio" title="Dispositivo" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="zB2-3S-hpV">
+                                <buttonCell key="cell" type="radio" title="Dispositivo" bezelStyle="regularSquare" imagePosition="left" inset="2" id="zB2-3S-hpV">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system" size="14"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6eR-cj-j1T">
-                                <rect key="frame" x="27" y="33" width="244" height="18"/>
+                                <rect key="frame" x="19" y="75" width="244" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="radio" title="Ferramenta" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="ijj-tA-g60">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -150,12 +150,24 @@
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sOh-LG-tZp">
-                                <rect key="frame" x="27" y="11" width="244" height="18"/>
+                                <rect key="frame" x="19" y="53" width="244" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="radio" title="Tópico de Aprendizado" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="rww-r3-xIV">
+                                <buttonCell key="cell" type="radio" title="Tópico de Aprendizado" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="rww-r3-xIV">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system" size="14"/>
                                 </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9OI-gr-g5i">
+                                <rect key="frame" x="76" y="8" width="153" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="bevel" title="exportar para JSON" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="3Kk-VA-6fl">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="contentTintColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                <connections>
+                                    <action selector="exportToJSONPressed:" target="yoH-1c-mTc" id="dZX-bi-zLs"/>
+                                </connections>
                             </button>
                         </subviews>
                     </view>
@@ -169,7 +181,13 @@
                 <constraint firstItem="g7Z-EW-2ws" firstAttribute="top" secondItem="yoH-1c-mTc" secondAttribute="top" id="hU3-BX-TjY"/>
                 <constraint firstAttribute="bottom" secondItem="g7Z-EW-2ws" secondAttribute="bottom" id="lm5-Hh-wGh"/>
             </constraints>
-            <point key="canvasLocation" x="138.5" y="415"/>
+            <connections>
+                <outlet property="deviceSelectButton" destination="NAV-Jb-JPE" id="jVw-wq-w8V"/>
+                <outlet property="exportToJSONButton" destination="9OI-gr-g5i" id="PtE-5U-9lA"/>
+                <outlet property="toolSelectButton" destination="6eR-cj-j1T" id="1Qh-fB-fFc"/>
+                <outlet property="topicSelectButton" destination="sOh-LG-tZp" id="eIO-DR-X4u"/>
+            </connections>
+            <point key="canvasLocation" x="138.5" y="438"/>
         </customView>
     </objects>
 </document>

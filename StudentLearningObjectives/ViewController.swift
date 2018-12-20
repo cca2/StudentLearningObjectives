@@ -756,6 +756,15 @@ class ViewController: NSViewController {
     @IBAction func showExtraFeaturesPressed(_ sender: Any) {
         //Aqui: precisa implementar a ferramenta que treina as tags em: tópico de aprendizado, ferramenta e dispositivo
 //        self.cblSprint.StudentObjetiveAreaClassifier.trainClassifier()
+        
+        //Mostrar opções de classificação de tags na área de alertas inteligentes
+        if let onTrainingTaggerSelected = self.appDelegate.onTrainingTaggerSelected {
+            onTrainingTaggerSelected()
+        }
+        
+        //No modo de treinamento o usário seleciona um opção de tag
+        
+        //A cada seleção o substantivo fica da cor do tipo de tag
     }
     
     override var representedObject: Any? {
@@ -781,14 +790,46 @@ extension ViewController: NSTableViewDataSource {
 }
 
 extension ViewController: NSTextViewDelegate {
-    func textView(_ textView: NSTextView, willChangeSelectionFromCharacterRange oldSelectedCharRange: NSRange, toCharacterRange newSelectedCharRange: NSRange) -> NSRange {
-        //Aqui: Estou trabalhando na seleção de palavras
-        print(">>> 700 <<<")
-        print(oldSelectedCharRange)
-        print(newSelectedCharRange)
-        return newSelectedCharRange
+    func textViewDidChangeSelection(_ notification: Notification) {
+        let textView = notification.object as! NSTextView
+        let selectedRange = textView.selectedRange()
+        if selectedRange.length > 0 {
+            let startIndex = textView.string.index(textView.string.startIndex, offsetBy: selectedRange.location)
+            let endIndex = textView.string.index(textView.string.startIndex, offsetBy: selectedRange.location + selectedRange.length)
+            let selectedStringRange = startIndex..<endIndex
+            let selectedString = String(textView.string[selectedStringRange])
+            print(selectedString)
+    
+//            let color = textView.textColor
+            let font = textView.font
+    
+            let topicAttributes:[NSAttributedString.Key: Any?] = [.font:font, .backgroundColor:NSColor.red, .foregroundColor:NSColor.white]
+//            let textAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:color, .font:font]
+    
+            let attributedText = NSMutableAttributedString(string: "")
+    
+            let text = textView.string
+    
+            let tagger = NLTagger(tagSchemes: [.lexicalClass])
+            tagger.string = text
+            tagger.enumerateTags(in: text.startIndex..<text.endIndex, unit: .word, scheme: .lexicalClass, options: []) {
+                tag, tokenRange in
+                let range = text.range(of: selectedString)
+                if tag != nil {
+                    let token = String(text[tokenRange])
+                    if (range?.contains(tokenRange.lowerBound))! {
+                        attributedText.append(NSAttributedString(string:token, attributes: topicAttributes as [NSAttributedString.Key : Any]))
+                    }else {
+                        let attributes = textView.attributedString().attributes(at: tokenRange.lowerBound.encodedOffset, effectiveRange: nil)
+                        attributedText.append(NSAttributedString(string:token, attributes: attributes as [NSAttributedString.Key : Any]))
+                    }
+                }
+                return true
+            }
+            textView.textStorage?.setAttributedString(attributedText)
+        }
     }
-
+    
     func textView(_ textView: NSTextView, completions words: [String], forPartialWordRange charRange: NSRange, indexOfSelectedItem index: UnsafeMutablePointer<Int>?) -> [String] {
         let tagsList = textView.string
         
