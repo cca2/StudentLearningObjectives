@@ -441,11 +441,12 @@ class ViewController: NSViewController {
 
         //Closure quando o curso é selecionado
         self.appDelegate.onCourseSelected = {
-            course in            
+            course in
             print(">>> BAIXANDO DADOS DOS ESTUDANTES <<<")
             course.retrieveAllStudents {
                 self.appDelegate.selectedCourseStudentsFetched()
                 print(">>> REGISTRANDO OS ESTUDANTES <<<")
+                self.appDelegate.selectedSprint = course.sprints.first
             }
         }
 
@@ -494,7 +495,6 @@ class ViewController: NSViewController {
 
         let studentSelectedClosure:((Student) -> ())? = {
             student in
-            //            self.newTeamSelected()
             self.displayStudentObjectives(student: student)
 //            DispatchQueue.main.async {
 //                print(">>> 100 \(student.name) selecionado <<<")
@@ -608,9 +608,9 @@ class ViewController: NSViewController {
     }
     
     func displayTeamInfo(team:Team) {
+        self.elementsToDisplay = []
         DispatchQueue.main.async {
             self.mustHaveTableView.deselectAll(nil)
-            self.elementsToDisplay = []
             self.elementsToDisplay.append(NoteElementToDisplay(title: team.name))
             self.elementsToDisplay.append(NoteElementToDisplay(subtitle: "Big Idea"))
             self.elementsToDisplay.append(NoteElementToDisplay(team: team, infoType: .BigIdea))
@@ -800,11 +800,9 @@ extension ViewController: NSTextViewDelegate {
             let selectedString = String(textView.string[selectedStringRange])
             print(selectedString)
     
-//            let color = textView.textColor
             let font = textView.font
     
             let topicAttributes:[NSAttributedString.Key: Any?] = [.font:font, .backgroundColor:NSColor.red, .foregroundColor:NSColor.white]
-//            let textAttributes:[NSAttributedString.Key: Any?] = [.foregroundColor:color, .font:font]
     
             let attributedText = NSMutableAttributedString(string: "")
     
@@ -860,6 +858,10 @@ extension ViewController: NSTextViewDelegate {
 
         if !((tagsList.contains("#ensinado"))) {
             rCompletions.append("ensinado")
+        }
+        
+        if !((tagsList.contains("#completado"))) {
+            rCompletions.append("completado")
         }
 
         return rCompletions
@@ -950,9 +952,8 @@ extension ViewController: NSTextViewDelegate {
     func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
         let textView = textView as! EditableTextView
         if textView.isTagsList {
-//            let string = textView.string
             if affectedCharRange.length == 0 {
-                if (textView.string.contains("#musthave") || textView.string.contains("nicetohave")) && (textView.string.contains("#inbacklog") || textView.string.contains("#abandonado"))
+                if (textView.string.contains("#musthave") || textView.string.contains("nicetohave")) && (textView.string.contains("#inbacklog") || textView.string.contains("#abandonado") || textView.string.contains("#completado"))
                     &&  (textView.string.contains("#ensinado") && textView.string.contains("estudado") && textView.string.contains("experimentado") && textView.string.contains("aplicado")){
                     return false
                 }
@@ -968,7 +969,7 @@ extension ViewController: NSTextViewDelegate {
                         return true
                     }else {
                         print(">>> 50 <<<")
-                        let completions = ["inbacklog", "abandonado", "musthave", "nicetohave", "básico", "senior", "expert", "estudado", "experimentado", "aplicado", "ensinado"]
+                        let completions = ["inbacklog", "abandonado", "musthave", "nicetohave", "básico", "senior", "expert", "estudado", "experimentado", "aplicado", "ensinado", "completado"]
                         var replacementValid = false
                         completions.forEach{completion in
                             if rString == completion {
@@ -1145,8 +1146,8 @@ extension ViewController: NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         tableColumn?.headerCell.backgroundColor = NSColor.white
-        let noteElement = elementsToDisplay[row]
         if (tableView == self.mustHaveTableView) {
+            let noteElement = elementsToDisplay[row]
             var cellIdentifier = ""
             
             if tableColumn == tableView.tableColumns[0] {

@@ -1,7 +1,4 @@
-Classificar todos os objetivos de todos os alunos
 Criar o mecanismo de treinamento que leva em consideração o treinamento com os objetivos existentes (substituição) e novos objetivos adicionados à base de treinamento
-Ter uma visão específica de objetivo individualmente
-ter uma visão para o acompanhamento do objetivo: onde o usuário possa marcar o status do objetivo: abandonado, estudando, experimentando, aplicando, ensinando
 Permiter apagar objetivos
 As setas para cima e para baixo não estão funcionando corretamente quando o objetivo tem mais de uma linha
 Gerar um notificação quando um dos objetivos é atualizado

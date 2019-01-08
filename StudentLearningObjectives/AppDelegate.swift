@@ -208,8 +208,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 record in
                 let course = CBLCourse(courseRecord: record)
                 self.courses.append(course)
+                course.retrieveAllSprints {
+                    print(">>> Coletei sprints do curso <<<\(course.name)")
+                    sucess()
+                }
             }
-            sucess()
         }
     }
 
@@ -226,8 +229,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         database = CKContainer.default().privateCloudDatabase
         self.retrieveAllCourses {
+            //Conseguiu ler os cursos com os nomes das sprints
+            //Precisa mostrar na outlineView da interface
             if self.courses.count > 0 {
                 self.selectedCourse = self.courses.first
+//                self.selectedSprint = self.selectedCourse?.sprints.first
             }
         }
     }

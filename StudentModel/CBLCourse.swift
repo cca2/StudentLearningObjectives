@@ -11,6 +11,9 @@ import CloudKit
 import Cocoa
 
 class CBLCourse {
+    
+    private var courseRecord:CKRecord!
+    
     var name: String?
     var id: String?
     var sprints:[CBLSprint] = []
@@ -21,9 +24,12 @@ class CBLCourse {
     init(courseRecord: CKRecord) {
         self.name = courseRecord["name"]
         self.id = courseRecord.recordID.recordName
-        
+        self.courseRecord = courseRecord
+    }
+    
+    func retrieveAllSprints(onSuccess sucess: @escaping () -> Void) -> Void {
         let database = CKContainer.default().privateCloudDatabase
-        let reference = CKRecord.Reference(recordID: courseRecord.recordID, action: .none)
+        let reference = CKRecord.Reference(recordID: self.courseRecord.recordID, action: .none)
         let predicate = NSPredicate(format: "belongToCourse == %@", reference)
         let query = CKQuery(recordType: "CBLSprintRecord", predicate: predicate)
         
@@ -39,7 +45,8 @@ class CBLCourse {
                         self.sprints.append(sprint)
                     }
                     self.delegate.selectedCourseSprintsFetched()
-                    self.delegate.selectedSprint = self.sprints.first
+//                    self.delegate.selectedSprint = self.sprints.first
+                    sucess()
                 }
             }
         }
@@ -57,14 +64,15 @@ class CBLCourse {
                 print (error as Any)
                 return
             }
+            print(">>> Retrieve dos Alunos <<<")
             records.forEach{
                 record in
                 let student = Student(record: record)
                 self.studentsByID[student.id] = student
-                print(student.name)
+                print("\(student.id):\(student.name)")
             }
             
-            
+            success()
             //Apagando todos os registros de estudantes
 //            records.forEach{
 //                record in

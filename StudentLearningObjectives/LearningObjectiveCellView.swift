@@ -359,6 +359,11 @@ class ParagraphCellView: NSTableCellView {
 
 class LearningObjectiveWithoutTagsView: NSTableCellView {
     
-    @IBOutlet var objectiveDescription: ParagraphTextView!    
+    @IBOutlet var objectiveDescription: ParagraphTextView!
+    
+    override func selectWord(_ sender: Any?) {
+        print(">>> 900 <<<")
+        print(sender as Any)
+    }
 }
 
