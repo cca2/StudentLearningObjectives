@@ -822,7 +822,7 @@
                                 </constraints>
                             </box>
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="kfi-ZD-kaW">
-                                <rect key="frame" x="199" y="0.0" width="5" height="596"/>
+                                <rect key="frame" x="199" y="0.0" width="6" height="596"/>
                             </box>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="lzv-aP-CdK">
                                 <rect key="frame" x="1204" y="0.0" width="346" height="596"/>
@@ -863,9 +863,9 @@
                                 <color key="fillColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </box>
                             <box boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="TyQ-eo-tBk">
-                                <rect key="frame" x="0.0" y="0.0" width="249" height="596"/>
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="596"/>
                                 <view key="contentView" id="zSY-hb-4At">
-                                    <rect key="frame" x="0.0" y="0.0" width="249" height="596"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="250" height="596"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z07-9x-Hqz">
@@ -954,7 +954,7 @@
                                             </scroller>
                                         </scrollView>
                                         <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jzf-yW-uo8">
-                                            <rect key="frame" x="64.5" y="19" width="119" height="23"/>
+                                            <rect key="frame" x="65" y="19" width="119" height="23"/>
                                             <buttonCell key="cell" type="roundTextured" title="Apagar Database" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HXM-bw-Rac">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -964,7 +964,7 @@
                                             </connections>
                                         </button>
                                         <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0in-wW-rCJ">
-                                            <rect key="frame" x="68.5" y="43" width="110" height="23"/>
+                                            <rect key="frame" x="69" y="43" width="110" height="23"/>
                                             <buttonCell key="cell" type="roundTextured" title="csv to database" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="C0c-x7-cD2">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>

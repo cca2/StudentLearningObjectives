@@ -791,7 +791,7 @@ extension ViewController: NSTableViewDataSource {
 
 extension ViewController: NSTextViewDelegate {
     func textViewDidChangeSelection(_ notification: Notification) {
-        let textView = notification.object as! NSTextView
+        let textView = notification.object as! EditableTextView
         let selectedRange = textView.selectedRange()
         if selectedRange.length > 0 {
             let startIndex = textView.string.index(textView.string.startIndex, offsetBy: selectedRange.location)

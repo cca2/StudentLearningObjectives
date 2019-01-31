@@ -59,6 +59,7 @@ class LearningObjectiveTextView: EditableTextView {
 
 class ParagraphTextView: EditableTextView {
     var isParagraph:Bool {return true}
+    var previousSelectedRange:NSRange?
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)

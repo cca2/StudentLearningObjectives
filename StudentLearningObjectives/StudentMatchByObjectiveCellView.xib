@@ -123,43 +123,18 @@
             </connections>
             <point key="canvasLocation" x="139" y="244"/>
         </customView>
-        <customView identifier="TrainingAlertCellID" id="yoH-1c-mTc" userLabel="Training Tagger" customClass="TrainingAlertView" customModule="StudentLearningObjectives" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="347" height="130"/>
+        <customView identifier="TrainingAlertCellID" id="yoH-1c-mTc" userLabel="Training Classifier" customClass="TrainingAlertView" customModule="StudentLearningObjectives" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="347" height="190"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <box boxType="custom" cornerRadius="10" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="g7Z-EW-2ws">
-                    <rect key="frame" x="20" y="0.0" width="307" height="130"/>
+                    <rect key="frame" x="20" y="0.0" width="307" height="190"/>
                     <view key="contentView" id="sau-2y-LYN">
-                        <rect key="frame" x="1" y="1" width="305" height="128"/>
+                        <rect key="frame" x="1" y="1" width="305" height="188"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NAV-Jb-JPE">
-                                <rect key="frame" x="19" y="97" width="244" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="radio" title="Dispositivo" bezelStyle="regularSquare" imagePosition="left" inset="2" id="zB2-3S-hpV">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6eR-cj-j1T">
-                                <rect key="frame" x="19" y="75" width="244" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="radio" title="Ferramenta" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="ijj-tA-g60">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system" size="14"/>
-                                </buttonCell>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sOh-LG-tZp">
-                                <rect key="frame" x="19" y="53" width="244" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="radio" title="Tópico de Aprendizado" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="rww-r3-xIV">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system" size="14"/>
-                                </buttonCell>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9OI-gr-g5i">
-                                <rect key="frame" x="76" y="8" width="153" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9OI-gr-g5i">
+                                <rect key="frame" x="91" y="10" width="124" height="17"/>
                                 <buttonCell key="cell" type="bevel" title="exportar para JSON" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="3Kk-VA-6fl">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -169,7 +144,73 @@
                                     <action selector="exportToJSONPressed:" target="yoH-1c-mTc" id="dZX-bi-zLs"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dBc-DC-TEX">
+                                <rect key="frame" x="100" y="150" width="106" height="19"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Treinamento" id="1ta-vv-jgx">
+                                    <font key="font" metaFont="systemBold" size="16"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2D9-eB-WfN">
+                                <rect key="frame" x="41" y="66" width="170" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Objetivos de Aprendizado:" id="JOx-E7-8dZ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3jt-yJ-ph9">
+                                <rect key="frame" x="224" y="66" width="29" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="0" id="ajj-aR-nh4">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XMd-b1-VPh">
+                                <rect key="frame" x="41" y="48" width="170" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Não objetivos:" id="e4g-jL-Zmw">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D8j-zC-jKx">
+                                <rect key="frame" x="224" y="48" width="29" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="0" id="eHa-NQ-abP">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NAV-Jb-JPE">
+                                <rect key="frame" x="19" y="118" width="244" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Objetivo de aprendizado" bezelStyle="regularSquare" imagePosition="left" inset="2" id="zB2-3S-hpV">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system" size="14"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6eR-cj-j1T">
+                                <rect key="frame" x="19" y="96" width="244" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Não é objetivo" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="ijj-tA-g60">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system" size="14"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="dBc-DC-TEX" firstAttribute="centerX" secondItem="sau-2y-LYN" secondAttribute="centerX" id="2Qe-vb-aRO"/>
+                            <constraint firstItem="9OI-gr-g5i" firstAttribute="centerX" secondItem="sau-2y-LYN" secondAttribute="centerX" id="PBl-I0-s0y"/>
+                            <constraint firstItem="dBc-DC-TEX" firstAttribute="top" secondItem="sau-2y-LYN" secondAttribute="top" constant="19" id="d3p-sh-Lys"/>
+                            <constraint firstAttribute="bottom" secondItem="9OI-gr-g5i" secondAttribute="bottom" constant="10" id="dc7-ou-gle"/>
+                        </constraints>
                     </view>
                     <color key="borderColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     <color key="fillColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -185,9 +226,8 @@
                 <outlet property="deviceSelectButton" destination="NAV-Jb-JPE" id="jVw-wq-w8V"/>
                 <outlet property="exportToJSONButton" destination="9OI-gr-g5i" id="PtE-5U-9lA"/>
                 <outlet property="toolSelectButton" destination="6eR-cj-j1T" id="1Qh-fB-fFc"/>
-                <outlet property="topicSelectButton" destination="sOh-LG-tZp" id="eIO-DR-X4u"/>
             </connections>
-            <point key="canvasLocation" x="138.5" y="438"/>
+            <point key="canvasLocation" x="138.5" y="468"/>
         </customView>
     </objects>
 </document>

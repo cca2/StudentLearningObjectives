@@ -152,7 +152,7 @@ extension IntelligentFeedbackController: NSTableViewDataSource {
     //            return 50.0
     //        }
         }else if elementToDisplay is NounsTaggerOptionsElementToDisplay {
-            return 130.0
+            return 190.0
         }else {
             return 0.0
         }
